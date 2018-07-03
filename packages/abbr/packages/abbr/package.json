@@ -1,4 +1,5 @@
 {
   "name": "@kvz/abbr",
+  "private": false,
   "version": "0.0.1"
 }
