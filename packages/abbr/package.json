@@ -1,0 +1,13 @@
+{
+	"name": "jsmonorepo",
+	"private": true,
+	"scripts": {
+		"updated": "lerna updated",
+		"bootstrap": "lerna bootstrap",
+		"publish": "lerna publish"
+	},
+	"devDependencies": {
+		"fakefile": "0.0.9",
+		"lerna": "^2.11.0"
+	}
+}
