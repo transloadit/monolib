@@ -4,7 +4,7 @@
 	"scripts": {
 		"updated": "lerna updated",
 		"bootstrap": "lerna bootstrap",
-		"publish": "lerna publish"
+		"publish": "./scripts/spread.sh && lerna publish"
 	},
 	"devDependencies": {
 		"fakefile": "0.0.9",
