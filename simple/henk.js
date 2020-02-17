@@ -1,3 +1,3 @@
-module.exports = () => {
-  console.log('henk')
+module.exports = function henk () {
+  return 'henk'
 }
