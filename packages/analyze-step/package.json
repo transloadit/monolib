@@ -10,5 +10,7 @@
   ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
-  }
+  },
+  "main": "analyzeStep.js",
+  "transloaditHash": "a1331beeb1a3749344abe3e3f68e5534e5a3024c"
 }

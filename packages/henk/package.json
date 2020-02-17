@@ -1,6 +1,6 @@
 {
   "name": "@transloadit/henk",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/transloadit/monolib.git",
@@ -10,5 +10,5 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "main": "./index.js",
-  "transloaditHash": "62932fe1995ef4339f3b914a4a1cd0fbb1e1cc86"
+  "transloaditHash": "6b64de36bd5391e3b18cb5c49664b7b2897c8c55"
 }
