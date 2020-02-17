@@ -15,6 +15,6 @@
   "dependencies": {
     "pretty-ms": "^6.0.0"
   },
-  "version": "0.0.13",
-  "transloaditHash": "ec18ccf79ec1d8601028f312f7c3b5c4a8d8c399"
+  "version": "0.0.14",
+  "transloaditHash": "49a95777d6a01427135870fd274c00f6a668e6eb"
 }
