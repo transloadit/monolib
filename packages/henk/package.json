@@ -1,0 +1,12 @@
+{
+  "name": "@transloadit/henk",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/transloadit/monolib.git",
+    "directory": "packages/henk"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "main": "./index.js"
+}

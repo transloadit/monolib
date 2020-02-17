@@ -1,0 +1,14 @@
+{
+  "name": "@transloadit/analyze-step",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/transloadit/monolib.git",
+    "directory": "packages/analyze-step"
+  },
+  "files": [
+    "analyzeStep.js"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
+}

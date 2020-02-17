@@ -1,0 +1,19 @@
+{
+  "name": "@transloadit/format-duration-ms",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/transloadit/monolib.git",
+    "directory": "packages/format-duration-ms"
+  },
+  "files": [
+    "formatDurationMs.js"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "main": "./index.js",
+  "dependencies": {
+    "pretty-ms": "^6.0.0"
+  },
+  "version": "0.0.2"
+}
