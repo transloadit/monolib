@@ -11,9 +11,10 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
-  "main": "./index.js",
+  "main": "./formatDurationMs.js",
   "dependencies": {
     "pretty-ms": "^6.0.0"
   },
-  "version": "0.0.2"
+  "version": "0.0.3",
+  "transloaditHash": "90032cca943e252bd177a3ef34665d7305133de"
 }
