@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@transloadit/file-exists@^0.0.3":
+  version "0.0.3"
+  resolved "https://npm.pkg.github.com/download/@transloadit/file-exists/0.0.3/21729087209733a482939dfd97a2d5b753b20d097b0c4daeca663f12c9f16379#6492e4f0d0784ada979af5909fa2a2ba492873c7"
+  integrity sha512-oE9xxxmETaxTpw5I6WT1Lb3SajjiQZwVD8h7ss+ziAMJZC4cOvshfJN0YwhmqV/IZuach7mEIP07jzI/sq2QIg==
+
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"

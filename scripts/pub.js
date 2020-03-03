@@ -47,7 +47,7 @@ async function simpleToPackages () {
     const pkg = {
       ...nowPkg,
       name      : `@transloadit/${pkgName}`,
-      version   : '0.0.1',
+      version   : nowPkg.version || '0.0.1',
       repository: {
         type     : `git`,
         url      : `git://github.com/transloadit/monolib.git`,
