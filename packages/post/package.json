@@ -1,5 +1,6 @@
 {
   "name": "@transloadit/post",
+  "private": false,
   "repository": {
     "type": "git",
     "url": "git://github.com/transloadit/monolib.git",
@@ -13,6 +14,6 @@
   },
   "bin": "./post.js",
   "dependencies": {},
-  "version": "0.0.6",
-  "transloaditHash": "55f14d4fb5a93112bf3e8e468de472b02c71d38b"
+  "version": "0.0.7",
+  "transloaditHash": "33cf304fbc8ac405274f67c7d65244bb73a8faa0"
 }
