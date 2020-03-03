@@ -12,5 +12,12 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "main": "analyzeStep.js",
-  "transloaditHash": "a1331beeb1a3749344abe3e3f68e5534e5a3024c"
+  "transloaditHash": "a1331beeb1a3749344abe3e3f68e5534e5a3024c",
+  "dependencies": {
+    "@transloadit/format-duration-ms": "^0.0.14",
+    "inflect": "^0.4.0",
+    "jsonpath": "^1.0.2",
+    "lodash": "^4.17.15",
+    "prettier-bytes": "^1.0.4"
+  }
 }

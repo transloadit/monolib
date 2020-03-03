@@ -1,10 +1,14 @@
 const analyzeStep = require('./analyzeStep')
 const util = require('util')
-const readMarkdowns = util.promisify(require('./readMarkdowns'))
 
 describe('analyzeStep', () => {
   test('main', async () => {
-    const robots = await readMarkdowns(`${__dirname}/../../_robots/*/*.md`, { nest: 'rname' })
+    const robots = {
+      '/image/resize': {
+        rname        : '/image/resize',
+        purpose_words: 'foobar',
+      },
+    }
     expect(analyzeStep({
       use            : ':original',
       robot          : '/image/resize',
@@ -18,6 +22,16 @@ describe('analyzeStep', () => {
       gravity          : 'center',
       result           : true,
       imagemagick_stack: 'v2.0.7',
-    }, robots)).toMatch('Convert, resize, or watermark images')
+    }, robots)).toMatch('Crop images to 75×75 starting at 150×100 from the top left')
+
+    expect(analyzeStep({
+      use              : ':original',
+      robot            : '/image/resize',
+      width            : '75',
+      height           : '75',
+      resize_strategy  : 'pad',
+      result           : true,
+      imagemagick_stack: 'v2.0.7',
+    }, robots)).toMatch('Resize images to 75×75 using the pad strategy')
   })
 })

@@ -1,4 +1,4 @@
-const formatDurationMs = require('./formatDurationMs')
+const formatDurationMs = require('@transloadit/format-duration-ms')
 const formatBytes = require('prettier-bytes')
 const inflect = require('inflect')
 const _ = require('lodash')
@@ -234,6 +234,9 @@ module.exports = (step, robots) => {
       str = `Slowdown video to half speed`
     } else if (('width' in step || 'height' in step) && (step.width !== '${file.meta.width}') && (step.height !== '${file.meta.height}')) {
       str = `Resize videos` + humanDimensions(step)
+      if ('resize_strategy' in step && step.resize_strategy !== 'pad') {
+        str = `${str} using the ${step.resize_strategy} strategy`
+      }
       if ('preset' in step) {
         str = `${str} and encode for ` + humanPreset(step)
       }
@@ -303,6 +306,9 @@ module.exports = (step, robots) => {
       str = `Change quality of images`
     } else if ('width' in step || 'height' in step) {
       str = `Resize images${humanDimensions(step)}`
+      if ('resize_strategy' in step && step.resize_strategy !== 'fit') {
+        str = `${str} using the ${step.resize_strategy} strategy`
+      }
     } else if ('crop' in step) {
       str = `Crop images${humanDimensions(step)}`
     } else if ('format' in step) {
