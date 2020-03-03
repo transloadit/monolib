@@ -15,7 +15,7 @@ async function post () {
     throw new Error(`Dir does not exist: '${postDir.replace(process.cwd(), '.')}'`)
   }
 
-  const mysqlNow = (new Date()).toISOString().replace('T', ' ').split('.')[0]
+  const mysqlNow = (new Date()).toISOString().replace('T', ' ').split('.')[0].split(' ')[0]
   const answers = await inquirer
     .prompt([
       { type: 'input', name: 'title', message: 'title' },
