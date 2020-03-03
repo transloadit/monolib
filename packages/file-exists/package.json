@@ -1,0 +1,13 @@
+{
+  "name": "@transloadit/file-exists",
+  "version": "0.0.2",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/transloadit/monolib.git",
+    "directory": "packages/file-exists"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "main": "./index.js"
+}
