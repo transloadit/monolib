@@ -1,0 +1,17 @@
+{
+  "name": "@transloadit/post",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/transloadit/monolib.git",
+    "directory": "packages/post"
+  },
+  "files": [
+    "formatDurationMs.js"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "bin": "./post.js",
+  "dependencies": {},
+  "version": "0.0.2"
+}
