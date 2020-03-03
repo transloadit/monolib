@@ -13,7 +13,9 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "bin": "./post.js",
-  "dependencies": {},
+  "dependencies": {
+    "inquirer": "^7.0.5"
+  },
   "version": "0.0.7",
-  "transloaditHash": "33cf304fbc8ac405274f67c7d65244bb73a8faa0"
+  "transloaditHash": "6fc9f22e2c578a6205f7d5796f67f88c9a89c124"
 }

@@ -67,12 +67,11 @@ async function simpleToPackages () {
 async function _pkgToHash (pkgPath) {
   const dirName = path.dirname(pkgPath)
   const pkg = JSON.parse(await fsP.readFile(`${pkgPath}`, 'utf-8'))
-  const pkgFile = `${dirName}/${pkg.main}`
-  const payload = await fsP.readFile(pkgFile, 'utf-8')
-
-  if (!('main' in pkg)) {
-    throw new Error(`There is no 'main' field in '${pkgPath.replace(ROOT, '.')}'`)
+  if (!pkg.main && !pkg.bin) {
+    throw new Error(`No 'main' or 'bin' field in '${pkgPath.replace(ROOT, '.')}'`)
   }
+  const pkgFile = `${dirName}/${pkg.main || pkg.bin}`
+  const payload = await fsP.readFile(pkgFile, 'utf-8')
 
   const pkgWithoutHashAndVersion = JSON.parse(JSON.stringify(pkg))
   delete pkgWithoutHashAndVersion.transloaditHash
@@ -99,7 +98,13 @@ async function publishPackages () {
     } else {
       console.log(`--> publishing ${dirName.replace(ROOT, '.')} because ${pkg.transloaditHash} != ${transloaditHash}`)
 
-      const cmd = `cd '${dirName}' && ((yarn && yarn version --patch && npm publish); cd -)`
+      let modifier = ''
+      if (pkg.name === '@transloadit/post') {
+        modifier = ' --access public'
+      }
+
+      const cmd = `cd '${dirName}' && ((yarn && yarn version --patch && npm publish${modifier}); cd -)`
+      console.log(cmd)
       await execa('sh', ['-c', cmd], { stdio: 'inherit' })
 
       console.log(`--> writing ${pkgPath.replace(ROOT, '.')}`)
