@@ -10,5 +10,5 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "main": "./index.js",
-  "transloaditHash": "71ca77ee353d7d132dd8ee9dedfd30c477285bb"
+  "transloaditHash": "71ca77ee353d7d132dd8ee9dedfd30c77285bbf"
 }
