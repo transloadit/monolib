@@ -13,6 +13,6 @@
   },
   "bin": "./post.js",
   "dependencies": {},
-  "version": "0.0.5",
-  "transloaditHash": "9cdf9a3aa27c81b77bdb92ecb7435884b606973f"
+  "version": "0.0.6",
+  "transloaditHash": "55f14d4fb5a93112bf3e8e468de472b02c71d38b"
 }
