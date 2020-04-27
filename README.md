@@ -7,7 +7,11 @@ A **private** monorepo with **public**ly published single-file JavaScript utils 
 - Bundle a Jest test with your function
 - If the function isn't pure, back to the drawing board
 
-## How to Consume these functions?
+## What functions are available right now?
+
+Check <https://github.com/transloadit/monolib/tree/master/packages>
+
+## How to consume these functions?
 
 In your project, type:
 
@@ -19,9 +23,16 @@ yarn add @transloadit/analyzeStep
 npm i @transloadit/analyzeStep --save-exact
 ```
 
-## What functions are available right now?
+## How to check out this repo locally?
 
-Check <https://github.com/transloadit/monolib/tree/master/packages>
+```bash
+cd code
+git clone git@github.com:transloadit/monolib.git
+cd monolib
+git pull
+yarn
+yarn lernaBootstrap
+```
 
 ## How to add functions?
 
@@ -39,17 +50,6 @@ yarn test:watch
 
 # npm
 npm run test:watch
-```
-
-## How to check out this repo locally?
-
-```bash
-cd code
-git clone git@github.com:transloadit/monolib.git
-cd monolib
-git pull
-yarn
-yarn lernaBootstrap
 ```
 
 ## How to iterate quickly inside a consuming project without publishing 100 versions?
