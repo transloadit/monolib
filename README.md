@@ -9,6 +9,8 @@ A **private** monorepo with **public**ly published single-file JavaScript utils 
 
 ## How to Consume these functions?
 
+In your project, type:
+
 ```bash
 # yarn
 yarn add @transloadit/analyzeStep
@@ -23,9 +25,13 @@ Check <https://github.com/transloadit/monolib/tree/master/packages>
 
 ## How to add functions?
 
-- Write in `./packages/<name>/` as you would any other module, but make sure it has appropriate values for the `name`, `repository`, `publishConfig`, `private` properties inside the `package.json` (probably just clone & tweak an existing package)
+- Easiest is to duplicate a directory in `./packages/` and tweak it to your liking
 - Commit
 - Run `npm run pub` to publish
 
+## How to run test?
 
+```bash
+
+```
 
