@@ -2,7 +2,7 @@
 
 A **private** monorepo with **public**ly published single-file JavaScript utils that we can re-use in our different projects.
 
-To many small functions that just don't belong, this is the place they call home.
+To many small functions that just don't belong, it's the place they call home.
 
 ## Rules
 
