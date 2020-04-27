@@ -1,6 +1,7 @@
 {
   "name": "@transloadit/format-duration-ms",
   "license": "GPL-2.0-only",
+  "private": false,
   "repository": {
     "type": "git",
     "url": "git://github.com/transloadit/monolib.git",
