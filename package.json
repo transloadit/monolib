@@ -19,9 +19,12 @@
     "eslint-plugin-standard": "4.0.1",
     "execa": "4.0.0",
     "fakefile": "0.0.9",
-    "jest": "24.9.0",
     "globby": "11.0.0",
     "inflect": "0.4.0",
+    "jest": "24.9.0",
     "mkdirp": "1.0.3"
+  },
+  "devDependencies": {
+    "lerna": "^3.20.2"
   }
 }

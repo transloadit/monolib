@@ -9,6 +9,6 @@
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
-  "main": "./index.js",
+  "main": "./henk.js",
   "transloaditHash": "6ae31f9c46a03be3832d0700ddc0350b90ceee3b"
 }
