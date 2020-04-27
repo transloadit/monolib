@@ -15,6 +15,6 @@
     "@transloadit/file-exists": "../file-exists/",
     "inquirer": "7.0.5"
   },
-  "version": "0.0.12",
+  "version": "0.0.13",
   "gitHead": "d7850adcd7e5aa3259ec1b48f406733d42411d00"
 }
