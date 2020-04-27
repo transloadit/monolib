@@ -29,7 +29,7 @@ Check <https://github.com/transloadit/monolib/tree/master/packages>
 - Commit
 - Run `npm run pub` to publish (that's just an alias to [`lerna publish`](https://lerna.js.org/#command-publish))
 
-## How to run test?
+## How to run tests?
 
 ```bash
 make test-watch
