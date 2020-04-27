@@ -41,3 +41,23 @@ yarn test:watch
 npm run test:watch
 ```
 
+## How to check out this repo locally?
+
+```bash
+cd code
+git clone git@github.com:transloadit/monolib.git
+cd monolib
+git pull
+yarn
+yarn lernaBootstrap
+```
+
+## How to iterate quickly inside a consuming project without publishing 100 versions?
+
+```bash
+cd ~/code/monorepo/packages/analyze-step
+yarn link
+
+cd ~/code/content
+yarn link @transloadit/analyze-step
+```
