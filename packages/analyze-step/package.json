@@ -10,12 +10,12 @@
   ],
   "main": "analyzeStep.js",
   "dependencies": {
-    "@transloadit/format-duration-ms": "^0.0.15",
+    "@transloadit/format-duration-ms": "^0.0.16",
     "inflect": "^0.4.0",
     "jsonpath": "^1.0.2",
     "lodash": "^4.17.15",
     "prettier-bytes": "^1.0.4"
   },
-  "version": "0.0.2",
+  "version": "0.0.3",
   "gitHead": "d7850adcd7e5aa3259ec1b48f406733d42411d00"
 }
