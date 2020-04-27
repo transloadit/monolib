@@ -1,6 +1,6 @@
 # monolib
 
-A private monorepo with publicly published single-file JavaScript utils that we can re-use in our different projects.
+A **private** monorepo with **public**ly published single-file JavaScript utils that we can re-use in our different projects.
 
 ## Rules
 
