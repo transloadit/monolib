@@ -8,9 +8,6 @@
   "files": [
     "analyzeStep.js"
   ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "main": "analyzeStep.js",
   "dependencies": {
     "@transloadit/format-duration-ms": "^0.0.15",

@@ -8,12 +8,9 @@
   "files": [
     "formatDurationMs.js"
   ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "main": "./formatDurationMs.js",
   "dependencies": {
-    "pretty-ms": "^6.0.0"
+    "pretty-ms": "6.0.0"
   },
   "version": "0.0.15",
   "gitHead": "d7850adcd7e5aa3259ec1b48f406733d42411d00"

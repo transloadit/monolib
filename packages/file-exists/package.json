@@ -6,9 +6,6 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/file-exists"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "main": "./fileExists.js",
   "gitHead": "d7850adcd7e5aa3259ec1b48f406733d42411d00"
 }
