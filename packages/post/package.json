@@ -11,7 +11,7 @@
   ],
   "bin": "./post.js",
   "dependencies": {
-    "@transloadit/file-exists": "^0.0.5",
+    "@transloadit/file-exists": "0.0.5",
     "inquirer": "7.0.5"
   },
   "version": "0.0.10",
