@@ -4,6 +4,7 @@
   "scripts": {
     "pub": "npm-run-all lint test lernaPublish",
     "lernaPublish": "lerna publish",
+    "lernaBootstrap": "lerna bootstrap --npm-client=yarn",
     "fix": "DEBUG=eslint:cli-engine eslint . --fix",
     "lint": "DEBUG=eslint:cli-engine eslint .",
     "test:watch": "jest packages/*/*.test.js simple/*.test.js --watch",
