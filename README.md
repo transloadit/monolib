@@ -27,11 +27,17 @@ Check <https://github.com/transloadit/monolib/tree/master/packages>
 
 - Easiest is to duplicate a directory in `./packages/` and tweak it to your liking
 - Commit
-- Run `npm run pub` to publish
+- Run `npm run pub` to publish (that's just an alias to [`lerna publish`](https://lerna.js.org/#command-publish))
 
 ## How to run test?
 
 ```bash
+make test-watch
 
+# yarn
+yarn test:watch
+
+# npm
+npm run test:watch
 ```
 
