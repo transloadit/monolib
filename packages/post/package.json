@@ -1,6 +1,7 @@
 {
   "name": "@transloadit/post",
   "private": false,
+  "license": "GPL-2.0-only",
   "repository": {
     "type": "git",
     "url": "git://github.com/transloadit/monolib.git",

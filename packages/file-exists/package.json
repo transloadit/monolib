@@ -1,5 +1,6 @@
 {
   "name": "@transloadit/file-exists",
+  "license": "GPL-2.0-only",
   "version": "0.0.5",
   "repository": {
     "type": "git",
