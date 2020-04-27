@@ -1,14 +1,16 @@
 {
   "name": "@transloadit/file-exists",
-  "version": "0.0.3",
+  "license": "GPL-2.0-only",
+  "version": "0.0.9",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/file-exists"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
-  "main": "./index.js",
-  "transloaditHash": "71ca77ee353d7d132dd8ee9dedfd30c477285bbf"
+  "main": "./fileExists.js",
+  "gitHead": "b73ab4880b9c4c48db32f249f776974a137510c4"
 }

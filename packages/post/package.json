@@ -1,6 +1,10 @@
 {
   "name": "@transloadit/post",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "GPL-2.0-only",
   "repository": {
     "type": "git",
     "url": "git://github.com/transloadit/monolib.git",
@@ -9,14 +13,11 @@
   "files": [
     "formatDurationMs.js"
   ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "bin": "./post.js",
   "dependencies": {
-    "@transloadit/file-exists": "^0.0.3",
-    "inquirer": "^7.0.5"
+    "@transloadit/file-exists": "^0.0.9",
+    "inquirer": "7.0.5"
   },
-  "version": "0.0.8",
-  "transloaditHash": "769c404cb7ced2b8418c1505022163fbd9064c54"
+  "version": "0.0.15",
+  "gitHead": "b73ab4880b9c4c48db32f249f776974a137510c4"
 }
