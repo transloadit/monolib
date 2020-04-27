@@ -8,6 +8,6 @@ Check: <https://github.com/transloadit/team-internals/blob/master/_howtos/2020-0
 
 ## How to: Add functions
 
-- Write in `./packages/<name>/` as you would any other module, but make sure it has appropriate values for the `name`, `repository`, `publishConfig` properties inside the `package.json` (steal from an existing package, changing just the names where appropriate)
+- Write in `./packages/<name>/` as you would any other module, but make sure it has appropriate values for the `name`, `repository`, `publishConfig`, `private` properties inside the `package.json` (probably just clone & tweak an existing package)
 - Commit
 - Run `npm run pub` to publish

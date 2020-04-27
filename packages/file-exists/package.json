@@ -3,11 +3,14 @@
   "license": "GPL-2.0-only",
   "version": "0.0.8",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/file-exists"
   },
   "main": "./fileExists.js",
-  "gitHead": "6ecc6ce1535262ed462e3840713e9aa45b4bed08"
+  "gitHead": "b73ab4880b9c4c48db32f249f776974a137510c4"
 }
