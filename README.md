@@ -9,6 +9,12 @@ To many small functions that just don't belong, it's the place they call home.
 - Bundle a Jest test with your function
 - If the function isn't pure, back to the drawing board
 
+## Examples
+
+- Uppy has its own way of reporting bytes. If we'd put that `formatBytes` function here, now we can easily use it in our node-sdk, React outputting bytes in /c/, etc.
+- We have an analyzeStep function in the content repo that takes a Step object and outputs a human readable string. We use to describe demos. After adding it to monolib, we can now use @transloadit/analyze-step in the new Visual Template Editor, too.
+- We have styles in the content repo. If we wanted to share them with the Statuspage, we could share @transloadit/styles.
+
 ## What functions are available right now?
 
 Check <https://github.com/transloadit/monolib/tree/master/packages>
