@@ -9,7 +9,9 @@ A **private** monorepo with **public**ly published single-file JavaScript utils 
 
 ## How to: Consume these functions
 
-Check: <https://github.com/transloadit/team-internals/blob/master/_howtos/2020-02-17-github-packages-registry.md>
+```bash
+yarn add @transloadit/analyzeStep # or: npm i @transloadit/analyzeStep --save-exact
+```
 
 ## How to: Add functions
 
