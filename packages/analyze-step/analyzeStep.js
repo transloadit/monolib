@@ -42,7 +42,10 @@ function humanFilter (step) {
     '>'        : 'files with a {humanKey} above {humanVal}',
     '>='       : 'files with a {humanKey} of {humanVal} or higher',
     '='        : 'files with a {humanKey} of {humanVal}',
+    '=='       : 'files with a {humanKey} of {humanVal}',
+    '==='      : 'files with a {humanKey} of {humanVal}',
     '!='       : 'files without a {humanKey} of {humanVal}',
+    '!=='      : 'files without a {humanKey} of {humanVal}',
     regex      : 'files with a {humanKey} of {humanVal}',
     '!regex'   : 'files without a {humanKey} of {humanVal}',
     includes   : 'files that include a {humanKey} of {humanVal}',
@@ -165,7 +168,7 @@ function humanDimensions (step) {
   return str
 }
 
-function humanPreset (step) {
+function humanPreset (step, extrameta = {}) {
   let str = inflect.humanize(step.preset.replace(/[-_]/g, ' '))
 
   if (str.match(/^ipad/i)) {
@@ -173,8 +176,8 @@ function humanPreset (step) {
     quality = quality ? ` (${quality} quality)` : ``
 
     let device = `iPad${quality}`
-    if ('__deviceName' in step) {
-      device = `${step.__deviceName}`
+    if (extrameta.deviceName) {
+      device = `${extrameta.deviceName}`
     }
 
     str = `${device} (H.264)`
@@ -219,7 +222,7 @@ function humanFormat (step) {
   return str
 }
 
-module.exports = (step, robots) => {
+module.exports = (step, robots, extrameta = {}) => {
   let str = ``
 
   const robot = robots[step.robot]
@@ -228,8 +231,12 @@ module.exports = (step, robots) => {
   if (robot.rname === '/video/encode') {
     if (JSON.stringify(step).match(/watermark/)) {
       str = `Watermark videos`
-    } else if (_.has(step, 'ffmpeg.ss') && _.has(step, 'ffmpeg.t')) {
+    } else if (_.get(step, 'ffmpeg.t') && _.get(step, 'ffmpeg.ss')) {
       str = `Take a ${_.get(step, 'ffmpeg.t')}s clip out of videos at an offset`
+    } else if (_.get(step, 'ffmpeg.t')) {
+      str = `Take a ${_.get(step, 'ffmpeg.t')}s clip out of videos at the beginning`
+    } else if (_.get(step, 'ffmpeg.ss')) {
+      str = `Take a clip out of videos from ${_.get(step, 'ffmpeg.ss')}s till the end`
     } else if (_.has(step, 'filter:v') && step.ffmpeg['filter:v'] === 'setpts=2.0*PTS') {
       str = `Slowdown video to half speed`
     } else if (('width' in step || 'height' in step) && (step.width !== '${file.meta.width}') && (step.height !== '${file.meta.height}')) {
@@ -238,15 +245,15 @@ module.exports = (step, robots) => {
         str = `${str} using the ${step.resize_strategy} strategy`
       }
       if ('preset' in step) {
-        str = `${str} and encode for ` + humanPreset(step)
+        str = `${str} and encode for ` + humanPreset(step, extrameta)
       }
     } else if (('resize_strategy' in step)) {
       str = `Resize videos`
       if ('preset' in step) {
-        str = `${str} in ` + humanPreset(step)
+        str = `${str} in ` + humanPreset(step, extrameta)
       }
     } else if ('preset' in step) {
-      str = `Transcode videos to ` + humanPreset(step)
+      str = `Transcode videos to ` + humanPreset(step, extrameta)
     }
 
     if (_.get(step, 'ffmpeg.an') === true) {
@@ -260,7 +267,7 @@ module.exports = (step, robots) => {
     } else if ('bitrate' in step) {
       str = `Adjust audio bitrates`
     } else if ('preset' in step) {
-      str = `Encode audio to ` + humanPreset(step)
+      str = `Encode audio to ` + humanPreset(step, extrameta)
     }
 
     if (_.get(step, 'ffmpeg.an') === true) {
