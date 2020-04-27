@@ -10,5 +10,5 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "main": "./fileExists.js",
-  "transloaditHash": "71ca77ee353d7d132dd8ee9dedfd30c477285bbf"
+  "gitHead": "d7850adcd7e5aa3259ec1b48f406733d42411d00"
 }
