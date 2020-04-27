@@ -12,9 +12,9 @@
   ],
   "bin": "./post.js",
   "dependencies": {
-    "@transloadit/file-exists": "0.0.5",
+    "@transloadit/file-exists": "^0.0.6",
     "inquirer": "7.0.5"
   },
-  "version": "0.0.11",
+  "version": "0.0.12",
   "gitHead": "d7850adcd7e5aa3259ec1b48f406733d42411d00"
 }
