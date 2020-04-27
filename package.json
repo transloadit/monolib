@@ -2,13 +2,16 @@
   "name": "monolib",
   "private": true,
   "scripts": {
-    "pub": "node scripts/pub.js",
+    "pub": "npm-run-all lint test lernaPublish",
+    "lernaPublish": "lerna publish",
     "fix": "DEBUG=eslint:cli-engine eslint . --fix",
     "lint": "DEBUG=eslint:cli-engine eslint .",
     "test:watch": "jest packages/*/*.test.js simple/*.test.js --watch",
     "test": "jest packages/*/*.test.js simple/*.test.js"
   },
   "dependencies": {
+  },
+  "devDependencies": {
     "babel-eslint": "10.0.3",
     "eslint": "6.8.0",
     "eslint-config-standard": "14.1.0",
@@ -22,9 +25,8 @@
     "globby": "11.0.0",
     "inflect": "0.4.0",
     "jest": "24.9.0",
-    "mkdirp": "1.0.3"
-  },
-  "devDependencies": {
-    "lerna": "^3.20.2"
+    "mkdirp": "1.0.3",
+    "npm-run-all": "4.1.5",
+    "lerna": "3.20.2"
   }
 }

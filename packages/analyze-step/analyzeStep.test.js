@@ -1,5 +1,5 @@
 const analyzeStep = require('./analyzeStep')
-const util = require('util')
+// const util = require('util')
 
 describe('analyzeStep', () => {
   test('main', async () => {
