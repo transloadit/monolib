@@ -14,9 +14,9 @@
   },
   "bin": "./post.js",
   "dependencies": {
-    "@transloadit/file-exists": "^0.0.3",
+    "@transloadit/file-exists": "^0.0.4",
     "inquirer": "^7.0.5"
   },
-  "version": "0.0.8",
+  "version": "0.0.9",
   "transloaditHash": "769c404cb7ced2b8418c1505022163fbd9064c54"
 }

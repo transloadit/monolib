@@ -14,11 +14,11 @@
   "main": "analyzeStep.js",
   "transloaditHash": "8af5028649b3aec37879a60517ad95626cba1d6e",
   "dependencies": {
-    "@transloadit/format-duration-ms": "^0.0.14",
+    "@transloadit/format-duration-ms": "^0.0.15",
     "inflect": "^0.4.0",
     "jsonpath": "^1.0.2",
     "lodash": "^4.17.15",
     "prettier-bytes": "^1.0.4"
   },
-  "version": "0.0.1"
+  "version": "0.0.2"
 }
