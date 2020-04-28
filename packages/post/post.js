@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const fs = require('fs').promises
 const inquirer = require('inquirer')
 const fileExists = require('@transloadit/file-exists')
