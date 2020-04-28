@@ -17,15 +17,20 @@ While the world can consume the modules, this is mostly to make life easier for 
 
 ## Examples
 
-| Module                            | Example                                                                      | Result                                                                      |
-|:----------------------------------|:-----------------------------------------------------------------------------|:----------------------------------------------------------------------------|
-| `@transloadit/abbr`               | `abbr('Lorem ipsum dolor sit amet', 10, ' .. '))`                            | `'Lor .. met'`                                                              |
-| `@transloadit/analyze-step`       | `analyzeStep({ robot: '/image/resize', width: '75', height: '75' }, ROBOTS)` | `'Resize images to 75×75'`                                                  |
-| `@transloadit/file-exists`        | `await fileExists('foo.jpg')`                                                | `true`                                                                      |
-| `@transloadit/format-duration-ms` | `formatDurationMs(10000000)`                                                 | `'2h46m40s'`                                                                |
-| `@transloadit/post`               | `$ post [subdir]`                                                            | Asks questions and creates a markdown post, by default in subdir `./_posts` |
-| `@transloadit/prettier-bytes`     | `prettierBytes(235555520)`                                                   | `'225 MB'`                                                                  |
-| `@transloadit/slugify`            | `slugify('--This is My App !~')`                                             | `'this-is-my-app'`                                                          |
+| Module                             | Example                                                                      | Result                                                                      |
+|:-----------------------------------|:-----------------------------------------------------------------------------|:----------------------------------------------------------------------------|
+| `@transloadit/abbr`                | `abbr('Lorem ipsum dolor sit amet', 10, ' .. '))`                            | `'Lor .. met'`                                                              |
+| `@transloadit/analyze-step`        | `analyzeStep({ robot: '/image/resize', width: '75', height: '75' }, ROBOTS)` | `'Resize images to 75×75'`                                                  |
+| `@transloadit/file-exists`         | `await fileExists('foo.jpg')`                                                | `true`                                                                      |
+| `@transloadit/format-duration-ms`  | `formatDurationMs(10000000)`                                                 | `'2h46m40s'`                                                                |
+| `@transloadit/post`                | `$ post [subdir]`                                                            | Asks questions and creates a markdown post, by default in subdir `./_posts` |
+| `@transloadit/prettier-bytes`      | `prettierBytes(235555520)`                                                   | `'225 MB'`                                                                  |
+| `@transloadit/slugify`             | `slugify('--This is My App !~')`                                             | `'this-is-my-app'`                                                          |
+| `@transloadit/sort-object`         | `sortObject({b: 'a', a: 'b'})`                                               | `{a: 'b', b: 'a'}`                                                          |
+| `@transloadit/sort-object-by-prio` | `sortObjectByPrio({b: 'a', a: 'b'}, {_: ['b']})`                             | `{b: 'a', a: 'b'}`                                                          |
+| `@transloadit/sort-assembly`       | `sortAssembly(ASSEMBLY_OBJECT)`                                              | Sorted Assembly Object                                                      |
+| `@transloadit/sort-result-meta`    | `sortResultMeta(ASSEMBLY_RESULT_META_OBJECT)`                                | Sorted Assembly Object                                                      |
+| `@transloadit/sort-result`         | `sortResult(ASSEMBLY_RESULT_OBJECT)`                                         | Sorted Assembly Object                                                      |
 
 Check <https://github.com/transloadit/monolib/tree/master/packages>.
 
