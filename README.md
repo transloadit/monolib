@@ -4,7 +4,7 @@ A **private** monorepo with **public**ly published single-file JavaScript utils 
 
 To many small functions that just don't belong, it's the place they call home.
 
-Modules are public so they can be re-used without configuring registries and setting tokens for anybody consuming them. This allows the modules to be used in e.g. Uppy or the Node SDK. While the world can consume the modules, that's mostly a tool to make life easier for us, we won't encourage people to use them in their own projects. Hence, the license is GPL2, and we issue unwelcoming READMEs with disclaimers.
+Modules are public so they can be re-used without configuring registries and setting tokens for anybody consuming them. This allows the modules to be used in e.g. Uppy or the Node SDK. While the world can consume the modules, that's mostly a tool to make life easier for us, we won't encourage people to use them in their own projects. Hence, the license is AGPL-3.0-only, and we issue unwelcoming READMEs with disclaimers.
 
 ## Rules
 

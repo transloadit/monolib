@@ -4,7 +4,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "license": "GPL-2.0-only",
+  "license": "AGPL-3.0-only",
   "repository": {
     "type": "git",
     "url": "git://github.com/transloadit/monolib.git",
