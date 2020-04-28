@@ -20,7 +20,7 @@ Modules are public so they can be re-used without configuring registries and set
 
 | Module                            | Example                                                                      | Result                                                                      |
 |:----------------------------------|:-----------------------------------------------------------------------------|:----------------------------------------------------------------------------|
-| `@transloadit/abbr`               | ```js abbr('Lorem ipsum dolor sit amet', 10, ' .. '))```                            | `'Lor .. met'`                                                              |
+| `@transloadit/abbr`               | `abbr('Lorem ipsum dolor sit amet', 10, ' .. '))`                            | `'Lor .. met'`                                                              |
 | `@transloadit/analyze-step`       | `analyzeStep({ robot: '/image/resize', width: '75', height: '75' }, ROBOTS)` | `'Resize images to 75×75'`                                                  |
 | `@transloadit/file-exists`        | `await fileExists('foo.jpg')`                                                | `true`                                                                      |
 | `@transloadit/format-duration-ms` | `formatDurationMs(10000000)`                                                 | `'2h46m40s'`                                                                |
