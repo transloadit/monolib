@@ -35,10 +35,10 @@ In your project, type:
 
 ```bash
 # yarn
-yarn add @transloadit/analyzeStep
+yarn add @transloadit/analyze-step
 
 # npm
-npm i @transloadit/analyzeStep --save-exact
+npm i @transloadit/analyze-step --save-exact
 ```
 
 ## How to check out this repo locally?
@@ -49,7 +49,6 @@ git clone git@github.com:transloadit/monolib.git
 cd monolib
 git pull
 yarn
-yarn lernaBootstrap
 ```
 
 ## How to add functions?
