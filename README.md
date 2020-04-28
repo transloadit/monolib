@@ -25,6 +25,7 @@ Modules are public so they can be re-used without configuring registries and set
 | `@transloadit/file-exists`        | `await fileExists('foo.jpg')`                                                | `true`                                                                      |
 | `@transloadit/format-duration-ms` | `formatDurationMs(10000000)`                                                 | `'2h46m40s'`                                                                |
 | `@transloadit/post`               | `$ post [subdir]`                                                            | Asks questions and creates a markdown post, by default in subdir `./_posts` |
+| `@transloadit/prettier-bytes`     | `prettierBytes(235555520)`                                                   | `'225 MB'`                                                                  |
 | `@transloadit/slugify`            | `slugify('--This is My App !~')`                                             | `'this-is-my-app'`                                                          |
 
 Check <https://github.com/transloadit/monolib/tree/master/packages>.
