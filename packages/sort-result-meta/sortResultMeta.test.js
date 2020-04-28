@@ -2,7 +2,7 @@ const sortResultMeta = require('./sortResultMeta')
 
 describe('sortResultMeta', () => {
   test('main', () => {
-    expect(Object.keys(sortResultMeta({
+    const sorted = sortResultMeta({
       width             : 621,
       height            : 840,
       date_file_created : '2020/01/09 12:02:09 GMT',
@@ -24,7 +24,9 @@ describe('sortResultMeta', () => {
           confidence: 99.99,
         },
       ],
-    }))).toStrictEqual([
+    })
+
+    expect(Object.keys(sorted)).toStrictEqual([
       'aspect_ratio',
       'average_color',
       'colorspace',
@@ -36,6 +38,16 @@ describe('sortResultMeta', () => {
       'has_transparency',
       'height',
       'width',
+    ])
+
+    expect(Object.keys(sorted.faces[0])).toStrictEqual([
+      'confidence',
+      'height',
+      'width',
+      'x1',
+      'x2',
+      'y1',
+      'y2',
     ])
   })
 })
