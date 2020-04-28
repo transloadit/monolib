@@ -2,7 +2,7 @@
   "name": "monolib",
   "private": true,
   "scripts": {
-    "pub": "npm-run-all lint test lernaPublish",
+    "pub": "npm-run-all lernaBootstrap lint test lernaPublish",
     "lernaPublish": "lerna publish",
     "lernaBootstrap": "lerna bootstrap --npm-client=yarn",
     "install": "npm run lernaBootstrap",
