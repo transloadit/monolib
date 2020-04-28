@@ -1,5 +1,4 @@
 const abbr = require('./abbr')
-// const util = require('util')
 
 describe('abbr', () => {
   test('main', async () => {

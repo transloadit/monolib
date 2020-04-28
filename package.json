@@ -8,7 +8,7 @@
     "fix": "DEBUG=eslint:cli-engine eslint . --fix",
     "lint": "DEBUG=eslint:cli-engine eslint .",
     "test:watch": "jest packages/*/*.test.js simple/*.test.js --watch",
-    "test": "jest packages/*/*.test.js simple/*.test.js"
+    "test": "jest --verbose packages/*/*.test.js"
   },
   "dependencies": {
   },
