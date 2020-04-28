@@ -13,9 +13,12 @@
   "files": [
     "formatDurationMs.js"
   ],
-  "bin": "./post.js",
+  "bin": {
+    "post": "./post.js"
+  },
   "dependencies": {
     "@transloadit/file-exists": "^0.0.12",
+    "@transloadit/slugify": "^0.0.5",
     "inquirer": "7.0.5"
   },
   "version": "0.0.18",

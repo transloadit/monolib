@@ -1,14 +1,8 @@
 const fs = require('fs').promises
 const inquirer = require('inquirer')
 const fileExists = require('@transloadit/file-exists')
+const slugify = require('@transloadit/slugify')
 
-function slugify (str) {
-  return str
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/ig, '-')
-    .replace(/[-]+$/g, '')
-    .replace(/^[-]+/g, '')
-}
 async function post () {
   const postDir = `${process.cwd()}/${process.argv[2] || '_posts'}`
   if (!(await fileExists(`${postDir}`))) {

@@ -2,6 +2,16 @@
 # yarn lockfile v1
 
 
+"@transloadit/file-exists@^0.0.12":
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/@transloadit/file-exists/-/file-exists-0.0.12.tgz#a0d6e9f05cd65113ef03fe6b7b48f5c25aa312b4"
+  integrity sha512-HA6xamEktjsr2IFh09jFsDB/GXYUyWDvTIhdPaDV+pXg3IIDsnzHzhYRUzitpuSG70Q4lnXOejtDUy28bZl6iw==
+
+"@transloadit/slugify@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@transloadit/slugify/-/slugify-0.0.5.tgz#d8a3006b6240400d03d37cd1ae56c9f6e073e5f7"
+  integrity sha512-4IxFF/l78x/st2iV6debK1omHnM9QUSbIEL6/JahjxhGqaAGpFtvdDo26bp7EozlVlMTwJYgNtk1Qc+TOj9jRg==
+
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"

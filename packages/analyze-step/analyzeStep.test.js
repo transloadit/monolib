@@ -33,5 +33,7 @@ describe('analyzeStep', () => {
       result           : true,
       imagemagick_stack: 'v2.0.7',
     }, robots)).toMatch('Resize images to 75×75 using the pad strategy')
+
+    expect(analyzeStep({ robot: '/image/resize', width: '75', height: '75' }, robots)).toMatch('Resize images to 75×75')
   })
 })

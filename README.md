@@ -18,13 +18,16 @@ Modules are public so they can be re-used without configuring registries and set
 
 ## What functions are available right now?
 
-Check <https://github.com/transloadit/monolib/tree/master/packages>.
+| Module                            | Example                                                                      | Result                                                                      |
+|:----------------------------------|:-----------------------------------------------------------------------------|:----------------------------------------------------------------------------|
+| `@transloadit/abbr`               | `abbr('Lorem ipsum dolor sit amet', 10, ' .. '))`                            | `'Lor .. met'`                                                              |
+| `@transloadit/analyze-step`       | `analyzeStep({ robot: '/image/resize', width: '75', height: '75' }, ROBOTS)` | `'Resize images to 75×75'`                                                  |
+| `@transloadit/file-exists`        | `await fileExists('foo.jpg')`                                                | `true`                                                                      |
+| `@transloadit/format-duration-ms` | `formatDurationMs(10000000)`                                                 | `'2h46m40s'`                                                                |
+| `@transloadit/post`               | `$ post [subdir]`                                                            | Asks questions and creates a markdown post, by default in subdir `./_posts` |
+| `@transloadit/slugify`            | `slugify('--This is My App !~')`                                             | `'this-is-my-app'`                                                          |
 
-|        File        |                      Example                      |     Output     |
-|:------------------:|:-------------------------------------------------:|:--------------:|
-|       `abbr`       | `abbr('Lorem ipsum dolor sit amet', 10, ' .. '))` | `'Lor .. met'` |
-|    `fileExists`    |           `await fileExists('foo.jpg')`           |     `true`     |
-| `formatDurationMs` |           `formatDurationMs(10000000)`            |  `'2h46m40s'`  |
+Check <https://github.com/transloadit/monolib/tree/master/packages>.
 
 ## How to consume these functions?
 
