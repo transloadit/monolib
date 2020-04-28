@@ -6,17 +6,14 @@ To many small functions that just don't belong, it's the place they call home.
 
 Modules are public so they can be re-used without configuring registries and setting tokens for anybody consuming them. This allows the modules to be used in e.g. Uppy or the Node SDK. While the world can consume the modules, that's mostly a tool to make life easier for us, we won't encourage people to use them in their own projects. Hence, the license is AGPL-3.0-only, and we issue unwelcoming READMEs with disclaimers.
 
+For example, Uppy has its own way of reporting bytes. We moved that function here, so now we can easily add it to our node-sdk, API, and content repo where React would be outputting bytes in /c/.
+
 ## Rules
 
 - Bundle a Jest test with your function
-- If the function isn't pure, back to the drawing board
+- You need a very good reason to add a function that is not pure. First discuss with the team.
 
 ## Examples
-
-- Uppy has its own way of reporting bytes. If we'd put that `formatBytes` function here, now we can easily use it in our node-sdk, React outputting bytes in /c/, etc.
-- We had an `analyzeStep` function in the content repo's `_script` dir, that takes a Step object and outputs a human readable string ("Encode video to iPad format"). We use it describe demos. After adding it to monolib, we can now use `@transloadit/analyze-step` in the new Visual Template Editor, too.
-
-## What functions are available right now?
 
 | Module                            | Example                                                                      | Result                                                                      |
 |:----------------------------------|:-----------------------------------------------------------------------------|:----------------------------------------------------------------------------|
@@ -56,6 +53,7 @@ yarn
 
 - Easiest is to duplicate `./package-template` to a directory in `./packages/<name>` and replace any `replace-me` or `replaceMe` occurrence
 - Write your function & test
+- Add an example to the table in this README.md
 - Commit
 - Run `npm run pub` to publish (that's just an alias to [`lerna publish`](https://lerna.js.org/#command-publish))
 
