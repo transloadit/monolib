@@ -1,4 +1,4 @@
-const analyzeStep = require('./analyzeStep')
+const analyzeStep = require('./analyzeStep.js')
 // const util = require('util')
 
 describe('analyzeStep', () => {
