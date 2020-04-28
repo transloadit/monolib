@@ -1,7 +1,7 @@
 {
   "name": "@transloadit/sort-assembly",
   "license": "AGPL-3.0-only",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -13,7 +13,7 @@
   },
   "main": "./sortAssembly.js",
   "dependencies": {
-    "@transloadit/sort-object-by-prio": "^0.0.2",
-    "@transloadit/sort-result": "^0.0.2"
+    "@transloadit/sort-object-by-prio": "^0.0.3",
+    "@transloadit/sort-result": "^0.0.3"
   }
 }
