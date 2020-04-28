@@ -1,5 +1,5 @@
-const sortObjectByPrio = require('../sort-object-by-prio')
-const sortResultMeta = require('../sort-result-meta')
+const sortObjectByPrio = require('@transloadit/sort-object-by-prio')
+const sortResultMeta = require('@transloadit/sort-result-meta')
 
 module.exports = function sortResult (result) {
   const sorted = sortObjectByPrio(result, {

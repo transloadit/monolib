@@ -1,5 +1,5 @@
-const sortObjectByPrio = require('../sort-object-by-prio')
-const sortResult = require('../sort-result')
+const sortObjectByPrio = require('@transloadit/sort-object-by-prio')
+const sortResult = require('@transloadit/sort-result')
 
 module.exports = function sortAssembly (assembly) {
   const sorted = sortObjectByPrio(assembly, {

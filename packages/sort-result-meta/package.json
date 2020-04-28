@@ -11,5 +11,8 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/sort-result-meta"
   },
-  "main": "./sortResultMeta.js"
+  "main": "./sortResultMeta.js",
+  "dependencies": {
+    "@transloadit/sort-object-by-prio": "^0.0.2"
+  }
 }

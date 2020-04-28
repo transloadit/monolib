@@ -11,5 +11,8 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/sort-object-by-prio"
   },
-  "main": "./sortObjectByPrio.js"
+  "main": "./sortObjectByPrio.js",
+  "dependencies": {
+    "@transloadit/sort-object": "^0.0.2"
+  }
 }

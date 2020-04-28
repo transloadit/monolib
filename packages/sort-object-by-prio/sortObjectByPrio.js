@@ -1,5 +1,5 @@
 
-const sortObject = require('../sort-object')
+const sortObject = require('@transloadit/sort-object')
 
 module.exports = function sortObjectByPrio (obj, prefixes) {
   return sortObject(obj, (a, b) => {
