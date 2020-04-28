@@ -53,7 +53,8 @@ yarn
 
 ## How to add functions?
 
-- Easiest is to duplicate a directory in `./packages/` and tweak it to your liking
+- Easiest is to duplicate `./package-template` to a directory in `./packages/<name>` and replace any `replace-me` or `replaceMe` occurrence
+- Write your function & test
 - Commit
 - Run `npm run pub` to publish (that's just an alias to [`lerna publish`](https://lerna.js.org/#command-publish))
 

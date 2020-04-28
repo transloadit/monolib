@@ -1,0 +1,15 @@
+{
+  "name": "@transloadit/replace-me",
+  "license": "AGPL-3.0-only",
+  "version": "0.0.1",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/transloadit/monolib.git",
+    "directory": "packages/replace-me"
+  },
+  "main": "./replaceMe.js"
+}
