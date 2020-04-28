@@ -7,6 +7,10 @@ module.exports = function sortResultMeta (meta) {
         _: [
         ],
         z: [
+          'x1',
+          'y1',
+          'x2',
+          'y2',
         ],
       })
     }

@@ -45,8 +45,8 @@ describe('sortResultMeta', () => {
       'height',
       'width',
       'x1',
-      'x2',
       'y1',
+      'x2',
       'y2',
     ])
   })
