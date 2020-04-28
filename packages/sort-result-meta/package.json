@@ -1,7 +1,7 @@
 {
   "name": "@transloadit/sort-result-meta",
   "license": "AGPL-3.0-only",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "private": false,
   "publishConfig": {
     "access": "public"
