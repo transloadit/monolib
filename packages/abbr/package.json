@@ -14,7 +14,5 @@
     "abbr.js"
   ],
   "main": "abbr.js",
-  "dependencies": {
-  },
-  "version": "0.0.1"
+  "version": "0.0.2"
 }
