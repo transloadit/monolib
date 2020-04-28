@@ -10,9 +10,6 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/post"
   },
-  "files": [
-    "formatDurationMs.js"
-  ],
   "bin": {
     "post": "./post.js"
   },

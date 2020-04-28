@@ -10,9 +10,6 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/format-duration-ms"
   },
-  "files": [
-    "formatDurationMs.js"
-  ],
   "main": "./formatDurationMs.js",
   "dependencies": {
     "pretty-ms": "6.0.0"

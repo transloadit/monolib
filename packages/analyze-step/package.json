@@ -10,9 +10,6 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/analyze-step"
   },
-  "files": [
-    "analyzeStep.js"
-  ],
   "main": "analyzeStep.js",
   "dependencies": {
     "@transloadit/format-duration-ms": "^0.0.25",

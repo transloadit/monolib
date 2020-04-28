@@ -10,9 +10,6 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/abbr"
   },
-  "files": [
-    "abbr.js"
-  ],
   "main": "abbr.js",
   "version": "0.0.4"
 }
