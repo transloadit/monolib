@@ -20,10 +20,11 @@ Modules are public so they can be re-used without configuring registries and set
 
 Check <https://github.com/transloadit/monolib/tree/master/packages>.
 
-|     File     |                                                                Example                                                                 |                           Output                            |
-|:------------:|:--------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------:|
-| `fileExists` |                                                     `await fileExists('foo.jpg')`                                                      |                           `true`                            |
-|    `abbr`    | `abbr('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ')` | `'Lorem ipsum dolor sit ame[...] et dolore magna aliqua. '` |
+|        File        |                      Example                      |     Output     |
+|:------------------:|:-------------------------------------------------:|:--------------:|
+|       `abbr`       | `abbr('Lorem ipsum dolor sit amet', 10, ' .. '))` | `'Lor .. met'` |
+|    `fileExists`    |           `await fileExists('foo.jpg')`           |     `true`     |
+| `formatDurationMs` |           `formatDurationMs(10000000)`            |  `'2h46m40s'`  |
 
 ## How to consume these functions?
 
