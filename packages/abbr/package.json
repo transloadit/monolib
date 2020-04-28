@@ -1,13 +1,20 @@
 {
-	"name": "jsmonorepo",
-	"private": true,
-	"scripts": {
-		"updated": "lerna updated",
-		"bootstrap": "lerna bootstrap",
-		"publish": "./scripts/spread.sh && lerna publish"
-	},
-	"devDependencies": {
-		"fakefile": "0.0.9",
-		"lerna": "^2.11.0"
-	}
+  "name": "@transloadit/abbr",
+  "license": "AGPL-3.0-only",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/transloadit/monolib.git",
+    "directory": "packages/abbr"
+  },
+  "files": [
+    "abbr.js"
+  ],
+  "main": "abbr.js",
+  "dependencies": {
+  },
+  "version": "0.0.1"
 }

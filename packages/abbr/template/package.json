@@ -1,8 +1,0 @@
-{
-  "name": "@kvz/abbr",
-  "version": "0.0.1",
-  "main": "abbr.js",
-  "publishConfig": {
-    "access": "public"
-  }
-}
