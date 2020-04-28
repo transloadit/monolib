@@ -4,14 +4,16 @@ A **private** monorepo with **public**ly published single-file JavaScript utils 
 
 To many small functions that just don't belong, it's the place they call home.
 
-Modules are public so they can be re-used without configuring registries and setting tokens for anybody consuming them. This allows the modules to be used in e.g. Uppy or the Node SDK. While the world can consume the modules, that's mostly a tool to make life easier for us, we won't encourage people to use them in their own projects. Hence, the license is AGPL-3.0-only, and we issue unwelcoming READMEs with disclaimers.
-
 For example, Uppy has its own way of reporting bytes. We moved that function here, so now we can easily add it to our node-sdk, API, and content repo where React would be outputting bytes in /c/.
+
+Modules are public so they can be re-used without configuring registries and setting tokens for anybody consuming them. This allows the modules to be used in e.g. Uppy or the Node SDK. 
+
+While the world can consume the modules, this is mostly to make life easier for us, we won't encourage people to use these modules in their own projects. Hence, the license is AGPL-3.0-only, and we add unwelcoming READMEs with disclaimers to the modules.
 
 ## Rules
 
 - Bundle a Jest test with your function
-- You need a very good reason to add a function that is not pure. First discuss with the team.
+- Pure functions only please
 
 ## Examples
 
