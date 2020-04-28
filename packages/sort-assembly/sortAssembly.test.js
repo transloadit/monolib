@@ -1,5 +1,4 @@
 const sortAssembly = require('./sortAssembly')
-const fs = require('fs')
 
 describe('sortAssembly', () => {
   test('main', () => {
