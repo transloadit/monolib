@@ -18,7 +18,12 @@ Modules are public so they can be re-used without configuring registries and set
 
 ## What functions are available right now?
 
-Check <https://github.com/transloadit/monolib/tree/master/packages>
+Check <https://github.com/transloadit/monolib/tree/master/packages>.
+
+|     File     |                                                                Example                                                                 |                           Output                            |
+|:------------:|:--------------------------------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------:|
+| `fileExists` |                                                     `await fileExists('foo.jpg')`                                                      |                           `true`                            |
+|    `abbr`    | `abbr('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ')` | `'Lorem ipsum dolor sit ame[...] et dolore magna aliqua. '` |
 
 ## How to consume these functions?
 
