@@ -6,7 +6,7 @@
 ## Install
 
 ```bash
-sudo npm -g i add @transloadit/post
+sudo npm -g i @transloadit/post
 ```
 
 ## Usage
