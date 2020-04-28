@@ -6,7 +6,7 @@
 ## Install
 
 ```bash
-sudo yarn global add @transloadit/post
+sudo npm -g i add @transloadit/post
 ```
 
 ## Usage
