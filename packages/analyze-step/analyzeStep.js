@@ -65,11 +65,6 @@ function humanFilter (step) {
           throw new Error(`Please add a template definition for this /file/filter operator: ${operator}`)
         }
 
-        // if (val === true || val === 'true') {
-        //   template = template.replace('with a certain', 'with a')
-        //   template = template.replace('without a certain', 'without a')
-        // }
-
         let humanKey = key
         humanKey = humanKey.replace(/\$\{/, '')
         humanKey = humanKey.replace(/\}/, '')
@@ -111,17 +106,18 @@ function humanFilter (step) {
           .replace(/{humanKey}/g, humanKey)
           .replace(/{humanVal}/g, humanVal)
 
-        if (humanVal === '' || humanVal === false || humanVal === 'false') {
-          // Swap with & without via an intermediary step:
+        if (humanVal === true || humanVal === 'true') {
+          // No values for boolean, just say: with
+          humanDescr = humanDescr.replace(' of ', '')
+          humanDescr = humanDescr.replace('true', '')
+        } else if (humanVal === '' || humanVal === false || humanVal === 'false') {
+          // No values for boolean, just say: without
+          humanDescr = humanDescr.replace(' of ', '')
+          humanDescr = humanDescr.replace('false', '')
+          // Swap with & without via an intermediary step
           humanDescr = humanDescr.replace('without', 'wi2th')
           humanDescr = humanDescr.replace('with', 'without')
           humanDescr = humanDescr.replace('wi2th', 'with')
-          humanDescr = humanDescr.replace(' of ', '')
-          humanDescr = humanDescr.replace('false', '')
-        }
-        if (humanVal === false || humanVal === 'true') {
-          humanDescr = humanDescr.replace(' of ', '')
-          humanDescr = humanDescr.replace('true', '')
         }
 
         collection[type].push(humanDescr)
@@ -135,7 +131,7 @@ function humanFilter (step) {
     const joindec = humanJoin(collection.declines, false, step.condition_type)
       .replace('with a certain mime-type and with a certain mime-type', 'with certain mime-types')
 
-    total.push('Reject ' + joindec)
+    total.push('Exclude ' + joindec)
   }
   if (collection.accepts && collection.accepts.length > 0) {
     const joinacc = humanJoin(collection.accepts, false, step.condition_type)
@@ -148,20 +144,21 @@ function humanFilter (step) {
   return strTotal
     .replace(/(\W)a audio/g, '$1an audio')
     .replace(/(\W)a image/g, '$1an image')
-    .replace(/files with a (mime-)?type of a application\/x-subripg/g, 'subtitles')
-    .replace(/files with a (mime-)?type of an image\/jpe?g/g, 'JPEG images')
-    .replace(/files with a (mime-)?type of an image/g, 'images')
-    .replace(/files with a (mime-)?type of an audio/g, 'audio files')
-    .replace(/files with a (mime-)?type of a video/g, 'videos')
-    .replace(/files with a (mime-)?type of archives/g, 'archives')
-    .replace(/and a (mime-)?type of a application\/x-subripg/g, 'and subtitles')
-    .replace(/and a (mime-)?type of an image\/jpe?g/g, 'and JPEG images')
-    .replace(/and a (mime-)?type of an image/g, 'and images')
-    .replace(/and a (mime-)?type of an audio/g, 'audio and files')
-    .replace(/and a (mime-)?type of a video/g, 'and videos')
-    .replace(/and a (mime-)?type of archives/g, 'and archives')
-    .replace(/files with a filesize above/g, 'files bigger than')
-    .replace(/files with a filesize below/g, 'files smaller than')
+    .replace(/files with a (mime-)?type of a application\/x-subrip(\W|$)/g, 'subtitles$2')
+    .replace(/files with a (mime-)?type of an image\/(jpe\?g)(\W|$)/g, '$2 images$3')
+    .replace(/jpe\?g/g, 'jpeg')
+    .replace(/files with a (mime-)?type of an image(\W|$)/g, 'images$2')
+    .replace(/files with a (mime-)?type of an audio(\W|$)/g, 'audio files$2')
+    .replace(/files with a (mime-)?type of a video(\W|$)/g, 'videos$2')
+    .replace(/files with a (mime-)?type of archives(\W|$)/g, 'archives$2')
+    .replace(/and a (mime-)?type of a application\/x-subripg(\W|$)/g, 'and subtitles$2')
+    .replace(/and a (mime-)?type of an image\/jpe?g(\W|$)/g, 'and JPEG images$2')
+    .replace(/and a (mime-)?type of an image(\W|$)/g, 'and images$2')
+    .replace(/and a (mime-)?type of an audio(\W|$)/g, 'audio and files$2')
+    .replace(/and a (mime-)?type of a video(\W|$)/g, 'and videos$2')
+    .replace(/and a (mime-)?type of archives(\W|$)/g, 'and archives$2')
+    .replace(/files with a filesize above(\W|$)/g, 'files bigger than$1')
+    .replace(/files with a filesize below(\W|$)/g, 'files smaller than$1')
 }
 
 function humanDimensions (step) {
