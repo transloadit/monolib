@@ -18,6 +18,6 @@
     "jsonpath": "1.0.2",
     "lodash": "4.17.15"
   },
-  "version": "0.0.15",
+  "version": "0.0.16",
   "gitHead": "b73ab4880b9c4c48db32f249f776974a137510c4"
 }
