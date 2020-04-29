@@ -1,8 +1,8 @@
 const formatDurationMs = require('@transloadit/format-duration-ms')
-const formatBytes = require('prettier-bytes')
+const prettierBytes = require('@transloadit/prettier-bytes')
 const inflect = require('inflect')
 const _ = require('lodash')
-const  jp = require('jsonpath')
+const jp = require('jsonpath')
 
 function humanJoin (array, reduce = true, glueword = 'and') {
   const countedArray = array
@@ -82,10 +82,10 @@ function humanFilter (step) {
 
         let humanVal = val
         if (humanKey === 'filesize') {
-          humanVal = formatBytes(parseInt(humanVal, 10), 1)
+          humanVal = prettierBytes(parseInt(humanVal, 10), 1)
         }
         if (humanKey.match(/ bitrate$/) && humanVal)  {
-          humanVal = `${formatBytes(parseInt(humanVal, 10), 1)}`.replace('B', 'bit/s')
+          humanVal = `${prettierBytes(parseInt(humanVal, 10), 1)}`.replace('B', 'bit/s')
         }
         if (humanKey === 'duration') {
           humanVal = formatDurationMs(parseInt(humanVal, 10) * 1000)
