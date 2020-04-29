@@ -43,18 +43,18 @@ describe('analyzeStep', () => {
       imagemagick_stack: 'v2.0.7',
     }, robots)).toMatch('Resize images to 75×75 using the pad strategy')
 
-    // expect(analyzeStep({
-    //   result : true,
-    //   use    : 'described',
-    //   robot  : '/file/filter',
-    //   accepts: [
-    //     [
-    //       '${file.meta.descriptions}',
-    //       'includes',
-    //       'Bridge',
-    //     ],
-    //   ],
-    // }, robots)).toMatch('Filter files that include descriptions of a Bridge')
+    expect(analyzeStep({
+      result : true,
+      use    : 'described',
+      robot  : '/file/filter',
+      accepts: [
+        [
+          '${file.meta.descriptions}',
+          'includes',
+          'Bridge',
+        ],
+      ],
+    }, robots)).toMatch('Pick files that include descriptions of a Bridge')
 
     expect(analyzeStep({
       use    : ':original',
@@ -66,7 +66,7 @@ describe('analyzeStep', () => {
           'video',
         ],
       ],
-    }, robots)).toMatch('Filter files with a type of video')
+    }, robots)).toMatch('Pick videos')
 
     expect(analyzeStep({
       use     : ':original',
@@ -98,7 +98,7 @@ describe('analyzeStep', () => {
       ],
       condition_type: 'and',
       result        : true,
-    }, robots)).toMatch('Reject files without a width of 1920 and files without a height of 1080')
+    }, robots)).toMatch('Reject files without a width of 1920 and a height of 1080')
 
     expect(analyzeStep({
       use    : ':original',
@@ -112,7 +112,7 @@ describe('analyzeStep', () => {
         ],
       ],
       error_on_decline: true,
-    }, robots)).toMatch('Filter images')
+    }, robots)).toMatch('Pick images')
 
     expect(analyzeStep({
       use    : ':original',
@@ -131,7 +131,7 @@ describe('analyzeStep', () => {
         ],
       ],
       error_on_decline: true,
-    }, robots)).toMatch('Filter images and videos')
+    }, robots)).toMatch('Pick images and videos')
 
     expect(analyzeStep({
       use    : ':original',
@@ -144,7 +144,7 @@ describe('analyzeStep', () => {
         ],
       ],
       result: true,
-    }, robots)).toMatch('Filter files with a filesize of 1 KB or higher')
+    }, robots)).toMatch('Pick files with a filesize of 1 KB or higher')
 
     expect(analyzeStep({
       use    : ':original',
@@ -163,7 +163,7 @@ describe('analyzeStep', () => {
         ],
       ],
       condition_type: 'and',
-    }, robots)).toMatch('Filter files with a aspect ratio above 1.0 and images')
+    }, robots)).toMatch('Pick files with a aspect ratio above 1.0 and images')
 
     expect(analyzeStep({
       use     : ':original',
@@ -201,7 +201,7 @@ describe('analyzeStep', () => {
         ],
       ],
       condition_type: 'or',
-    }, robots)).toMatch('Filter files with a width of 2048 or lower or files with a height of 2048 or lower')
+    }, robots)).toMatch('Pick files with a width of 2048 or lower or a height of 2048 or lower')
 
     expect(analyzeStep({
       use     : ':original',
@@ -246,7 +246,7 @@ describe('analyzeStep', () => {
           'video',
         ],
       ],
-    }, robots)).toMatch('Filter files with a type of image and files with a type of video')
+    }, robots)).toMatch('Pick images and videos')
 
     expect(analyzeStep({
       use        : ':original',
