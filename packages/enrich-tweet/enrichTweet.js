@@ -14,8 +14,10 @@ module.exports = async function enrichTweet (tweet) {
     }
   }
 
-  for (const media of tweet.extended_entities.media) {
-    text = text.replace(media.url, `\nhttps://${media.display_url}`)
+  if (tweet.extended_entities && tweet.extended_entities.media.length) {
+    for (const media of tweet.extended_entities.media) {
+      text = text.replace(media.url, `\nhttps://${media.display_url}`)
+    }
   }
 
   // Link all the things inside the tweet
