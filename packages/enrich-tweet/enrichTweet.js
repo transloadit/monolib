@@ -19,4 +19,6 @@ module.exports = async function enrichTweet (tweet) {
 
   // Add @ inside link instead of before
   text = text.replace(/@<a\s+class="tweet-url username"\s+href="https:\/\/twitter.com\/([^"]+)"\s+data-screen-name="([^"]+)"\s+rel="nofollow">([^<]+)<\/a>/g, '<a class="tweet-url username" href="https://twitter.com/$1" data-screen-name="$2" rel="nofollow">@$3</a>')
+
+  return text
 }
