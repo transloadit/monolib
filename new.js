@@ -15,7 +15,7 @@ const inflection = require('inflection')
     ])
 
   const camelized = inflection.camelize(answers.name.replace(/-/g, '_'), true)
-  const { stdout } = await execa(`cp`, [
+  await execa(`cp`, [
     `-Rafv`,
     `${__dirname}/template-package`,
     `${__dirname}/packages/${answers.name}`,
