@@ -58,7 +58,7 @@ yarn
 
 ## How to add functions?
 
-- Easiest is to duplicate `./package-template` to a directory in `./packages/<name>` and replace any `replace-me` or `replaceMe` occurrence
+- Easiest is run `make new` (this will ask for the new module name, then duplicate `./template-package` to a directory in `./packages/<name>` and replace any `replace-me` or `replaceMe` respectively)
 - Write your function & test
 - Add an example to the table in this README.md
 - Commit
