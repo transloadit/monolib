@@ -13,11 +13,11 @@
   "main": "analyzeStep.js",
   "dependencies": {
     "@transloadit/format-duration-ms": "^0.0.28",
-    "@transloadit/prettier-bytes": "^0.0.6",
+    "@transloadit/prettier-bytes": "^0.0.7",
     "inflect": "0.4.0",
     "jsonpath": "1.0.2",
     "lodash": "4.17.15"
   },
-  "version": "0.0.18",
+  "version": "0.0.19",
   "gitHead": "b73ab4880b9c4c48db32f249f776974a137510c4"
 }
