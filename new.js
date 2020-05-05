@@ -15,22 +15,29 @@ const inflection = require('inflection')
     ])
 
   const camelized = inflection.camelize(answers.name.replace(/-/g, '_'), true)
-  await execa(`cp`, [
+  const subprocess1 = execa(`cp`, [
     `-Rafv`,
     `${__dirname}/template-package`,
     `${__dirname}/packages/${answers.name}`,
-  ]).stdout.pipe(process.stdout)
+  ])
+  subprocess1.stdout.pipe(process.stdout)
+  await subprocess1
 
-  await execa(`mv`, [
+  const subprocess2 = execa(`mv`, [
     `-vf`,
     `${__dirname}/packages/${answers.name}/replaceMe.js`,
     `${__dirname}/packages/${answers.name}/${camelized}.js`,
-  ]).stdout.pipe(process.stdout)
-  await execa(`mv`, [
+  ])
+  subprocess2.stdout.pipe(process.stdout)
+  await subprocess2
+
+  const subprocess3 = execa(`mv`, [
     `-vf`,
     `${__dirname}/packages/${answers.name}/replaceMe.test.js`,
     `${__dirname}/packages/${answers.name}/${camelized}.test.js`,
-  ]).stdout.pipe(process.stdout)
+  ])
+  subprocess3.stdout.pipe(process.stdout)
+  await subprocess3
 
   await replace({
     regex      : 'replace-me',
