@@ -1,146 +1,38 @@
 const enrichTweet = require('./enrichTweet')
-
-const TWEET_1 = {
-  created_at        : 'Tue Jan 22 17:17:06 +0000 2019',
-  id                : 1087761082247204900,
-  id_str            : '1087761082247204864',
-  full_text         : 'In the age of cloud, @transloadit shows great balance of leaning on larger clouds while managing infra in-house @kvz \nhttps://t.co/uI1G5zZ3PF https://t.co/hEwN8eIllK',
-  truncated         : false,
-  display_text_range: [0, 141],
-  entities          : {
-    hashtags     : [],
-    symbols      : [],
-    user_mentions: [{ screen_name: 'transloadit', name: '🤖 Transloadit', id: 23779749, id_str: '23779749', indices: [21, 33] }, { screen_name: 'kvz', name: 'Kev van Zonneveld', id: 10664812, id_str: '10664812', indices: [112, 116] }],
-    urls         : [{ url: 'https://t.co/uI1G5zZ3PF', expanded_url: 'https://buff.ly/2QQWF4R', display_url: 'buff.ly/2QQWF4R', indices: [118, 141] }],
-    media        : [
-      {
-        id             : 1087761079520976900,
-        id_str         : '1087761079520976896',
-        indices        : [142, 165],
-        media_url      : 'http://pbs.twimg.com/media/DxiA8ElX4AA4hQ6.jpg',
-        media_url_https: 'https://pbs.twimg.com/media/DxiA8ElX4AA4hQ6.jpg',
-        url            : 'https://t.co/hEwN8eIllK',
-        display_url    : 'pic.twitter.com/hEwN8eIllK',
-        expanded_url   : 'https://twitter.com/stratusupdate/status/1087761082247204864/photo/1',
-        type           : 'photo',
-        sizes          : {
-          thumb:
-           {
-             w     : 150,
-             h     : 150,
-             resize: 'crop',
-           },
-          large: { w: 1442, h: 956, resize: 'fit' },
-          small: {
-            w     : 680,
-            h     : 451,
-            resize: 'fit',
-          },
-          medium: { w: 1200, h: 796, resize: 'fit' },
-        },
-      }],
-  },
-  extended_entities: {
-    media: [{
-      id             : 1087761079520976900,
-      id_str         : '1087761079520976896',
-      indices        : [142, 165],
-      media_url      : 'http://pbs.twimg.com/media/DxiA8ElX4AA4hQ6.jpg',
-      media_url_https: 'https://pbs.twimg.com/media/DxiA8ElX4AA4hQ6.jpg',
-      url            : 'https://t.co/hEwN8eIllK',
-      display_url    : 'pic.twitter.com/hEwN8eIllK',
-      expanded_url   : 'https://twitter.com/stratusupdate/status/1087761082247204864/photo/1',
-      type           : 'photo',
-      sizes          : {
-        thumb: {
-          w     : 150,
-          h     : 150,
-          resize: 'crop',
-        },
-        large : { w: 1442, h: 956, resize: 'fit' },
-        small : { w: 680, h: 451, resize: 'fit' },
-        medium: { w: 1200, h: 796, resize: 'fit' },
-      },
-    }],
-  },
-  source                   : '<a href="https://buffer.com" rel="nofollow">Buffer</a>',
-  in_reply_to_status_id    : null,
-  in_reply_to_status_id_str: null,
-  in_reply_to_user_id      : null,
-  in_reply_to_user_id_str  : null,
-  in_reply_to_screen_name  : null,
-  user                     : {
-    id         : 1044600776709066800,
-    id_str     : '1044600776709066754',
-    name       : 'stratusupdate',
-    screen_name: 'stratusupdate',
-    location   : 'The Cloud',
-    description: 'Keep your head in the cloud with weekly curated cloud native news',
-    url        : 'https://t.co/totJzSvzzp',
-    entities   : {
-      url: {
-        urls: [{
-          url         : 'https://t.co/totJzSvzzp',
-          expanded_url: 'https://www.manifold.co/stratusupdate',
-          display_url : 'manifold.co/stratusupdate',
-          indices     : [0, 23],
-        }],
-      },
-      description: { urls: [] },
-    },
-    protected                         : false,
-    followers_count                   : 91,
-    friends_count                     : 132,
-    listed_count                      : 3,
-    created_at                        : 'Tue Sep 25 14:53:27 +0000 2018',
-    favourites_count                  : 270,
-    utc_offset                        : null,
-    time_zone                         : null,
-    geo_enabled                       : false,
-    verified                          : false,
-    statuses_count                    : 98,
-    lang                              : null,
-    contributors_enabled              : false,
-    is_translator                     : false,
-    is_translation_enabled            : false,
-    profile_background_color          : '000000',
-    profile_background_image_url      : 'http://abs.twimg.com/images/themes/theme1/bg.png',
-    profile_background_image_url_https: 'https://abs.twimg.com/images/themes/theme1/bg.png',
-    profile_background_tile           : false,
-    profile_image_url                 : 'http://pbs.twimg.com/profile_images/1055076856096047104/8CtR0pAq_normal.jpg',
-    profile_image_url_https           : 'https://pbs.twimg.com/profile_images/1055076856096047104/8CtR0pAq_normal.jpg',
-    profile_link_color                : '5850A6',
-    profile_sidebar_border_color      : '000000',
-    profile_sidebar_fill_color        : '000000',
-    profile_text_color                : '000000',
-    profile_use_background_image      : false,
-    has_extended_profile              : false,
-    default_profile                   : false,
-    default_profile_image             : false,
-    following                         : false,
-    follow_request_sent               : false,
-    notifications                     : false,
-    translator_type                   : 'none',
-  },
-  geo               : null,
-  coordinates       : null,
-  place             : null,
-  contributors      : null,
-  is_quote_status   : false,
-  retweet_count     : 0,
-  favorite_count    : 0,
-  favorited         : false,
-  retweeted         : false,
-  possibly_sensitive: false,
-  lang              : 'en',
-}
+const fs = require('fs')
 
 describe('enrichTweet', () => {
-  test('main', async () => {
+  test('TWEET_1087761082247204900', async () => {
     jest.setTimeout(20000)
-    let txt = `In the age of cloud, <a class="tweet-url username" href="https://twitter.com/transloadit" data-screen-name="transloadit" rel="nofollow">@transloadit</a> shows great balance of leaning on larger clouds while managing infra in-house <a class="tweet-url username" href="https://twitter.com/kvz" data-screen-name="kvz" rel="nofollow">@kvz</a> \n`
-    txt += `<a href="https://transloadit.com/blog/2018/12/launching-asia-pacific-and-network-changes/" rel="nofollow">https://transloadit.com/blog/2018/12/launching-asia-pacific-and-network-changes/</a> \n`
-    txt += `<a href="https://pic.twitter.com/hEwN8eIllK" rel="nofollow">https://pic.twitter.com/hEwN8eIllK</a>`
-    expect((await enrichTweet(TWEET_1))).toBe(txt)
+    const TWEET_1087761082247204900 = JSON.parse(fs.readFileSync(`${__dirname}/enrichTweet.fixture-1087761082247204900.json`, 'utf-8'))
+    const txt = `In the age of cloud, <a class="tweet-url username" href="https://twitter.com/transloadit" data-screen-name="transloadit" rel="nofollow">@transloadit</a> shows great balance of leaning on larger clouds while managing infra in-house <a class="tweet-url username" href="https://twitter.com/kvz" data-screen-name="kvz" rel="nofollow">@kvz</a> \n<a href="https://transloadit.com/blog/2018/12/launching-asia-pacific-and-network-changes/" rel="nofollow">https://transloadit.com/blog/2018/12/launching-asia-pacific-and-network-changes/</a> \n<a href="https://pbs.twimg.com/media/DxiA8ElX4AA4hQ6.jpg" rel="nofollow">https://pbs.twimg.com/media/DxiA8ElX4AA4hQ6.jpg</a>`
+    expect((await enrichTweet(TWEET_1087761082247204900))).toBe(txt)
+  })
+  test('TWEET_1082897509528281089', async () => {
+    jest.setTimeout(20000)
+    const TWEET_1082897509528281089 = JSON.parse(fs.readFileSync(`${__dirname}/enrichTweet.fixture-1082897509528281089.json`, 'utf-8'))
+    const txt = `Just realized how <a class="tweet-url username" href="https://twitter.com/tus_io" data-screen-name="tus_io" rel="nofollow">@tus_io</a> and <a class="tweet-url username" href="https://twitter.com/uppy_io" data-screen-name="uppy_io" rel="nofollow">@uppy_io</a> are a perfect example of <a class="tweet-url username" href="https://twitter.com/transloadit" data-screen-name="transloadit" rel="nofollow">@transloadit</a> commoditizing their complements: <a href="https://www.gwern.net/Complement" rel="nofollow">https://www.gwern.net/Complement</a>`
+    expect((await enrichTweet(TWEET_1082897509528281089))).toBe(txt)
+  })
+  test('TWEET_389922139408592896', async () => {
+    jest.setTimeout(20000)
+    const TWEET_389922139408592896 = JSON.parse(fs.readFileSync(`${__dirname}/enrichTweet.fixture-389922139408592896.json`, 'utf-8'))
+
+    const txt = `Don't understand why anyone messes with carrierwave / paperclip / whatever anymore. <a class=\"tweet-url username\" href=\"https://twitter.com/transloadit\" data-screen-name=\"transloadit\" rel=\"nofollow\">@transloadit</a> is just too easy. <a href=\"https://transloadit.com/r/wGN\" rel=\"nofollow\">https://transloadit.com/r/wGN</a>`
+    expect((await enrichTweet(TWEET_389922139408592896))).toBe(txt)
+  })
+  test('TWEET_558414704024899584', async () => {
+    jest.setTimeout(20000)
+    const TWEET_558414704024899584 = JSON.parse(fs.readFileSync(`${__dirname}/enrichTweet.fixture-558414704024899584.json`, 'utf-8'))
+
+    const txt = `Thank the sponsors! <a href=\"http://2015.staticshowdown.com/sponsors\" rel=\"nofollow\">http://2015.staticshowdown.com/sponsors</a> <a class=\"tweet-url username\" href=\"https://twitter.com/polymer\" data-screen-name=\"polymer\" rel=\"nofollow\">@polymer</a> <a class=\"tweet-url username\" href=\"https://twitter.com/BloombergBeta\" data-screen-name=\"BloombergBeta\" rel=\"nofollow\">@BloombergBeta</a> <a class=\"tweet-url username\" href=\"https://twitter.com/Firebase\" data-screen-name=\"Firebase\" rel=\"nofollow\">@Firebase</a> <a class=\"tweet-url username\" href=\"https://twitter.com/MaxCDNDeveloper\" data-screen-name=\"MaxCDNDeveloper\" rel=\"nofollow\">@MaxCDNDeveloper</a> <a class=\"tweet-url username\" href=\"https://twitter.com/sprintly\" data-screen-name=\"sprintly\" rel=\"nofollow\">@sprintly</a> <a class=\"tweet-url username\" href=\"https://twitter.com/dropboxapi\" data-screen-name=\"dropboxapi\" rel=\"nofollow\">@dropboxapi</a> <a class=\"tweet-url username\" href=\"https://twitter.com/codeship\" data-screen-name=\"codeship\" rel=\"nofollow\">@codeship</a> <a class=\"tweet-url username\" href=\"https://twitter.com/transloadit\" data-screen-name=\"transloadit\" rel=\"nofollow\">@transloadit</a>`
+    expect((await enrichTweet(TWEET_558414704024899584))).toBe(txt)
+  })
+  test('TWEET_647088863777832961', async () => {
+    jest.setTimeout(20000)
+    const TWEET_647088863777832961 = JSON.parse(fs.readFileSync(`${__dirname}/enrichTweet.fixture-647088863777832961.json`, 'utf-8'))
+
+    const txt = `SponsorOfTheDay! We have giant love feelings for <a class="tweet-url username" href="https://twitter.com/transloadit" data-screen-name="transloadit" rel="nofollow">@transloadit</a>! And not just cuz that logo's cute as a bug. Thank you! \n<a href="https://pbs.twimg.com/media/CPrr5KQWwAAin58.png" rel="nofollow">https://pbs.twimg.com/media/CPrr5KQWwAAin58.png</a>`
+    expect((await enrichTweet(TWEET_647088863777832961))).toBe(txt)
   })
 })

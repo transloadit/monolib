@@ -1,0 +1,186 @@
+{
+  "created_at": "Fri Jan 23 00:03:34 +0000 2015",
+  "id": 558414704024899600,
+  "id_str": "558414704024899584",
+  "full_text": "Thank the sponsors! http://t.co/4GKSCDuwLb @polymer @BloombergBeta @Firebase @MaxCDNDeveloper @sprintly @dropboxapi @codeship @transloadit",
+  "truncated": false,
+  "display_text_range": [
+    0,
+    138
+  ],
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "user_mentions": [
+      {
+        "screen_name": "polymer",
+        "name": "Polymer Project",
+        "id": 1425993918,
+        "id_str": "1425993918",
+        "indices": [
+          43,
+          51
+        ]
+      },
+      {
+        "screen_name": "BloombergBeta",
+        "name": "Bloomberg Beta",
+        "id": 1416562236,
+        "id_str": "1416562236",
+        "indices": [
+          52,
+          66
+        ]
+      },
+      {
+        "screen_name": "Firebase",
+        "name": "Firebase",
+        "id": 447644824,
+        "id_str": "447644824",
+        "indices": [
+          67,
+          76
+        ]
+      },
+      {
+        "screen_name": "MaxCDNDeveloper",
+        "name": "Grace",
+        "id": 770768289005969400,
+        "id_str": "770768289005969408",
+        "indices": [
+          77,
+          93
+        ]
+      },
+      {
+        "screen_name": "sprintly",
+        "name": "sprint.ly",
+        "id": 127383413,
+        "id_str": "127383413",
+        "indices": [
+          94,
+          103
+        ]
+      },
+      {
+        "screen_name": "dropboxapi",
+        "name": "Dropbox API",
+        "id": 141247659,
+        "id_str": "141247659",
+        "indices": [
+          104,
+          115
+        ]
+      },
+      {
+        "screen_name": "CodeShip",
+        "name": "CodeShip",
+        "id": 220165520,
+        "id_str": "220165520",
+        "indices": [
+          116,
+          125
+        ]
+      },
+      {
+        "screen_name": "transloadit",
+        "name": "🤖 Transloadit",
+        "id": 23779749,
+        "id_str": "23779749",
+        "indices": [
+          126,
+          138
+        ]
+      }
+    ],
+    "urls": [
+      {
+        "url": "http://t.co/4GKSCDuwLb",
+        "expanded_url": "http://2015.staticshowdown.com/sponsors",
+        "display_url": "2015.staticshowdown.com/sponsors",
+        "indices": [
+          20,
+          42
+        ]
+      }
+    ]
+  },
+  "source": "<a href=\"https://tapbots.com/software/tweetbot/mac\" rel=\"nofollow\">Tweetbot for Mac</a>",
+  "in_reply_to_status_id": null,
+  "in_reply_to_status_id_str": null,
+  "in_reply_to_user_id": null,
+  "in_reply_to_user_id_str": null,
+  "in_reply_to_screen_name": null,
+  "user": {
+    "id": 2157683828,
+    "id_str": "2157683828",
+    "name": "Static Showdown",
+    "screen_name": "staticshowdown",
+    "location": "",
+    "description": "A worldwide 48-hour hackathon for progressive web apps. Coming Feb. 20-21, 2016!",
+    "url": "https://t.co/UJA0EGUSwD",
+    "entities": {
+      "url": {
+        "urls": [
+          {
+            "url": "https://t.co/UJA0EGUSwD",
+            "expanded_url": "https://staticshowdown.com/",
+            "display_url": "staticshowdown.com",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      },
+      "description": {
+        "urls": []
+      }
+    },
+    "protected": false,
+    "followers_count": 514,
+    "friends_count": 52,
+    "listed_count": 10,
+    "created_at": "Sat Oct 26 23:03:18 +0000 2013",
+    "favourites_count": 39,
+    "utc_offset": null,
+    "time_zone": null,
+    "geo_enabled": false,
+    "verified": false,
+    "statuses_count": 403,
+    "lang": null,
+    "contributors_enabled": false,
+    "is_translator": false,
+    "is_translation_enabled": false,
+    "profile_background_color": "455A64",
+    "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_tile": false,
+    "profile_image_url": "http://pbs.twimg.com/profile_images/690272352379088896/516xzEaE_normal.png",
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/690272352379088896/516xzEaE_normal.png",
+    "profile_banner_url": "https://pbs.twimg.com/profile_banners/2157683828/1453408716",
+    "profile_link_color": "E91E63",
+    "profile_sidebar_border_color": "000000",
+    "profile_sidebar_fill_color": "DDEEF6",
+    "profile_text_color": "333333",
+    "profile_use_background_image": true,
+    "has_extended_profile": false,
+    "default_profile": false,
+    "default_profile_image": false,
+    "following": false,
+    "follow_request_sent": false,
+    "notifications": false,
+    "translator_type": "none"
+  },
+  "geo": null,
+  "coordinates": null,
+  "place": null,
+  "contributors": null,
+  "is_quote_status": false,
+  "retweet_count": 1,
+  "favorite_count": 1,
+  "favorited": false,
+  "retweeted": false,
+  "possibly_sensitive": false,
+  "lang": "en"
+}

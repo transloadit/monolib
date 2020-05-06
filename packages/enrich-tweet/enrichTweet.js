@@ -4,19 +4,43 @@ const tall  = require('tall').tall
 module.exports = async function enrichTweet (tweet) {
   let text = tweet.full_text
   // Expand URLs
-  if (tweet.entities.urls.length) {
+  if (tweet.entities && tweet.entities.urls.length) {
     const subUrls = tweet.entities.urls
-    for (const subUrl of subUrls) {
-      const unshortened = await tall(subUrl.expanded_url)
-      text = text.replace(subUrl.expanded_url, unshortened)
-      text = text.replace(subUrl.url, unshortened)
-      text = text.replace(subUrl.display_url, unshortened)
+    for (const subUrl1 of subUrls) {
+      let unshortened = {}
+      try {
+        unshortened = await tall(subUrl1.expanded_url)
+      } catch (err) {
+        unshortened = subUrl1.expanded_url
+      }
+      const friends1 = [
+        subUrl1.display_url,
+        subUrl1.url,
+        subUrl1.expanded_url,
+      ]
+      for (const friend1 of friends1) {
+        text = text.replace(`http://www.${friend1}`, unshortened)
+        text = text.replace(`https://www.${friend1}`, unshortened)
+        text = text.replace(`http://${friend1}`, unshortened)
+        text = text.replace(`https://${friend1}`, unshortened)
+        text = text.replace(`${friend1}`, unshortened)
+      }
     }
   }
 
   if (tweet.extended_entities && tweet.extended_entities.media.length) {
-    for (const media of tweet.extended_entities.media) {
-      text = text.replace(media.url, `\nhttps://${media.display_url}`)
+    for (const subUrl2 of tweet.extended_entities.media) {
+      const friends2 = [
+        subUrl2.display_url,
+        subUrl2.url,
+        subUrl2.media_url,
+        subUrl2.expanded_url,
+      ]
+      for (const friend2 of friends2) {
+        text = text.replace(`http://${friend2}`, `\n${subUrl2.media_url_https}`)
+        text = text.replace(`https://${friend2}`, `\n${subUrl2.media_url_https}`)
+        text = text.replace(`${friend2}`, `\n${subUrl2.media_url_https}`)
+      }
     }
   }
 

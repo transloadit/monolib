@@ -1,0 +1,184 @@
+{
+  "created_at": "Thu Sep 24 16:43:02 +0000 2015",
+  "id": 647088863777833000,
+  "id_str": "647088863777832961",
+  "full_text": "SponsorOfTheDay! We have giant love feelings for @transloadit! And not just cuz that logo's cute as a bug. Thank you! http://t.co/LQqex8hd8i",
+  "truncated": false,
+  "display_text_range": [
+    0,
+    140
+  ],
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "user_mentions": [
+      {
+        "screen_name": "transloadit",
+        "name": "🤖 Transloadit",
+        "id": 23779749,
+        "id_str": "23779749",
+        "indices": [
+          49,
+          61
+        ]
+      }
+    ],
+    "urls": [],
+    "media": [
+      {
+        "id": 647088863719112700,
+        "id_str": "647088863719112704",
+        "indices": [
+          118,
+          140
+        ],
+        "media_url": "http://pbs.twimg.com/media/CPrr5KQWwAAin58.png",
+        "media_url_https": "https://pbs.twimg.com/media/CPrr5KQWwAAin58.png",
+        "url": "http://t.co/LQqex8hd8i",
+        "display_url": "pic.twitter.com/LQqex8hd8i",
+        "expanded_url": "https://twitter.com/OSFeels/status/647088863777832961/photo/1",
+        "type": "photo",
+        "sizes": {
+          "small": {
+            "w": 680,
+            "h": 173,
+            "resize": "fit"
+          },
+          "large": {
+            "w": 1639,
+            "h": 417,
+            "resize": "fit"
+          },
+          "medium": {
+            "w": 1200,
+            "h": 305,
+            "resize": "fit"
+          },
+          "thumb": {
+            "w": 150,
+            "h": 150,
+            "resize": "crop"
+          }
+        }
+      }
+    ]
+  },
+  "extended_entities": {
+    "media": [
+      {
+        "id": 647088863719112700,
+        "id_str": "647088863719112704",
+        "indices": [
+          118,
+          140
+        ],
+        "media_url": "http://pbs.twimg.com/media/CPrr5KQWwAAin58.png",
+        "media_url_https": "https://pbs.twimg.com/media/CPrr5KQWwAAin58.png",
+        "url": "http://t.co/LQqex8hd8i",
+        "display_url": "pic.twitter.com/LQqex8hd8i",
+        "expanded_url": "https://twitter.com/OSFeels/status/647088863777832961/photo/1",
+        "type": "photo",
+        "sizes": {
+          "small": {
+            "w": 680,
+            "h": 173,
+            "resize": "fit"
+          },
+          "large": {
+            "w": 1639,
+            "h": 417,
+            "resize": "fit"
+          },
+          "medium": {
+            "w": 1200,
+            "h": 305,
+            "resize": "fit"
+          },
+          "thumb": {
+            "w": 150,
+            "h": 150,
+            "resize": "crop"
+          }
+        }
+      }
+    ]
+  },
+  "source": "<a href=\"https://buffer.com\" rel=\"nofollow\">Buffer</a>",
+  "in_reply_to_status_id": null,
+  "in_reply_to_status_id_str": null,
+  "in_reply_to_user_id": null,
+  "in_reply_to_user_id_str": null,
+  "in_reply_to_screen_name": null,
+  "user": {
+    "id": 2829173989,
+    "id_str": "2829173989",
+    "name": "OS&F",
+    "screen_name": "OSFeels",
+    "location": "Seattle, WA",
+    "description": "A conference about communication and community. Coming Spring 2019",
+    "url": "https://t.co/ErP6Yk7cQi",
+    "entities": {
+      "url": {
+        "urls": [
+          {
+            "url": "https://t.co/ErP6Yk7cQi",
+            "expanded_url": "https://www.osfeels.com",
+            "display_url": "osfeels.com",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      },
+      "description": {
+        "urls": []
+      }
+    },
+    "protected": false,
+    "followers_count": 1153,
+    "friends_count": 94,
+    "listed_count": 61,
+    "created_at": "Wed Sep 24 02:30:00 +0000 2014",
+    "favourites_count": 947,
+    "utc_offset": null,
+    "time_zone": null,
+    "geo_enabled": false,
+    "verified": false,
+    "statuses_count": 1554,
+    "lang": null,
+    "contributors_enabled": false,
+    "is_translator": false,
+    "is_translation_enabled": false,
+    "profile_background_color": "000000",
+    "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_tile": false,
+    "profile_image_url": "http://pbs.twimg.com/profile_images/1019226801359413248/mSaVKW6c_normal.jpg",
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/1019226801359413248/mSaVKW6c_normal.jpg",
+    "profile_banner_url": "https://pbs.twimg.com/profile_banners/2829173989/1461907084",
+    "profile_link_color": "DDAD23",
+    "profile_sidebar_border_color": "000000",
+    "profile_sidebar_fill_color": "000000",
+    "profile_text_color": "000000",
+    "profile_use_background_image": false,
+    "has_extended_profile": false,
+    "default_profile": false,
+    "default_profile_image": false,
+    "following": false,
+    "follow_request_sent": false,
+    "notifications": false,
+    "translator_type": "none"
+  },
+  "geo": null,
+  "coordinates": null,
+  "place": null,
+  "contributors": null,
+  "is_quote_status": false,
+  "retweet_count": 1,
+  "favorite_count": 2,
+  "favorited": true,
+  "retweeted": true,
+  "possibly_sensitive": false,
+  "lang": "en"
+}
