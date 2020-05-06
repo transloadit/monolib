@@ -15,6 +15,6 @@
   "dependencies": {
     "tall": "3.0.0",
     "twitter-text": "3.1.0",
-    "unshort-tracer": "^1.2.0"
+    "url-unshort": "5.0.0"
   }
 }
