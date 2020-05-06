@@ -1,15 +1,24 @@
 const twttr = require('twitter-text')
 const tall  = require('tall').tall
+const uu = require('url-unshort')()
+
+const getUrls  = require('get-urls')
 
 module.exports = async function enrichTweet (tweet) {
+  if (!tweet) {
+    return tweet
+  }
   let text = tweet.full_text
   // Expand URLs
   if (tweet.entities && tweet.entities.urls.length) {
     const subUrls = tweet.entities.urls
     for (const subUrl1 of subUrls) {
-      let unshortened = {}
+      let unshortened = ''
       try {
-        unshortened = await tall(subUrl1.expanded_url)
+        unshortened = await uu.expand(subUrl1.expanded_url)
+        if (!unshortened) {
+          unshortened = await tall(subUrl1.expanded_url)
+        }
       } catch (err) {
         unshortened = subUrl1.expanded_url
       }
@@ -37,15 +46,36 @@ module.exports = async function enrichTweet (tweet) {
         subUrl2.expanded_url,
       ]
       for (const friend2 of friends2) {
-        text = text.replace(`http://${friend2}`, `\n${subUrl2.media_url_https}`)
-        text = text.replace(`https://${friend2}`, `\n${subUrl2.media_url_https}`)
-        text = text.replace(`${friend2}`, `\n${subUrl2.media_url_https}`)
+        text = text.replace(`http://${friend2}`, `${subUrl2.media_url_https}`)
+        text = text.replace(`https://${friend2}`, `${subUrl2.media_url_https}`)
+        text = text.replace(`${friend2}`, `${subUrl2.media_url_https}`)
       }
     }
   }
 
+  const urls = getUrls(text)
+  for (const subUrl3 of urls) {
+    if (!subUrl3.match(/^https?:\/\/bit\.ly/)) {
+      continue
+    }
+    let unshortened3 = ''
+    try {
+      unshortened3 = await uu.expand(subUrl3)
+      if (!unshortened3) {
+        unshortened3 = await tall(subUrl3)
+      }
+    } catch (err) {
+      unshortened3 = subUrl3
+    }
+
+    text = text.replace(`${subUrl3}`, `${unshortened3}`)
+  }
+
   // Link all the things inside the tweet
   text = twttr.autoLink(text)
+
+  // show images
+  text = text.replace(/>(https:\/\/pbs\.twimg\.com\/media\/[^.]+\.(jpe?g|gif|webp|png))</g, `><img class="tweet-media" src="$1" /><`)
 
   // Add @ inside link instead of before
   text = text.replace(/@<a\s+class="tweet-url username"\s+href="https:\/\/twitter.com\/([^"]+)"\s+data-screen-name="([^"]+)"\s+rel="nofollow">([^<]+)<\/a>/g, '<a class="tweet-url username" href="https://twitter.com/$1" data-screen-name="$2" rel="nofollow">@$3</a>')

@@ -16,7 +16,9 @@
     "execa": "4.0.0",
     "inflection": "1.12.0",
     "inquirer": "7.1.0",
-    "replace": "1.2.0"
+    "replace": "1.2.0",
+    "get-urls": "9.2.0",
+    "url-unshort": "5.0.0" 
   },
   "devDependencies": {
     "babel-eslint": "10.0.3",
