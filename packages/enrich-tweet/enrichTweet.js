@@ -75,7 +75,7 @@ module.exports = async function enrichTweet (tweet) {
   text = twttr.autoLink(text)
 
   // show images
-  text = text.replace(/>(https:\/\/pbs\.twimg\.com\/media\/[^.]+\.(jpe?g|gif|webp|png))</g, `><img class="tweet-media" src="$1" /><`)
+  text = text.replace(/>(https:\/\/pbs\.twimg\.com\/[^<]+)</g, `><img class="tweet-media" src="$1" /><`)
 
   // Add @ inside link instead of before
   text = text.replace(/@<a\s+class="tweet-url username"\s+href="https:\/\/twitter.com\/([^"]+)"\s+data-screen-name="([^"]+)"\s+rel="nofollow">([^<]+)<\/a>/g, '<a class="tweet-url username" href="https://twitter.com/$1" data-screen-name="$2" rel="nofollow">@$3</a>')

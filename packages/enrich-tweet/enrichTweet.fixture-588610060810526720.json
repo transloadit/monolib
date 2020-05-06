@@ -1,0 +1,225 @@
+{
+  "created_at": "Thu Apr 16 07:49:09 +0000 2015",
+  "id": 588610060810526700,
+  "id_str": "588610060810526720",
+  "full_text": "Trying to process/thumbnail about 600k avatars in a few hours. Thank you @transloadit @Prezly http://t.co/6HIHbuiMbh",
+  "truncated": false,
+  "display_text_range": [
+    0,
+    116
+  ],
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "user_mentions": [
+      {
+        "screen_name": "transloadit",
+        "name": "🤖 Transloadit",
+        "id": 23779749,
+        "id_str": "23779749",
+        "indices": [
+          73,
+          85
+        ]
+      },
+      {
+        "screen_name": "Prezly",
+        "name": "Prezly",
+        "id": 19285554,
+        "id_str": "19285554",
+        "indices": [
+          86,
+          93
+        ]
+      }
+    ],
+    "urls": [],
+    "media": [
+      {
+        "id": 588609941604171800,
+        "id_str": "588609941604171776",
+        "indices": [
+          94,
+          116
+        ],
+        "media_url": "http://pbs.twimg.com/ext_tw_video_thumb/588609941604171776/pu/img/657mRahs1TNqS0vw.jpg",
+        "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/588609941604171776/pu/img/657mRahs1TNqS0vw.jpg",
+        "url": "http://t.co/6HIHbuiMbh",
+        "display_url": "pic.twitter.com/6HIHbuiMbh",
+        "expanded_url": "https://twitter.com/digitalbase/status/588610060810526720/video/1",
+        "type": "photo",
+        "sizes": {
+          "thumb": {
+            "w": 150,
+            "h": 150,
+            "resize": "crop"
+          },
+          "small": {
+            "w": 680,
+            "h": 680,
+            "resize": "fit"
+          },
+          "medium": {
+            "w": 720,
+            "h": 720,
+            "resize": "fit"
+          },
+          "large": {
+            "w": 720,
+            "h": 720,
+            "resize": "fit"
+          }
+        }
+      }
+    ]
+  },
+  "extended_entities": {
+    "media": [
+      {
+        "id": 588609941604171800,
+        "id_str": "588609941604171776",
+        "indices": [
+          94,
+          116
+        ],
+        "media_url": "http://pbs.twimg.com/ext_tw_video_thumb/588609941604171776/pu/img/657mRahs1TNqS0vw.jpg",
+        "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/588609941604171776/pu/img/657mRahs1TNqS0vw.jpg",
+        "url": "http://t.co/6HIHbuiMbh",
+        "display_url": "pic.twitter.com/6HIHbuiMbh",
+        "expanded_url": "https://twitter.com/digitalbase/status/588610060810526720/video/1",
+        "type": "video",
+        "sizes": {
+          "thumb": {
+            "w": 150,
+            "h": 150,
+            "resize": "crop"
+          },
+          "small": {
+            "w": 680,
+            "h": 680,
+            "resize": "fit"
+          },
+          "medium": {
+            "w": 720,
+            "h": 720,
+            "resize": "fit"
+          },
+          "large": {
+            "w": 720,
+            "h": 720,
+            "resize": "fit"
+          }
+        },
+        "video_info": {
+          "aspect_ratio": [
+            1,
+            1
+          ],
+          "duration_millis": 5461,
+          "variants": [
+            {
+              "bitrate": 832000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/ext_tw_video/588609941604171776/pu/vid/480x480/r7TFsgD7_3-ODoZw.mp4"
+            },
+            {
+              "bitrate": 1280000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/ext_tw_video/588609941604171776/pu/vid/720x720/Phw24Cpz5GGzftJ7.mp4"
+            },
+            {
+              "content_type": "application/x-mpegURL",
+              "url": "https://video.twimg.com/ext_tw_video/588609941604171776/pu/pl/19dRShlql43AT77b.m3u8"
+            },
+            {
+              "bitrate": 320000,
+              "content_type": "video/mp4",
+              "url": "https://video.twimg.com/ext_tw_video/588609941604171776/pu/vid/240x240/lEpxjvcwYNoOeHCk.mp4"
+            }
+          ]
+        },
+        "additional_media_info": {
+          "monetizable": false
+        }
+      }
+    ]
+  },
+  "source": "<a href=\"http://twitter.com/download/android\" rel=\"nofollow\">Twitter for Android</a>",
+  "in_reply_to_status_id": null,
+  "in_reply_to_status_id_str": null,
+  "in_reply_to_user_id": null,
+  "in_reply_to_user_id_str": null,
+  "in_reply_to_screen_name": null,
+  "user": {
+    "id": 14078335,
+    "id_str": "14078335",
+    "name": "Gijs Nelissen",
+    "screen_name": "digitalbase",
+    "location": "Belgium",
+    "description": "Dad x3. Web junkie. Coffee drinker. Bootstrapper. Crossfitter. Entrepreneur. Over confident smarty pants. Founder of @prezly",
+    "url": "https://t.co/iaO3rl75Zv",
+    "entities": {
+      "url": {
+        "urls": [
+          {
+            "url": "https://t.co/iaO3rl75Zv",
+            "expanded_url": "http://www.prezly.com",
+            "display_url": "prezly.com",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      },
+      "description": {
+        "urls": []
+      }
+    },
+    "protected": false,
+    "followers_count": 1035,
+    "friends_count": 1218,
+    "listed_count": 128,
+    "created_at": "Tue Mar 04 15:42:38 +0000 2008",
+    "favourites_count": 2072,
+    "utc_offset": null,
+    "time_zone": null,
+    "geo_enabled": true,
+    "verified": false,
+    "statuses_count": 5643,
+    "lang": null,
+    "contributors_enabled": false,
+    "is_translator": false,
+    "is_translation_enabled": false,
+    "profile_background_color": "131516",
+    "profile_background_image_url": "http://abs.twimg.com/images/themes/theme14/bg.gif",
+    "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme14/bg.gif",
+    "profile_background_tile": true,
+    "profile_image_url": "http://pbs.twimg.com/profile_images/1037974362790526976/MSRew0Rn_normal.jpg",
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/1037974362790526976/MSRew0Rn_normal.jpg",
+    "profile_banner_url": "https://pbs.twimg.com/profile_banners/14078335/1536307441",
+    "profile_link_color": "697575",
+    "profile_sidebar_border_color": "EEEEEE",
+    "profile_sidebar_fill_color": "EFEFEF",
+    "profile_text_color": "333333",
+    "profile_use_background_image": true,
+    "has_extended_profile": false,
+    "default_profile": false,
+    "default_profile_image": false,
+    "following": false,
+    "follow_request_sent": false,
+    "notifications": false,
+    "translator_type": "none"
+  },
+  "geo": null,
+  "coordinates": null,
+  "place": null,
+  "contributors": null,
+  "is_quote_status": false,
+  "retweet_count": 3,
+  "favorite_count": 3,
+  "favorited": true,
+  "retweeted": true,
+  "possibly_sensitive": false,
+  "lang": "en"
+}
