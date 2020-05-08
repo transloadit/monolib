@@ -2962,13 +2962,6 @@ expand-brackets@^2.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-expand-url@^0.1.3:
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/expand-url/-/expand-url-0.1.3.tgz#56aacb2d4c8cb39ccfea84073772bc16c225ba9b"
-  integrity sha1-VqrLLUyMs5zP6oQHN3K8FsIlups=
-  dependencies:
-    request "^2.34.0"
-
 expect@^24.9.0:
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/expect/-/expect-24.9.0.tgz#b75165b4817074fa4a157794f46fe9f1ba15b6ca"
@@ -3331,7 +3324,7 @@ get-stream@^5.0.0:
   dependencies:
     pump "^3.0.0"
 
-get-urls@^9.2.0:
+get-urls@9.2.0:
   version "9.2.0"
   resolved "https://registry.yarnpkg.com/get-urls/-/get-urls-9.2.0.tgz#df05cfad3ad984a34a5794209b837dd507af53fd"
   integrity sha512-ErGHKhzGIrtobqmNNxjy7yxe4cEmAp9SMerzmFpldn0CkEr2EC+SvIiyef038JDjl2LVng7MMw8YunUKM7k3ww==
@@ -6233,7 +6226,7 @@ request-promise-native@^1.0.5:
     stealthy-require "^1.1.1"
     tough-cookie "^2.3.3"
 
-request@^2.34.0, request@^2.87.0, request@^2.88.0:
+request@^2.87.0, request@^2.88.0:
   version "2.88.2"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.2.tgz#d73c918731cb5a87da047e207234146f664d12b3"
   integrity sha512-MsvtOrfG9ZcrOwAW+Qi+F6HbD0CWXEh9ou77uOb7FM2WPhwT7smM833PzanhJLsgXjN89Ir6V2PczXNnMpwKhw==
@@ -7237,7 +7230,7 @@ url-to-options@^1.0.1:
   resolved "https://registry.yarnpkg.com/url-to-options/-/url-to-options-1.0.1.tgz#1505a03a289a48cbd7a434efbaeec5055f5633a9"
   integrity sha1-FQWgOiiaSMvXpDTvuu7FBV9WM6k=
 
-url-unshort@^5.0.0:
+url-unshort@5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/url-unshort/-/url-unshort-5.0.0.tgz#624a92b93160fda5e82e175ebe818154ed3bed78"
   integrity sha1-YkqSuTFg/aXoLhdevoGBVO077Xg=

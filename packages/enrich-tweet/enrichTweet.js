@@ -77,6 +77,9 @@ module.exports = async function enrichTweet (tweet) {
   // show images
   text = text.replace(/>(https:\/\/pbs\.twimg\.com\/[^<]+)</g, `><img class="tweet-media" src="$1" /><`)
 
+  // Add two linebreaks before first image
+  text = text.replace(`<a href="https://pbs.twimg.com/`, `\n\n<a href="https://pbs.twimg.com/`)
+
   // Add @ inside link instead of before
   text = text.replace(/@<a\s+class="tweet-url username"\s+href="https:\/\/twitter.com\/([^"]+)"\s+data-screen-name="([^"]+)"\s+rel="nofollow">([^<]+)<\/a>/g, '<a class="tweet-url username" href="https://twitter.com/$1" data-screen-name="$2" rel="nofollow">@$3</a>')
 
