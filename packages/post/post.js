@@ -42,6 +42,7 @@ async function post () {
   buff += `---\n`
   buff += `title: ${strTitle}\n`
   buff += `author: ${answers.author}\n`
+  buff += `layout: post\n`
   buff += `ogimage: /assets/images/blog/${dateY}-${datem}-x.jpg\n`
   buff += `tags: \n`
   buff += `  - \n`
