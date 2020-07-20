@@ -2,6 +2,16 @@
 # yarn lockfile v1
 
 
+"@transloadit/file-exists@^0.0.16":
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/@transloadit/file-exists/-/file-exists-0.0.16.tgz#5b7892bbcc2624f81b8c14456651f032ba062d60"
+  integrity sha512-LWTQiaHoFrejuvGik8/QmBwiMyQsWSKBVtorKbYCQQenoFuxGXO+2f3ncC3+Z11hEC+myQNd2iAdw3PJ7hmFig==
+
+"@transloadit/slugify@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@transloadit/slugify/-/slugify-0.0.9.tgz#cdba598b94e002f57e199a0a395ac280f74e108b"
+  integrity sha512-uI8NsdY0Qc0+fmy1pjdsy0m5Kwe30HeUHx6KW88WCWaMeDF5WL6SjRCwaxqQWX/6XFNGwjNQLJ0VGXQurjzeiA==
+
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
@@ -250,9 +260,9 @@ isexe@^2.0.0:
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
 lodash@^4.17.15:
-  version "4.17.15"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
-  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+  version "4.17.19"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
+  integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
 
 lru-cache@^4.0.1:
   version "4.1.5"
