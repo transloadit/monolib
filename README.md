@@ -63,7 +63,7 @@ yarn
 - Write your function & test
 - Add an example to the table in this README.md
 - Commit
-- Run `npm run pub` to publish (that's just an alias to [`lerna publish`](https://lerna.js.org/#command-publish))
+- Run `yarn pub` to publish (that's just an alias to [`lerna publish`](https://lerna.js.org/#command-publish))
 
 ## How to run tests?
 
