@@ -1,6 +1,6 @@
 # :house_with_garden: monolib
 
-A **private** monorepo with **public**ly published single-file JavaScript utils that we can re-use in our different projects.
+An internal monorepo with publicly published single-file JavaScript utils that we can re-use in our different projects.
 
 To many small functions that just don't belong, it's the place they call home.
 
