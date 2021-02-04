@@ -1,7 +1,7 @@
 {
   "name": "@transloadit/sort-object-by-prio",
   "license": "AGPL-3.0-only",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -13,6 +13,6 @@
   },
   "main": "./sortObjectByPrio.js",
   "dependencies": {
-    "@transloadit/sort-object": "^0.0.2"
+    "@transloadit/sort-object": "^0.0.3"
   }
 }
