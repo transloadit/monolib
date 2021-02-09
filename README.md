@@ -62,6 +62,7 @@ yarn
 ## How to add functions?
 
 - Easiest is run `make new` (this will ask for the new module name (e.g. `prd`), then duplicate `./template-package` to a directory in `./packages/<name>` and replace any `replace-me` or `replaceMe` respectively)
+- Traverse into `./packages/<name>/` and `yarn add` whichever dependency you need like you would normally
 - Write your function & test (`yarn test:watch`)
 - Add an example to the table in this `README.md`
 - Commit
