@@ -1,14 +1,14 @@
 # :house_with_garden: monolib
 
-An internal monorepo with publicly published single-file JavaScript utils that we can re-use in our different projects.
+An internal monorepo with publicly published single-file JavaScript utils that we can re-use across our different projects.
 
-To many small functions that just don't belong, it's the place they call home.
+It's the home to many small functions that just don't belong.
 
 For example, Uppy has its own way of reporting bytes. We moved that function here, so now we can easily add it to our node-sdk, API, and content repo where React would be outputting bytes in /c/.
 
 Modules are public so they can be re-used without configuring registries and setting tokens for anybody consuming them. This allows the modules to be used in e.g. Uppy or the Node SDK. 
 
-While the world can consume the modules, this is mostly to make life easier for us, we won't encourage people to use these modules in their own projects. Hence, the license is AGPL-3.0-only, and we add unwelcoming READMEs with disclaimers to the modules.
+While the world _can_ consume the modules, this is mostly to make life easier for us, we won't encourage people to use these modules in their own projects. We may break SemVer with no regard to external projects. Hence, the license is AGPL-3.0-only, and we add unwelcoming READMEs with disclaimers to the modules.
 
 ## Rules
 
@@ -25,6 +25,8 @@ While the world can consume the modules, this is mostly to make life easier for 
 | `@transloadit/file-exists`         | `await fileExists('foo.jpg')`                                                | `true`                                                                      |
 | `@transloadit/format-duration-ms`  | `formatDurationMs(10000000)`                                                 | `'2h46m40s'`                                                                |
 | `@transloadit/post`                | `$ post [subdir]`                                                            | Asks questions and creates a markdown post, by default in subdir `./_posts` |
+| `@transloadit/pr`                  | `pr({ a: 1 })`                                                               | Dumps `{a: 1}` on the console, used for debugging                           |
+| `@transloadit/prd`                 | `prd({ a: 1 })`                                                              | Dumps `{a: 1}` on the console and exits program, used for debugging         |
 | `@transloadit/prettier-bytes`      | `prettierBytes(235555520)`                                                   | `'225 MB'`                                                                  |
 | `@transloadit/slugify`             | `slugify('--This is My App !~')`                                             | `'this-is-my-app'`                                                          |
 | `@transloadit/sort-object`         | `sortObject({b: 'a', a: 'b'})`                                               | `{a: 'b', b: 'a'}`                                                          |
@@ -59,11 +61,11 @@ yarn
 
 ## How to add functions?
 
-- Easiest is run `make new` (this will ask for the new module name, then duplicate `./template-package` to a directory in `./packages/<name>` and replace any `replace-me` or `replaceMe` respectively)
-- Write your function & test
-- Add an example to the table in this README.md
+- Easiest is run `make new` (this will ask for the new module name (e.g. `prd`), then duplicate `./template-package` to a directory in `./packages/<name>` and replace any `replace-me` or `replaceMe` respectively)
+- Write your function & test (`yarn test:watch`)
+- Add an example to the table in this `README.md`
 - Commit
-- Run `yarn pub` to publish (that's just an alias to [`lerna publish`](https://lerna.js.org/#command-publish))
+- Run `yarn pub` to publish (that's an alias to [`lerna publish`](https://lerna.js.org/#command-publish))
 
 ## How to run tests?
 
