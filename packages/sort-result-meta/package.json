@@ -1,7 +1,7 @@
 {
   "name": "@transloadit/sort-result-meta",
   "license": "AGPL-3.0-only",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -13,6 +13,6 @@
   },
   "main": "./sortResultMeta.js",
   "dependencies": {
-    "@transloadit/sort-object-by-prio": "^0.0.4"
+    "@transloadit/sort-object-by-prio": "^0.0.5"
   }
 }
