@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 const formatDurationMs = require('@transloadit/format-duration-ms')
 const prettierBytes = require('@transloadit/prettier-bytes')
 const inflect = require('inflect')
@@ -5,11 +6,11 @@ const _ = require('lodash')
 const jp = require('jsonpath')
 
 function humanJoin (array, reduce = true, glueword = 'and') {
-  const countedArray = array
+  let countedArray = array
 
   if (reduce === true) {
     const counted = _.countBy(array)
-    const countedArray = []
+    countedArray = []
     for (const name in counted) {
       const count = counted[name]
       if (count > 1) {
@@ -131,13 +132,13 @@ function humanFilter (step) {
     const joindec = humanJoin(collection.declines, false, step.condition_type)
       .replace('with a certain mime-type and with a certain mime-type', 'with certain mime-types')
 
-    total.push('Exclude ' + joindec)
+    total.push(`Exclude ${joindec}`)
   }
   if (collection.accepts && collection.accepts.length > 0) {
     const joinacc = humanJoin(collection.accepts, false, step.condition_type)
       .replace('with a certain mime-type and with a certain mime-type', 'with certain mime-types')
 
-    total.push('Pick ' + joinacc)
+    total.push(`Pick ${joinacc}`)
   }
 
   const strTotal = humanJoin(total, false)
@@ -263,20 +264,20 @@ module.exports = (step, robots, extrameta = {}) => {
     } else if (_.has(step, 'ffmpeg.filter_complex') && step.ffmpeg.filter_complex.includes('atempo=')) {
       str = `Change audio speed`
     } else if (('width' in step || 'height' in step) && (step.width !== '${file.meta.width}') && (step.height !== '${file.meta.height}')) {
-      str = `Resize videos` + humanDimensions(step)
+      str = `Resize videos${humanDimensions(step)}`
       if ('resize_strategy' in step && step.resize_strategy !== 'pad') {
         str = `${str} using the ${step.resize_strategy} strategy`
       }
       if ('preset' in step) {
-        str = `${str} and encode for ` + humanPreset(step, extrameta)
+        str = `${str} and encode for ${humanPreset(step, extrameta)}`
       }
     } else if (('resize_strategy' in step)) {
       str = `Resize videos`
       if ('preset' in step) {
-        str = `${str} in ` + humanPreset(step, extrameta)
+        str = `${str} in ${humanPreset(step, extrameta)}`
       }
     } else if ('preset' in step) {
-      str = `Transcode videos to ` + humanPreset(step, extrameta)
+      str = `Transcode videos to ${humanPreset(step, extrameta)}`
     }
 
     if (_.get(step, 'ffmpeg.an') === true) {
@@ -294,7 +295,7 @@ module.exports = (step, robots, extrameta = {}) => {
     } else if ('bitrate' in step) {
       str = `Adjust audio bitrates`
     } else if ('preset' in step) {
-      str = `Encode audio to ` + humanPreset(step, extrameta)
+      str = `Encode audio to ${humanPreset(step, extrameta)}`
     }
 
     if (_.get(step, 'ffmpeg.an') === true) {

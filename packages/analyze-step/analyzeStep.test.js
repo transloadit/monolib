@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 const analyzeStep = require('./analyzeStep.js')
 // const util = require('util')
 

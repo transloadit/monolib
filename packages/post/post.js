@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable no-console */
 const fs = require('fs').promises
 const inquirer = require('inquirer')
 const openInEditor = require('open-in-editor')
@@ -7,6 +8,7 @@ const slugify = require('@transloadit/slugify')
 const title = require('title')
 
 async function post () {
+  // eslint-disable-next-line import/no-dynamic-require,global-require
   console.log(`Welcome to @transloadit/post@${require(`${__dirname}/package.json`).version}. `)
   console.log(`Please answer some questions about the blog post, `)
   console.log(`and I'll generate a starting point and open your editor. `)
@@ -57,6 +59,7 @@ async function post () {
   // Avoid crashing on /bin/sh: 1: code -w: not found
   // strip any arguments
   if (process.env.VISUAL) {
+    // eslint-disable-next-line prefer-destructuring
     process.env.VISUAL = process.env.VISUAL.split(/\s+/)[0]
   }
 
