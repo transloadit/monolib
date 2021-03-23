@@ -5,7 +5,6 @@ const ROBOTS = {
   '/image/resize': {
     rname        : '/image/resize',
     purpose_words: 'Convert, resize, or watermark images',
-
   },
   '/file/filter': {
     rname        : '/file/filter',
@@ -14,6 +13,10 @@ const ROBOTS = {
   '/image/describe': {
     rname        : '/image/describe',
     purpose_words: 'Recognize objects in images',
+  },
+  '/video/encode': {
+    rname        : '/video/encode',
+    purpose_words: 'Transcode, resize, or watermark videos',
   },
 }
 
@@ -26,6 +29,30 @@ describe('analyzeStep', () => {
       resize_strategy  : 'pad',
       imagemagick_stack: 'v2.0.7',
     }, ROBOTS)).toMatch('Resize images to 75×75 using the pad strategy')
+
+    expect(analyzeStep({
+      use         : ':original',
+      robot       : '/video/encode',
+      result      : true,
+      preset      : 'empty',
+      ffmpeg_stack: 'v3.3.3',
+    }, ROBOTS)).toMatch('Transcode videos to original codec Settings')
+
+    expect(analyzeStep({
+      use         : ':original',
+      robot       : '/video/encode',
+      result      : true,
+      preset      : 'empty',
+      ffmpeg_stack: 'v3.3.3',
+      rotate      : false,
+      ffmpeg      : {
+        filter_complex: '[0:v]setpts=2.0*PTS[v];[0:a]atempo=0.5[a]',
+        map           : [
+          '[v]',
+          '[a]',
+        ],
+      },
+    }, ROBOTS)).toMatch('Change video speed')
 
     expect(analyzeStep({
       robot : '/image/resize',

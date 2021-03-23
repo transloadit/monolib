@@ -219,7 +219,7 @@ function humanPreset (step, extrameta = {}) {
     str = 'HEVC (H.265)'
   }
   if (str.match(/^empty/i)) {
-    str = 'Original Codec Settings'
+    str = 'original codec Settings'
   }
   if (str.match(/^(flac|mp3|ogg)/i)) {
     str = str.toUpperCase()
@@ -258,6 +258,10 @@ module.exports = (step, robots, extrameta = {}) => {
       str = `Take a clip out of videos from ${_.get(step, 'ffmpeg.ss')}s till the end`
     } else if (_.has(step, 'filter:v') && step.ffmpeg['filter:v'] === 'setpts=2.0*PTS') {
       str = `Slowdown video to half speed`
+    } else if (_.has(step, 'ffmpeg.filter_complex') && step.ffmpeg.filter_complex.includes('setpts=')) {
+      str = `Change video speed`
+    } else if (_.has(step, 'ffmpeg.filter_complex') && step.ffmpeg.filter_complex.includes('atempo=')) {
+      str = `Change audio speed`
     } else if (('width' in step || 'height' in step) && (step.width !== '${file.meta.width}') && (step.height !== '${file.meta.height}')) {
       str = `Resize videos` + humanDimensions(step)
       if ('resize_strategy' in step && step.resize_strategy !== 'pad') {
@@ -283,6 +287,10 @@ module.exports = (step, robots, extrameta = {}) => {
   if (robot.rname === '/audio/encode') {
     if (_.has(step, 'ffmpeg.ss') && _.has(step, 'ffmpeg.t')) {
       str = `Take a ${_.get(step, 'ffmpeg.t')}s clip out of audio at a specified offset`
+    } else if (_.has(step, 'ffmpeg.filter_complex') && step.ffmpeg.filter_complex.includes('setpts=')) {
+      str = `Change video speed`
+    } else if (_.has(step, 'ffmpeg.filter_complex') && step.ffmpeg.filter_complex.includes('atempo=')) {
+      str = `Change audio speed`
     } else if ('bitrate' in step) {
       str = `Adjust audio bitrates`
     } else if ('preset' in step) {
