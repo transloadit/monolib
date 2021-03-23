@@ -1,5 +1,5 @@
-const enrichTweet = require('./enrichTweet')
 const fs = require('fs')
+const enrichTweet = require('./enrichTweet')
 
 describe('enrichTweet', () => {
   test('should render tweet 1087761082247204900 correctly', async () => {

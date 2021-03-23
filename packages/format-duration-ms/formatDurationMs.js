@@ -1,4 +1,5 @@
 const prettyMS = require('pretty-ms')
+
 module.exports = function formatDurationMs (ms) {
   let human = prettyMS(ms)
 

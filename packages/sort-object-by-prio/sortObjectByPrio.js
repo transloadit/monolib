@@ -1,4 +1,3 @@
-
 const sortObject = require('@transloadit/sort-object')
 
 module.exports = function sortObjectByPrio (obj, prefixes) {

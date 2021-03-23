@@ -3,7 +3,9 @@ const replace = require('replace')
 const inquirer = require('inquirer')
 const inflection = require('inflection')
 
-;(async () => {
+;
+
+(async () => {
   const answers = await inquirer
     .prompt([
       {

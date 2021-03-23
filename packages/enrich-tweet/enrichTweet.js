@@ -1,5 +1,5 @@
 const twttr = require('twitter-text')
-const tall  = require('tall').tall
+const { tall } = require('tall')
 const uu = require('url-unshort')()
 
 const getUrls  = require('get-urls')

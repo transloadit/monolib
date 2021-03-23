@@ -3,29 +3,28 @@
 // ISC License (c) Dan Flettre https://github.com/Flet/prettier-bytes/blob/master/LICENSE
 module.exports = function prettierBytes (num) {
   if (typeof num !== 'number' || isNaN(num)) {
-    throw new TypeError('Expected a number, got ' + typeof num)
+    throw new TypeError(`Expected a number, got ${typeof num}`)
   }
 
-  var neg = num < 0
-  var units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+  const neg = num < 0
+  const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
 
   if (neg) {
     num = -num
   }
 
   if (num < 1) {
-    return (neg ? '-' : '') + num + ' B'
+    return `${(neg ? '-' : '') + num} B`
   }
 
-  var exponent = Math.min(Math.floor(Math.log(num) / Math.log(1024)), units.length - 1)
+  const exponent = Math.min(Math.floor(Math.log(num) / Math.log(1024)), units.length - 1)
   num = Number(num / Math.pow(1024, exponent))
-  var unit = units[exponent]
+  const unit = units[exponent]
 
   if (num >= 10 || num % 1 === 0) {
     // Do not show decimals when the number is two-digit, or if the number has no
     // decimal component.
-    return (neg ? '-' : '') + num.toFixed(0) + ' ' + unit
-  } else {
-    return (neg ? '-' : '') + num.toFixed(1) + ' ' + unit
+    return `${(neg ? '-' : '') + num.toFixed(0)} ${unit}`
   }
+  return `${(neg ? '-' : '') + num.toFixed(1)} ${unit}`
 }
