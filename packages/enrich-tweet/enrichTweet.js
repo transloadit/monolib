@@ -1,6 +1,5 @@
 const twttr = require('twitter-text')
 const { tall } = require('tall')
-const uu = require('url-unshort')()
 
 const getUrls  = require('get-urls')
 
@@ -15,10 +14,7 @@ module.exports = async function enrichTweet (tweet) {
     for (const subUrl1 of subUrls) {
       let unshortened = ''
       try {
-        unshortened = await uu.expand(subUrl1.expanded_url)
-        if (!unshortened) {
-          unshortened = await tall(subUrl1.expanded_url)
-        }
+        unshortened = await tall(subUrl1.expanded_url)
       } catch (err) {
         unshortened = subUrl1.expanded_url
       }
@@ -60,10 +56,7 @@ module.exports = async function enrichTweet (tweet) {
     }
     let unshortened3 = ''
     try {
-      unshortened3 = await uu.expand(subUrl3)
-      if (!unshortened3) {
-        unshortened3 = await tall(subUrl3)
-      }
+      unshortened3 = await tall(subUrl3)
     } catch (err) {
       unshortened3 = subUrl3
     }
