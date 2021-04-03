@@ -40,7 +40,7 @@ describe('enrichTweet', () => {
   test('should render tweet 16955922978971648 correctly', async () => {
     jest.setTimeout(20000)
     const tweet = JSON.parse(fs.readFileSync(`${__dirname}/enrichTweet.fixture-16955922978971648.json`, 'utf-8'))
-    expect((await enrichTweet(tweet))).toBe(`Hey <a class="tweet-url username" href="https://twitter.com/YouTube" data-screen-name="YouTube" rel="nofollow">@YouTube</a>, <a class="tweet-url username" href="https://twitter.com/vimeo" data-screen-name="vimeo" rel="nofollow">@vimeo</a> and other video upload/sharing sites, offer <a class="tweet-url username" href="https://twitter.com/transloadit" data-screen-name="transloadit" rel="nofollow">@transloadit</a> a lot of money, now, quick <a href="https://news.ycombinator.com/item" rel="nofollow">https://news.ycombinator.com/item</a>`)
+    expect((await enrichTweet(tweet))).toBe(`Hey <a class="tweet-url username" href="https://twitter.com/YouTube" data-screen-name="YouTube" rel="nofollow">@YouTube</a>, <a class="tweet-url username" href="https://twitter.com/vimeo" data-screen-name="vimeo" rel="nofollow">@vimeo</a> and other video upload/sharing sites, offer <a class="tweet-url username" href="https://twitter.com/transloadit" data-screen-name="transloadit" rel="nofollow">@transloadit</a> a lot of money, now, quick <a href="https://news.ycombinator.com/item?id=2025354" rel="nofollow">https://news.ycombinator.com/item?id=2025354</a>`)
   })
   test('should not explode on undefined', async () => {
     jest.setTimeout(20000)

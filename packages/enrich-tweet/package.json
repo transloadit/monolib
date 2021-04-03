@@ -14,7 +14,7 @@
   "main": "./enrichTweet.js",
   "dependencies": {
     "get-urls": "^10.0.0",
-    "tall": "3.0.0",
+    "tall": "^4.0.1",
     "twitter-text": "3.1.0"
   }
 }
