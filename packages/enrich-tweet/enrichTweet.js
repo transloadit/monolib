@@ -4,7 +4,7 @@ const { tall } = require('tall')
 const getUrls  = require('get-urls')
 
 module.exports = async function enrichTweet (tweet, unshorten = true) {
-  async function tryUnshorten(url) {
+  async function tryUnshorten (url) {
     if (!unshorten) return url
     try {
       return await tall(url)
