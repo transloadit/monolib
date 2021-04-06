@@ -3,7 +3,16 @@ const { tall } = require('tall')
 
 const getUrls  = require('get-urls')
 
-module.exports = async function enrichTweet (tweet) {
+module.exports = async function enrichTweet (tweet, unshorten = true) {
+  async function tryUnshorten(url) {
+    if (!unshorten) return url
+    try {
+      return await tall(url)
+    } catch (err) {
+      return url
+    }
+  }
+
   if (!tweet) {
     return tweet
   }
@@ -12,12 +21,7 @@ module.exports = async function enrichTweet (tweet) {
   if (tweet.entities && tweet.entities.urls.length) {
     const subUrls = tweet.entities.urls
     for (const subUrl1 of subUrls) {
-      let unshortened = ''
-      try {
-        unshortened = await tall(subUrl1.expanded_url)
-      } catch (err) {
-        unshortened = subUrl1.expanded_url
-      }
+      const unshortened = await tryUnshorten(subUrl1.expanded_url)
       const friends1 = [
         subUrl1.display_url,
         subUrl1.url,
@@ -54,13 +58,7 @@ module.exports = async function enrichTweet (tweet) {
     if (!subUrl3.match(/^https?:\/\/bit\.ly/)) {
       continue
     }
-    let unshortened3 = ''
-    try {
-      unshortened3 = await tall(subUrl3)
-    } catch (err) {
-      unshortened3 = subUrl3
-    }
-
+    const unshortened3 = await tryUnshorten(subUrl3)
     text = text.replace(`${subUrl3}`, `${unshortened3}`)
   }
 
