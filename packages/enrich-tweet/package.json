@@ -1,7 +1,7 @@
 {
   "name": "@transloadit/enrich-tweet",
   "license": "AGPL-3.0-only",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "private": false,
   "publishConfig": {
     "access": "public"
