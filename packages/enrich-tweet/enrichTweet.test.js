@@ -35,15 +35,20 @@ describe('enrichTweet', () => {
   test('should render tweet 17139572739674112 correctly', async () => {
     jest.setTimeout(20000)
     const tweet = JSON.parse(fs.readFileSync(`${__dirname}/enrichTweet.fixture-17139572739674112.json`, 'utf-8'))
-    expect((await enrichTweet(tweet))).toBe(`Encode your videos faster ! nice piece of technology : <a href="http://transloadit.com/blog/2010/12/realtime-encoding-over-150x-faster" rel="nofollow">http://transloadit.com/blog/2010/12/realtime-encoding-over-150x-faster</a> <a href="https://twitter.com/search?q=%23video" title="#video" class="tweet-url hashtag" rel="nofollow">#video</a> <a href="https://twitter.com/search?q=%23encoding" title="#encoding" class="tweet-url hashtag" rel="nofollow">#encoding</a>`)
+    expect((await enrichTweet(tweet))).toBe(`Encode your videos faster ! nice piece of technology : <a href="http://transloadit.com/blog/2010/12/realtime-encoding-over-150x-faster/" rel="nofollow">http://transloadit.com/blog/2010/12/realtime-encoding-over-150x-faster/</a> <a href="https://twitter.com/search?q=%23video" title="#video" class="tweet-url hashtag" rel="nofollow">#video</a> <a href="https://twitter.com/search?q=%23encoding" title="#encoding" class="tweet-url hashtag" rel="nofollow">#encoding</a>`)
   })
   test('should render tweet 16955922978971648 correctly', async () => {
     jest.setTimeout(20000)
     const tweet = JSON.parse(fs.readFileSync(`${__dirname}/enrichTweet.fixture-16955922978971648.json`, 'utf-8'))
-    expect((await enrichTweet(tweet))).toBe(`Hey <a class="tweet-url username" href="https://twitter.com/YouTube" data-screen-name="YouTube" rel="nofollow">@YouTube</a>, <a class="tweet-url username" href="https://twitter.com/vimeo" data-screen-name="vimeo" rel="nofollow">@vimeo</a> and other video upload/sharing sites, offer <a class="tweet-url username" href="https://twitter.com/transloadit" data-screen-name="transloadit" rel="nofollow">@transloadit</a> a lot of money, now, quick <a href="http://news.ycombinator.com/item?id=2025354" rel="nofollow">http://news.ycombinator.com/item?id=2025354</a>`)
+    expect((await enrichTweet(tweet))).toBe(`Hey <a class="tweet-url username" href="https://twitter.com/YouTube" data-screen-name="YouTube" rel="nofollow">@YouTube</a>, <a class="tweet-url username" href="https://twitter.com/vimeo" data-screen-name="vimeo" rel="nofollow">@vimeo</a> and other video upload/sharing sites, offer <a class="tweet-url username" href="https://twitter.com/transloadit" data-screen-name="transloadit" rel="nofollow">@transloadit</a> a lot of money, now, quick <a href="https://news.ycombinator.com/item?id=2025354" rel="nofollow">https://news.ycombinator.com/item?id=2025354</a>`)
   })
   test('should not explode on undefined', async () => {
     jest.setTimeout(20000)
     expect((await enrichTweet(undefined))).toBe(undefined)
+  })
+  test('should not hang on non-shortened urls', async () => {
+    jest.setTimeout(20000)
+    const tweet = JSON.parse(fs.readFileSync(`${__dirname}/enrichTweet.fixture-1087761082247204900-2.json`, 'utf-8'))
+    expect((await enrichTweet(tweet))).toBe('<a href="https://twitter.com/TLStatus/status/1365465781467836417" rel="nofollow">https://twitter.com/TLStatus/status/1365465781467836417</a>')
   })
 })
