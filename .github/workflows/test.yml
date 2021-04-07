@@ -15,4 +15,4 @@ jobs:
 
       - run: yarn
       - run: yarn lint
-      - run: npm run test
+      - run: yarn test
