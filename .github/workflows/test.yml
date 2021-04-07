@@ -14,5 +14,5 @@ jobs:
           node-version: 14
 
       - run: yarn
-      - run: npm run lint
+      - run: yarn lint
       - run: npm run test
