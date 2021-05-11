@@ -2,15 +2,15 @@
 # yarn lockfile v1
 
 
-"@transloadit/file-exists@^0.0.16":
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/@transloadit/file-exists/-/file-exists-0.0.16.tgz#5b7892bbcc2624f81b8c14456651f032ba062d60"
-  integrity sha512-LWTQiaHoFrejuvGik8/QmBwiMyQsWSKBVtorKbYCQQenoFuxGXO+2f3ncC3+Z11hEC+myQNd2iAdw3PJ7hmFig==
+"@transloadit/file-exists@^0.0.18":
+  version "0.0.18"
+  resolved "https://registry.yarnpkg.com/@transloadit/file-exists/-/file-exists-0.0.18.tgz#507db4575af024e510104b9981cd0cdccb37c3b6"
+  integrity sha512-cKs0cuZHrMyDi4KRbCxla7n8i9W6WJ0Yot6sjYFX3C1ftSfy8EecpTMpHfShs26BQUxTYZmOaYMNiIFSxUIU1w==
 
-"@transloadit/slugify@^0.0.9":
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/@transloadit/slugify/-/slugify-0.0.9.tgz#cdba598b94e002f57e199a0a395ac280f74e108b"
-  integrity sha512-uI8NsdY0Qc0+fmy1pjdsy0m5Kwe30HeUHx6KW88WCWaMeDF5WL6SjRCwaxqQWX/6XFNGwjNQLJ0VGXQurjzeiA==
+"@transloadit/slugify@^0.0.10":
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/@transloadit/slugify/-/slugify-0.0.10.tgz#5000a9113ffd6ad0fad85ad2faa535bc2823f1c5"
+  integrity sha512-i+gDo1b5LLLA+t6HmF4j1z1XZ6IbhfbmAVsXm30thViHPXqJmd+3blfaZZEehV1nfEEA6cF9UxSOX1vc1tTgFQ==
 
 "@types/color-name@^1.1.1":
   version "1.1.1"
@@ -260,9 +260,9 @@ isexe@^2.0.0:
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
 lodash@^4.17.15:
-  version "4.17.19"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
-  integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 lru-cache@^4.0.1:
   version "4.1.5"
