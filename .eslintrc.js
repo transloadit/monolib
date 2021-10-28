@@ -11,7 +11,6 @@ module.exports = {
     // like to turn on one by one with separate PRs
     /// /////////////////////////////////////////////////////////
     'guard-for-in'            : ['warn'],
-    'no-await-in-loop'        : ['warn'],
     'no-param-reassign'       : ['warn'],
     'no-restricted-globals'   : ['warn'],
     'no-restricted-properties': ['warn'],
