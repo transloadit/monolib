@@ -1,4 +1,4 @@
-const fileExists = require('./fileExists.js')
+const fileExists = require('./fileExists')
 
 describe('fileExists', () => {
   test('main', async () => {
