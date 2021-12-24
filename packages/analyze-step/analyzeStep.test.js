@@ -98,6 +98,11 @@ describe('analyzeStep', () => {
   test('/filte/filter', async () => {
     expect(analyzeStep({
       robot  : '/file/filter',
+      accepts: '${file.meta.width > file.meta.height}',
+    }, ROBOTS)).toMatch('Filter by code evaluation')
+
+    expect(analyzeStep({
+      robot  : '/file/filter',
       accepts: [
         [
           '${file.mime}',

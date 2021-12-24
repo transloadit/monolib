@@ -11,8 +11,7 @@ function humanJoin (array, reduce = true, glueword = 'and') {
   if (reduce === true) {
     const counted = _.countBy(array)
     countedArray = []
-    for (const name in counted) {
-      const count = counted[name]
+    for (const [name, count] of Object.entries(counted)) {
       if (count > 1) {
         countedArray.push(`${count} ${inflect.pluralize(name)}`)
       } else {
@@ -56,11 +55,11 @@ function humanFilter (step) {
   let lastTemplate = ''
   const types = ['declines', 'accepts']
   for (const type of types) {
-    if (step[type] && step[type].length > 0) {
-      for (const i in step[type]) {
-        collection[type] = collection[type] || []
-        const [key, operator, val] = step[type][i]
-
+    collection[type] = collection[type] || []
+    if (typeof step[type] === 'string') {
+      collection[type].push(`Filter by code evaluation`)
+    } else if (step[type] && step[type].length > 0) {
+      for (const [key, operator, val] of Object.values(step[type])) {
         const template = _.clone(templates[operator])
         if (!template) {
           throw new Error(`Please add a template definition for this /file/filter operator: ${operator}`)
