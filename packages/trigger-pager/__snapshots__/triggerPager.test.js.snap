@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`triggerPager main 1`] = `
+Object {
+  "data": Object {
+    "incident": Object {
+      "body": Object {
+        "details": "this happens every 2 years",
+        "type": "incident_body",
+      },
+      "incident_key": undefined,
+      "priority": Object {
+        "id": "PUTY3A1",
+        "type": "priority_reference",
+      },
+      "service": Object {
+        "id": "serviceId",
+        "type": "service_reference",
+      },
+      "title": "us-east-1 down",
+      "type": "incident",
+      "urgency": "high",
+    },
+  },
+  "headers": Object {
+    "from": "billing@transloadit.com",
+  },
+}
+`;
