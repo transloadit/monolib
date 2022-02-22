@@ -43,7 +43,7 @@ const triggerPager = async ({
   if (res.data.error) {
     const msg = [
       res.data.error.message,
-      res.data.error.errors?.join('; '),
+      (res.data.error.errors || []).join('; '),
     ].filter(Boolean).join(' - ')
     if (!msg.includes(DUPLICATE_INCIDENT_MESSAGE)) {
       throw new Error(msg)
