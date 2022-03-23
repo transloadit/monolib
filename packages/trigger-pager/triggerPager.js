@@ -8,7 +8,7 @@ const triggerPager = async ({
   serviceId,
   incidentKey,
   urgency = 'high',
-  from = 'billing@transloadit.com',
+  from = 'tim.koschuetzki@transloadit.com',
   title = incidentKey,
   description,
 }) => {
