@@ -1,7 +1,7 @@
 {
   "name": "@transloadit/enrich-tweet",
   "license": "AGPL-3.0-only",
-  "version": "0.0.16",
+  "version": "0.1.1",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -11,10 +11,26 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/enrich-tweet"
   },
-  "main": "./enrichTweet.js",
+  "main": "dist/enrichTweet.js",
+  "typings": "dist/enrichTweet.d.ts",
+  "files": [
+    "dist"
+  ],
+  "directories": {
+    "lib": "dist",
+    "test": "dist"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
   "dependencies": {
-    "get-urls": "^10.0.0",
-    "tall": "^4.0.1",
-    "twitter-text": "3.1.0"
+    "get-urls": "10",
+    "re2": "^1.17.7",
+    "tall": "^5.0.0",
+    "twitter-text": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/twitter-text": "^3.1.2"
   }
 }

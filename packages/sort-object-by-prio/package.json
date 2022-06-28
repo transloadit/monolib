@@ -1,7 +1,7 @@
 {
   "name": "@transloadit/sort-object-by-prio",
   "license": "AGPL-3.0-only",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -11,8 +11,20 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/sort-object-by-prio"
   },
-  "main": "./sortObjectByPrio.js",
+  "main": "dist/sortObjectByPrio.js",
+  "typings": "dist/sortObjectByPrio.d.ts",
+  "files": [
+    "dist"
+  ],
+  "directories": {
+    "lib": "dist",
+    "test": "dist"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
   "dependencies": {
-    "@transloadit/sort-object": "^0.0.4"
+    "@transloadit/sort-object": "^0.1.0"
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "@transloadit/prettier-bytes",
   "license": "MIT",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -11,5 +11,17 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/prettier-bytes"
   },
-  "main": "./prettierBytes.js"
+  "main": "dist/prettierBytes.js",
+  "typings": "dist/prettierBytes.d.ts",
+  "files": [
+    "dist"
+  ],
+  "directories": {
+    "lib": "dist",
+    "test": "dist"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  }
 }

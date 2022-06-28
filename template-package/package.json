@@ -11,5 +11,15 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/replace-me"
   },
-  "main": "./replaceMe.js"
+  "main": "dist/replaceMe.js",
+  "typings": "dist/replaceMe.d.ts",
+  "files": ["dist"],
+  "directories": {
+    "lib": "dist",
+    "test": "dist"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  }
 }

@@ -1,7 +1,7 @@
 {
   "name": "@transloadit/sort-object",
   "license": "AGPL-3.0-only",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -11,5 +11,17 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/sort-object"
   },
-  "main": "./sortObject.js"
+  "main": "dist/sortObject.js",
+  "typings": "dist/sortObject.d.ts",
+  "files": [
+    "dist"
+  ],
+  "directories": {
+    "lib": "dist",
+    "test": "dist"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  }
 }

@@ -10,6 +10,18 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/abbr"
   },
-  "main": "abbr.js",
-  "version": "0.0.8"
+  "main": "dist/abbr.js",
+  "typings": "dist/abbr.d.ts",
+  "files": [
+    "dist"
+  ],
+  "directories": {
+    "lib": "dist",
+    "test": "dist"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "version": "0.1.0"
 }
