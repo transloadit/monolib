@@ -1,6 +1,9 @@
+// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const sortAssembly = require('./sortAssembly')
 
+// @ts-expect-error TS(2582): Cannot find name 'describe'. Do you need to instal... Remove this comment to see the full error message
 describe('sortAssembly', () => {
+  // @ts-expect-error TS(2582): Cannot find name 'test'. Do you need to install ty... Remove this comment to see the full error message
   test('main', () => {
     const assembly = {
       ok                        : 'ASSEMBLY_COMPLETED',
@@ -182,6 +185,7 @@ describe('sortAssembly', () => {
       build_id: '339',
     }
     const sorted = sortAssembly(assembly)
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(Object.keys(sorted)).toStrictEqual([
       'assembly_id',
       'ok',
@@ -234,10 +238,12 @@ describe('sortAssembly', () => {
       'uploads',
       'results',
     ])
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(Object.keys(sorted.results)).toStrictEqual([
       ':original',
       'faces_detected',
     ])
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(Object.keys(sorted.uploads[0])).toStrictEqual([
       'id',
       'basename',
@@ -260,6 +266,7 @@ describe('sortAssembly', () => {
       'url',
       'meta',
     ])
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(Object.keys(sorted.uploads[0].meta)).toStrictEqual([
       'aspect_ratio',
       'average_color',

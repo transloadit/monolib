@@ -1,7 +1,11 @@
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'sortResult... Remove this comment to see the full error message
 const sortResult = require('./sortResult')
 
+// @ts-expect-error TS(2582): Cannot find name 'describe'. Do you need to instal... Remove this comment to see the full error message
 describe('sortResult', () => {
+  // @ts-expect-error TS(2582): Cannot find name 'test'. Do you need to install ty... Remove this comment to see the full error message
   test('main', () => {
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(Object.keys(sortResult({
       id               : 'b8d12f6c517541ca86bf50c537cedb27',
       name             : 'joe-gardner-149699.jpg',

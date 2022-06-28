@@ -1,7 +1,11 @@
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'sortObject... Remove this comment to see the full error message
 const sortObjectByPrio = require('./sortObjectByPrio')
 
+// @ts-expect-error TS(2582): Cannot find name 'describe'. Do you need to instal... Remove this comment to see the full error message
 describe('sortObjectByPrio', () => {
+  // @ts-expect-error TS(2582): Cannot find name 'test'. Do you need to install ty... Remove this comment to see the full error message
   test('main', () => {
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(Object.keys(sortObjectByPrio({
       generated_upload_required: true,
       title                    : 'Automatic Face Detection Service',

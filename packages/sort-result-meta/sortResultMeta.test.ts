@@ -1,6 +1,9 @@
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'sortResult... Remove this comment to see the full error message
 const sortResultMeta = require('./sortResultMeta')
 
+// @ts-expect-error TS(2582): Cannot find name 'describe'. Do you need to instal... Remove this comment to see the full error message
 describe('sortResultMeta', () => {
+  // @ts-expect-error TS(2582): Cannot find name 'test'. Do you need to install ty... Remove this comment to see the full error message
   test('main', () => {
     const sorted = sortResultMeta({
       width             : 621,
@@ -26,6 +29,7 @@ describe('sortResultMeta', () => {
       ],
     })
 
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(Object.keys(sorted)).toStrictEqual([
       'aspect_ratio',
       'average_color',
@@ -40,6 +44,7 @@ describe('sortResultMeta', () => {
       'width',
     ])
 
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(Object.keys(sorted.faces[0])).toStrictEqual([
       'confidence',
       'height',

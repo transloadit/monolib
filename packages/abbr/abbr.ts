@@ -1,4 +1,5 @@
-module.exports = function abbr (str, maxLength = 55, divider = `[...]`) {
+// @ts-expect-error TS(2580): Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
+module.exports = function abbr (str: any, maxLength = 55, divider = `[...]`) {
   if (str !== `${str}`) {
     return str
   }

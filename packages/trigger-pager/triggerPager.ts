@@ -1,8 +1,10 @@
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'api'.
 const { api } = require('@pagerduty/pdjs')
 
 const PRIORITY_P1 = 'PUTY3A1'
 const DUPLICATE_INCIDENT_MESSAGE = 'matching dedup key already exists'
 
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'triggerPag... Remove this comment to see the full error message
 const triggerPager = async ({
   token,
   serviceId,
@@ -10,8 +12,8 @@ const triggerPager = async ({
   urgency = 'high',
   from = 'tim.koschuetzki@transloadit.com',
   title = incidentKey,
-  description,
-}) => {
+  description
+}: any) => {
   const res = await api({ token }).post('/incidents', {
     headers: {
       from,
@@ -51,4 +53,5 @@ const triggerPager = async ({
   }
 }
 
+// @ts-expect-error TS(2580): Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
 module.exports = triggerPager

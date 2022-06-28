@@ -1,16 +1,22 @@
 /* eslint-disable no-template-curly-in-string */
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'formatDura... Remove this comment to see the full error message
 const formatDurationMs = require('@transloadit/format-duration-ms')
+// @ts-expect-error TS(2451): Cannot redeclare block-scoped variable 'prettierBy... Remove this comment to see the full error message
 const prettierBytes = require('@transloadit/prettier-bytes')
+// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const inflect = require('inflect')
+// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const _ = require('lodash')
+// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const jp = require('jsonpath')
 
-function humanJoin (array, reduce = true, glueword = 'and') {
+function humanJoin (array: any, reduce = true, glueword = 'and') {
   let countedArray = array
 
   if (reduce === true) {
     const counted = _.countBy(array)
     countedArray = []
+    // @ts-expect-error TS(2550): Property 'entries' does not exist on type 'ObjectC... Remove this comment to see the full error message
     for (const [name, count] of Object.entries(counted)) {
       if (count > 1) {
         countedArray.push(`${count} ${inflect.pluralize(name)}`)
@@ -34,7 +40,7 @@ function humanJoin (array, reduce = true, glueword = 'and') {
   return str
 }
 
-function humanFilter (step) {
+function humanFilter (step: any) {
   const collection = {}
   const templates = {
     '<'        : 'files with {humanKey} below {humanVal}',
@@ -55,11 +61,15 @@ function humanFilter (step) {
   let lastTemplate = ''
   const types = ['declines', 'accepts']
   for (const type of types) {
+    // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
     collection[type] = collection[type] || []
     if (typeof step[type] === 'string') {
+      // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
       collection[type].push(`Filter by code evaluation`)
     } else if (step[type] && step[type].length > 0) {
+      // @ts-expect-error TS(2550): Property 'values' does not exist on type 'ObjectCo... Remove this comment to see the full error message
       for (const [key, operator, val] of Object.values(step[type])) {
+        // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
         const template = _.clone(templates[operator])
         if (!template) {
           throw new Error(`Please add a template definition for this /file/filter operator: ${operator}`)
@@ -120,6 +130,7 @@ function humanFilter (step) {
           humanDescr = humanDescr.replace('wi2th', 'with')
         }
 
+        // @ts-expect-error TS(7053): Element implicitly has an 'any' type because expre... Remove this comment to see the full error message
         collection[type].push(humanDescr)
         lastTemplate = template
       }
@@ -127,15 +138,15 @@ function humanFilter (step) {
   }
 
   const total = []
-  if (collection.declines && collection.declines.length > 0) {
-    const joindec = humanJoin(collection.declines, false, step.condition_type)
-      .replace('with a certain mime-type and with a certain mime-type', 'with certain mime-types')
+  if ((collection as any).declines && (collection as any).declines.length > 0) {
+    const joindec = humanJoin((collection as any).declines, false, step.condition_type)
+    .replace('with a certain mime-type and with a certain mime-type', 'with certain mime-types');
 
     total.push(`Exclude ${joindec}`)
   }
-  if (collection.accepts && collection.accepts.length > 0) {
-    const joinacc = humanJoin(collection.accepts, false, step.condition_type)
-      .replace('with a certain mime-type and with a certain mime-type', 'with certain mime-types')
+  if ((collection as any).accepts && (collection as any).accepts.length > 0) {
+    const joinacc = humanJoin((collection as any).accepts, false, step.condition_type)
+    .replace('with a certain mime-type and with a certain mime-type', 'with certain mime-types');
 
     total.push(`Pick ${joinacc}`)
   }
@@ -158,10 +169,10 @@ function humanFilter (step) {
     .replace(/and a (mime-)?type of a video(\W|$)/g, 'and videos$2')
     .replace(/and a (mime-)?type of archives(\W|$)/g, 'and archives$2')
     .replace(/files with a filesize above(\W|$)/g, 'files bigger than$1')
-    .replace(/files with a filesize below(\W|$)/g, 'files smaller than$1')
+    .replace(/files with a filesize below(\W|$)/g, 'files smaller than$1');
 }
 
-function humanDimensions (step) {
+function humanDimensions (step: any) {
   let str = ''
 
   if ('width' in step && !`${step.width}`.match(/^\d+$/)) {
@@ -187,7 +198,7 @@ function humanDimensions (step) {
   return str
 }
 
-function humanPreset (step, extrameta = {}) {
+function humanPreset (step: any, extrameta = {}) {
   let str = inflect.humanize(step.preset.replace(/[-_]/g, ' '))
 
   if (str.match(/^ipad/i)) {
@@ -195,8 +206,8 @@ function humanPreset (step, extrameta = {}) {
     quality = quality ? ` (${quality} quality)` : ``
 
     let device = `iPad${quality}`
-    if (extrameta.deviceName) {
-      device = `${extrameta.deviceName}`
+    if ((extrameta as any).deviceName) {
+      device = `${(extrameta as any).deviceName}`;
     }
 
     str = `${device} (H.264)`
@@ -228,7 +239,7 @@ function humanPreset (step, extrameta = {}) {
   return str
 }
 
-function humanFormat (step) {
+function humanFormat (step: any) {
   let str = inflect.humanize(step.format.replace(/[-_]/g, ' '))
 
   if (str.match(/^webp/i)) {
@@ -241,7 +252,8 @@ function humanFormat (step) {
   return str
 }
 
-module.exports = (step, robots, extrameta = {}) => {
+// @ts-expect-error TS(2580): Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
+module.exports = (step: any, robots: any, extrameta = {}) => {
   let str = ``
 
   const robot = robots[step.robot]

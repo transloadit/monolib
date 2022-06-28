@@ -1,7 +1,8 @@
 // Adapted from https://github.com/Flet/prettier-bytes/
 // Changing 1000 bytes to 1024, so we can keep uppercase KB vs kB
 // ISC License (c) Dan Flettre https://github.com/Flet/prettier-bytes/blob/master/LICENSE
-module.exports = function prettierBytes (num) {
+// @ts-expect-error TS(2580): Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
+module.exports = function prettierBytes (num: any) {
   if (typeof num !== 'number' || isNaN(num)) {
     throw new TypeError(`Expected a number, got ${typeof num}`)
   }

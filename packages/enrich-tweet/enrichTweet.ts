@@ -1,10 +1,14 @@
+// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const twttr = require('twitter-text')
+// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const { tall } = require('tall')
 
+// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const getUrls  = require('get-urls')
 
-module.exports = async function enrichTweet (tweet, unshorten = true) {
-  async function tryUnshorten (url) {
+// @ts-expect-error TS(2580): Cannot find name 'module'. Do you need to install ... Remove this comment to see the full error message
+module.exports = async function enrichTweet (tweet: any, unshorten = true) {
+  async function tryUnshorten (url: any) {
     if (!unshorten) return url
     try {
       return await tall(url)

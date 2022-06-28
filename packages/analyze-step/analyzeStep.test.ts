@@ -1,4 +1,5 @@
 /* eslint-disable no-template-curly-in-string */
+// @ts-expect-error TS(2580): Cannot find name 'require'. Do you need to install... Remove this comment to see the full error message
 const analyzeStep = require('./analyzeStep')
 // const util = require('util')
 
@@ -21,8 +22,11 @@ const ROBOTS = {
   },
 }
 
+// @ts-expect-error TS(2582): Cannot find name 'describe'. Do you need to instal... Remove this comment to see the full error message
 describe('analyzeStep', () => {
+  // @ts-expect-error TS(2582): Cannot find name 'test'. Do you need to install ty... Remove this comment to see the full error message
   test('/image/resize', async () => {
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(analyzeStep({
       robot            : '/image/resize',
       width            : '75',
@@ -31,6 +35,7 @@ describe('analyzeStep', () => {
       imagemagick_stack: 'v2.0.7',
     }, ROBOTS)).toMatch('Resize images to 75×75 using the pad strategy')
 
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(analyzeStep({
       use         : ':original',
       robot       : '/video/encode',
@@ -39,6 +44,7 @@ describe('analyzeStep', () => {
       ffmpeg_stack: 'v3.3.3',
     }, ROBOTS)).toMatch('Transcode videos to original codec Settings')
 
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(analyzeStep({
       use         : ':original',
       robot       : '/video/encode',
@@ -55,6 +61,7 @@ describe('analyzeStep', () => {
       },
     }, ROBOTS)).toMatch('Change video speed')
 
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(analyzeStep({
       robot : '/image/resize',
       width : '75',
@@ -62,6 +69,7 @@ describe('analyzeStep', () => {
     },
     ROBOTS)).toMatch('Resize images to 75×75')
 
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(analyzeStep({
       robot          : '/image/resize',
       resize_strategy: 'crop',
@@ -76,7 +84,9 @@ describe('analyzeStep', () => {
     }, ROBOTS)).toMatch('Crop images to 75×75 starting at 150×100 from the top left')
   })
 
+  // @ts-expect-error TS(2582): Cannot find name 'test'. Do you need to install ty... Remove this comment to see the full error message
   test('/image/describe', async () => {
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(analyzeStep({
       robot  : '/file/filter',
       accepts: [
@@ -87,6 +97,7 @@ describe('analyzeStep', () => {
         ],
       ],
     }, ROBOTS)).toMatch('Pick files that include descriptions of a Bridge')
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(analyzeStep({
       robot      : '/image/describe',
       provider   : 'aws',
@@ -95,12 +106,15 @@ describe('analyzeStep', () => {
     }, ROBOTS)).toMatch('Recognize objects in images')
   })
 
+  // @ts-expect-error TS(2582): Cannot find name 'test'. Do you need to install ty... Remove this comment to see the full error message
   test('/filte/filter', async () => {
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(analyzeStep({
       robot  : '/file/filter',
       accepts: '${file.meta.width > file.meta.height}',
     }, ROBOTS)).toMatch('Filter by code evaluation')
 
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(analyzeStep({
       robot  : '/file/filter',
       accepts: [
@@ -113,6 +127,7 @@ describe('analyzeStep', () => {
       error_on_decline: false,
     }, ROBOTS)).toMatch('Pick jpeg images')
 
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(analyzeStep({
       robot  : '/file/filter',
       accepts: [
@@ -124,6 +139,7 @@ describe('analyzeStep', () => {
       ],
     }, ROBOTS)).toMatch('Pick videos')
 
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(analyzeStep({
       robot   : '/file/filter',
       declines: [
@@ -135,6 +151,7 @@ describe('analyzeStep', () => {
       ],
     }, ROBOTS)).toMatch('Exclude files with an audio bitrate below 64 Kbit/s')
 
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(analyzeStep({
       robot   : '/file/filter',
       declines: [
@@ -152,6 +169,7 @@ describe('analyzeStep', () => {
       condition_type: 'and',
     }, ROBOTS)).toMatch('Exclude files without a width of 1920 and a height of 1080')
 
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(analyzeStep({
       robot  : '/file/filter',
       accepts: [
@@ -164,6 +182,7 @@ describe('analyzeStep', () => {
       error_on_decline: true,
     }, ROBOTS)).toMatch('Pick images')
 
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(analyzeStep({
       robot  : '/file/filter',
       accepts: [
@@ -181,6 +200,7 @@ describe('analyzeStep', () => {
       error_on_decline: true,
     }, ROBOTS)).toMatch('Pick images and videos')
 
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(analyzeStep({
       robot  : '/file/filter',
       accepts: [
@@ -192,6 +212,7 @@ describe('analyzeStep', () => {
       ],
     }, ROBOTS)).toMatch('Pick files with a filesize of 1 KB or higher')
 
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(analyzeStep({
       robot  : '/file/filter',
       accepts: [
@@ -209,6 +230,7 @@ describe('analyzeStep', () => {
       condition_type: 'and',
     }, ROBOTS)).toMatch('Pick files with a aspect ratio above 1.0 and images')
 
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(analyzeStep({
       robot   : '/file/filter',
       declines: [
@@ -226,6 +248,7 @@ describe('analyzeStep', () => {
       error_on_decline: true,
     }, ROBOTS)).toMatch('Exclude files bigger than 20 MB and files with a duration of 5m or higher')
 
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(analyzeStep({
       robot  : '/file/filter',
       accepts: [
@@ -243,6 +266,7 @@ describe('analyzeStep', () => {
       condition_type: 'or',
     }, ROBOTS)).toMatch('Pick files with a width of 2048 or lower or a height of 2048 or lower')
 
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(analyzeStep({
       robot   : '/file/filter',
       declines: [
@@ -255,6 +279,7 @@ describe('analyzeStep', () => {
       error_on_decline: false,
     }, ROBOTS)).toMatch('Exclude archives')
 
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(analyzeStep({
       robot   : '/file/filter',
       declines: [
@@ -267,6 +292,7 @@ describe('analyzeStep', () => {
       error_on_decline: true,
     }, ROBOTS)).toMatch('Exclude files without an audio bitrate')
 
+    // @ts-expect-error TS(2304): Cannot find name 'expect'.
     expect(analyzeStep({
       robot  : '/file/filter',
       accepts: [
