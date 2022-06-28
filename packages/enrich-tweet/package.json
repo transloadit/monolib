@@ -25,9 +25,10 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "get-urls": "^10.0.0",
-    "tall": "^4.0.1",
-    "twitter-text": "3.1.0"
+    "get-urls": "^11.0.0",
+    "re2": "^1.17.7",
+    "tall": "^5.0.0",
+    "twitter-text": "^3.1.0"
   },
   "devDependencies": {
     "@types/twitter-text": "^3.1.2"
