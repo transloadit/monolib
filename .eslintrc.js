@@ -3,8 +3,16 @@ module.exports = {
   extends: [
     'transloadit',
   ],
-  parser  : '@typescript-eslint/parser',
-  plugins : ['@typescript-eslint'],
+  parser : '@typescript-eslint/parser',
+  plugins: [
+    '@babel/eslint-plugin',
+    'jest',
+    'node',
+    'prefer-import',
+    'promise',
+    // extra:
+    '@typescript-eslint',
+  ],
   settings: {
     'import/resolver': {
       typescript: {},

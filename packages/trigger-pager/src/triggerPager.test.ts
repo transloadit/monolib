@@ -31,8 +31,8 @@ describe('triggerPager', () => {
     expect(post.mock.calls.length).toBe(1)
   })
 
-    test('error', async () => {
-        const post = jest.fn(async () => {
+  test('error', async () => {
+    const post = jest.fn(async () => {
       return {
         data: {
           error: {
@@ -55,11 +55,11 @@ describe('triggerPager', () => {
       err = _err
     }
 
-        expect((err as any).message).toBe('oh no - oh; no');
+    expect((err as any).message).toBe('oh no - oh; no')
   })
 
-    test('duplicate incident', async () => {
-        const post = jest.fn(async () => {
+  test('duplicate incident', async () => {
+    const post = jest.fn(async () => {
       return {
         data: {
           error: {

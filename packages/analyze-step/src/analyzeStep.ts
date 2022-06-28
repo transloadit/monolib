@@ -130,13 +130,13 @@ function humanFilter (step: any) {
   const total = []
   if ((collection as any).declines && (collection as any).declines.length > 0) {
     const joindec = humanJoin((collection as any).declines, false, step.condition_type)
-    .replace('with a certain mime-type and with a certain mime-type', 'with certain mime-types');
+      .replace('with a certain mime-type and with a certain mime-type', 'with certain mime-types')
 
     total.push(`Exclude ${joindec}`)
   }
   if ((collection as any).accepts && (collection as any).accepts.length > 0) {
     const joinacc = humanJoin((collection as any).accepts, false, step.condition_type)
-    .replace('with a certain mime-type and with a certain mime-type', 'with certain mime-types');
+      .replace('with a certain mime-type and with a certain mime-type', 'with certain mime-types')
 
     total.push(`Pick ${joinacc}`)
   }
@@ -159,7 +159,7 @@ function humanFilter (step: any) {
     .replace(/and a (mime-)?type of a video(\W|$)/g, 'and videos$2')
     .replace(/and a (mime-)?type of archives(\W|$)/g, 'and archives$2')
     .replace(/files with a filesize above(\W|$)/g, 'files bigger than$1')
-    .replace(/files with a filesize below(\W|$)/g, 'files smaller than$1');
+    .replace(/files with a filesize below(\W|$)/g, 'files smaller than$1')
 }
 
 function humanDimensions (step: any) {
@@ -197,7 +197,7 @@ function humanPreset (step: any, extrameta = {}) {
 
     let device = `iPad${quality}`
     if ((extrameta as any).deviceName) {
-      device = `${(extrameta as any).deviceName}`;
+      device = `${(extrameta as any).deviceName}`
     }
 
     str = `${device} (H.264)`

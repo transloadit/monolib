@@ -1,7 +1,7 @@
 import sortResultMeta from './sortResultMeta'
 
 describe('sortResultMeta', () => {
-    test('main', () => {
+  test('main', () => {
     const sorted = sortResultMeta({
       width             : 621,
       height            : 840,
@@ -26,7 +26,7 @@ describe('sortResultMeta', () => {
       ],
     })
 
-        expect(Object.keys(sorted)).toStrictEqual([
+    expect(Object.keys(sorted)).toStrictEqual([
       'aspect_ratio',
       'average_color',
       'colorspace',
@@ -40,7 +40,7 @@ describe('sortResultMeta', () => {
       'width',
     ])
 
-        expect(Object.keys(sorted.faces[0])).toStrictEqual([
+    expect(Object.keys(sorted.faces[0])).toStrictEqual([
       'confidence',
       'height',
       'width',

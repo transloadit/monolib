@@ -7,5 +7,5 @@ export default function fileExists (s: any) {
     fs.access(s, fs.F_OK, (err: any) => {
       resolve(!err)
     })
-  });
+  })
 }

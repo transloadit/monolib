@@ -1,7 +1,7 @@
 import sortAssembly from './sortAssembly'
 
 describe('sortAssembly', () => {
-    test('main', () => {
+  test('main', () => {
     const assembly = {
       ok                        : 'ASSEMBLY_COMPLETED',
       message                   : 'The Assembly was successfully completed.',
@@ -182,7 +182,7 @@ describe('sortAssembly', () => {
       build_id: '339',
     }
     const sorted = sortAssembly(assembly)
-        expect(Object.keys(sorted)).toStrictEqual([
+    expect(Object.keys(sorted)).toStrictEqual([
       'assembly_id',
       'ok',
       'message',
@@ -234,7 +234,7 @@ describe('sortAssembly', () => {
       'uploads',
       'results',
     ])
-        expect(Object.keys(sorted.results)).toStrictEqual([
+    expect(Object.keys(sorted.results)).toStrictEqual([
       ':original',
       'faces_detected',
     ])

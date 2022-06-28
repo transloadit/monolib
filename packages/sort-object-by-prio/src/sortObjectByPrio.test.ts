@@ -9,21 +9,21 @@ describe('sortObjectByPrio', () => {
       redirect_from            : '/demos/image-manipulation/detect-faces-in-images/',
       generated_hash           : '136d8a55e5aedae8071b12378cbfc851',
     }, {
-    _: [
-      'redirect_to',
-      'warning',
+      _: [
+        'redirect_to',
+        'warning',
+        'title',
+        'meta_description',
+      ],
+      z: [
+        /^generated_/,
+      ],
+    }))).toStrictEqual([
       'title',
-      'meta_description',
-    ],
-    z: [
-      /^generated_/,
-    ],
-  }))).toStrictEqual([
-    'title',
-    'redirect_from',
-    'run_instructions',
-    'generated_hash',
-    'generated_upload_required',
-  ])
+      'redirect_from',
+      'run_instructions',
+      'generated_hash',
+      'generated_upload_required',
+    ])
   })
 })

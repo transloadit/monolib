@@ -1,8 +1,8 @@
 import sortResult from './sortResult'
 
 describe('sortResult', () => {
-    test('main', () => {
-        expect(Object.keys(sortResult({
+  test('main', () => {
+    expect(Object.keys(sortResult({
       id               : 'b8d12f6c517541ca86bf50c537cedb27',
       name             : 'joe-gardner-149699.jpg',
       basename         : 'joe-gardner-149699',

@@ -10,7 +10,7 @@ const triggerPager = async ({
   urgency = 'high',
   from = 'tim.koschuetzki@transloadit.com',
   title = incidentKey,
-  description
+  description,
 }: any) => {
   const res = await api({ token }).post('/incidents', {
     headers: {
