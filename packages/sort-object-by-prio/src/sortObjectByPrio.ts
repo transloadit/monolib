@@ -1,11 +1,17 @@
 import sortObject from '@transloadit/sort-object'
 
-export default function sortObjectByPrio (obj: any, prefixes: any) {
-  return sortObject(obj, (a: any, b: any) => {
-    for (const prefix in prefixes) {
-      for (const i in prefixes[prefix]) {
-        const matcher     = prefixes[prefix][i]
-        const modifier    = parseInt(String((prefix === '_') ? prefixes[prefix].length - Number(i) : i), 10)
+type Prefixes = {
+  [prefix: string]: Array<string|RegExp>
+}
+
+export default function sortObjectByPrio (obj: any, prefixes: Prefixes) {
+  return sortObject(obj, (argA: string, argB: string) => {
+    let a = argA
+    let b = argB
+    for (const [prefix, items] of Object.entries(prefixes)) {
+      let i = 0
+      for (const matcher of items) {
+        const modifier    = parseInt(String((prefix === '_') ? prefixes[prefix].length - i : i), 10)
         const numOfPrefix = 3 + modifier
         const strPref     = new Array(numOfPrefix).join(prefix)
 
@@ -24,6 +30,7 @@ export default function sortObjectByPrio (obj: any, prefixes: any) {
             b = `${strPref}${b}`
           }
         }
+        i++
       }
     }
 

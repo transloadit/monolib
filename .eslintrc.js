@@ -25,6 +25,8 @@ module.exports = {
     requireConfigFile: false,
   },
   rules: {
+    // Plenty of cli tools in here so we do not care about console.log usage:
+    'no-console'              : ['off'],
     // rules we had to turn off just to get a pass, but we'd
     // like to turn on one by one with separate PRs
     /// /////////////////////////////////////////////////////////

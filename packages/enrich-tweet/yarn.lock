@@ -9,6 +9,11 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@types/twitter-text@^3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@types/twitter-text/-/twitter-text-3.1.2.tgz#475ea9479033e26ab2308a566dc138df84c08f51"
+  integrity sha512-Erq1bw7v950rbPWjGLyMu5tuhXCrvFqBpaeoUNK0coCeihint2JaCXZBBf8EB9ajn9ZBLiY+Q50hBMb6ATZG3Q==
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"

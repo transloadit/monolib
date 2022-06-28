@@ -13,7 +13,9 @@
   },
   "main": "dist/enrichTweet.js",
   "typings": "dist/enrichTweet.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "directories": {
     "lib": "dist",
     "test": "dist"
@@ -26,5 +28,8 @@
     "get-urls": "^10.0.0",
     "tall": "^4.0.1",
     "twitter-text": "3.1.0"
+  },
+  "devDependencies": {
+    "@types/twitter-text": "^3.1.2"
   }
 }

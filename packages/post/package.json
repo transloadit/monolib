@@ -14,7 +14,9 @@
     "post": "./post.js"
   },
   "typings": "dist/post.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "directories": {
     "lib": "dist",
     "test": "dist"
@@ -31,5 +33,9 @@
     "title": "^3.4.2"
   },
   "version": "0.0.32",
-  "gitHead": "b73ab4880b9c4c48db32f249f776974a137510c4"
+  "gitHead": "b73ab4880b9c4c48db32f249f776974a137510c4",
+  "devDependencies": {
+    "@types/inquirer": "^8.2.1",
+    "@types/title": "^3.4.1"
+  }
 }
