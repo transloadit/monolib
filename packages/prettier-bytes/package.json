@@ -1,7 +1,7 @@
 {
   "name": "@transloadit/prettier-bytes",
   "license": "MIT",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -13,7 +13,9 @@
   },
   "main": "dist/prettierBytes.js",
   "typings": "dist/prettierBytes.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "directories": {
     "lib": "dist",
     "test": "dist"

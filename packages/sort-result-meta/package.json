@@ -1,7 +1,7 @@
 {
   "name": "@transloadit/sort-result-meta",
   "license": "AGPL-3.0-only",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -13,7 +13,9 @@
   },
   "main": "dist/sortResultMeta.js",
   "typings": "dist/sortResultMeta.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "directories": {
     "lib": "dist",
     "test": "dist"
@@ -21,7 +23,8 @@
   "scripts": {
     "tsc": "tsc",
     "test": "echo \"Error: run tests from root\" && exit 1"
-  },  "dependencies": {
-    "@transloadit/sort-object-by-prio": "^0.0.5"
+  },
+  "dependencies": {
+    "@transloadit/sort-object-by-prio": "^0.1.0"
   }
 }

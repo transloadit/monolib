@@ -12,7 +12,9 @@
   },
   "main": "dist/abbr.js",
   "typings": "dist/abbr.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "directories": {
     "lib": "dist",
     "test": "dist"
@@ -21,5 +23,5 @@
     "tsc": "tsc",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
-  "version": "0.0.8"
+  "version": "0.1.0"
 }
