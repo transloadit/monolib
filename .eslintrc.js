@@ -1,8 +1,18 @@
 /* eslint-disable max-len */
-export default {
+module.exports = {
   extends: [
     'transloadit',
   ],
+  parser  : '@typescript-eslint/parser',
+  plugins : ['@typescript-eslint'],
+  settings: {
+    'import/resolver': {
+      typescript: {},
+      node      : {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+  },
   parserOptions: {
     requireConfigFile: false,
   },
@@ -15,5 +25,15 @@ export default {
     'no-restricted-globals'   : ['warn'],
     'no-restricted-properties': ['warn'],
     'no-restricted-syntax'    : ['warn'],
+    'import/extensions'       : [
+      'error',
+      'ignorePackages',
+      {
+        js : 'never',
+        jsx: 'never',
+        ts : 'never',
+        tsx: 'never',
+      },
+    ],
   },
 }
