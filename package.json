@@ -10,8 +10,8 @@
     "fix": "DEBUG=eslint:cli-engine eslint . --fix",
     "lint": "DEBUG=eslint:cli-engine eslint .",
     "build": "tsc --sourceMap --strict --outDir dist/",
-    "test:watch": "jest packages/*/*.test.js --watch",
-    "test": "jest --verbose packages/*/*.test.js"
+    "test:watch": "jest packages/*/src/*.test.ts --watch",
+    "test": "jest --verbose packages/*/src/*.test.ts"
   },
   "dependencies": {
     "execa": "5.0.0",
@@ -39,7 +39,7 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "fakefile": "1.0.0",
-    "jest": "26.6.3",
+    "jest": "^28.1.1",
     "lerna": "4.0.0",
     "npm-run-all": "4.1.5",
     "replace-require-with-import": "^2.1.0",

@@ -1,4 +1,4 @@
-const { api } = require('@pagerduty/pdjs')
+import { api } from '@pagerduty/pdjs'
 import triggerPager from './triggerPager'
 
 const LOREM = `Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -11,22 +11,24 @@ culpa qui officia deserunt mollit anim id est laborum.`
 
 const LOREM3 = `${LOREM} ${LOREM} ${LOREM}`
 
+// const api = mocked(apiX)
 jest.mock('@pagerduty/pdjs')
 
 describe('triggerPager', () => {
-    test('main', async () => {
-        const post = jest.fn(async (endpoint: any, payload: any) => {
-            expect(endpoint).toBe('/incidents')
-            expect(payload).toMatchSnapshot()
+  test('main', async () => {
+    const post = jest.fn(async (endpoint: any, payload: any) => {
+      expect(endpoint).toBe('/incidents')
+      expect(payload).toMatchSnapshot()
       return { data: { error: null } }
     })
+    // @ts-expect-error
     api.mockReturnValue({ post })
     await triggerPager({
       title      : LOREM3,
       description: LOREM3,
       serviceId  : 'SERVICE_ID',
     })
-        expect(post.mock.calls.length).toBe(1)
+    expect(post.mock.calls.length).toBe(1)
   })
 
     test('error', async () => {
@@ -40,6 +42,7 @@ describe('triggerPager', () => {
         },
       }
     })
+    // @ts-expect-error
     api.mockReturnValue({ post })
 
     let err
@@ -66,6 +69,7 @@ describe('triggerPager', () => {
         },
       }
     })
+    // @ts-expect-error
     api.mockReturnValue({ post })
 
     await triggerPager({

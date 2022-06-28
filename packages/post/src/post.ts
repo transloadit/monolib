@@ -3,8 +3,8 @@
 import { promises as fs } from 'fs'
 import inquirer from 'inquirer'
 import openInEditor from 'open-in-editor'
-const fileExists = require('@transloadit/file-exists')
-const slugify = require('@transloadit/slugify')
+import fileExists from '@transloadit/file-exists'
+import slugify from '@transloadit/slugify'
 import title from 'title'
 
 async function post () {

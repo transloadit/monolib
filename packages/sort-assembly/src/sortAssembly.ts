@@ -1,5 +1,5 @@
-const sortObjectByPrio = require('@transloadit/sort-object-by-prio')
-const sortResult = require('@transloadit/sort-result')
+import sortObjectByPrio from '@transloadit/sort-object-by-prio'
+import sortResult from '@transloadit/sort-result'
 
 export default function sortAssembly (assembly: any) {
   const sorted = sortObjectByPrio(assembly, {

@@ -1,2 +1,2 @@
-export default function replaceMe () {
+export default function replaceMe (arg: string) {
 }

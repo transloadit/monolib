@@ -35,7 +35,7 @@ describe('enrichTweet', () => {
   test('should render tweet 17139572739674112 correctly', async () => {
     jest.setTimeout(20000)
     const tweet = JSON.parse(fs.readFileSync(`${__dirname}/enrichTweet.fixture-17139572739674112.json`, 'utf-8'))
-    expect((await enrichTweet(tweet))).toBe(`Encode your videos faster ! nice piece of technology : <a href="http://transloadit.com/blog/2010/12/realtime-encoding-over-150x-faster/" rel="nofollow">http://transloadit.com/blog/2010/12/realtime-encoding-over-150x-faster/</a> <a href="https://twitter.com/search?q=%23video" title="#video" class="tweet-url hashtag" rel="nofollow">#video</a> <a href="https://twitter.com/search?q=%23encoding" title="#encoding" class="tweet-url hashtag" rel="nofollow">#encoding</a>`)
+    expect((await enrichTweet(tweet))).toBe(`Encode your videos faster ! nice piece of technology : <a href="https://transloadit.com/blog/2010/12/realtime-encoding-over-150x-faster/" rel="nofollow">https://transloadit.com/blog/2010/12/realtime-encoding-over-150x-faster/</a> <a href="https://twitter.com/search?q=%23video" title="#video" class="tweet-url hashtag" rel="nofollow">#video</a> <a href="https://twitter.com/search?q=%23encoding" title="#encoding" class="tweet-url hashtag" rel="nofollow">#encoding</a>`)
   })
   test('should render tweet 16955922978971648 correctly', async () => {
     jest.setTimeout(20000)

@@ -1,4 +1,4 @@
-const sortObject = require('@transloadit/sort-object')
+import sortObject from '@transloadit/sort-object'
 
 export default function sortObjectByPrio (obj: any, prefixes: any) {
   return sortObject(obj, (a: any, b: any) => {

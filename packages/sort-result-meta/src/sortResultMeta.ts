@@ -1,4 +1,4 @@
-const sortObjectByPrio = require('@transloadit/sort-object-by-prio')
+import sortObjectByPrio from '@transloadit/sort-object-by-prio'
 
 export default function sortResultMeta (meta: any) {
   if ('faces' in meta) {

@@ -1,7 +1,7 @@
-const execa = require('execa')
-const replace = require('replace')
-const inquirer = require('inquirer')
-const inflection = require('inflection')
+import execa from 'execa'
+import replace from 'replace'
+import inquirer from 'inquirer'
+import inflection from 'inflection'
 
 ;
 
