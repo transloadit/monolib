@@ -1,7 +1,6 @@
 /* eslint-disable no-template-curly-in-string */
 import formatDurationMs from '@transloadit/format-duration-ms'
 import prettierBytes from '@transloadit/prettier-bytes'
-// @ts-expect-error
 import inflect from 'inflect'
 import _ from 'lodash'
 import jp from 'jsonpath'
