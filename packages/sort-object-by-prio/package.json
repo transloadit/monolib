@@ -21,7 +21,8 @@
   "scripts": {
     "tsc": "tsc",
     "test": "echo \"Error: run tests from root\" && exit 1"
-  },  "dependencies": {
+  },
+  "dependencies": {
     "@transloadit/sort-object": "^0.0.4"
   }
 }
