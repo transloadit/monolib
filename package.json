@@ -8,10 +8,11 @@
     "lernaBootstrap": "lerna bootstrap --npm-client=yarn",
     "install": "npm run lernaBootstrap",
     "fix": "DEBUG=eslint:cli-engine eslint **/*.{ts,js} --fix",
-    "lint": "DEBUG=eslint:cli-engine eslint .",
+    "lint": "DEBUG=eslint:cli-engine eslint **/*.{ts,js}",
     "build": "lerna run tsc",
     "test:watch": "jest packages/*/src/*.test.ts --watch",
-    "test": "jest --verbose packages/*/src/*.test.ts"
+    "test": "npm-run-all build lernaBootstrap lint jest",
+    "jest": "jest --verbose packages/*/src/*.test.ts"
   },
   "dependencies": {
     "execa": "5.0.0",
