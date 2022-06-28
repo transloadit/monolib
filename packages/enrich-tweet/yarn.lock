@@ -226,14 +226,13 @@ gauge@^4.0.3:
     strip-ansi "^6.0.1"
     wide-align "^1.1.5"
 
-get-urls@^11.0.0:
-  version "11.0.0"
-  resolved "https://registry.yarnpkg.com/get-urls/-/get-urls-11.0.0.tgz#59174f47ceb82726c814042ab8db3aec2634ff4b"
-  integrity sha512-rxTvv9HszwTtPfN7oRGVTVn7aPmvLKGqY41SFpMyKan65un/nZHWhqmD+URmnCG7w/B+IFqKw1lWzYfxgfFLEw==
+get-urls@10:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/get-urls/-/get-urls-10.0.1.tgz#d9b69a7762d105fb61bbf30ab0b625c7103d8105"
+  integrity sha512-5usUMF4FE0cTS7yUuRvBsB4tSs5u8KFn7v01+IDGL/18tuoADu5ehthqw+y2EHnJsWhsp1443K5P+C/XWZQ04g==
   dependencies:
-    normalize-url "^7.0.2"
-    re2 "^1.17.2"
-    url-regex-safe "^3.0.0"
+    normalize-url "^5.1.0"
+    url-regex-safe "^2.0.2"
 
 glob@^7.1.3, glob@^7.1.4:
   version "7.2.3"
@@ -337,7 +336,7 @@ install-artifact-from-github@^1.3.1:
   resolved "https://registry.yarnpkg.com/install-artifact-from-github/-/install-artifact-from-github-1.3.1.tgz#eefaad9af35d632e5d912ad1569c1de38c3c2462"
   integrity sha512-3l3Bymg2eKDsN5wQuMfgGEj2x6l5MCAv0zPL6rxHESufFVlEAKW/6oY9F1aGgvY/EgWm5+eWGRjINveL4X7Hgg==
 
-ip-regex@4.3.0:
+ip-regex@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/ip-regex/-/ip-regex-4.3.0.tgz#687275ab0f57fa76978ff8f4dddc8a23d5990db5"
   integrity sha512-B9ZWJxHHOHUhUjCPrMpLD4xEq35bUTClHM1S6CBU5ixQnkZmwipwgc96vAd7AAGM9TGHvJR+Uss+/Ak6UphK+Q==
@@ -512,10 +511,10 @@ nopt@^5.0.0:
   dependencies:
     abbrev "1"
 
-normalize-url@^7.0.2:
-  version "7.0.3"
-  resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-7.0.3.tgz#12e56889f7a54b2d5b09616f36c442a9063f61af"
-  integrity sha512-RiCOdwdPnzvwcBFJE4iI1ss3dMVRIrEzFpn8ftje6iBfzBInqlnRrNhxcLwBEKjPPXQKzm1Ptlxtaiv9wdcj5w==
+normalize-url@^5.1.0:
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-5.3.1.tgz#c8485c0f5ba2f9c17a6d2907b56117ae5967f882"
+  integrity sha512-K1c7+vaAP+Yh5bOGmA10PGPpp+6h7WZrl7GwqKhUflBc9flU9pzG27DDeB9+iuhZkE3BJZOcgN1P/2sS5pqrWw==
 
 npmlog@^6.0.0:
   version "6.0.2"
@@ -564,7 +563,7 @@ punycode@1.4.1:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
   integrity sha512-jmYNElW7yvO7TV33CjSmvSiE2yco3bV2czu/OzDKdMNVZQWfxCblURLhf+47syQRBntjfLdd/H0egrzIG+oaFQ==
 
-re2@^1.17.2, re2@^1.17.7:
+re2@^1.16.0, re2@^1.17.7:
   version "1.17.7"
   resolved "https://registry.yarnpkg.com/re2/-/re2-1.17.7.tgz#e14cab85a177a5534c7215c322d1b043c55aa1e9"
   integrity sha512-X8GSuiBoVWwcjuppqSjsIkRxNUKDdjhkO9SBekQbZ2ksqWUReCy7DQPWOVpoTnpdtdz5PIpTTxTFzvJv5UMfjA==
@@ -695,7 +694,7 @@ tar@^6.1.11, tar@^6.1.2:
     mkdirp "^1.0.3"
     yallist "^4.0.0"
 
-tlds@^1.228.0:
+tlds@^1.217.0:
   version "1.231.0"
   resolved "https://registry.yarnpkg.com/tlds/-/tlds-1.231.0.tgz#93880175cd0a06fdf7b5b5b9bcadff9d94813e39"
   integrity sha512-L7UQwueHSkGxZHQBXHVmXW64oi+uqNtzFt2x6Ssk7NVnpIbw16CRs4eb/jmKOZ9t2JnqZ/b3Cfvo97lnXqKrhw==
@@ -729,13 +728,14 @@ unique-slug@^2.0.0:
   dependencies:
     imurmurhash "^0.1.4"
 
-url-regex-safe@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/url-regex-safe/-/url-regex-safe-3.0.0.tgz#102a38f74a1a731973fa42690c6a56656fddff12"
-  integrity sha512-+2U40NrcmtWFVjuxXVt9bGRw6c7/MgkGKN9xIfPrT/2RX0LTkkae6CCEDp93xqUN0UKm/rr821QnHd2dHQmN3A==
+url-regex-safe@^2.0.2:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/url-regex-safe/-/url-regex-safe-2.1.0.tgz#3b06da306e729e1abc03dbd7c9c8cc7734f81900"
+  integrity sha512-nfrmOb62+kN4JJRkY/w9QzZeuc63/ddIFfqS9ntok0UYsJW3C5J/jGvYZecwk8V68og2zWA7fcVn4GUXIi5qbg==
   dependencies:
-    ip-regex "4.3.0"
-    tlds "^1.228.0"
+    ip-regex "^4.3.0"
+    re2 "^1.16.0"
+    tlds "^1.217.0"
 
 util-deprecate@^1.0.1:
   version "1.0.2"

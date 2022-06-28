@@ -25,7 +25,7 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "get-urls": "^11.0.0",
+    "get-urls": "10",
     "re2": "^1.17.7",
     "tall": "^5.0.0",
     "twitter-text": "^3.1.0"
