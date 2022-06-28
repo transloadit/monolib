@@ -10,8 +10,17 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/format-duration-ms"
   },
-  "main": "./formatDurationMs.js",
-  "dependencies": {
+  "main": "dist/formatDurationMs.js",
+  "typings": "dist/formatDurationMs.d.ts",
+  "files": ["dist"],
+  "directories": {
+    "lib": "dist",
+    "test": "dist"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },  "dependencies": {
     "pretty-ms": "6.0.0"
   },
   "version": "0.0.30",

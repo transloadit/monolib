@@ -11,8 +11,17 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/sort-object-by-prio"
   },
-  "main": "./sortObjectByPrio.js",
-  "dependencies": {
+  "main": "dist/sortObjectByPrio.js",
+  "typings": "dist/sortObjectByPrio.d.ts",
+  "files": ["dist"],
+  "directories": {
+    "lib": "dist",
+    "test": "dist"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },  "dependencies": {
     "@transloadit/sort-object": "^0.0.4"
   }
 }

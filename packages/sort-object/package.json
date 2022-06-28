@@ -11,5 +11,15 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/sort-object"
   },
-  "main": "./sortObject.js"
+  "main": "dist/sortObject.js",
+  "typings": "dist/sortObject.d.ts",
+  "files": ["dist"],
+  "directories": {
+    "lib": "dist",
+    "test": "dist"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  }
 }

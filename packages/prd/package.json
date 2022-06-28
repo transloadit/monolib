@@ -11,8 +11,17 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/prd"
   },
-  "main": "./prd.js",
-  "dependencies": {
+  "main": "dist/prd.js",
+  "typings": "dist/prd.d.ts",
+  "files": ["dist"],
+  "directories": {
+    "lib": "dist",
+    "test": "dist"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },  "dependencies": {
     "@transloadit/pr": "^0.0.3"
   }
 }

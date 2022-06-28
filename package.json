@@ -4,11 +4,12 @@
   "scripts": {
     "pub": "npm-run-all lernaBootstrap lint test lernaPublish",
     "lernaPublish": "lerna publish",
-    "new": "node new.js",
+    "new": "ts-node new.ts",
     "lernaBootstrap": "lerna bootstrap --npm-client=yarn",
     "install": "npm run lernaBootstrap",
     "fix": "DEBUG=eslint:cli-engine eslint . --fix",
     "lint": "DEBUG=eslint:cli-engine eslint .",
+    "build": "tsc --sourceMap --strict --outDir dist/",
     "test:watch": "jest packages/*/*.test.js --watch",
     "test": "jest --verbose packages/*/*.test.js"
   },
@@ -23,6 +24,7 @@
     "@babel/eslint-parser": "^7.13.10",
     "@babel/eslint-plugin": "^7.13.10",
     "@types/jest": "^28.1.3",
+    "@types/node": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.30.0",
     "@typescript-eslint/parser": "^5.30.0",
     "eslint": "^7.22.0",

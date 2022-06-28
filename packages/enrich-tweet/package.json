@@ -11,7 +11,17 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/enrich-tweet"
   },
-  "main": "./enrichTweet.js",
+  "main": "dist/enrichTweet.js",
+  "typings": "dist/enrichTweet.d.ts",
+  "files": ["dist"],
+  "directories": {
+    "lib": "dist",
+    "test": "dist"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
   "dependencies": {
     "get-urls": "^10.0.0",
     "tall": "^4.0.1",
