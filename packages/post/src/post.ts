@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 import { promises as fs } from 'fs'
 import inquirer from 'inquirer'
+// @ts-expect-error
 import openInEditor from 'open-in-editor'
 import fileExists from '@transloadit/file-exists'
 import slugify from '@transloadit/slugify'

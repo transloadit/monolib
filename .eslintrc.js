@@ -24,6 +24,16 @@ module.exports = {
   parserOptions: {
     requireConfigFile: false,
   },
+  overrides: [
+    {
+      files: ['*.ts'],
+      rules: {
+        // We strongly recommend that you do not use the no-undef lint rule on TypeScript projects. The checks it provides are already provided by TypeScript without the need for configuration - TypeScript just does this significantly better.
+        // https://stackoverflow.com/a/67412847/151666
+        'no-undef': ['off'],
+      },
+    },
+  ],
   rules: {
     // Plenty of cli tools in here so we do not care about console.log usage:
     'no-console'              : ['off'],

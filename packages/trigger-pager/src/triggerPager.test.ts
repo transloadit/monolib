@@ -16,7 +16,7 @@ jest.mock('@pagerduty/pdjs')
 
 describe('triggerPager', () => {
   test('main', async () => {
-    const post = jest.fn(async (endpoint: any, payload: any) => {
+    const post = jest.fn(async (endpoint: $TSFixMe, payload: $TSFixMe) => {
       expect(endpoint).toBe('/incidents')
       expect(payload).toMatchSnapshot()
       return { data: { error: null } }
@@ -55,7 +55,7 @@ describe('triggerPager', () => {
       err = _err
     }
 
-    expect((err as any).message).toBe('oh no - oh; no')
+    expect((err as $TSFixMe).message).toBe('oh no - oh; no')
   })
 
   test('duplicate incident', async () => {

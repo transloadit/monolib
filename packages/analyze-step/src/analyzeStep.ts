@@ -1,6 +1,8 @@
+/* eslint-disable quote-props */
 /* eslint-disable no-template-curly-in-string */
 import formatDurationMs from '@transloadit/format-duration-ms'
 import prettierBytes from '@transloadit/prettier-bytes'
+// @ts-expect-error
 import inflect from 'inflect'
 import _ from 'lodash'
 import jp from 'jsonpath'
@@ -35,8 +37,8 @@ function humanJoin (array: any, reduce = true, glueword = 'and') {
 }
 
 function humanFilter (step: any) {
-  const collection = {}
-  const templates = {
+  const collection: $TSFixMe = {}
+  const templates: Record<string, string> = {
     '<'        : 'files with {humanKey} below {humanVal}',
     '<='       : 'files with {humanKey} of {humanVal} or lower',
     '>'        : 'files with {humanKey} above {humanVal}',
@@ -46,9 +48,9 @@ function humanFilter (step: any) {
     '==='      : 'files with {humanKey} of {humanVal}',
     '!='       : 'files without {humanKey} of {humanVal}',
     '!=='      : 'files without {humanKey} of {humanVal}',
-    regex      : 'files with {humanKey} of {humanVal}',
+    'regex'    : 'files with {humanKey} of {humanVal}',
     '!regex'   : 'files without {humanKey} of {humanVal}',
-    includes   : 'files that include {humanKey} of {humanVal}',
+    'includes' : 'files that include {humanKey} of {humanVal}',
     '!includes': 'files that do not include {humanKey} of {humanVal}',
   }
 
