@@ -1,7 +1,7 @@
 import sortObjectByPrio from '@transloadit/sort-object-by-prio'
 import sortResultMeta from '@transloadit/sort-result-meta'
 
-export default function sortResult (result: any) {
+export default function sortResult (result: $TSFixMe) {
   const sorted = sortObjectByPrio(result, {
     _: [
       'id',

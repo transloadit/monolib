@@ -1,4 +1,4 @@
-export default function slugify (str: any) {
+export default function slugify (str: $TSFixMe) {
   if (!str || str !== `${str}`) {
     return str
   }

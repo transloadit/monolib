@@ -1,6 +1,6 @@
 import sortObjectByPrio from '@transloadit/sort-object-by-prio'
 
-export default function sortResultMeta (meta: any) {
+export default function sortResultMeta (meta: $TSFixMe) {
   if ('faces' in meta) {
     for (const i in meta.faces) {
       meta.faces[i] = sortObjectByPrio(meta.faces[i], {

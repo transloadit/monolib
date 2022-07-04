@@ -11,7 +11,7 @@ const triggerPager = async ({
   from = 'tim.koschuetzki@transloadit.com',
   title = incidentKey,
   description,
-}: any) => {
+}: $TSFixMe) => {
   const res = await api({ token }).post('/incidents', {
     headers: {
       from,

@@ -7,7 +7,7 @@ import inflect from 'inflect'
 import _ from 'lodash'
 import jp from 'jsonpath'
 
-function humanJoin (array: any, reduce = true, glueword = 'and') {
+function humanJoin (array: $TSFixMe, reduce = true, glueword = 'and') {
   let countedArray = array
 
   if (reduce === true) {
@@ -36,7 +36,7 @@ function humanJoin (array: any, reduce = true, glueword = 'and') {
   return str
 }
 
-function humanFilter (step: any) {
+function humanFilter (step: $TSFixMe) {
   const collection: $TSFixMe = {}
   const templates: Record<string, string> = {
     '<'        : 'files with {humanKey} below {humanVal}',
@@ -130,14 +130,14 @@ function humanFilter (step: any) {
   }
 
   const total = []
-  if ((collection as any).declines && (collection as any).declines.length > 0) {
-    const joindec = humanJoin((collection as any).declines, false, step.condition_type)
+  if ((collection as $TSFixMe).declines && (collection as $TSFixMe).declines.length > 0) {
+    const joindec = humanJoin((collection as $TSFixMe).declines, false, step.condition_type)
       .replace('with a certain mime-type and with a certain mime-type', 'with certain mime-types')
 
     total.push(`Exclude ${joindec}`)
   }
-  if ((collection as any).accepts && (collection as any).accepts.length > 0) {
-    const joinacc = humanJoin((collection as any).accepts, false, step.condition_type)
+  if ((collection as $TSFixMe).accepts && (collection as $TSFixMe).accepts.length > 0) {
+    const joinacc = humanJoin((collection as $TSFixMe).accepts, false, step.condition_type)
       .replace('with a certain mime-type and with a certain mime-type', 'with certain mime-types')
 
     total.push(`Pick ${joinacc}`)
@@ -164,7 +164,7 @@ function humanFilter (step: any) {
     .replace(/files with a filesize below(\W|$)/g, 'files smaller than$1')
 }
 
-function humanDimensions (step: any) {
+function humanDimensions (step: $TSFixMe) {
   let str = ''
 
   if ('width' in step && !`${step.width}`.match(/^\d+$/)) {
@@ -190,7 +190,7 @@ function humanDimensions (step: any) {
   return str
 }
 
-function humanPreset (step: any, extrameta = {}) {
+function humanPreset (step: $TSFixMe, extrameta = {}) {
   let str = inflect.humanize(step.preset.replace(/[-_]/g, ' '))
 
   if (str.match(/^ipad/i)) {
@@ -198,8 +198,8 @@ function humanPreset (step: any, extrameta = {}) {
     quality = quality ? ` (${quality} quality)` : ``
 
     let device = `iPad${quality}`
-    if ((extrameta as any).deviceName) {
-      device = `${(extrameta as any).deviceName}`
+    if ((extrameta as $TSFixMe).deviceName) {
+      device = `${(extrameta as $TSFixMe).deviceName}`
     }
 
     str = `${device} (H.264)`
@@ -231,7 +231,7 @@ function humanPreset (step: any, extrameta = {}) {
   return str
 }
 
-function humanFormat (step: any) {
+function humanFormat (step: $TSFixMe) {
   let str = inflect.humanize(step.format.replace(/[-_]/g, ' '))
 
   if (str.match(/^webp/i)) {
@@ -244,7 +244,7 @@ function humanFormat (step: any) {
   return str
 }
 
-export default (step: any, robots: any, extrameta = {}) => {
+export default (step: $TSFixMe, robots: $TSFixMe, extrameta = {}) => {
   let str = ``
 
   const robot = robots[step.robot]

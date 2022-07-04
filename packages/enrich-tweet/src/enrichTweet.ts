@@ -3,8 +3,8 @@ import { tall } from 'tall'
 
 import getUrls from 'get-urls'
 
-export default async function enrichTweet (tweet: any, unshorten = true) {
-  async function tryUnshorten (url: any) {
+export default async function enrichTweet (tweet: $TSFixMe, unshorten = true) {
+  async function tryUnshorten (url: $TSFixMe) {
     if (!unshorten) return url
     try {
       return await tall(url)
