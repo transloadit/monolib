@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`triggerPager main 1`] = `
-Object {
-  "data": Object {
-    "incident": Object {
-      "body": Object {
+{
+  "data": {
+    "incident": {
+      "body": {
         "details": "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -23,11 +23,11 @@ Ut enim ",
         "type": "incident_body",
       },
       "incident_key": undefined,
-      "priority": Object {
+      "priority": {
         "id": "PUTY3A1",
         "type": "priority_reference",
       },
-      "service": Object {
+      "service": {
         "id": "SERVICE_ID",
         "type": "service_reference",
       },
@@ -50,7 +50,7 @@ Ut eni…",
       "urgency": "high",
     },
   },
-  "headers": Object {
+  "headers": {
     "from": "tim.koschuetzki@transloadit.com",
   },
 }
