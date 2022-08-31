@@ -1,5 +1,4 @@
-/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
-  preset         : 'ts-jest',
+  transform      : { '\\.(js|jsx|ts|tsx)$': '@sucrase/jest-plugin' },
   testEnvironment: 'node',
 }
