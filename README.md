@@ -35,7 +35,7 @@ While the world _can_ consume the modules, this is mostly to make life easier fo
 | `@transloadit/sort-result-meta`    | `sortResultMeta(ASSEMBLY_RESULT_META_OBJECT)`                                | Sorted Assembly Object                                                      |
 | `@transloadit/sort-result`         | `sortResult(ASSEMBLY_RESULT_OBJECT)`                                         | Sorted Assembly Object                                                      |
 
-Check <https://github.com/transloadit/monolib/tree/master/packages>.
+Check <https://github.com/transloadit/monolib/tree/main/packages>.
 
 ## How to consume these functions?
 
