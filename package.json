@@ -7,13 +7,15 @@
     "new": "sucrase-node new.ts",
     "lernaBootstrap": "lerna bootstrap --npm-client=yarn",
     "install": "npm run lernaBootstrap",
-    "fix": "DEBUG=eslint:cli-engine eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "lint": "DEBUG=eslint:cli-engine eslint . --ext .js,.jsx,.ts,.tsx",
+    "fix": "DEBUG=eslint:cli-engine eslint . --ext .js,.jsx,.ts,.tsx --fix && yarn fix:formatting",
+    "lint": "DEBUG=eslint:cli-engine eslint . --ext .js,.jsx,.ts,.tsx && yarn lint:formatting",
     "build": "lerna run tsc",
     "test:watch": "jest packages/*/src/*.test.ts --watch",
     "test": "npm-run-all build lernaBootstrap lint jest",
     "jest": "jest --verbose packages/*/src/*.test.ts",
-    "jest:update": "jest --verbose --updateSnapshot packages/*/src/*.test.ts"
+    "jest:update": "jest --verbose --updateSnapshot packages/*/src/*.test.ts",
+    "fix:formatting": "prettier --write .",
+    "lint:formatting": "prettier --check ."
   },
   "dependencies": {
     "execa": "5.0.0",
@@ -31,6 +33,7 @@
     "@typescript-eslint/eslint-plugin": "^5.36.1",
     "@typescript-eslint/parser": "^5.36.1",
     "eslint": "^8.23.0",
+    "eslint-config-prettier": "^8.8.0",
     "eslint-config-transloadit": "^2.0.0",
     "eslint-import-resolver-typescript": "^3.5.0",
     "eslint-plugin-import": "^2.26.0",
@@ -44,7 +47,8 @@
     "fakefile": "1.0.0",
     "jest": "^29.0.1",
     "lerna": "4.0.0",
-    "npm-run-all": "4.1.5",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.8.6",
     "replace-require-with-import": "^2.1.0",
     "sucrase": "^3.25.0",
     "typescript": "^4.8.2"

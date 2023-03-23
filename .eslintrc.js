@@ -2,7 +2,7 @@
 module.exports = {
   extends: [
     'transloadit',
-  ],
+  , 'prettier'],
   parser : '@typescript-eslint/parser',
   plugins: [
     '@babel/eslint-plugin',
