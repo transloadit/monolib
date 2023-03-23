@@ -10,7 +10,7 @@ describe('enrichTweet', () => {
   test('should render tweet 1082897509528281089 correctly', async () => {
     jest.setTimeout(20000)
     const tweet = JSON.parse(fs.readFileSync(`${__dirname}/enrichTweet.fixture-1082897509528281089.json`, 'utf-8'))
-    expect((await enrichTweet(tweet))).toBe(`Just realized how <a class="tweet-url username" href="https://twitter.com/tus_io" data-screen-name="tus_io" rel="nofollow">@tus_io</a> and <a class="tweet-url username" href="https://twitter.com/uppy_io" data-screen-name="uppy_io" rel="nofollow">@uppy_io</a> are a perfect example of <a class="tweet-url username" href="https://twitter.com/transloadit" data-screen-name="transloadit" rel="nofollow">@transloadit</a> commoditizing their complements: <a href="https://www.gwern.net/Complement" rel="nofollow">https://www.gwern.net/Complement</a>`)
+    expect((await enrichTweet(tweet))).toBe(`Just realized how <a class="tweet-url username" href="https://twitter.com/tus_io" data-screen-name="tus_io" rel="nofollow">@tus_io</a> and <a class="tweet-url username" href="https://twitter.com/uppy_io" data-screen-name="uppy_io" rel="nofollow">@uppy_io</a> are a perfect example of <a class="tweet-url username" href="https://twitter.com/transloadit" data-screen-name="transloadit" rel="nofollow">@transloadit</a> commoditizing their complements: <a href="https://gwern.net/complement" rel="nofollow">https://gwern.net/complement</a>`)
   })
   test('should render tweet 389922139408592896 correctly', async () => {
     jest.setTimeout(20000)
