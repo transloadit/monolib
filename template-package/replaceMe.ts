@@ -1,3 +1,3 @@
-export default function replaceMe (arg: string) {
+export default function replaceMe(arg: string) {
   return arg
 }

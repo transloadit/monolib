@@ -4,10 +4,7 @@
   "id_str": "588610060810526720",
   "full_text": "Trying to process/thumbnail about 600k avatars in a few hours. Thank you @transloadit @Prezly http://t.co/6HIHbuiMbh",
   "truncated": false,
-  "display_text_range": [
-    0,
-    116
-  ],
+  "display_text_range": [0, 116],
   "entities": {
     "hashtags": [],
     "symbols": [],
@@ -17,20 +14,14 @@
         "name": "🤖 Transloadit",
         "id": 23779749,
         "id_str": "23779749",
-        "indices": [
-          73,
-          85
-        ]
+        "indices": [73, 85]
       },
       {
         "screen_name": "Prezly",
         "name": "Prezly",
         "id": 19285554,
         "id_str": "19285554",
-        "indices": [
-          86,
-          93
-        ]
+        "indices": [86, 93]
       }
     ],
     "urls": [],
@@ -38,10 +29,7 @@
       {
         "id": 588609941604171800,
         "id_str": "588609941604171776",
-        "indices": [
-          94,
-          116
-        ],
+        "indices": [94, 116],
         "media_url": "http://pbs.twimg.com/ext_tw_video_thumb/588609941604171776/pu/img/657mRahs1TNqS0vw.jpg",
         "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/588609941604171776/pu/img/657mRahs1TNqS0vw.jpg",
         "url": "http://t.co/6HIHbuiMbh",
@@ -78,10 +66,7 @@
       {
         "id": 588609941604171800,
         "id_str": "588609941604171776",
-        "indices": [
-          94,
-          116
-        ],
+        "indices": [94, 116],
         "media_url": "http://pbs.twimg.com/ext_tw_video_thumb/588609941604171776/pu/img/657mRahs1TNqS0vw.jpg",
         "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/588609941604171776/pu/img/657mRahs1TNqS0vw.jpg",
         "url": "http://t.co/6HIHbuiMbh",
@@ -111,10 +96,7 @@
           }
         },
         "video_info": {
-          "aspect_ratio": [
-            1,
-            1
-          ],
+          "aspect_ratio": [1, 1],
           "duration_millis": 5461,
           "variants": [
             {
@@ -165,10 +147,7 @@
             "url": "https://t.co/iaO3rl75Zv",
             "expanded_url": "http://www.prezly.com",
             "display_url": "prezly.com",
-            "indices": [
-              0,
-              23
-            ]
+            "indices": [0, 23]
           }
         ]
       },

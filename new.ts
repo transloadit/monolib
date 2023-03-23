@@ -2,17 +2,15 @@ import execa from 'execa'
 import replace from 'replace'
 import inquirer from 'inquirer'
 import inflection from 'inflection'
-
-(async () => {
-  const answers = await inquirer
-    .prompt([
-      {
-        type   : 'input',
-        name   : 'name',
-        default: 'hello-world',
-        message: 'name (dashed)',
-      },
-    ])
+;(async () => {
+  const answers = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'name',
+      default: 'hello-world',
+      message: 'name (dashed)',
+    },
+  ])
 
   const camelized = inflection.camelize(answers.name.replace(/-/g, '_'), true)
   const subprocess1 = execa(`cp`, [
@@ -40,18 +38,18 @@ import inflection from 'inflection'
   await subprocess3
 
   await replace({
-    regex      : 'replace-me',
+    regex: 'replace-me',
     replacement: answers.name,
-    paths      : [`${__dirname}/packages/${answers.name}`],
-    recursive  : true,
-    silent     : false,
+    paths: [`${__dirname}/packages/${answers.name}`],
+    recursive: true,
+    silent: false,
   })
   await replace({
-    regex      : 'replaceMe',
+    regex: 'replaceMe',
     replacement: camelized,
-    paths      : [`${__dirname}/packages/${answers.name}`],
-    recursive  : true,
-    silent     : false,
+    paths: [`${__dirname}/packages/${answers.name}`],
+    recursive: true,
+    silent: false,
   })
 
   setTimeout(() => {

@@ -1,19 +1,10 @@
 import sortObjectByPrio from '@transloadit/sort-object-by-prio'
 import sortResult from '@transloadit/sort-result'
 
-export default function sortAssembly (assembly: $TSFixMe) {
+export default function sortAssembly(assembly: $TSFixMe) {
   const sorted = sortObjectByPrio(assembly, {
-    _: [
-      'assembly_id',
-      'ok',
-      'message',
-      'warnings',
-      'error',
-    ],
-    z: [
-      'uploads',
-      'results',
-    ],
+    _: ['assembly_id', 'ok', 'message', 'warnings', 'error'],
+    z: ['uploads', 'results'],
   })
 
   if ('results' in sorted) {

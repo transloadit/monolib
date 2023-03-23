@@ -4,10 +4,7 @@
   "id_str": "647088863777832961",
   "full_text": "SponsorOfTheDay! We have giant love feelings for @transloadit! And not just cuz that logo's cute as a bug. Thank you! http://t.co/LQqex8hd8i",
   "truncated": false,
-  "display_text_range": [
-    0,
-    140
-  ],
+  "display_text_range": [0, 140],
   "entities": {
     "hashtags": [],
     "symbols": [],
@@ -17,10 +14,7 @@
         "name": "🤖 Transloadit",
         "id": 23779749,
         "id_str": "23779749",
-        "indices": [
-          49,
-          61
-        ]
+        "indices": [49, 61]
       }
     ],
     "urls": [],
@@ -28,10 +22,7 @@
       {
         "id": 647088863719112700,
         "id_str": "647088863719112704",
-        "indices": [
-          118,
-          140
-        ],
+        "indices": [118, 140],
         "media_url": "http://pbs.twimg.com/media/CPrr5KQWwAAin58.png",
         "media_url_https": "https://pbs.twimg.com/media/CPrr5KQWwAAin58.png",
         "url": "http://t.co/LQqex8hd8i",
@@ -68,10 +59,7 @@
       {
         "id": 647088863719112700,
         "id_str": "647088863719112704",
-        "indices": [
-          118,
-          140
-        ],
+        "indices": [118, 140],
         "media_url": "http://pbs.twimg.com/media/CPrr5KQWwAAin58.png",
         "media_url_https": "https://pbs.twimg.com/media/CPrr5KQWwAAin58.png",
         "url": "http://t.co/LQqex8hd8i",
@@ -124,10 +112,7 @@
             "url": "https://t.co/ErP6Yk7cQi",
             "expanded_url": "https://www.osfeels.com",
             "display_url": "osfeels.com",
-            "indices": [
-              0,
-              23
-            ]
+            "indices": [0, 23]
           }
         ]
       },

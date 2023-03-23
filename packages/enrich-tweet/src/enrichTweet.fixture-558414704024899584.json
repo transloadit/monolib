@@ -4,10 +4,7 @@
   "id_str": "558414704024899584",
   "full_text": "Thank the sponsors! http://t.co/4GKSCDuwLb @polymer @BloombergBeta @Firebase @MaxCDNDeveloper @sprintly @dropboxapi @codeship @transloadit",
   "truncated": false,
-  "display_text_range": [
-    0,
-    138
-  ],
+  "display_text_range": [0, 138],
   "entities": {
     "hashtags": [],
     "symbols": [],
@@ -17,80 +14,56 @@
         "name": "Polymer Project",
         "id": 1425993918,
         "id_str": "1425993918",
-        "indices": [
-          43,
-          51
-        ]
+        "indices": [43, 51]
       },
       {
         "screen_name": "BloombergBeta",
         "name": "Bloomberg Beta",
         "id": 1416562236,
         "id_str": "1416562236",
-        "indices": [
-          52,
-          66
-        ]
+        "indices": [52, 66]
       },
       {
         "screen_name": "Firebase",
         "name": "Firebase",
         "id": 447644824,
         "id_str": "447644824",
-        "indices": [
-          67,
-          76
-        ]
+        "indices": [67, 76]
       },
       {
         "screen_name": "MaxCDNDeveloper",
         "name": "Grace",
         "id": 770768289005969400,
         "id_str": "770768289005969408",
-        "indices": [
-          77,
-          93
-        ]
+        "indices": [77, 93]
       },
       {
         "screen_name": "sprintly",
         "name": "sprint.ly",
         "id": 127383413,
         "id_str": "127383413",
-        "indices": [
-          94,
-          103
-        ]
+        "indices": [94, 103]
       },
       {
         "screen_name": "dropboxapi",
         "name": "Dropbox API",
         "id": 141247659,
         "id_str": "141247659",
-        "indices": [
-          104,
-          115
-        ]
+        "indices": [104, 115]
       },
       {
         "screen_name": "CodeShip",
         "name": "CodeShip",
         "id": 220165520,
         "id_str": "220165520",
-        "indices": [
-          116,
-          125
-        ]
+        "indices": [116, 125]
       },
       {
         "screen_name": "transloadit",
         "name": "🤖 Transloadit",
         "id": 23779749,
         "id_str": "23779749",
-        "indices": [
-          126,
-          138
-        ]
+        "indices": [126, 138]
       }
     ],
     "urls": [
@@ -98,10 +71,7 @@
         "url": "http://t.co/4GKSCDuwLb",
         "expanded_url": "http://2015.staticshowdown.com/sponsors",
         "display_url": "2015.staticshowdown.com/sponsors",
-        "indices": [
-          20,
-          42
-        ]
+        "indices": [20, 42]
       }
     ]
   },
@@ -126,10 +96,7 @@
             "url": "https://t.co/UJA0EGUSwD",
             "expanded_url": "https://staticshowdown.com/",
             "display_url": "staticshowdown.com",
-            "indices": [
-              0,
-              23
-            ]
+            "indices": [0, 23]
           }
         ]
       },

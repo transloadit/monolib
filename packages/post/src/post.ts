@@ -8,7 +8,7 @@ import fileExists from '@transloadit/file-exists'
 import slugify from '@transloadit/slugify'
 import title from 'title'
 
-async function post () {
+async function post() {
   // eslint-disable-next-line import/no-dynamic-require,global-require
   console.log(`Welcome to @transloadit/post@${require(`${__dirname}/package.json`).version}. `)
   console.log(`Please answer some questions about the blog post, `)
@@ -19,26 +19,22 @@ async function post () {
     throw new Error(`Dir does not exist: '${postDir.replace(process.cwd(), '.')}'`)
   }
 
-  const mysqlNow = (new Date()).toISOString().replace('T', ' ').split('.')[0].split(' ')[0]
+  const mysqlNow = new Date().toISOString().replace('T', ' ').split('.')[0].split(' ')[0]
   // eslint-disable-next-line no-unused-vars
   const [dateY, datem, dated] = mysqlNow.split('-')
-  const answers = await inquirer
-    .prompt([
-      { type: 'input', name: 'title', message: 'title:' },
-      { type: 'input', name: 'author', message: 'author:', default: process.env.USER },
-    ])
+  const answers = await inquirer.prompt([
+    { type: 'input', name: 'title', message: 'title:' },
+    { type: 'input', name: 'author', message: 'author:', default: process.env.USER },
+  ])
 
   const outFile = `${postDir}/${mysqlNow}-${slugify(answers.title)}.md`
 
-  if ((await fileExists(outFile))) {
+  if (await fileExists(outFile)) {
     throw new Error(`File already exist: '${outFile.replace(process.cwd(), '.')}'`)
   }
 
   const strTitle = title(answers.title, {
-    special: [
-      'tus',
-      'io',
-    ],
+    special: ['tus', 'io'],
   })
 
   let buff = ''
@@ -68,7 +64,7 @@ async function post () {
 
   if (process.env.VISUAL === 'code') {
     opts = {
-      cmd    : 'code',
+      cmd: 'code',
       pattern: '-r -g {filename}:{line}:{column}',
     }
   }
@@ -79,7 +75,7 @@ async function post () {
   })
   console.log(`Done. `)
 }
-post().catch(err => {
+post().catch((err) => {
   console.error(err)
   process.exit(1)
 })

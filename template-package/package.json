@@ -13,7 +13,9 @@
   },
   "main": "dist/replaceMe.js",
   "typings": "dist/replaceMe.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "directories": {
     "lib": "dist",
     "test": "dist"
