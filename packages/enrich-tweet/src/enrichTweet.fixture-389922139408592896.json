@@ -4,10 +4,7 @@
   "id_str": "389922139408592896",
   "full_text": "Don't understand why anyone messes with carrierwave / paperclip / whatever anymore. @transloadit is just too easy. https://t.co/PbpdV158OP",
   "truncated": false,
-  "display_text_range": [
-    0,
-    138
-  ],
+  "display_text_range": [0, 138],
   "entities": {
     "hashtags": [],
     "symbols": [],
@@ -17,10 +14,7 @@
         "name": "🤖 Transloadit",
         "id": 23779749,
         "id_str": "23779749",
-        "indices": [
-          84,
-          96
-        ]
+        "indices": [84, 96]
       }
     ],
     "urls": [
@@ -28,10 +22,7 @@
         "url": "https://t.co/PbpdV158OP",
         "expanded_url": "https://transloadit.com/r/wGN",
         "display_url": "transloadit.com/r/wGN",
-        "indices": [
-          115,
-          138
-        ]
+        "indices": [115, 138]
       }
     ]
   },
@@ -56,10 +47,7 @@
             "url": "https://t.co/fuQWkBmILZ",
             "expanded_url": "http://www.brianculler.com",
             "display_url": "brianculler.com",
-            "indices": [
-              0,
-              23
-            ]
+            "indices": [0, 23]
           }
         ]
       },

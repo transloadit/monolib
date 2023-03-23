@@ -24,9 +24,9 @@ describe('triggerPager', () => {
     // @ts-expect-error
     api.mockReturnValue({ post })
     await triggerPager({
-      title      : LOREM3,
+      title: LOREM3,
       description: LOREM3,
-      serviceId  : 'SERVICE_ID',
+      serviceId: 'SERVICE_ID',
     })
     expect(post.mock.calls.length).toBe(1)
   })
@@ -37,7 +37,7 @@ describe('triggerPager', () => {
         data: {
           error: {
             message: 'oh no',
-            errors : ['oh', 'no'],
+            errors: ['oh', 'no'],
           },
         },
       }
@@ -48,7 +48,7 @@ describe('triggerPager', () => {
     let err
     try {
       await triggerPager({
-        title      : '',
+        title: '',
         description: '',
       })
     } catch (_err) {
@@ -64,7 +64,7 @@ describe('triggerPager', () => {
         data: {
           error: {
             message: 'matching dedup key already exists',
-            errors : [],
+            errors: [],
           },
         },
       }
@@ -73,7 +73,7 @@ describe('triggerPager', () => {
     api.mockReturnValue({ post })
 
     await triggerPager({
-      title      : '',
+      title: '',
       description: '',
     })
   })

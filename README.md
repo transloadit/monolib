@@ -6,7 +6,7 @@ It's the home to many small functions that just don't belong.
 
 For example, Uppy has its own way of reporting bytes. We moved that function here, so now we can easily add it to our node-sdk, API, and content repo where React would be outputting bytes in /c/.
 
-Modules are public so they can be re-used without configuring registries and setting tokens for anybody consuming them. This allows the modules to be used in e.g. Uppy or the Node SDK. 
+Modules are public so they can be re-used without configuring registries and setting tokens for anybody consuming them. This allows the modules to be used in e.g. Uppy or the Node SDK.
 
 While the world _can_ consume the modules, this is mostly to make life easier for us, we won't encourage people to use these modules in their own projects. We may break SemVer with no regard to external projects. Hence, the license is AGPL-3.0-only, and we add unwelcoming READMEs with disclaimers to the modules.
 
@@ -18,7 +18,7 @@ While the world _can_ consume the modules, this is mostly to make life easier fo
 ## Examples
 
 | Module                             | Example                                                                      | Result                                                                      |
-|:-----------------------------------|:-----------------------------------------------------------------------------|:----------------------------------------------------------------------------|
+| :--------------------------------- | :--------------------------------------------------------------------------- | :-------------------------------------------------------------------------- |
 | `@transloadit/abbr`                | `abbr('Lorem ipsum dolor sit amet', 10, ' .. '))`                            | `'Lor .. met'`                                                              |
 | `@transloadit/analyze-step`        | `analyzeStep({ robot: '/image/resize', width: '75', height: '75' }, ROBOTS)` | `'Resize images to 75×75'`                                                  |
 | `@transloadit/enrich-tweet`        | `await enrichTweet(TWEET)`                                                   | The text of the tweet, linked, short URLs expanded                          |

@@ -1,4 +1,4 @@
-export default function abbr (str: $TSFixMe, maxLength = 55, divider = `[...]`) {
+export default function abbr(str: $TSFixMe, maxLength = 55, divider = `[...]`) {
   if (str !== `${str}`) {
     return str
   }
@@ -7,7 +7,9 @@ export default function abbr (str: $TSFixMe, maxLength = 55, divider = `[...]`) 
   if (abbreviated.length > maxLength) {
     const firstLen = Math.ceil((maxLength - divider.length) / 2)
     const lastLen = Math.floor((maxLength - divider.length) / 2)
-    abbreviated = `${abbreviated.substr(0, firstLen)}${divider}${abbreviated.substr(abbreviated.length - lastLen)}`
+    abbreviated = `${abbreviated.substr(0, firstLen)}${divider}${abbreviated.substr(
+      abbreviated.length - lastLen
+    )}`
   }
 
   return abbreviated

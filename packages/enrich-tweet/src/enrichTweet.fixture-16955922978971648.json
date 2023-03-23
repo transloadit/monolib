@@ -4,10 +4,7 @@
   "id_str": "16955922978971648",
   "full_text": "Hey @YouTube, @vimeo and other video upload/sharing sites, offer @transloadit a lot of money, now, quick http://bit.ly/fkWS88",
   "truncated": false,
-  "display_text_range": [
-    0,
-    125
-  ],
+  "display_text_range": [0, 125],
   "entities": {
     "hashtags": [],
     "symbols": [],
@@ -17,30 +14,21 @@
         "name": "YouTube at 🏠",
         "id": 10228272,
         "id_str": "10228272",
-        "indices": [
-          4,
-          12
-        ]
+        "indices": [4, 12]
       },
       {
         "screen_name": "Vimeo",
         "name": "Vimeo",
         "id": 14718218,
         "id_str": "14718218",
-        "indices": [
-          14,
-          20
-        ]
+        "indices": [14, 20]
       },
       {
         "screen_name": "transloadit",
         "name": "🤖 Transloadit",
         "id": 23779749,
         "id_str": "23779749",
-        "indices": [
-          65,
-          77
-        ]
+        "indices": [65, 77]
       }
     ],
     "urls": []
@@ -66,10 +54,7 @@
             "url": "http://t.co/jCdCsMtNQa",
             "expanded_url": "http://trykong.com",
             "display_url": "trykong.com",
-            "indices": [
-              0,
-              22
-            ]
+            "indices": [0, 22]
           }
         ]
       },

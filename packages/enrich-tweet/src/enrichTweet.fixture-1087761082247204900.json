@@ -1,195 +1,172 @@
-
-
 {
   "created_at": "Tue Jan 22 17:17:06 +0000 2019",
   "id": 1087761082247204900,
   "id_str": "1087761082247204864",
   "full_text": "In the age of cloud, @transloadit shows great balance of leaning on larger clouds while managing infra in-house @kvz \nhttps://t.co/uI1G5zZ3PF https://t.co/hEwN8eIllK",
   "truncated": false,
-  "display_text_range": [
-     0,
-     141
-  ],
+  "display_text_range": [0, 141],
   "entities": {
-     "hashtags": [],
-     "symbols": [],
-     "user_mentions": [
-        {
-           "screen_name": "transloadit",
-           "name": "🤖 Transloadit",
-           "id": 23779749,
-           "id_str": "23779749",
-           "indices": [
-              21,
-              33
-           ]
-        },
-        {
-           "screen_name": "kvz",
-           "name": "Kev van Zonneveld",
-           "id": 10664812,
-           "id_str": "10664812",
-           "indices": [
-              112,
-              116
-           ]
+    "hashtags": [],
+    "symbols": [],
+    "user_mentions": [
+      {
+        "screen_name": "transloadit",
+        "name": "🤖 Transloadit",
+        "id": 23779749,
+        "id_str": "23779749",
+        "indices": [21, 33]
+      },
+      {
+        "screen_name": "kvz",
+        "name": "Kev van Zonneveld",
+        "id": 10664812,
+        "id_str": "10664812",
+        "indices": [112, 116]
+      }
+    ],
+    "urls": [
+      {
+        "url": "https://t.co/uI1G5zZ3PF",
+        "expanded_url": "https://buff.ly/2QQWF4R",
+        "display_url": "buff.ly/2QQWF4R",
+        "indices": [118, 141]
+      }
+    ],
+    "media": [
+      {
+        "id": 1087761079520976900,
+        "id_str": "1087761079520976896",
+        "indices": [142, 165],
+        "media_url": "http://pbs.twimg.com/media/DxiA8ElX4AA4hQ6.jpg",
+        "media_url_https": "https://pbs.twimg.com/media/DxiA8ElX4AA4hQ6.jpg",
+        "url": "https://t.co/hEwN8eIllK",
+        "display_url": "pic.twitter.com/hEwN8eIllK",
+        "expanded_url": "https://twitter.com/stratusupdate/status/1087761082247204864/photo/1",
+        "type": "photo",
+        "sizes": {
+          "thumb": {
+            "w": 150,
+            "h": 150,
+            "resize": "crop"
+          },
+          "large": {
+            "w": 1442,
+            "h": 956,
+            "resize": "fit"
+          },
+          "small": {
+            "w": 680,
+            "h": 451,
+            "resize": "fit"
+          },
+          "medium": {
+            "w": 1200,
+            "h": 796,
+            "resize": "fit"
+          }
         }
-     ],
-     "urls": [
-        {
-           "url": "https://t.co/uI1G5zZ3PF",
-           "expanded_url": "https://buff.ly/2QQWF4R",
-           "display_url": "buff.ly/2QQWF4R",
-           "indices": [
-              118,
-              141
-           ]
-        }
-     ],
-     "media": [
-        {
-           "id": 1087761079520976900,
-           "id_str": "1087761079520976896",
-           "indices": [
-              142,
-              165
-           ],
-           "media_url": "http://pbs.twimg.com/media/DxiA8ElX4AA4hQ6.jpg",
-           "media_url_https": "https://pbs.twimg.com/media/DxiA8ElX4AA4hQ6.jpg",
-           "url": "https://t.co/hEwN8eIllK",
-           "display_url": "pic.twitter.com/hEwN8eIllK",
-           "expanded_url": "https://twitter.com/stratusupdate/status/1087761082247204864/photo/1",
-           "type": "photo",
-           "sizes": {
-              "thumb": {
-                 "w": 150,
-                 "h": 150,
-                 "resize": "crop"
-              },
-              "large": {
-                 "w": 1442,
-                 "h": 956,
-                 "resize": "fit"
-              },
-              "small": {
-                 "w": 680,
-                 "h": 451,
-                 "resize": "fit"
-              },
-              "medium": {
-                 "w": 1200,
-                 "h": 796,
-                 "resize": "fit"
-              }
-           }
-        }
-     ]
+      }
+    ]
   },
   "extended_entities": {
-     "media": [
-        {
-           "id": 1087761079520976900,
-           "id_str": "1087761079520976896",
-           "indices": [
-              142,
-              165
-           ],
-           "media_url": "http://pbs.twimg.com/media/DxiA8ElX4AA4hQ6.jpg",
-           "media_url_https": "https://pbs.twimg.com/media/DxiA8ElX4AA4hQ6.jpg",
-           "url": "https://t.co/hEwN8eIllK",
-           "display_url": "pic.twitter.com/hEwN8eIllK",
-           "expanded_url": "https://twitter.com/stratusupdate/status/1087761082247204864/photo/1",
-           "type": "photo",
-           "sizes": {
-              "thumb": {
-                 "w": 150,
-                 "h": 150,
-                 "resize": "crop"
-              },
-              "large": {
-                 "w": 1442,
-                 "h": 956,
-                 "resize": "fit"
-              },
-              "small": {
-                 "w": 680,
-                 "h": 451,
-                 "resize": "fit"
-              },
-              "medium": {
-                 "w": 1200,
-                 "h": 796,
-                 "resize": "fit"
-              }
-           }
+    "media": [
+      {
+        "id": 1087761079520976900,
+        "id_str": "1087761079520976896",
+        "indices": [142, 165],
+        "media_url": "http://pbs.twimg.com/media/DxiA8ElX4AA4hQ6.jpg",
+        "media_url_https": "https://pbs.twimg.com/media/DxiA8ElX4AA4hQ6.jpg",
+        "url": "https://t.co/hEwN8eIllK",
+        "display_url": "pic.twitter.com/hEwN8eIllK",
+        "expanded_url": "https://twitter.com/stratusupdate/status/1087761082247204864/photo/1",
+        "type": "photo",
+        "sizes": {
+          "thumb": {
+            "w": 150,
+            "h": 150,
+            "resize": "crop"
+          },
+          "large": {
+            "w": 1442,
+            "h": 956,
+            "resize": "fit"
+          },
+          "small": {
+            "w": 680,
+            "h": 451,
+            "resize": "fit"
+          },
+          "medium": {
+            "w": 1200,
+            "h": 796,
+            "resize": "fit"
+          }
         }
-     ]
+      }
+    ]
   },
-  "source": "<a href=\"https://buffer.com\" rel=\"nofollow\">Buffer<\/a>",
+  "source": "<a href=\"https://buffer.com\" rel=\"nofollow\">Buffer</a>",
   "in_reply_to_status_id": null,
   "in_reply_to_status_id_str": null,
   "in_reply_to_user_id": null,
   "in_reply_to_user_id_str": null,
   "in_reply_to_screen_name": null,
   "user": {
-     "id": 1044600776709066800,
-     "id_str": "1044600776709066754",
-     "name": "stratusupdate",
-     "screen_name": "stratusupdate",
-     "location": "The Cloud",
-     "description": "Keep your head in the cloud with weekly curated cloud native news",
-     "url": "https://t.co/totJzSvzzp",
-     "entities": {
-        "url": {
-           "urls": [
-              {
-                 "url": "https://t.co/totJzSvzzp",
-                 "expanded_url": "https://www.manifold.co/stratusupdate",
-                 "display_url": "manifold.co/stratusupdate",
-                 "indices": [
-                    0,
-                    23
-                 ]
-              }
-           ]
-        },
-        "description": {
-           "urls": []
-        }
-     },
-     "protected": false,
-     "followers_count": 91,
-     "friends_count": 132,
-     "listed_count": 3,
-     "created_at": "Tue Sep 25 14:53:27 +0000 2018",
-     "favourites_count": 270,
-     "utc_offset": null,
-     "time_zone": null,
-     "geo_enabled": false,
-     "verified": false,
-     "statuses_count": 98,
-     "lang": null,
-     "contributors_enabled": false,
-     "is_translator": false,
-     "is_translation_enabled": false,
-     "profile_background_color": "000000",
-     "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
-     "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
-     "profile_background_tile": false,
-     "profile_image_url": "http://pbs.twimg.com/profile_images/1055076856096047104/8CtR0pAq_normal.jpg",
-     "profile_image_url_https": "https://pbs.twimg.com/profile_images/1055076856096047104/8CtR0pAq_normal.jpg",
-     "profile_link_color": "5850A6",
-     "profile_sidebar_border_color": "000000",
-     "profile_sidebar_fill_color": "000000",
-     "profile_text_color": "000000",
-     "profile_use_background_image": false,
-     "has_extended_profile": false,
-     "default_profile": false,
-     "default_profile_image": false,
-     "following": false,
-     "follow_request_sent": false,
-     "notifications": false,
-     "translator_type": "none"
+    "id": 1044600776709066800,
+    "id_str": "1044600776709066754",
+    "name": "stratusupdate",
+    "screen_name": "stratusupdate",
+    "location": "The Cloud",
+    "description": "Keep your head in the cloud with weekly curated cloud native news",
+    "url": "https://t.co/totJzSvzzp",
+    "entities": {
+      "url": {
+        "urls": [
+          {
+            "url": "https://t.co/totJzSvzzp",
+            "expanded_url": "https://www.manifold.co/stratusupdate",
+            "display_url": "manifold.co/stratusupdate",
+            "indices": [0, 23]
+          }
+        ]
+      },
+      "description": {
+        "urls": []
+      }
+    },
+    "protected": false,
+    "followers_count": 91,
+    "friends_count": 132,
+    "listed_count": 3,
+    "created_at": "Tue Sep 25 14:53:27 +0000 2018",
+    "favourites_count": 270,
+    "utc_offset": null,
+    "time_zone": null,
+    "geo_enabled": false,
+    "verified": false,
+    "statuses_count": 98,
+    "lang": null,
+    "contributors_enabled": false,
+    "is_translator": false,
+    "is_translation_enabled": false,
+    "profile_background_color": "000000",
+    "profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+    "profile_background_tile": false,
+    "profile_image_url": "http://pbs.twimg.com/profile_images/1055076856096047104/8CtR0pAq_normal.jpg",
+    "profile_image_url_https": "https://pbs.twimg.com/profile_images/1055076856096047104/8CtR0pAq_normal.jpg",
+    "profile_link_color": "5850A6",
+    "profile_sidebar_border_color": "000000",
+    "profile_sidebar_fill_color": "000000",
+    "profile_text_color": "000000",
+    "profile_use_background_image": false,
+    "has_extended_profile": false,
+    "default_profile": false,
+    "default_profile_image": false,
+    "following": false,
+    "follow_request_sent": false,
+    "notifications": false,
+    "translator_type": "none"
   },
   "geo": null,
   "coordinates": null,
@@ -203,4 +180,3 @@
   "possibly_sensitive": false,
   "lang": "en"
 }
-

@@ -7,7 +7,7 @@ import inflect from 'inflect'
 import _ from 'lodash'
 import jp from 'jsonpath'
 
-function humanJoin (array: $TSFixMe, reduce = true, glueword = 'and') {
+function humanJoin(array: $TSFixMe, reduce = true, glueword = 'and') {
   let countedArray = array
 
   if (reduce === true) {
@@ -36,21 +36,21 @@ function humanJoin (array: $TSFixMe, reduce = true, glueword = 'and') {
   return str
 }
 
-function humanFilter (step: $TSFixMe) {
+function humanFilter(step: $TSFixMe) {
   const collection: $TSFixMe = {}
   const templates: Record<string, string> = {
-    '<'        : 'files with {humanKey} below {humanVal}',
-    '<='       : 'files with {humanKey} of {humanVal} or lower',
-    '>'        : 'files with {humanKey} above {humanVal}',
-    '>='       : 'files with {humanKey} of {humanVal} or higher',
-    '='        : 'files with {humanKey} of {humanVal}',
-    '=='       : 'files with {humanKey} of {humanVal}',
-    '==='      : 'files with {humanKey} of {humanVal}',
-    '!='       : 'files without {humanKey} of {humanVal}',
-    '!=='      : 'files without {humanKey} of {humanVal}',
-    'regex'    : 'files with {humanKey} of {humanVal}',
-    '!regex'   : 'files without {humanKey} of {humanVal}',
-    'includes' : 'files that include {humanKey} of {humanVal}',
+    '<': 'files with {humanKey} below {humanVal}',
+    '<=': 'files with {humanKey} of {humanVal} or lower',
+    '>': 'files with {humanKey} above {humanVal}',
+    '>=': 'files with {humanKey} of {humanVal} or higher',
+    '=': 'files with {humanKey} of {humanVal}',
+    '==': 'files with {humanKey} of {humanVal}',
+    '===': 'files with {humanKey} of {humanVal}',
+    '!=': 'files without {humanKey} of {humanVal}',
+    '!==': 'files without {humanKey} of {humanVal}',
+    regex: 'files with {humanKey} of {humanVal}',
+    '!regex': 'files without {humanKey} of {humanVal}',
+    includes: 'files that include {humanKey} of {humanVal}',
     '!includes': 'files that do not include {humanKey} of {humanVal}',
   }
 
@@ -65,7 +65,9 @@ function humanFilter (step: $TSFixMe) {
       for (const [key, operator, val] of Object.values(step[type])) {
         const template = _.clone(templates[operator])
         if (!template) {
-          throw new Error(`Please add a template definition for this /file/filter operator: ${operator}`)
+          throw new Error(
+            `Please add a template definition for this /file/filter operator: ${operator}`
+          )
         }
 
         let humanKey = key
@@ -83,20 +85,33 @@ function humanFilter (step: $TSFixMe) {
         if (humanKey === 'filesize') {
           humanVal = prettierBytes(parseInt(humanVal, 10))
         }
-        if (humanKey.match(/ bitrate$/) && humanVal)  {
+        if (humanKey.match(/ bitrate$/) && humanVal) {
           humanVal = `${prettierBytes(parseInt(humanVal, 10))}`.replace('B', 'bit/s')
         }
         if (humanKey === 'duration') {
           humanVal = formatDurationMs(parseInt(humanVal, 10) * 1000)
         }
-        if (humanVal === 'application/(rar|x-7z-compressed|x-cab|x-cpio|x-debian-package|x-gtar-compressed|x-gzip|x-lzh|x-redhat-package-manager|x-tar|zip)') {
+        if (
+          humanVal ===
+          'application/(rar|x-7z-compressed|x-cab|x-cpio|x-debian-package|x-gtar-compressed|x-gzip|x-lzh|x-redhat-package-manager|x-tar|zip)'
+        ) {
           humanVal = 'archives'
         }
 
-        if (humanKey === `${humanKey}` && inflect.singularize(humanKey) === `${humanKey}` && !`${humanKey}`.match(/^\d+/) && humanKey !== '') {
+        if (
+          humanKey === `${humanKey}` &&
+          inflect.singularize(humanKey) === `${humanKey}` &&
+          !`${humanKey}`.match(/^\d+/) &&
+          humanKey !== ''
+        ) {
           humanKey = `a ${humanKey}`
         }
-        if (humanVal === `${humanVal}` && inflect.singularize(humanVal) === `${humanVal}` && !`${humanVal}`.match(/^\d+/) && humanVal !== '') {
+        if (
+          humanVal === `${humanVal}` &&
+          inflect.singularize(humanVal) === `${humanVal}` &&
+          !`${humanVal}`.match(/^\d+/) &&
+          humanVal !== ''
+        ) {
           humanVal = `a ${humanVal}`
         }
 
@@ -131,14 +146,19 @@ function humanFilter (step: $TSFixMe) {
 
   const total = []
   if ((collection as $TSFixMe).declines && (collection as $TSFixMe).declines.length > 0) {
-    const joindec = humanJoin((collection as $TSFixMe).declines, false, step.condition_type)
-      .replace('with a certain mime-type and with a certain mime-type', 'with certain mime-types')
+    const joindec = humanJoin(
+      (collection as $TSFixMe).declines,
+      false,
+      step.condition_type
+    ).replace('with a certain mime-type and with a certain mime-type', 'with certain mime-types')
 
     total.push(`Exclude ${joindec}`)
   }
   if ((collection as $TSFixMe).accepts && (collection as $TSFixMe).accepts.length > 0) {
-    const joinacc = humanJoin((collection as $TSFixMe).accepts, false, step.condition_type)
-      .replace('with a certain mime-type and with a certain mime-type', 'with certain mime-types')
+    const joinacc = humanJoin((collection as $TSFixMe).accepts, false, step.condition_type).replace(
+      'with a certain mime-type and with a certain mime-type',
+      'with certain mime-types'
+    )
 
     total.push(`Pick ${joinacc}`)
   }
@@ -164,7 +184,7 @@ function humanFilter (step: $TSFixMe) {
     .replace(/files with a filesize below(\W|$)/g, 'files smaller than$1')
 }
 
-function humanDimensions (step: $TSFixMe) {
+function humanDimensions(step: $TSFixMe) {
   let str = ''
 
   if ('width' in step && !`${step.width}`.match(/^\d+$/)) {
@@ -184,13 +204,15 @@ function humanDimensions (step: $TSFixMe) {
   } else if ('height' in step) {
     str += ` to ${step.height} pixels high`
   } else if ('crop' in step) {
-    str += ` to ${step.crop.x2 - step.crop.x1}×${step.crop.y2 - step.crop.y1} starting at ${step.crop.x1}×${step.crop.y1} from the top left`
+    str += ` to ${step.crop.x2 - step.crop.x1}×${step.crop.y2 - step.crop.y1} starting at ${
+      step.crop.x1
+    }×${step.crop.y1} from the top left`
   }
 
   return str
 }
 
-function humanPreset (step: $TSFixMe, extrameta = {}) {
+function humanPreset(step: $TSFixMe, extrameta = {}) {
   let str = inflect.humanize(step.preset.replace(/[-_]/g, ' '))
 
   if (str.match(/^ipad/i)) {
@@ -231,7 +253,7 @@ function humanPreset (step: $TSFixMe, extrameta = {}) {
   return str
 }
 
-function humanFormat (step: $TSFixMe) {
+function humanFormat(step: $TSFixMe) {
   let str = inflect.humanize(step.format.replace(/[-_]/g, ' '))
 
   if (str.match(/^webp/i)) {
@@ -261,11 +283,21 @@ export default (step: $TSFixMe, robots: $TSFixMe, extrameta = {}) => {
       str = `Take a clip out of videos from ${_.get(step, 'ffmpeg.ss')}s till the end`
     } else if (_.has(step, 'filter:v') && step.ffmpeg['filter:v'] === 'setpts=2.0*PTS') {
       str = `Slowdown video to half speed`
-    } else if (_.has(step, 'ffmpeg.filter_complex') && step.ffmpeg.filter_complex.includes('setpts=')) {
+    } else if (
+      _.has(step, 'ffmpeg.filter_complex') &&
+      step.ffmpeg.filter_complex.includes('setpts=')
+    ) {
       str = `Change video speed`
-    } else if (_.has(step, 'ffmpeg.filter_complex') && step.ffmpeg.filter_complex.includes('atempo=')) {
+    } else if (
+      _.has(step, 'ffmpeg.filter_complex') &&
+      step.ffmpeg.filter_complex.includes('atempo=')
+    ) {
       str = `Change audio speed`
-    } else if (('width' in step || 'height' in step) && (step.width !== '${file.meta.width}') && (step.height !== '${file.meta.height}')) {
+    } else if (
+      ('width' in step || 'height' in step) &&
+      step.width !== '${file.meta.width}' &&
+      step.height !== '${file.meta.height}'
+    ) {
       str = `Resize videos${humanDimensions(step)}`
       if ('resize_strategy' in step && step.resize_strategy !== 'pad') {
         str = `${str} using the ${step.resize_strategy} strategy`
@@ -273,7 +305,7 @@ export default (step: $TSFixMe, robots: $TSFixMe, extrameta = {}) => {
       if ('preset' in step) {
         str = `${str} and encode for ${humanPreset(step, extrameta)}`
       }
-    } else if (('resize_strategy' in step)) {
+    } else if ('resize_strategy' in step) {
       str = `Resize videos`
       if ('preset' in step) {
         str = `${str} in ${humanPreset(step, extrameta)}`
@@ -290,9 +322,15 @@ export default (step: $TSFixMe, robots: $TSFixMe, extrameta = {}) => {
   if (robot.rname === '/audio/encode') {
     if (_.has(step, 'ffmpeg.ss') && _.has(step, 'ffmpeg.t')) {
       str = `Take a ${_.get(step, 'ffmpeg.t')}s clip out of audio at a specified offset`
-    } else if (_.has(step, 'ffmpeg.filter_complex') && step.ffmpeg.filter_complex.includes('setpts=')) {
+    } else if (
+      _.has(step, 'ffmpeg.filter_complex') &&
+      step.ffmpeg.filter_complex.includes('setpts=')
+    ) {
       str = `Change video speed`
-    } else if (_.has(step, 'ffmpeg.filter_complex') && step.ffmpeg.filter_complex.includes('atempo=')) {
+    } else if (
+      _.has(step, 'ffmpeg.filter_complex') &&
+      step.ffmpeg.filter_complex.includes('atempo=')
+    ) {
       str = `Change audio speed`
     } else if ('bitrate' in step) {
       str = `Adjust audio bitrates`

@@ -4,10 +4,7 @@
   "id_str": "1082897509528281089",
   "full_text": "Just realized how @tus_io and @uppy_io are a perfect example of @transloadit commoditizing their complements: https://t.co/G0MnOvALHR",
   "truncated": false,
-  "display_text_range": [
-    0,
-    133
-  ],
+  "display_text_range": [0, 133],
   "entities": {
     "hashtags": [],
     "symbols": [],
@@ -17,30 +14,21 @@
         "name": "tus.io",
         "id": 1359544170,
         "id_str": "1359544170",
-        "indices": [
-          18,
-          25
-        ]
+        "indices": [18, 25]
       },
       {
         "screen_name": "uppy_io",
         "name": "Uppy",
         "id": 4307299888,
         "id_str": "4307299888",
-        "indices": [
-          30,
-          38
-        ]
+        "indices": [30, 38]
       },
       {
         "screen_name": "transloadit",
         "name": "🤖 Transloadit",
         "id": 23779749,
         "id_str": "23779749",
-        "indices": [
-          64,
-          76
-        ]
+        "indices": [64, 76]
       }
     ],
     "urls": [
@@ -48,10 +36,7 @@
         "url": "https://t.co/G0MnOvALHR",
         "expanded_url": "https://www.gwern.net/Complement",
         "display_url": "gwern.net/Complement",
-        "indices": [
-          110,
-          133
-        ]
+        "indices": [110, 133]
       }
     ]
   },
@@ -76,10 +61,7 @@
             "url": "http://t.co/7b3kuHSb2b",
             "expanded_url": "http://manuel.kiessling.net",
             "display_url": "manuel.kiessling.net",
-            "indices": [
-              0,
-              22
-            ]
+            "indices": [0, 22]
           }
         ]
       },

@@ -4,25 +4,16 @@
   "id_str": "17139572739674112",
   "full_text": "Encode your videos faster ! nice piece of technology : http://bit.ly/hCWqza #video #encoding",
   "truncated": false,
-  "display_text_range": [
-    0,
-    92
-  ],
+  "display_text_range": [0, 92],
   "entities": {
     "hashtags": [
       {
         "text": "video",
-        "indices": [
-          76,
-          82
-        ]
+        "indices": [76, 82]
       },
       {
         "text": "encoding",
-        "indices": [
-          83,
-          92
-        ]
+        "indices": [83, 92]
       }
     ],
     "symbols": [],
