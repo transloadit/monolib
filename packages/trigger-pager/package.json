@@ -11,7 +11,7 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/trigger-pager"
   },
-  "main": "./triggerPager.js",
+  "main": "./dist/triggerPager.js",
   "dependencies": {
     "@pagerduty/pdjs": "^2.2.4"
   }
