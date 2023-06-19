@@ -11,7 +11,19 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/trigger-pager"
   },
-  "main": "./dist/triggerPager.js",
+  "main": "dist/triggerPager.js",
+  "typings": "dist/triggerPager.d.ts",
+  "files": [
+    "dist"
+  ],
+  "directories": {
+    "lib": "dist",
+    "test": "dist"
+  },
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
   "dependencies": {
     "@pagerduty/pdjs": "^2.2.4"
   }
