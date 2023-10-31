@@ -18,7 +18,7 @@
     "build": "lerna run tsc",
     "test:watch": "node -r sucrase/register --test --watch packages/**/*.test.ts",
     "test": "node -r sucrase/register --test packages/**/*.test.ts",
-    "check": "npm-run-all build lint jest",
+    "check": "npm-run-all build lint test",
     "fix:formatting": "prettier --write .",
     "lint:formatting": "prettier --check ."
   },
