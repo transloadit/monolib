@@ -1,6 +1,5 @@
 {
   "name": "@transloadit/post",
-  "private": false,
   "publishConfig": {
     "access": "public"
   },
@@ -10,9 +9,7 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/post"
   },
-  "bin": {
-    "post": "./post.js"
-  },
+  "bin": "./post.js",
   "typings": "dist/post.d.ts",
   "files": [
     "dist"
