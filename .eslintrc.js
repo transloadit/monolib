@@ -4,7 +4,6 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: [
     '@babel/eslint-plugin',
-    'jest',
     'node',
     'prefer-import',
     'promise',
