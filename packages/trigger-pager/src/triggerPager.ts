@@ -37,7 +37,6 @@ const triggerPager = async ({
       },
     },
   })
-  console.log(res)
 
   if (res.data.error) {
     const msg = [res.data.error.message, (res.data.error.errors || []).join('; ')]
