@@ -2,9 +2,9 @@
 /* eslint-disable no-template-curly-in-string */
 import formatDurationMs from '@transloadit/format-duration-ms'
 import prettierBytes from '@transloadit/prettier-bytes'
-import inflect from 'inflection'
+import * as inflect from 'inflection'
 import { JSONPath } from 'jsonpath-plus'
-import { clone, countBy, get, has } from 'lodash-es'
+import { clone, countBy, get, has } from 'lodash'
 
 function humanJoin(array: string[], reduce = true, glueword = 'and'): string {
   let countedArray = array
