@@ -43,3 +43,4 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 typings/
 yarn-debug.log*
 yarn-error.log*
+.yarn/install-state.gz
