@@ -16,8 +16,9 @@
     "fix": "DEBUG=eslint:cli-engine eslint . --ext .js,.jsx,.ts,.tsx --fix && yarn fix:formatting",
     "lint": "DEBUG=eslint:cli-engine eslint . --ext .js,.jsx,.ts,.tsx && yarn lint:formatting",
     "build": "lerna run tsc",
-    "test:watch": "jest packages/*/src/*.test.ts --watch",
-    "test": "npm-run-all build lint jest",
+    "test:watch": "node -r sucrase/register --test --watch packages/**/*.test.ts",
+    "test": "node -r sucrase/register --test packages/**/*.test.ts",
+    "check": "npm-run-all build lint jest",
     "jest": "jest --verbose packages/*/src/*.test.ts",
     "jest:update": "jest --verbose --updateSnapshot packages/*/src/*.test.ts",
     "fix:formatting": "prettier --write .",
@@ -56,6 +57,7 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.8.6",
     "replace-require-with-import": "^2.1.0",
+    "snappy-snaps": "^1.0.2",
     "sucrase": "^3.25.0",
     "typescript": "^4.8.2"
   }

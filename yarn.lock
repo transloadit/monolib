@@ -2689,6 +2689,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"callsites@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "callsites@npm:4.1.0"
+  checksum: 91700844127a6dcd4792d231a12dd8e9ec10525eb9962180a8558417d7e3f443e52a4f14746ad2838eaf14f79431ee1539d13bd188da280f720a06a91bd1157a
+  languageName: node
+  linkType: hard
+
 "camelcase-keys@npm:^6.2.2":
   version: 6.2.2
   resolution: "camelcase-keys@npm:6.2.2"
@@ -2783,6 +2790,13 @@ __metadata:
     ansi-styles: "npm:^4.1.0"
     supports-color: "npm:^7.1.0"
   checksum: 4a3fef5cc34975c898ffe77141450f679721df9dde00f6c304353fa9c8b571929123b26a0e4617bde5018977eb655b31970c297b91b63ee83bb82aeb04666880
+  languageName: node
+  linkType: hard
+
+"chalk@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "chalk@npm:5.3.0"
+  checksum: 8297d436b2c0f95801103ff2ef67268d362021b8210daf8ddbe349695333eb3610a71122172ff3b0272f1ef2cf7cc2c41fdaa4715f52e49ffe04c56340feed09
   languageName: node
   linkType: hard
 
@@ -7265,6 +7279,7 @@ __metadata:
     prettier: "npm:^2.8.6"
     replace: "npm:1.2.1"
     replace-require-with-import: "npm:^2.1.0"
+    snappy-snaps: "npm:^1.0.2"
     sucrase: "npm:^3.25.0"
     typescript: "npm:^4.8.2"
   languageName: unknown
@@ -8514,6 +8529,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"randombytes@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "randombytes@npm:2.1.0"
+  dependencies:
+    safe-buffer: "npm:^5.1.0"
+  checksum: 50395efda7a8c94f5dffab564f9ff89736064d32addf0cc7e8bf5e4166f09f8ded7a0849ca6c2d2a59478f7d90f78f20d8048bca3cdf8be09d8e8a10790388f3
+  languageName: node
+  linkType: hard
+
 "re2@npm:^1.16.0, re2@npm:^1.18.0":
   version: 1.20.5
   resolution: "re2@npm:1.20.5"
@@ -8927,17 +8951,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"safe-buffer@npm:^5.1.0, safe-buffer@npm:~5.2.0":
+  version: 5.2.1
+  resolution: "safe-buffer@npm:5.2.1"
+  checksum: 6501914237c0a86e9675d4e51d89ca3c21ffd6a31642efeba25ad65720bce6921c9e7e974e5be91a786b25aa058b5303285d3c15dbabf983a919f5f630d349f3
+  languageName: node
+  linkType: hard
+
 "safe-buffer@npm:~5.1.0, safe-buffer@npm:~5.1.1":
   version: 5.1.2
   resolution: "safe-buffer@npm:5.1.2"
   checksum: 780ba6b5d99cc9a40f7b951d47152297d0e260f0df01472a1b99d4889679a4b94a13d644f7dbc4f022572f09ae9005fa2fbb93bbbd83643316f365a3e9a45b21
-  languageName: node
-  linkType: hard
-
-"safe-buffer@npm:~5.2.0":
-  version: 5.2.1
-  resolution: "safe-buffer@npm:5.2.1"
-  checksum: 6501914237c0a86e9675d4e51d89ca3c21ffd6a31642efeba25ad65720bce6921c9e7e974e5be91a786b25aa058b5303285d3c15dbabf983a919f5f630d349f3
   languageName: node
   linkType: hard
 
@@ -8996,6 +9020,15 @@ __metadata:
   bin:
     semver: bin/semver.js
   checksum: 5160b06975a38b11c1ab55950cb5b8a23db78df88275d3d8a42ccf1f29e55112ac995b3a26a522c36e3b5f76b0445f1eef70d696b8c7862a2b4303d7b0e7609e
+  languageName: node
+  linkType: hard
+
+"serialize-javascript@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "serialize-javascript@npm:6.0.1"
+  dependencies:
+    randombytes: "npm:^2.1.0"
+  checksum: 1af427f4fee3fee051f54ffe15f77068cff78a3c96d20f5c1178d20630d3ab122d8350e639d5e13cde8111ef9db9439b871305ffb185e24be0a2149cec230988
   languageName: node
   linkType: hard
 
@@ -9135,6 +9168,17 @@ __metadata:
   version: 4.2.0
   resolution: "smart-buffer@npm:4.2.0"
   checksum: a16775323e1404dd43fabafe7460be13a471e021637bc7889468eb45ce6a6b207261f454e4e530a19500cc962c4cc5348583520843b363f4193cee5c00e1e539
+  languageName: node
+  linkType: hard
+
+"snappy-snaps@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "snappy-snaps@npm:1.0.2"
+  dependencies:
+    callsites: "npm:^4.1.0"
+    chalk: "npm:^5.3.0"
+    serialize-javascript: "npm:^6.0.1"
+  checksum: cfe6637bb4fe618015f462f935f4253cd0cefabe2d8d7e6663c2a614373d6ee1d1539ca5b40f03d3424ba7214fea585b1210bb580cb5a0547065ad3bc5ac4467
   languageName: node
   linkType: hard
 

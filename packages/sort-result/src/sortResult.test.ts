@@ -1,8 +1,10 @@
+import { describe, test } from 'node:test'
+import assert from 'node:assert'
 import sortResult from './sortResult'
 
 describe('sortResult', () => {
   test('main', () => {
-    expect(
+    assert.deepStrictEqual(
       Object.keys(
         sortResult({
           id: 'b8d12f6c517541ca86bf50c537cedb27',
@@ -53,32 +55,33 @@ describe('sortResult', () => {
           execTime: 0.83,
           cost: 627606,
         })
-      )
-    ).toStrictEqual([
-      'id',
-      'basename',
-      'cost',
-      'execTime',
-      'ext',
-      'field',
-      'from_batch_import',
-      'is_tus_file',
-      'md5hash',
-      'mime',
-      'name',
-      'original_basename',
-      'original_id',
-      'original_md5hash',
-      'original_name',
-      'original_path',
-      'queue',
-      'queueTime',
-      'size',
-      'ssl_url',
-      'tus_upload_url',
-      'type',
-      'url',
-      'meta',
-    ])
+      ),
+      [
+        'id',
+        'basename',
+        'cost',
+        'execTime',
+        'ext',
+        'field',
+        'from_batch_import',
+        'is_tus_file',
+        'md5hash',
+        'mime',
+        'name',
+        'original_basename',
+        'original_id',
+        'original_md5hash',
+        'original_name',
+        'original_path',
+        'queue',
+        'queueTime',
+        'size',
+        'ssl_url',
+        'tus_upload_url',
+        'type',
+        'url',
+        'meta',
+      ]
+    )
   })
 })

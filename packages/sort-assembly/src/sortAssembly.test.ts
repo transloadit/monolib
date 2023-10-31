@@ -1,3 +1,5 @@
+import { describe, test } from 'node:test'
+import assert from 'node:assert/strict'
 import sortAssembly from './sortAssembly'
 
 describe('sortAssembly', () => {
@@ -189,7 +191,7 @@ describe('sortAssembly', () => {
       build_id: '339',
     }
     const sorted = sortAssembly(assembly)
-    expect(Object.keys(sorted)).toStrictEqual([
+    assert.deepStrictEqual(Object.keys(sorted), [
       'assembly_id',
       'ok',
       'message',
@@ -241,8 +243,8 @@ describe('sortAssembly', () => {
       'uploads',
       'results',
     ])
-    expect(Object.keys(sorted.results)).toStrictEqual([':original', 'faces_detected'])
-    expect(Object.keys(sorted.uploads[0])).toStrictEqual([
+    assert.deepStrictEqual(Object.keys(sorted.results), [':original', 'faces_detected'])
+    assert.deepStrictEqual(Object.keys(sorted.uploads[0]), [
       'id',
       'basename',
       'ext',
@@ -264,7 +266,8 @@ describe('sortAssembly', () => {
       'url',
       'meta',
     ])
-    expect(Object.keys(sorted.uploads[0].meta)).toStrictEqual([
+
+    assert.deepStrictEqual(Object.keys(sorted.uploads[0].meta), [
       'aspect_ratio',
       'average_color',
       'colorspace',

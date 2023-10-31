@@ -1,13 +1,15 @@
+import { mock, test, describe } from 'node:test'
+import assert from 'node:assert/strict'
 import prd from './prd'
 
 describe('prd', () => {
   test('main', async () => {
-    // @ts-expect-error
-    const mockExit = jest.spyOn(process, 'exit').mockImplementation(() => {})
-    jest.spyOn(console, 'error').mockImplementation((e: $TSFixMe) => {
-      expect(e.message).toStrictEqual('Halt via prd')
-    })
+    const mockExit = mock.method(process, 'exit', () => {})
+    const mockConsoleErr = mock.method(console, 'error', () => {})
+
     prd('foo')
-    expect(mockExit).toHaveBeenCalledWith(1)
+
+    assert.equal(mockExit.mock.calls[0].arguments[0], 1)
+    assert.equal(mockConsoleErr.mock.calls[0].arguments[0].message, 'Halt via prd')
   })
 })

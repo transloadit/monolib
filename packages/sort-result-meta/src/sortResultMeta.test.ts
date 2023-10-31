@@ -1,3 +1,5 @@
+import { describe, test } from 'node:test'
+import assert from 'node:assert'
 import sortResultMeta from './sortResultMeta'
 
 describe('sortResultMeta', () => {
@@ -26,7 +28,7 @@ describe('sortResultMeta', () => {
       ],
     })
 
-    expect(Object.keys(sorted)).toStrictEqual([
+    assert.deepStrictEqual(Object.keys(sorted), [
       'aspect_ratio',
       'average_color',
       'colorspace',
@@ -40,7 +42,7 @@ describe('sortResultMeta', () => {
       'width',
     ])
 
-    expect(Object.keys(sorted.faces[0])).toStrictEqual([
+    assert.deepStrictEqual(Object.keys(sorted.faces[0]), [
       'confidence',
       'height',
       'width',
