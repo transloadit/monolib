@@ -12,4 +12,4 @@ jobs:
           node-version: 18
           cache: 'yarn'
       - run: corepack yarn --immutable
-      - run: corepack yarn test
+      - run: corepack yarn check
