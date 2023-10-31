@@ -2,16 +2,15 @@
 /* eslint-disable no-template-curly-in-string */
 import formatDurationMs from '@transloadit/format-duration-ms'
 import prettierBytes from '@transloadit/prettier-bytes'
-// @ts-expect-error
-import inflect from 'inflect'
-import _ from 'lodash'
-import jp from 'jsonpath'
+import * as inflect from 'inflection'
+import { JSONPath } from 'jsonpath-plus'
+import { clone, countBy, get, has } from 'lodash'
 
-function humanJoin(array: $TSFixMe, reduce = true, glueword = 'and') {
+function humanJoin(array: string[], reduce = true, glueword = 'and'): string {
   let countedArray = array
 
   if (reduce === true) {
-    const counted = _.countBy(array)
+    const counted = countBy(array)
     countedArray = []
     for (const [name, count] of Object.entries(counted)) {
       if (count > 1) {
@@ -37,7 +36,8 @@ function humanJoin(array: $TSFixMe, reduce = true, glueword = 'and') {
 }
 
 function humanFilter(step: $TSFixMe) {
-  const collection: $TSFixMe = {}
+  const collection: Record<string, string[]> = {}
+
   const templates: Record<string, string> = {
     '<': 'files with {humanKey} below {humanVal}',
     '<=': 'files with {humanKey} of {humanVal} or lower',
@@ -63,7 +63,7 @@ function humanFilter(step: $TSFixMe) {
     } else if (step[type] && step[type].length > 0) {
       // @ts-expect-error
       for (const [key, operator, val] of Object.values(step[type])) {
-        const template = _.clone(templates[operator])
+        const template = clone(templates[operator])
         if (!template) {
           throw new Error(
             `Please add a template definition for this /file/filter operator: ${operator}`
@@ -275,21 +275,21 @@ export default (step: $TSFixMe, robots: $TSFixMe, extrameta = {}) => {
   if (robot.rname === '/video/encode') {
     if (JSON.stringify(step).match(/watermark/)) {
       str = `Watermark videos`
-    } else if (_.get(step, 'ffmpeg.t') && _.get(step, 'ffmpeg.ss')) {
-      str = `Take a ${_.get(step, 'ffmpeg.t')}s clip out of videos at an offset`
-    } else if (_.get(step, 'ffmpeg.t')) {
-      str = `Take a ${_.get(step, 'ffmpeg.t')}s clip out of videos at the beginning`
-    } else if (_.get(step, 'ffmpeg.ss')) {
-      str = `Take a clip out of videos from ${_.get(step, 'ffmpeg.ss')}s till the end`
-    } else if (_.has(step, 'filter:v') && step.ffmpeg['filter:v'] === 'setpts=2.0*PTS') {
+    } else if (get(step, 'ffmpeg.t') && get(step, 'ffmpeg.ss')) {
+      str = `Take a ${get(step, 'ffmpeg.t')}s clip out of videos at an offset`
+    } else if (get(step, 'ffmpeg.t')) {
+      str = `Take a ${get(step, 'ffmpeg.t')}s clip out of videos at the beginning`
+    } else if (get(step, 'ffmpeg.ss')) {
+      str = `Take a clip out of videos from ${get(step, 'ffmpeg.ss')}s till the end`
+    } else if (has(step, 'filter:v') && step.ffmpeg['filter:v'] === 'setpts=2.0*PTS') {
       str = `Slowdown video to half speed`
     } else if (
-      _.has(step, 'ffmpeg.filter_complex') &&
+      has(step, 'ffmpeg.filter_complex') &&
       step.ffmpeg.filter_complex.includes('setpts=')
     ) {
       str = `Change video speed`
     } else if (
-      _.has(step, 'ffmpeg.filter_complex') &&
+      has(step, 'ffmpeg.filter_complex') &&
       step.ffmpeg.filter_complex.includes('atempo=')
     ) {
       str = `Change audio speed`
@@ -314,21 +314,21 @@ export default (step: $TSFixMe, robots: $TSFixMe, extrameta = {}) => {
       str = `Transcode videos to ${humanPreset(step, extrameta)}`
     }
 
-    if (_.get(step, 'ffmpeg.an') === true) {
+    if (get(step, 'ffmpeg.an') === true) {
       str += ' and strip the sound'
     }
   }
 
   if (robot.rname === '/audio/encode') {
-    if (_.has(step, 'ffmpeg.ss') && _.has(step, 'ffmpeg.t')) {
-      str = `Take a ${_.get(step, 'ffmpeg.t')}s clip out of audio at a specified offset`
+    if (has(step, 'ffmpeg.ss') && has(step, 'ffmpeg.t')) {
+      str = `Take a ${get(step, 'ffmpeg.t')}s clip out of audio at a specified offset`
     } else if (
-      _.has(step, 'ffmpeg.filter_complex') &&
+      has(step, 'ffmpeg.filter_complex') &&
       step.ffmpeg.filter_complex.includes('setpts=')
     ) {
       str = `Change video speed`
     } else if (
-      _.has(step, 'ffmpeg.filter_complex') &&
+      has(step, 'ffmpeg.filter_complex') &&
       step.ffmpeg.filter_complex.includes('atempo=')
     ) {
       str = `Change audio speed`
@@ -338,7 +338,7 @@ export default (step: $TSFixMe, robots: $TSFixMe, extrameta = {}) => {
       str = `Encode audio to ${humanPreset(step, extrameta)}`
     }
 
-    if (_.get(step, 'ffmpeg.an') === true) {
+    if (get(step, 'ffmpeg.an') === true) {
       str += ' and strip the sound'
     }
   }
@@ -352,10 +352,10 @@ export default (step: $TSFixMe, robots: $TSFixMe, extrameta = {}) => {
   }
 
   if (robot.rname === '/video/merge') {
-    const types = jp.query(step, '$..as')
+    const types = JSONPath({ path: '$..as', json: step })
     if (types.length) {
       str = `Merge ${humanJoin(types)} to create a new video`
-    } else if (_.get(step, 'ffmpeg.f') === 'gif') {
+    } else if (get(step, 'ffmpeg.f') === 'gif') {
       str = `Create animated GIFs from a series of still images`
     }
   }
@@ -365,7 +365,7 @@ export default (step: $TSFixMe, robots: $TSFixMe, extrameta = {}) => {
   }
 
   if (robot.rname === '/audio/artwork') {
-    if (_.get(step, 'method') === 'insert') {
+    if (get(step, 'method') === 'insert') {
       str = `Insert audio artwork`
     } else {
       str = `Extract audio artwork`

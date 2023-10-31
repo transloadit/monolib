@@ -1435,10 +1435,11 @@ __metadata:
     "@transloadit/format-duration-ms": "npm:^0.1.1"
     "@transloadit/prettier-bytes": "npm:^0.1.1"
     "@types/jsonpath": "npm:^0.2.0"
-    "@types/lodash": "npm:^4.14.182"
-    inflect: "npm:0.4.0"
+    "@types/lodash": "npm:^4"
+    inflection: "npm:^3.0.0"
     jsonpath: "npm:1.0.2"
-    lodash: "npm:4.17.21"
+    jsonpath-plus: "npm:^7.2.0"
+    lodash: "npm:^4.17.21"
   languageName: unknown
   linkType: soft
 
@@ -1692,7 +1693,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.14.182":
+"@types/lodash@npm:^4":
   version: 4.14.200
   resolution: "@types/lodash@npm:4.14.200"
   checksum: 7a8dac6dc866f10d1888846d6189d1faeb4f65adb139f0837a005fd1adcde62e60d7e7abb1a2733d13fc57bebb337d74182d8ad3dbd1d211dcd0c310c47e81bc
@@ -5244,17 +5245,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"inflect@npm:0.4.0":
-  version: 0.4.0
-  resolution: "inflect@npm:0.4.0"
-  checksum: 1e5b5c825df9d20ead032ef1810e3c317c9bc905080de90af2c81e3ecf886c8a1ec7bf5a743942c9d8ec65d9addad1dab92687eef630c3869e1160cefbdd3af9
-  languageName: node
-  linkType: hard
-
 "inflection@npm:1.12.0":
   version: 1.12.0
   resolution: "inflection@npm:1.12.0"
   checksum: a5e92f4399f879a4cd92f30c13af6a8a0f4e793073f0e82599d12d9e4200c011348c3cd4e8b1894c774f896e697db78fa04babe754492d2cb00c2d27b3edaa2b
+  languageName: node
+  linkType: hard
+
+"inflection@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "inflection@npm:3.0.0"
+  checksum: 6f7016bc4d037fb8f07c8707edc622772d26467e97af02341fb5b891ca35cde7968726dd5c9b18275202aed17b169e053bc6ed1b3adf541c800c4ffa20236d7c
   languageName: node
   linkType: hard
 
@@ -6477,6 +6478,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jsonpath-plus@npm:^7.2.0":
+  version: 7.2.0
+  resolution: "jsonpath-plus@npm:7.2.0"
+  checksum: b4fbb8387b80721a47e8098f390dbaa5c74ff4e778832d9f662bcf4ab6038ded26944b8dd433f0474b51fb3e0d7e960990c03af89f4f922a6dc0905102ed86b2
+  languageName: node
+  linkType: hard
+
 "jsonpath@npm:1.0.2":
   version: 1.0.2
   resolution: "jsonpath@npm:1.0.2"
@@ -6769,7 +6777,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:4.17.21, lodash@npm:^4.17.15, lodash@npm:^4.17.21":
+"lodash@npm:^4.17.15, lodash@npm:^4.17.21":
   version: 4.17.21
   resolution: "lodash@npm:4.17.21"
   checksum: d8cbea072bb08655bb4c989da418994b073a608dffa608b09ac04b43a791b12aeae7cd7ad919aa4c925f33b48490b5cfe6c1f71d827956071dae2e7bb3a6b74c
