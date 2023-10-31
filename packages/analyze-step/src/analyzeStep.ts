@@ -35,7 +35,15 @@ function humanJoin(array: string[], reduce = true, glueword = 'and'): string {
   return str
 }
 
-function humanFilter(step: $TSFixMe) {
+type Condition = [value: string, operator: string, value: string]
+
+type FileFilterStep = {
+  accepts?: string | Condition[]
+  declines?: string | Condition[]
+  condition_type?: 'or' | 'and'
+}
+
+function humanFilter(step: FileFilterStep): string {
   const collection: Record<string, string[]> = {}
 
   const templates: Record<string, string> = {
@@ -55,13 +63,12 @@ function humanFilter(step: $TSFixMe) {
   }
 
   let lastTemplate = ''
-  const types = ['declines', 'accepts']
+  const types = ['declines', 'accepts'] as const
   for (const type of types) {
     collection[type] = collection[type] || []
     if (typeof step[type] === 'string') {
       collection[type].push(`Filter by code evaluation`)
-    } else if (step[type] && step[type].length > 0) {
-      // @ts-expect-error
+    } else if (step[type] && Array.isArray(step[type])) {
       for (const [key, operator, val] of Object.values(step[type])) {
         const template = clone(templates[operator])
         if (!template) {
@@ -145,7 +152,7 @@ function humanFilter(step: $TSFixMe) {
   }
 
   const total = []
-  if ((collection as $TSFixMe).declines && (collection as $TSFixMe).declines.length > 0) {
+  if (collection.declines && collection.declines.length > 0) {
     const joindec = humanJoin(
       (collection as $TSFixMe).declines,
       false,
@@ -154,8 +161,8 @@ function humanFilter(step: $TSFixMe) {
 
     total.push(`Exclude ${joindec}`)
   }
-  if ((collection as $TSFixMe).accepts && (collection as $TSFixMe).accepts.length > 0) {
-    const joinacc = humanJoin((collection as $TSFixMe).accepts, false, step.condition_type).replace(
+  if (collection.accepts && collection.accepts.length > 0) {
+    const joinacc = humanJoin(collection.accepts, false, step.condition_type).replace(
       'with a certain mime-type and with a certain mime-type',
       'with certain mime-types'
     )
@@ -184,7 +191,13 @@ function humanFilter(step: $TSFixMe) {
     .replace(/files with a filesize below(\W|$)/g, 'files smaller than$1')
 }
 
-function humanDimensions(step: $TSFixMe) {
+type StepWithDimensions = {
+  width?: number | string
+  height?: number | string
+  crop?: { x1: number; x2: number; y1: number; y2: number }
+}
+
+function humanDimensions(step: StepWithDimensions): string {
   let str = ''
 
   if ('width' in step && !`${step.width}`.match(/^\d+$/)) {
@@ -212,7 +225,15 @@ function humanDimensions(step: $TSFixMe) {
   return str
 }
 
-function humanPreset(step: $TSFixMe, extrameta = {}) {
+type PresetStep = {
+  preset?: string
+}
+
+type ExtraMeta = {
+  deviceName?: string
+}
+
+function humanPreset(step: PresetStep, extrameta: ExtraMeta = {}): string {
   let str = inflect.humanize(step.preset.replace(/[-_]/g, ' '))
 
   if (str.match(/^ipad/i)) {
@@ -253,7 +274,11 @@ function humanPreset(step: $TSFixMe, extrameta = {}) {
   return str
 }
 
-function humanFormat(step: $TSFixMe) {
+type FormatStep = {
+  format?: string
+}
+
+function humanFormat(step: FormatStep): string {
   let str = inflect.humanize(step.format.replace(/[-_]/g, ' '))
 
   if (str.match(/^webp/i)) {
@@ -266,7 +291,22 @@ function humanFormat(step: $TSFixMe) {
   return str
 }
 
-export default (step: $TSFixMe, robots: $TSFixMe, extrameta = {}) => {
+type Robots = {
+  [key: string]: {
+    rname: string
+    purpose_words: string
+  }
+}
+
+type Step = Partial<FileFilterStep> &
+  Partial<StepWithDimensions> &
+  Partial<PresetStep> &
+  Partial<FormatStep> & {
+    // using any until we can put some effort into Assembly/Template/Robot types
+    [key: string]: any
+  }
+
+export default function humanize(step: Step, robots: Robots, extrameta: ExtraMeta = {}): string {
   let str = ``
 
   const robot = robots[step.robot]
@@ -285,12 +325,12 @@ export default (step: $TSFixMe, robots: $TSFixMe, extrameta = {}) => {
       str = `Slowdown video to half speed`
     } else if (
       has(step, 'ffmpeg.filter_complex') &&
-      step.ffmpeg.filter_complex.includes('setpts=')
+      (step.ffmpeg.filter_complex as string).includes('setpts=')
     ) {
       str = `Change video speed`
     } else if (
       has(step, 'ffmpeg.filter_complex') &&
-      step.ffmpeg.filter_complex.includes('atempo=')
+      (step.ffmpeg.filter_complex as string).includes('atempo=')
     ) {
       str = `Change audio speed`
     } else if (
@@ -324,12 +364,12 @@ export default (step: $TSFixMe, robots: $TSFixMe, extrameta = {}) => {
       str = `Take a ${get(step, 'ffmpeg.t')}s clip out of audio at a specified offset`
     } else if (
       has(step, 'ffmpeg.filter_complex') &&
-      step.ffmpeg.filter_complex.includes('setpts=')
+      (step.ffmpeg.filter_complex as string).includes('setpts=')
     ) {
       str = `Change video speed`
     } else if (
       has(step, 'ffmpeg.filter_complex') &&
-      step.ffmpeg.filter_complex.includes('atempo=')
+      (step.ffmpeg.filter_complex as string).includes('atempo=')
     ) {
       str = `Change audio speed`
     } else if ('bitrate' in step) {
@@ -361,7 +401,7 @@ export default (step: $TSFixMe, robots: $TSFixMe, extrameta = {}) => {
   }
 
   if (robot.rname === '/file/filter') {
-    str = humanFilter(step)
+    str = humanFilter(step as FileFilterStep)
   }
 
   if (robot.rname === '/audio/artwork') {

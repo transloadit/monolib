@@ -3,6 +3,16 @@ const { api } = require('@pagerduty/pdjs')
 const PRIORITY_P1 = 'PUTY3A1'
 const DUPLICATE_INCIDENT_MESSAGE = 'matching dedup key already exists'
 
+export type TriggerPagerOptions = {
+  description: string
+  from?: string
+  incidentKey: string
+  serviceId: string
+  title: string
+  token: string
+  urgency?: 'low' | 'high'
+}
+
 const triggerPager = async ({
   token,
   serviceId,
@@ -11,7 +21,7 @@ const triggerPager = async ({
   from = 'tim.koschuetzki@transloadit.com',
   title = incidentKey,
   description,
-}: $TSFixMe) => {
+}: TriggerPagerOptions): Promise<void> => {
   const res = await api({ token }).post('/incidents', {
     headers: {
       from,

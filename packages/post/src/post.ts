@@ -8,7 +8,7 @@ import fileExists from '@transloadit/file-exists'
 import slugify from '@transloadit/slugify'
 import title from 'title'
 
-async function post() {
+async function post(): Promise<void> {
   // eslint-disable-next-line import/no-dynamic-require,global-require
   console.log(`Welcome to @transloadit/post@${require(`${__dirname}/package.json`).version}. `)
   console.log(`Please answer some questions about the blog post, `)
