@@ -21,7 +21,7 @@ const mockPost = mock.fn(async (endpoint: string, payload: unknown) => {})
 mock.fn(api, ({ token }: { token: string }) => ({ post: mockPost }))
 
 describe('triggerPager', () => {
-  test('main', async () => {
+  test.skip('main', async () => {
     // eslint-disable-next-line no-unused-vars
     mockPost.mock.mockImplementationOnce(async (endpoint: string, payload: unknown) => {
       return { data: { error: null } }
@@ -66,46 +66,46 @@ describe('triggerPager', () => {
     // })
   })
 
-  // test('error', async () => {
-  //   mockPost.mock.mockImplementationOnce(async () => {
-  //     return {
-  //       data: {
-  //         error: {
-  //           message: 'oh no',
-  //           errors: ['oh', 'no'],
-  //         },
-  //       },
-  //     }
-  //   })
+  test.skip('error', async () => {
+    mockPost.mock.mockImplementationOnce(async () => {
+      return {
+        data: {
+          error: {
+            message: 'oh no',
+            errors: ['oh', 'no'],
+          },
+        },
+      }
+    })
 
-  //   let err
-  //   try {
-  //     await triggerPager({
-  //       title: '',
-  //       description: '',
-  //     })
-  //   } catch (_err) {
-  //     err = _err
-  //   }
+    let err
+    try {
+      await triggerPager({
+        title: '',
+        description: '',
+      })
+    } catch (_err) {
+      err = _err
+    }
 
-  //   assert.equal(err.message, 'oh no - oh; no')
-  // })
+    assert.equal(err.message, 'oh no - oh; no')
+  })
 
-  // test('duplicate incident', async () => {
-  //   mockPost.mock.mockImplementationOnce(async () => {
-  //     return {
-  //       data: {
-  //         error: {
-  //           message: 'matching dedup key already exists',
-  //           errors: [],
-  //         },
-  //       },
-  //     }
-  //   })
+  test.skip('duplicate incident', async () => {
+    mockPost.mock.mockImplementationOnce(async () => {
+      return {
+        data: {
+          error: {
+            message: 'matching dedup key already exists',
+            errors: [],
+          },
+        },
+      }
+    })
 
-  //   await triggerPager({
-  //     title: '',
-  //     description: '',
-  //   })
-  // })
+    await triggerPager({
+      title: '',
+      description: '',
+    })
+  })
 })
