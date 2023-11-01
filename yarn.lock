@@ -1469,6 +1469,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@transloadit/has-property@npm:^0.0.0, @transloadit/has-property@workspace:packages/has-property":
+  version: 0.0.0-use.local
+  resolution: "@transloadit/has-property@workspace:packages/has-property"
+  languageName: unknown
+  linkType: soft
+
 "@transloadit/post@workspace:packages/post":
   version: 0.0.0-use.local
   resolution: "@transloadit/post@workspace:packages/post"
@@ -1515,6 +1521,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@transloadit/sort-assembly@workspace:packages/sort-assembly"
   dependencies:
+    "@transloadit/has-property": "npm:^0.0.0"
     "@transloadit/sort-object-by-prio": "npm:^0.1.2"
     "@transloadit/sort-result": "npm:^0.1.2"
   languageName: unknown
@@ -1531,6 +1538,8 @@ __metadata:
 "@transloadit/sort-object@npm:^0.1.2, @transloadit/sort-object@workspace:packages/sort-object":
   version: 0.0.0-use.local
   resolution: "@transloadit/sort-object@workspace:packages/sort-object"
+  dependencies:
+    "@transloadit/has-property": "npm:^0.0.0"
   languageName: unknown
   linkType: soft
 
@@ -1538,6 +1547,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@transloadit/sort-result-meta@workspace:packages/sort-result-meta"
   dependencies:
+    "@transloadit/has-property": "npm:^0.0.0"
     "@transloadit/sort-object-by-prio": "npm:^0.1.2"
   languageName: unknown
   linkType: soft
@@ -1546,6 +1556,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@transloadit/sort-result@workspace:packages/sort-result"
   dependencies:
+    "@transloadit/has-property": "npm:^0.0.0"
     "@transloadit/sort-object-by-prio": "npm:^0.1.2"
     "@transloadit/sort-result-meta": "npm:^0.1.2"
   languageName: unknown
@@ -1623,6 +1634,13 @@ __metadata:
   dependencies:
     "@types/node": "npm:*"
   checksum: f2a26a4f26e88a96de7090e12992cb62decf3608e54abde091066444644f304336b51f8e2377d8c86be6c469afd928b0ddfe153505631bb079ac40fd4d573c01
+  languageName: node
+  linkType: hard
+
+"@types/inflection@npm:^1.13.1":
+  version: 1.13.1
+  resolution: "@types/inflection@npm:1.13.1"
+  checksum: 7f6e667f470e70a9ebcde58fad1d376319ec32dcaada466b3d4108ffd300a0fc167aacf714907309588673b53fd4a1d1a6b4101e24e0c973fc7ec6c0a612088b
   languageName: node
   linkType: hard
 
@@ -7196,6 +7214,7 @@ __metadata:
     "@babel/eslint-parser": "npm:^7.18.9"
     "@babel/eslint-plugin": "npm:^7.18.10"
     "@sucrase/jest-plugin": "npm:^2.2.1"
+    "@types/inflection": "npm:^1.13.1"
     "@types/jest": "npm:^29.0.0"
     "@types/node": "npm:^18.7.14"
     "@typescript-eslint/eslint-plugin": "npm:^5.36.1"

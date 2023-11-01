@@ -1,8 +1,8 @@
 // Adapted from https://github.com/Flet/prettier-bytes/
 // Changing 1000 bytes to 1024, so we can keep uppercase KB vs kB
 // ISC License (c) Dan Flettre https://github.com/Flet/prettier-bytes/blob/master/LICENSE
-export default function prettierBytes(num: $TSFixMe) {
-  if (typeof num !== 'number' || isNaN(num)) {
+export default function prettierBytes(num: number): string {
+  if (typeof num !== 'number' || Number.isNaN(num)) {
     throw new TypeError(`Expected a number, got ${typeof num}`)
   }
 

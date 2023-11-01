@@ -20,7 +20,10 @@
     "test": "dist"
   },
   "scripts": {
-    "tsc": "tsc",
+    "tsc": "tsc --build --clean && tsc --build",
     "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@transloadit/has-property": "^0.0.0"
   }
 }

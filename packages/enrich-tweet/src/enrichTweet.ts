@@ -3,25 +3,48 @@ import { tall } from 'tall'
 
 import getUrls from 'get-urls'
 
-export default async function enrichTweet(tweet: $TSFixMe, unshorten = true) {
-  async function tryUnshorten(url: $TSFixMe) {
-    if (!unshorten) return url
-    try {
-      return await tall(url)
-    } catch (err) {
-      return url
-    }
+async function tryUnshorten(url: string, unshorten: boolean): Promise<string> {
+  if (!unshorten) return url
+  try {
+    return await tall(url)
+  } catch (err) {
+    return url
   }
+}
 
-  if (!tweet) {
-    return tweet
+type Tweet = {
+  full_text: string
+  entities?: {
+    urls: {
+      display_url: string
+      url: string
+      expanded_url: string
+    }[]
   }
+  extended_entities?: {
+    media: {
+      display_url: string
+      url: string
+      media_url: string
+      media_url_https: string
+      expanded_url: string
+    }[]
+  }
+}
+
+export default async function enrichTweet(
+  tweet: Tweet,
+  unshorten = true
+): Promise<string | undefined> {
+  if (!tweet) return
+
   let text = tweet.full_text
+
   // Expand URLs
   if (tweet.entities && tweet.entities.urls.length) {
     const subUrls = tweet.entities.urls
     for (const subUrl1 of subUrls) {
-      const unshortened = await tryUnshorten(subUrl1.expanded_url)
+      const unshortened = await tryUnshorten(subUrl1.expanded_url, unshorten)
       const friends1 = [subUrl1.display_url, subUrl1.url, subUrl1.expanded_url]
       for (const friend1 of friends1) {
         text = text.replace(`http://www.${friend1}`, unshortened)
@@ -49,7 +72,7 @@ export default async function enrichTweet(tweet: $TSFixMe, unshorten = true) {
     if (!subUrl3.match(/^https?:\/\/bit\.ly/)) {
       continue
     }
-    const unshortened3 = await tryUnshorten(subUrl3)
+    const unshortened3 = await tryUnshorten(subUrl3, unshorten)
     text = text.replace(`${subUrl3}`, `${unshortened3}`)
   }
 
@@ -71,5 +94,6 @@ export default async function enrichTweet(tweet: $TSFixMe, unshorten = true) {
     '<a class="tweet-url username" href="https://twitter.com/$1" data-screen-name="$2" rel="nofollow">@$3</a>'
   )
 
+  // eslint-disable-next-line consistent-return
   return text
 }

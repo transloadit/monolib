@@ -2,9 +2,12 @@ import prd from './prd'
 
 describe('prd', () => {
   test('main', async () => {
-    // @ts-expect-error
-    const mockExit = jest.spyOn(process, 'exit').mockImplementation(() => {})
-    jest.spyOn(console, 'error').mockImplementation((e: $TSFixMe) => {
+    const mockExit = jest
+      .spyOn(process, 'exit')
+      // @ts-expect-error - process.exit should return never but that is impossible here
+      // eslint-disable-next-line @typescript-eslint/no-empty-function
+      .mockImplementation((code?: number) => {})
+    jest.spyOn(console, 'error').mockImplementation((e: Error) => {
       expect(e.message).toStrictEqual('Halt via prd')
     })
     prd('foo')
