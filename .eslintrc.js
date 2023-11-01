@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 module.exports = {
-  extends: ['transloadit', 'prettier'],
+  extends: ['transloadit', 'prettier', 'plugin:@typescript-eslint/recommended'],
   parser: '@typescript-eslint/parser',
   plugins: [
     '@babel/eslint-plugin',
@@ -8,7 +8,6 @@ module.exports = {
     'node',
     'prefer-import',
     'promise',
-    // extra:
     '@typescript-eslint',
   ],
   settings: {

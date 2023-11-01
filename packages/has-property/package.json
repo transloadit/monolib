@@ -1,17 +1,17 @@
 {
-  "name": "@transloadit/sort-result-meta",
+  "name": "@transloadit/has-property",
   "license": "AGPL-3.0-only",
-  "version": "0.1.2",
+  "version": "0.0.0",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/transloadit/monolib.git",
-    "directory": "packages/sort-result-meta"
+    "directory": "packages/has-property"
   },
-  "main": "dist/sortResultMeta.js",
-  "typings": "dist/sortResultMeta.d.ts",
+  "main": "dist/has-property.js",
+  "typings": "dist/has-property.d.ts",
   "files": [
     "dist"
   ],
@@ -22,9 +22,5 @@
   "scripts": {
     "tsc": "tsc --build --clean && tsc --build",
     "test": "echo \"Error: run tests from root\" && exit 1"
-  },
-  "dependencies": {
-    "@transloadit/has-property": "^0.0.0",
-    "@transloadit/sort-object-by-prio": "^0.1.2"
   }
 }

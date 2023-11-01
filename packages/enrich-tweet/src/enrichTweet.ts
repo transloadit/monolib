@@ -39,6 +39,7 @@ export default async function enrichTweet(
   if (!tweet) return
 
   let text = tweet.full_text
+
   // Expand URLs
   if (tweet.entities && tweet.entities.urls.length) {
     const subUrls = tweet.entities.urls
@@ -93,5 +94,6 @@ export default async function enrichTweet(
     '<a class="tweet-url username" href="https://twitter.com/$1" data-screen-name="$2" rel="nofollow">@$3</a>'
   )
 
+  // eslint-disable-next-line consistent-return
   return text
 }

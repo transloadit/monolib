@@ -16,13 +16,15 @@ jest.mock('@pagerduty/pdjs')
 
 describe('triggerPager', () => {
   test('main', async () => {
-    const post = jest.fn(async (endpoint: $TSFixMe, payload: $TSFixMe) => {
+    const post = jest.fn(async (endpoint: string, payload: unknown) => {
       expect(endpoint).toBe('/incidents')
       expect(payload).toMatchSnapshot()
       return { data: { error: null } }
     })
-    // @ts-expect-error
+
+    // @ts-expect-error - api is mocked by jest so mockReturnValue exists
     api.mockReturnValue({ post })
+
     await triggerPager({
       title: LOREM3,
       description: LOREM3,
@@ -42,7 +44,8 @@ describe('triggerPager', () => {
         },
       }
     })
-    // @ts-expect-error
+
+    // @ts-expect-error - api is mocked by jest so mockReturnValue exists
     api.mockReturnValue({ post })
 
     let err
@@ -55,7 +58,7 @@ describe('triggerPager', () => {
       err = _err
     }
 
-    expect((err as $TSFixMe).message).toBe('oh no - oh; no')
+    expect(err.message).toBe('oh no - oh; no')
   })
 
   test('duplicate incident', async () => {
@@ -69,7 +72,8 @@ describe('triggerPager', () => {
         },
       }
     })
-    // @ts-expect-error
+
+    // @ts-expect-error - api is mocked by jest so mockReturnValue exists
     api.mockReturnValue({ post })
 
     await triggerPager({

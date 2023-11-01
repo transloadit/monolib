@@ -153,11 +153,10 @@ function humanFilter(step: FileFilterStep): string {
 
   const total = []
   if (collection.declines && collection.declines.length > 0) {
-    const joindec = humanJoin(
-      (collection as $TSFixMe).declines,
-      false,
-      step.condition_type
-    ).replace('with a certain mime-type and with a certain mime-type', 'with certain mime-types')
+    const joindec = humanJoin(collection.declines, false, step.condition_type).replace(
+      'with a certain mime-type and with a certain mime-type',
+      'with certain mime-types'
+    )
 
     total.push(`Exclude ${joindec}`)
   }
@@ -241,8 +240,8 @@ function humanPreset(step: PresetStep, extrameta: ExtraMeta = {}): string {
     quality = quality ? ` (${quality} quality)` : ``
 
     let device = `iPad${quality}`
-    if ((extrameta as $TSFixMe).deviceName) {
-      device = `${(extrameta as $TSFixMe).deviceName}`
+    if (extrameta.deviceName) {
+      device = `${extrameta.deviceName}`
     }
 
     str = `${device} (H.264)`

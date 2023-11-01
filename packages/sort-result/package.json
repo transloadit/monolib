@@ -24,6 +24,7 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
+    "@transloadit/has-property": "^0.0.0",
     "@transloadit/sort-object-by-prio": "^0.1.2",
     "@transloadit/sort-result-meta": "^0.1.2"
   }
