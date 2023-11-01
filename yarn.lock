@@ -1470,7 +1470,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@transloadit/has-property@npm:^0.0.0, @transloadit/has-property@workspace:^, @transloadit/has-property@workspace:packages/has-property":
+"@transloadit/has-property@npm:^0.0.0, @transloadit/has-property@workspace:packages/has-property":
   version: 0.0.0-use.local
   resolution: "@transloadit/has-property@workspace:packages/has-property"
   languageName: unknown
@@ -1548,7 +1548,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@transloadit/sort-result-meta@workspace:packages/sort-result-meta"
   dependencies:
-    "@transloadit/has-property": "workspace:^"
+    "@transloadit/has-property": "npm:^0.0.0"
     "@transloadit/sort-object-by-prio": "npm:^0.1.2"
   languageName: unknown
   linkType: soft
@@ -1557,7 +1557,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@transloadit/sort-result@workspace:packages/sort-result"
   dependencies:
-    "@transloadit/has-property": "workspace:^"
+    "@transloadit/has-property": "npm:^0.0.0"
     "@transloadit/sort-object-by-prio": "npm:^0.1.2"
     "@transloadit/sort-result-meta": "npm:^0.1.2"
   languageName: unknown
