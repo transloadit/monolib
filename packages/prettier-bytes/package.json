@@ -16,10 +16,6 @@
   "files": [
     "dist"
   ],
-  "directories": {
-    "lib": "dist",
-    "test": "dist"
-  },
   "scripts": {
     "tsc": "tsc --build --clean && tsc --build",
     "test": "echo \"Error: run tests from root\" && exit 1"

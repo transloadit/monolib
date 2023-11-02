@@ -13,7 +13,7 @@ async function tryUnshorten(url: string, unshorten: boolean): Promise<string> {
 }
 
 type Tweet = {
-  full_text: string
+  full_text?: string
   entities?: {
     urls: {
       display_url: string
@@ -38,7 +38,7 @@ export default async function enrichTweet(
 ): Promise<string | undefined> {
   if (!tweet) return
 
-  let text = tweet.full_text
+  let text = tweet.full_text ?? ''
 
   // Expand URLs
   if (tweet.entities && tweet.entities.urls.length) {
