@@ -1,7 +1,12 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist"
+    "outDir": "dist/",
+    "rootDir": "src/",
+    "paths": {
+      "@transloadit/has-property": ["../sort-object"]
+    }
   },
-  "include": ["./src"]
+  "references": [{ "path": "../sort-object" }],
+  "include": ["src/"]
 }

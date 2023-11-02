@@ -13,7 +13,7 @@ async function tryUnshorten(url: string, unshorten: boolean): Promise<string> {
 }
 
 type Tweet = {
-  full_text: string
+  full_text?: string
   entities?: {
     urls: {
       display_url: string

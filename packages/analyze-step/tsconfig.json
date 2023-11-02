@@ -1,7 +1,13 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist"
+    "outDir": "dist/",
+    "rootDir": "src/",
+    "paths": {
+      "@transloadit/format-duration-ms": ["../format-duration-ms"],
+      "@transloadit/prettier-bytes": ["../prettier-bytes"]
+    }
   },
-  "include": ["./src"]
+  "references": [{ "path": "../format-duration-ms" }, { "path": "../prettier-bytes" }],
+  "include": ["src/"]
 }
