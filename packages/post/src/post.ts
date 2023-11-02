@@ -7,10 +7,9 @@ import openInEditor from 'open-in-editor'
 import fileExists from '@transloadit/file-exists'
 import slugify from '@transloadit/slugify'
 import title from 'title'
-import packageJson from '../package.json'
 
 async function post(): Promise<void> {
-  console.log(`Welcome to @transloadit/post@${packageJson.version}. `)
+  console.log(`Welcome to @transloadit/post.`)
   console.log(`Please answer some questions about the blog post, `)
   console.log(`and I'll generate a starting point and open your editor. `)
 
