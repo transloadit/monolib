@@ -10,8 +10,9 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/sort-assembly"
   },
+  "type": "module",
   "main": "dist/sortAssembly.js",
-  "typings": "dist/sortAssembly.d.ts",
+  "types": "dist/sortAssembly.d.ts",
   "files": [
     "dist"
   ],

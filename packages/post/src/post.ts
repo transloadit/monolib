@@ -19,7 +19,9 @@ async function post(): Promise<void> {
     throw new Error(`Dir does not exist: '${postDir.replace(process.cwd(), '.')}'`)
   }
 
-  const mysqlNow = new Date().toISOString().replace('T', ' ').split('.')[0].split(' ')[0]
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const mysqlNow = new Date().toISOString().replace('T', ' ').split('.')[0]!.split(' ')[0]!
+
   // eslint-disable-next-line no-unused-vars
   const [dateY, datem] = mysqlNow.split('-')
   const answers = await inquirer.prompt([

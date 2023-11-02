@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { api } = require('@pagerduty/pdjs')
+import { api } from '@pagerduty/pdjs'
 
 const PRIORITY_P1 = 'PUTY3A1'
 const DUPLICATE_INCIDENT_MESSAGE = 'matching dedup key already exists'
@@ -7,7 +6,7 @@ const DUPLICATE_INCIDENT_MESSAGE = 'matching dedup key already exists'
 export type TriggerPagerOptions = {
   description: string
   from?: string
-  incidentKey?: string
+  incidentKey: string
   serviceId?: string
   title: string
   token?: string
@@ -15,13 +14,13 @@ export type TriggerPagerOptions = {
 }
 
 const triggerPager = async ({
-  token,
-  serviceId,
-  incidentKey,
-  urgency = 'high',
-  from = 'tim.koschuetzki@transloadit.com',
-  title = incidentKey,
   description,
+  from = 'tim.koschuetzki@transloadit.com',
+  incidentKey,
+  serviceId,
+  title = incidentKey,
+  token,
+  urgency = 'high',
 }: TriggerPagerOptions): Promise<void> => {
   const res = await api({ token }).post('/incidents', {
     headers: {

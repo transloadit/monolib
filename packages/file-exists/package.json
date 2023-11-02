@@ -10,15 +10,12 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/file-exists"
   },
+  "type": "module",
   "main": "dist/fileExists.js",
-  "typings": "dist/fileExists.d.ts",
+  "types": "dist/fileExists.d.ts",
   "files": [
     "dist"
   ],
-  "directories": {
-    "lib": "dist",
-    "test": "dist"
-  },
   "scripts": {
     "tsc": "tsc --build --clean && tsc --build",
     "test": "echo \"Error: run tests from root\" && exit 1"

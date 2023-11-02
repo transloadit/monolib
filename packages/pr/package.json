@@ -10,15 +10,12 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/pr"
   },
+  "type": "module",
   "main": "dist/pr.js",
-  "typings": "dist/pr.d.ts",
+  "types": "dist/pr.d.ts",
   "files": [
     "dist"
   ],
-  "directories": {
-    "lib": "dist",
-    "test": "dist"
-  },
   "scripts": {
     "tsc": "tsc --build --clean && tsc --build",
     "test": "echo \"Error: run tests from root\" && exit 1"

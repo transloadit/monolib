@@ -9,15 +9,12 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/post"
   },
-  "bin": "./post.js",
-  "typings": "dist/post.d.ts",
+  "type": "module",
+  "bin": "dist/post.js",
+  "types": "dist/post.d.ts",
   "files": [
     "dist"
   ],
-  "directories": {
-    "lib": "dist",
-    "test": "dist"
-  },
   "scripts": {
     "tsc": "tsc --build --clean && tsc --build",
     "test": "echo \"Error: run tests from root\" && exit 1"

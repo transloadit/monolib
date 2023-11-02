@@ -10,8 +10,9 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/trigger-pager"
   },
+  "type": "module",
   "main": "dist/triggerPager.js",
-  "typings": "dist/triggerPager.d.ts",
+  "types": "dist/triggerPager.d.ts",
   "files": [
     "dist"
   ],

@@ -10,15 +10,12 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/has-property"
   },
+  "type": "module",
   "main": "dist/has-property.js",
-  "typings": "dist/has-property.d.ts",
+  "types": "dist/has-property.d.ts",
   "files": [
     "dist"
   ],
-  "directories": {
-    "lib": "dist",
-    "test": "dist"
-  },
   "scripts": {
     "tsc": "tsc --build --clean && tsc --build",
     "test": "echo \"Error: run tests from root\" && exit 1"

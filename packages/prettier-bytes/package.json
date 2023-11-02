@@ -10,8 +10,9 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/prettier-bytes"
   },
+  "type": "module",
   "main": "dist/prettierBytes.js",
-  "typings": "dist/prettierBytes.d.ts",
+  "types": "dist/prettierBytes.d.ts",
   "files": [
     "dist"
   ],

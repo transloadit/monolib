@@ -10,15 +10,12 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/enrich-tweet"
   },
+  "type": "module",
   "main": "dist/enrichTweet.js",
-  "typings": "dist/enrichTweet.d.ts",
+  "types": "dist/enrichTweet.d.ts",
   "files": [
     "dist"
   ],
-  "directories": {
-    "lib": "dist",
-    "test": "dist"
-  },
   "scripts": {
     "tsc": "tsc --build --clean && tsc --build",
     "test": "echo \"Error: run tests from root\" && exit 1"

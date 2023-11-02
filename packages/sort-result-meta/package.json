@@ -10,15 +10,12 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/sort-result-meta"
   },
+  "type": "module",
   "main": "dist/sortResultMeta.js",
-  "typings": "dist/sortResultMeta.d.ts",
+  "types": "dist/sortResultMeta.d.ts",
   "files": [
     "dist"
   ],
-  "directories": {
-    "lib": "dist",
-    "test": "dist"
-  },
   "scripts": {
     "tsc": "tsc --build --clean && tsc --build",
     "test": "echo \"Error: run tests from root\" && exit 1"

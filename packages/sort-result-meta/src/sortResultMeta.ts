@@ -12,7 +12,7 @@ function isObject(obj: unknown): obj is Record<string, unknown> {
 }
 
 export default function sortResultMeta<T extends Meta>(meta: T): T {
-  if (hasProperty(meta, 'faces')) {
+  if (meta.faces) {
     for (const key of Object.keys(meta.faces)) {
       if (!hasProperty(meta.faces, key)) continue
 

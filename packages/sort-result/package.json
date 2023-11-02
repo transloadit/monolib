@@ -10,21 +10,17 @@
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/sort-result"
   },
+  "type": "module",
   "main": "dist/sortResult.js",
-  "typings": "dist/sortResult.d.ts",
+  "types": "dist/sortResult.d.ts",
   "files": [
     "dist"
   ],
-  "directories": {
-    "lib": "dist",
-    "test": "dist"
-  },
   "scripts": {
     "tsc": "tsc --build --clean && tsc --build",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@transloadit/has-property": "^0.0.1",
     "@transloadit/sort-object-by-prio": "^0.1.3",
     "@transloadit/sort-result-meta": "^0.1.3"
   }
