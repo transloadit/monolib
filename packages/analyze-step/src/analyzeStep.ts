@@ -21,7 +21,7 @@ function humanJoin(array: string[], reduce = true, glueword = 'and'): string {
     }
   }
 
-  if (countedArray.length === 1) {
+  if (countedArray.length === 1 && typeof countedArray[0] === 'string') {
     return countedArray[0]
   }
 
@@ -67,9 +67,9 @@ function humanFilter(step: FileFilterStep): string {
   for (const type of types) {
     collection[type] = collection[type] || []
     if (typeof step[type] === 'string') {
-      collection[type].push(`Filter by code evaluation`)
+      collection[type]?.push(`Filter by code evaluation`)
     } else if (step[type] && Array.isArray(step[type])) {
-      for (const [key, operator, val] of Object.values(step[type])) {
+      for (const [key, operator, val] of Object.values(step[type]!)) {
         const template = clone(templates[operator])
         if (!template) {
           throw new Error(
@@ -145,7 +145,7 @@ function humanFilter(step: FileFilterStep): string {
           humanDescr = humanDescr.replace('wi2th', 'with')
         }
 
-        collection[type].push(humanDescr)
+        collection[type]?.push(humanDescr)
         lastTemplate = template
       }
     }
@@ -211,11 +211,11 @@ function humanDimensions(step: StepWithDimensions): string {
 
   if ('width' in step && 'height' in step) {
     str += ` to ${step.width}×${step.height}`
-  } else if ('width' in step) {
+  } else if (step.width) {
     str += ` to ${step.width} pixels wide`
-  } else if ('height' in step) {
+  } else if (step.height) {
     str += ` to ${step.height} pixels high`
-  } else if ('crop' in step) {
+  } else if (step.crop) {
     str += ` to ${step.crop.x2 - step.crop.x1}×${step.crop.y2 - step.crop.y1} starting at ${
       step.crop.x1
     }×${step.crop.y1} from the top left`
@@ -233,6 +233,8 @@ type ExtraMeta = {
 }
 
 function humanPreset(step: PresetStep, extrameta: ExtraMeta = {}): string {
+  if (!step.preset) return ''
+
   let str = inflect.humanize(step.preset.replace(/[-_]/g, ' '))
 
   if (str.match(/^ipad/i)) {
@@ -278,6 +280,8 @@ type FormatStep = {
 }
 
 function humanFormat(step: FormatStep): string {
+  if (!step.format) return ''
+
   let str = inflect.humanize(step.format.replace(/[-_]/g, ' '))
 
   if (str.match(/^webp/i)) {
@@ -309,9 +313,9 @@ export default function humanize(step: Step, robots: Robots, extrameta: ExtraMet
   let str = ``
 
   const robot = robots[step.robot]
-  str = robot.purpose_words
+  str = robot?.purpose_words ?? ''
 
-  if (robot.rname === '/video/encode') {
+  if (robot?.rname === '/video/encode') {
     if (JSON.stringify(step).match(/watermark/)) {
       str = `Watermark videos`
     } else if (get(step, 'ffmpeg.t') && get(step, 'ffmpeg.ss')) {
@@ -358,7 +362,7 @@ export default function humanize(step: Step, robots: Robots, extrameta: ExtraMet
     }
   }
 
-  if (robot.rname === '/audio/encode') {
+  if (robot?.rname === '/audio/encode') {
     if (has(step, 'ffmpeg.ss') && has(step, 'ffmpeg.t')) {
       str = `Take a ${get(step, 'ffmpeg.t')}s clip out of audio at a specified offset`
     } else if (
@@ -382,7 +386,7 @@ export default function humanize(step: Step, robots: Robots, extrameta: ExtraMet
     }
   }
 
-  if (robot.rname === '/video/adaptive') {
+  if (robot?.rname === '/video/adaptive') {
     if (step.technique === 'hls') {
       str = `Convert videos to HLS`
     } else if (step.technique === 'dash') {
@@ -390,7 +394,7 @@ export default function humanize(step: Step, robots: Robots, extrameta: ExtraMet
     }
   }
 
-  if (robot.rname === '/video/merge') {
+  if (robot?.rname === '/video/merge') {
     const types = JSONPath({ path: '$..as', json: step })
     if (types.length) {
       str = `Merge ${humanJoin(types)} to create a new video`
@@ -399,11 +403,11 @@ export default function humanize(step: Step, robots: Robots, extrameta: ExtraMet
     }
   }
 
-  if (robot.rname === '/file/filter') {
+  if (robot?.rname === '/file/filter') {
     str = humanFilter(step as FileFilterStep)
   }
 
-  if (robot.rname === '/audio/artwork') {
+  if (robot?.rname === '/audio/artwork') {
     if (get(step, 'method') === 'insert') {
       str = `Insert audio artwork`
     } else {
@@ -411,7 +415,7 @@ export default function humanize(step: Step, robots: Robots, extrameta: ExtraMet
     }
   }
 
-  if (robot.rname === '/image/resize') {
+  if (robot?.rname === '/image/resize') {
     if ('watermark_url' in step) {
       str = `Watermark images`
     } else if ('sepia' in step) {

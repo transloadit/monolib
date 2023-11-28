@@ -11,7 +11,7 @@
     "directory": "packages/prettier-bytes"
   },
   "main": "dist/prettierBytes.js",
-  "typings": "dist/prettierBytes.d.ts",
+  "types": "dist/prettierBytes.d.ts",
   "files": [
     "dist"
   ],

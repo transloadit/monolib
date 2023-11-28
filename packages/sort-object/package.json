@@ -11,7 +11,7 @@
     "directory": "packages/sort-object"
   },
   "main": "dist/sortObject.js",
-  "typings": "dist/sortObject.d.ts",
+  "types": "dist/sortObject.d.ts",
   "files": [
     "dist"
   ],

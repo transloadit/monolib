@@ -11,7 +11,7 @@
     "directory": "packages/has-property"
   },
   "main": "dist/has-property.js",
-  "typings": "dist/has-property.d.ts",
+  "types": "dist/has-property.d.ts",
   "files": [
     "dist"
   ],

@@ -11,7 +11,7 @@
     "directory": "packages/sort-result-meta"
   },
   "main": "dist/sortResultMeta.js",
-  "typings": "dist/sortResultMeta.d.ts",
+  "types": "dist/sortResultMeta.d.ts",
   "files": [
     "dist"
   ],

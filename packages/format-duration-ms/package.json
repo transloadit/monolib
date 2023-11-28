@@ -10,7 +10,7 @@
     "directory": "packages/format-duration-ms"
   },
   "main": "dist/formatDurationMs.js",
-  "typings": "dist/formatDurationMs.d.ts",
+  "types": "dist/formatDurationMs.d.ts",
   "files": [
     "dist"
   ],

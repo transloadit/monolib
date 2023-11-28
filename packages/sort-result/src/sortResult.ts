@@ -1,4 +1,3 @@
-import { hasProperty } from '@transloadit/has-property'
 import sortObjectByPrio from '@transloadit/sort-object-by-prio'
 import sortResultMeta from '@transloadit/sort-result-meta'
 
@@ -8,7 +7,7 @@ export default function sortResult<T extends { meta?: unknown }>(result: T): T {
     z: ['meta'],
   })
 
-  if (hasProperty(sorted, 'meta')) {
+  if (sorted.meta && typeof sorted.meta === 'object') {
     sorted.meta = sortResultMeta(sorted.meta)
   }
 

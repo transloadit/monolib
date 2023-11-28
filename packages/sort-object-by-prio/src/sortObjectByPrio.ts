@@ -14,7 +14,8 @@ export default function sortObjectByPrio<T extends Record<string, unknown>>(
     for (const [prefix, items] of Object.entries(prefixes)) {
       let i = 0
       for (const matcher of items) {
-        const modifier = parseInt(String(prefix === '_' ? prefixes[prefix].length - i : i), 10)
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        const modifier = parseInt(String(prefix === '_' ? prefixes[prefix]!.length - i : i), 10)
         const numOfPrefix = 3 + modifier
         const strPref = new Array(numOfPrefix).join(prefix)
 

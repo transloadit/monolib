@@ -10,7 +10,7 @@
     "directory": "packages/abbr"
   },
   "main": "dist/abbr.js",
-  "typings": "dist/abbr.d.ts",
+  "types": "dist/abbr.d.ts",
   "files": [
     "dist"
   ],
