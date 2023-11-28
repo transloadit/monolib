@@ -11,7 +11,7 @@
     "directory": "packages/prd"
   },
   "main": "dist/prd.js",
-  "typings": "dist/prd.d.ts",
+  "types": "dist/prd.d.ts",
   "files": [
     "dist"
   ],

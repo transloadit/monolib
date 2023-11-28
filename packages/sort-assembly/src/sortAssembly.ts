@@ -8,21 +8,26 @@ export default function sortAssembly<T extends Record<string, unknown>>(assembly
     z: ['uploads', 'results'],
   })
 
-  if ('results' in sorted && typeof sorted.results === 'object') {
+  if (sorted.results && typeof sorted.results === 'object') {
     for (const stepName of Object.keys(sorted.results)) {
       if (!hasProperty(sorted.results, stepName)) continue
       const result = sorted.results[stepName]
+      if (!result || typeof result !== 'object') continue
       for (const i of Object.keys(result)) {
         if (!hasProperty(result, i)) continue
-        result[i] = sortResult(result[i])
+        const value = result[i]
+        if (!value || typeof value !== 'object') continue
+        result[i] = sortResult(value)
       }
     }
   }
 
-  if ('uploads' in sorted) {
+  if (sorted.uploads) {
     for (const i of Object.keys(sorted.uploads)) {
       if (!hasProperty(sorted.uploads, i)) continue
-      sorted.uploads[i] = sortResult(sorted.uploads[i])
+      const upload = sorted.uploads[i]
+      if (!upload || typeof upload !== 'object') continue
+      sorted.uploads[i] = sortResult(upload)
     }
   }
 

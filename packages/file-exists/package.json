@@ -11,7 +11,7 @@
     "directory": "packages/file-exists"
   },
   "main": "dist/fileExists.js",
-  "typings": "dist/fileExists.d.ts",
+  "types": "dist/fileExists.d.ts",
   "files": [
     "dist"
   ],
