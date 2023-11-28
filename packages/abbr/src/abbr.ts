@@ -1,4 +1,4 @@
-export default function abbr(str: $TSFixMe, maxLength = 55, divider = `[...]`) {
+export default function abbr(str: string, maxLength = 55, divider = `[...]`): string {
   if (str !== `${str}`) {
     return str
   }

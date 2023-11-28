@@ -4,7 +4,10 @@ type Prefixes = {
   [prefix: string]: Array<string | RegExp>
 }
 
-export default function sortObjectByPrio(obj: $TSFixMe, prefixes: Prefixes) {
+export default function sortObjectByPrio<T extends Record<string, unknown>>(
+  obj: T,
+  prefixes: Prefixes
+): T {
   return sortObject(obj, (argA: string, argB: string) => {
     let a = argA
     let b = argB

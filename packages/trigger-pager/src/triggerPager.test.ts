@@ -112,7 +112,7 @@ describe('triggerPager', () => {
       err = _err
     }
 
-    assert.equal(err.message, 'oh no - oh; no')
+    assert.strictEqual(err.message, 'oh no - oh; no')
   })
 
   test('duplicate incident', async () => {

@@ -19,8 +19,8 @@
     "test": "dist"
   },
   "scripts": {
-    "tsc": "tsc",
+    "tsc": "tsc --build --clean && tsc --build",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
-  "version": "0.1.2"
+  "version": "0.1.3"
 }

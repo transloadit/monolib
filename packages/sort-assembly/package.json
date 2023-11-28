@@ -1,7 +1,7 @@
 {
   "name": "@transloadit/sort-assembly",
   "license": "AGPL-3.0-only",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "publishConfig": {
     "access": "public"
   },
@@ -20,11 +20,12 @@
     "test": "dist"
   },
   "scripts": {
-    "tsc": "tsc",
+    "tsc": "tsc --build --clean && tsc --build",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@transloadit/sort-object-by-prio": "^0.1.2",
-    "@transloadit/sort-result": "^0.1.2"
+    "@transloadit/has-property": "^0.0.1",
+    "@transloadit/sort-object-by-prio": "^0.1.3",
+    "@transloadit/sort-result": "^0.1.3"
   }
 }

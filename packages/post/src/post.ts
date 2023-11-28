@@ -2,15 +2,14 @@
 /* eslint-disable no-console */
 import { promises as fs } from 'fs'
 import inquirer from 'inquirer'
-// @ts-expect-error
+
 import openInEditor from 'open-in-editor'
 import fileExists from '@transloadit/file-exists'
 import slugify from '@transloadit/slugify'
 import title from 'title'
 
-async function post() {
-  // eslint-disable-next-line import/no-dynamic-require,global-require
-  console.log(`Welcome to @transloadit/post@${require(`${__dirname}/package.json`).version}. `)
+async function post(): Promise<void> {
+  console.log(`Welcome to @transloadit/post.`)
   console.log(`Please answer some questions about the blog post, `)
   console.log(`and I'll generate a starting point and open your editor. `)
 
@@ -21,7 +20,7 @@ async function post() {
 
   const mysqlNow = new Date().toISOString().replace('T', ' ').split('.')[0].split(' ')[0]
   // eslint-disable-next-line no-unused-vars
-  const [dateY, datem, dated] = mysqlNow.split('-')
+  const [dateY, datem] = mysqlNow.split('-')
   const answers = await inquirer.prompt([
     { type: 'input', name: 'title', message: 'title:' },
     { type: 'input', name: 'author', message: 'author:', default: process.env.USER },
@@ -70,11 +69,10 @@ async function post() {
   }
 
   const editor = openInEditor.configure(opts)
-  await editor.open(`${outFile}`, {
-    line: 10,
-  })
+  await editor.open(`${outFile}`)
   console.log(`Done. `)
 }
+
 post().catch((err) => {
   console.error(err)
   process.exit(1)

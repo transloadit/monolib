@@ -11,8 +11,10 @@
     "target": "es6",
     "sourceMap": true,
     "skipLibCheck": true,
-    "lib": ["es6"],
-    "types": ["node"]
+    "lib": ["es2022"],
+    "types": ["node"],
+    "composite": true,
+    "incremental": true
   },
   "exclude": ["node_modules", "**/*.test.ts"]
 }

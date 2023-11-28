@@ -1,7 +1,7 @@
 {
   "name": "@transloadit/sort-object-by-prio",
   "license": "AGPL-3.0-only",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "publishConfig": {
     "access": "public"
   },
@@ -20,10 +20,10 @@
     "test": "dist"
   },
   "scripts": {
-    "tsc": "tsc",
+    "tsc": "tsc --build --clean && tsc --build",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@transloadit/sort-object": "^0.1.2"
+    "@transloadit/sort-object": "^0.1.3"
   }
 }
