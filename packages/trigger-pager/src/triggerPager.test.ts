@@ -61,9 +61,9 @@ describe('triggerPager', () => {
       serviceId,
     })
 
-    assert.equal(mockPost.mock.callCount(), 1)
-    assert.equal(mockPost.mock.calls[0].arguments[0], '/incidents')
-    assert.deepEqual(mockPost.mock.calls[0].arguments[1], {
+    assert.strictEqual(mockPost.mock.callCount(), 1)
+    assert.strictEqual(mockPost.mock.calls[0].arguments[0], '/incidents')
+    assert.deepStrictEqual(mockPost.mock.calls[0].arguments[1], {
       headers: {
         from: 'tim.koschuetzki@transloadit.com',
       },
