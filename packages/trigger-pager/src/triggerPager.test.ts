@@ -126,7 +126,7 @@ describe('triggerPager', () => {
       }
     })
 
-    await assert.doesNotReject(async () =>
+    await assert.doesNotReject(
       triggerPager({
         title: '',
         description: '',
