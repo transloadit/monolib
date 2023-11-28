@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { mock, describe, test } from 'node:test'
 import assert from 'node:assert'
+import crypto from 'node:crypto'
 
 function mockRequire(specifier: string, replacer: (actual: any) => any) {
   const actualPath = require.resolve(specifier)
