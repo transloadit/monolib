@@ -1,11 +1,41 @@
 import { mock, describe, test } from 'node:test'
 import assert from 'node:assert'
 
-import triggerPager from './triggerPager'
+// eslint-disable-next-line no-unused-vars
+function mockRequire(specifier: string, replacer: (actual: any) => any) {
+  const actualPath = require.resolve(specifier)
+  if (arguments.length === 1) {
+    // eslint-disable-next-line import/no-dynamic-require,global-require
+    require.cache[actualPath] = require(`../__mocks__/${specifier}`)
+  } else {
+    // eslint-disable-next-line import/no-dynamic-require,global-require
+    const actual = require(specifier)
+    const Module = require('node:module') // eslint-disable-line global-require
+    require.cache[actualPath] = new Module(actualPath, module)
+    Object.defineProperties(require.cache[actualPath], {
+      exports: {
+        // @ts-expect-error -  Object literal may only specify known properties, and '__proto__' does not exist in type 'PropertyDescriptor'
+        __proto__: null,
+        value: replacer(actual),
+      },
+      // @ts-expect-error -  Object literal may only specify known properties, and '__proto__' does not exist in type 'PropertyDescriptor'
+      resetFn: { __proto__: null, value: replacer.bind(null, actual) },
+    })
+  }
+}
 
-const { api } = require('@pagerduty/pdjs')
+// eslint-disable-next-line no-unused-vars
+const mockPost = mock.fn(async (endpoint: string, payload: unknown) => {
+  throw Error('mock post for each test')
+})
 
-const LOREM = `Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+mockRequire('@pagerduty/pdjs', () => {
+  return { api: () => ({ post: mockPost }) }
+})
+
+const { default: triggerPager } = require('./triggerPager')
+
+const LOREM_LONG = `Lorem ipsum dolor sit amet, consectetur adipiscing elit,
 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
 nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
@@ -13,60 +43,54 @@ reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
 pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
 culpa qui officia deserunt mollit anim id est laborum.`
 
-const LOREM3 = `${LOREM} ${LOREM} ${LOREM}`
-
-// eslint-disable-next-line no-unused-vars
-const mockPost = mock.fn(async (endpoint: string, payload: unknown) => {})
-// eslint-disable-next-line no-unused-vars
-mock.fn(api, ({ token }: { token: string }) => ({ post: mockPost }))
+const LOREM_SHORT = `Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
 
 describe('triggerPager', () => {
-  test.skip('main', async () => {
+  test('main', async () => {
     // eslint-disable-next-line no-unused-vars
     mockPost.mock.mockImplementationOnce(async (endpoint: string, payload: unknown) => {
       return { data: { error: null } }
     })
 
+    const serviceId = crypto.randomUUID()
+
     await triggerPager({
-      title: LOREM3,
-      description: LOREM3,
-      serviceId: 'SERVICE_ID',
+      title: LOREM_SHORT,
+      description: LOREM_LONG,
+      serviceId,
     })
 
-    // console.log(mockPost.mock.calls)
-
-    // assert.equal(mockPost.mock.callCount(), 1)
-    // assert.equal(mockPost.mock.calls[0].arguments[0], '/incidents')
-    // assert.deepStrictEqual(mockPost.mock.calls[0].arguments[1], {
-    //   data: {
-    //     incident: {
-    //       body: {
-    //         details:
-    //           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,  sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ',
-    //         type: 'incident_body',
-    //       },
-    //       incident_key: undefined,
-    //       priority: {
-    //         id: 'PUTY3A1',
-    //         type: 'priority_reference',
-    //       },
-    //       service: {
-    //         id: 'SERVICE_ID',
-    //         type: 'service_reference',
-    //       },
-    //       title:
-    //         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut eni…',
-    //       type: 'incident',
-    //       urgency: 'high',
-    //     },
-    //   },
-    //   headers: {
-    //     from: 'tim.koschuetzki@transloadit.com',
-    //   },
-    // })
+    assert.equal(mockPost.mock.callCount(), 1)
+    assert.equal(mockPost.mock.calls[0].arguments[0], '/incidents')
+    assert.deepEqual(mockPost.mock.calls[0].arguments[1], {
+      headers: {
+        from: 'tim.koschuetzki@transloadit.com',
+      },
+      data: {
+        incident: {
+          body: {
+            details: LOREM_LONG,
+            type: 'incident_body',
+          },
+          incident_key: undefined,
+          priority: {
+            id: 'PUTY3A1',
+            type: 'priority_reference',
+          },
+          service: {
+            id: serviceId,
+            type: 'service_reference',
+          },
+          title: LOREM_SHORT,
+          type: 'incident',
+          urgency: 'high',
+        },
+      },
+    })
   })
 
-  test.skip('error', async () => {
+  test('error', async () => {
     mockPost.mock.mockImplementationOnce(async () => {
       return {
         data: {
@@ -91,7 +115,7 @@ describe('triggerPager', () => {
     assert.equal(err.message, 'oh no - oh; no')
   })
 
-  test.skip('duplicate incident', async () => {
+  test('duplicate incident', async () => {
     mockPost.mock.mockImplementationOnce(async () => {
       return {
         data: {
@@ -103,9 +127,11 @@ describe('triggerPager', () => {
       }
     })
 
-    await triggerPager({
-      title: '',
-      description: '',
-    })
+    assert.doesNotReject(async () =>
+      triggerPager({
+        title: '',
+        description: '',
+      })
+    )
   })
 })
