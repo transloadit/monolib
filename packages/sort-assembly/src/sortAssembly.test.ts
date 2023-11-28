@@ -1,10 +1,10 @@
 import { describe, test } from 'node:test'
-import assert from 'node:assert/strict'
+import assert from 'node:assert'
 import sortAssembly from './sortAssembly'
 
 describe('sortAssembly', () => {
   test('main', () => {
-    const assembly: $TSFixMe = {
+    const assembly = {
       ok: 'ASSEMBLY_COMPLETED',
       message: 'The Assembly was successfully completed.',
       assembly_id: '7828446e5acd4aa996dce3455ec914e9',

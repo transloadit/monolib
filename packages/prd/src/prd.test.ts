@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import { mock, test, describe } from 'node:test'
-import assert from 'node:assert/strict'
+import assert from 'node:assert'
 import prd from './prd'
 
 describe('prd', () => {
@@ -10,7 +10,7 @@ describe('prd', () => {
 
     prd('foo')
 
-    assert.equal(mockExit.mock.calls[0].arguments[0], 1)
-    assert.equal(mockConsoleErr.mock.calls[0].arguments[0].message, 'Halt via prd')
+    assert.strictEqual(mockExit.mock.calls[0].arguments[0], 1)
+    assert.strictEqual(mockConsoleErr.mock.calls[0].arguments[0].message, 'Halt via prd')
   })
 })

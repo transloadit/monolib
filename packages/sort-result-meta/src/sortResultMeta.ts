@@ -1,8 +1,7 @@
 import sortObjectByPrio from '@transloadit/sort-object-by-prio'
-import { hasProperty } from '@transloadit/has-property'
 
 type Meta = {
-  faces?: Record<string, unknown>
+  faces?: Record<string, unknown>[]
 }
 
 function isObject(obj: unknown): obj is Record<string, unknown> {
@@ -13,13 +12,12 @@ function isObject(obj: unknown): obj is Record<string, unknown> {
 
 export default function sortResultMeta<T extends Meta>(meta: T): T {
   if (meta.faces) {
-    for (const key of Object.keys(meta.faces)) {
-      if (!hasProperty(meta.faces, key)) continue
+    for (let i = 0; i < meta.faces.length; i++) {
+      const el = meta.faces[i]
+      if (!isObject(el)) continue
+      if (!meta.faces) continue
 
-      const obj = meta.faces[key]
-      if (!isObject(obj)) continue
-
-      meta.faces[key] = sortObjectByPrio(obj, {
+      meta.faces[i] = sortObjectByPrio(el, {
         _: [],
         z: ['x1', 'y1', 'x2', 'y2'],
       })

@@ -1,12 +1,15 @@
 import { describe, test } from 'node:test'
-import assert from 'node:assert/strict'
+import assert from 'node:assert'
 import slugify from './slugify'
 
 describe('slugify', () => {
   test('main', async () => {
-    assert.equal(slugify(undefined), undefined)
-    assert.equal(slugify(false), false)
-    assert.equal(slugify(-10), -10)
-    assert.equal(slugify('--This is My App !~'), 'this-is-my-app')
+    // @ts-expect-error - testing invalid input
+    assert.strictEqual(slugify(undefined), undefined)
+    // @ts-expect-error - testing invalid input
+    assert.strictEqual(slugify(false), false)
+    // @ts-expect-error - testing invalid input
+    assert.strictEqual(slugify(-10), -10)
+    assert.strictEqual(slugify('--This is My App !~'), 'this-is-my-app')
   })
 })

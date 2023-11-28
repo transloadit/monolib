@@ -1,5 +1,5 @@
 import { describe, test } from 'node:test'
-import assert from 'node:assert/strict'
+import assert from 'node:assert'
 import pr from './pr'
 
 describe('pr', () => {
