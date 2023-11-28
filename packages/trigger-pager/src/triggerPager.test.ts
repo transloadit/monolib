@@ -1,16 +1,16 @@
+/* eslint-disable global-require */
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { mock, describe, test } from 'node:test'
 import assert from 'node:assert'
 
-// eslint-disable-next-line no-unused-vars
 function mockRequire(specifier: string, replacer: (actual: any) => any) {
   const actualPath = require.resolve(specifier)
   if (arguments.length === 1) {
-    // eslint-disable-next-line import/no-dynamic-require,global-require
     require.cache[actualPath] = require(`../__mocks__/${specifier}`)
   } else {
-    // eslint-disable-next-line import/no-dynamic-require,global-require
     const actual = require(specifier)
-    const Module = require('node:module') // eslint-disable-line global-require
+    const Module = require('node:module')
     require.cache[actualPath] = new Module(actualPath, module)
     Object.defineProperties(require.cache[actualPath], {
       exports: {
@@ -24,7 +24,6 @@ function mockRequire(specifier: string, replacer: (actual: any) => any) {
   }
 }
 
-// eslint-disable-next-line no-unused-vars
 const mockPost = mock.fn(async (endpoint: string, payload: unknown) => {
   throw Error('mock post for each test')
 })
@@ -48,7 +47,6 @@ sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`
 
 describe('triggerPager', () => {
   test('main', async () => {
-    // eslint-disable-next-line no-unused-vars
     mockPost.mock.mockImplementationOnce(async (endpoint: string, payload: unknown) => {
       return { data: { error: null } }
     })

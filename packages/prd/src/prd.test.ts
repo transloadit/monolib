@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { mock, test, describe } from 'node:test'
 import assert from 'node:assert/strict'
 import prd from './prd'
