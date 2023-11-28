@@ -1,8 +1,10 @@
+import { test } from 'node:test'
+import assert from 'node:assert'
 import { hasProperty } from './has-property'
 
 test('hasProperty', () => {
-  expect(hasProperty({ foo: 'bar' }, 'foo')).toBe(true)
-  expect(hasProperty({ foo: 'bar' }, 'bar')).toBe(false)
-  expect(hasProperty({ foo: 'bar' }, 'constructor')).toBe(false)
-  expect(hasProperty('foo', 'foo')).toBe(false)
+  assert.ok(hasProperty({ foo: 'bar' }, 'foo'))
+  assert.strictEqual(hasProperty({ foo: 'bar' }, 'bar'), false)
+  assert.strictEqual(hasProperty({ foo: 'bar' }, 'constructor'), false)
+  assert.strictEqual(hasProperty('foo', 'foo'), false)
 })
