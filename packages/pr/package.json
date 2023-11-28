@@ -11,7 +11,7 @@
     "directory": "packages/pr"
   },
   "main": "dist/pr.js",
-  "typings": "dist/pr.d.ts",
+  "types": "dist/pr.d.ts",
   "files": [
     "dist"
   ],

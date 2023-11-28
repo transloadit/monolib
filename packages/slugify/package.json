@@ -11,7 +11,7 @@
     "directory": "packages/slugify"
   },
   "main": "dist/slugify.js",
-  "typings": "dist/slugify.d.ts",
+  "types": "dist/slugify.d.ts",
   "files": [
     "dist"
   ],

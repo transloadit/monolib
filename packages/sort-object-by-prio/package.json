@@ -11,7 +11,7 @@
     "directory": "packages/sort-object-by-prio"
   },
   "main": "dist/sortObjectByPrio.js",
-  "typings": "dist/sortObjectByPrio.d.ts",
+  "types": "dist/sortObjectByPrio.d.ts",
   "files": [
     "dist"
   ],

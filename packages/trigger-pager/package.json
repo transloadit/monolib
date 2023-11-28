@@ -11,7 +11,7 @@
     "directory": "packages/trigger-pager"
   },
   "main": "dist/triggerPager.js",
-  "typings": "dist/triggerPager.d.ts",
+  "types": "dist/triggerPager.d.ts",
   "files": [
     "dist"
   ],

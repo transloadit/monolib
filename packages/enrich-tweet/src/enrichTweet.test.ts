@@ -85,6 +85,7 @@ describe('enrichTweet', () => {
   })
 
   test('should not explode on undefined', async () => {
+    // @ts-expect-error - testing invalid input
     assert.equal(await enrichTweet(undefined), undefined)
   })
 

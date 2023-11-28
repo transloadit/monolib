@@ -11,7 +11,7 @@
     "directory": "packages/sort-result"
   },
   "main": "dist/sortResult.js",
-  "typings": "dist/sortResult.d.ts",
+  "types": "dist/sortResult.d.ts",
   "files": [
     "dist"
   ],

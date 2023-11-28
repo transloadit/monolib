@@ -29,9 +29,9 @@
     "replace": "1.2.1"
   },
   "devDependencies": {
-    "@types/node": "^18.7.14",
-    "@typescript-eslint/eslint-plugin": "^5.36.1",
-    "@typescript-eslint/parser": "^5.36.1",
+    "@types/node": "^18.18.13",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-config-transloadit": "^3.0.0-0",
@@ -49,6 +49,6 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^2.8.6",
     "sucrase": "^3.25.0",
-    "typescript": "^4.8.2"
+    "typescript": "^5.3.2"
   }
 }

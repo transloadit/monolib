@@ -38,7 +38,7 @@ export default async function enrichTweet(
 ): Promise<string | undefined> {
   if (!tweet) return
 
-  let text = tweet.full_text
+  let text = tweet.full_text ?? ''
 
   // Expand URLs
   if (tweet.entities && tweet.entities.urls.length) {

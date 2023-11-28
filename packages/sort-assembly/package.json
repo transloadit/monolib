@@ -11,7 +11,7 @@
     "directory": "packages/sort-assembly"
   },
   "main": "dist/sortAssembly.js",
-  "typings": "dist/sortAssembly.d.ts",
+  "types": "dist/sortAssembly.d.ts",
   "files": [
     "dist"
   ],
