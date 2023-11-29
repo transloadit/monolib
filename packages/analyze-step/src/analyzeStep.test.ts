@@ -25,7 +25,7 @@ const ROBOTS = {
 
 describe('analyzeStep', () => {
   test('/image/resize', async () => {
-    assert.deepStrictEqual(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/image/resize',
@@ -39,7 +39,7 @@ describe('analyzeStep', () => {
       'Resize images to 75×75 using the pad strategy'
     )
 
-    assert.deepStrictEqual(
+    assert.strictEqual(
       analyzeStep(
         {
           use: ':original',
@@ -53,7 +53,7 @@ describe('analyzeStep', () => {
       'Transcode videos to original codec Settings'
     )
 
-    assert.deepStrictEqual(
+    assert.strictEqual(
       analyzeStep(
         {
           use: ':original',
@@ -72,7 +72,7 @@ describe('analyzeStep', () => {
       'Change video speed'
     )
 
-    assert.deepStrictEqual(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/image/resize',
@@ -84,7 +84,7 @@ describe('analyzeStep', () => {
       'Resize images to 75×75'
     )
 
-    assert.deepStrictEqual(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/image/resize',
@@ -105,7 +105,7 @@ describe('analyzeStep', () => {
   })
 
   test('/image/describe', async () => {
-    assert.deepStrictEqual(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -115,7 +115,7 @@ describe('analyzeStep', () => {
       ),
       'Pick files that include descriptions of a Bridge'
     )
-    assert.deepStrictEqual(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/image/describe',
@@ -130,7 +130,7 @@ describe('analyzeStep', () => {
   })
 
   test('/file/filter', async () => {
-    assert.deepStrictEqual(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -141,7 +141,7 @@ describe('analyzeStep', () => {
       'Pick Filter by code evaluation'
     )
 
-    assert.deepStrictEqual(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -153,7 +153,7 @@ describe('analyzeStep', () => {
       'Pick jpeg images'
     )
 
-    assert.deepStrictEqual(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -164,7 +164,7 @@ describe('analyzeStep', () => {
       'Pick videos'
     )
 
-    assert.deepStrictEqual(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -175,7 +175,7 @@ describe('analyzeStep', () => {
       'Exclude files with an audio bitrate below 64 Kbit/s'
     )
 
-    assert.deepStrictEqual(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -190,7 +190,7 @@ describe('analyzeStep', () => {
       'Exclude files without a width of 1920 and a height of 1080'
     )
 
-    assert.deepStrictEqual(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -202,7 +202,7 @@ describe('analyzeStep', () => {
       'Pick images'
     )
 
-    assert.deepStrictEqual(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -217,7 +217,7 @@ describe('analyzeStep', () => {
       'Pick images and videos'
     )
 
-    assert.deepStrictEqual(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -228,7 +228,7 @@ describe('analyzeStep', () => {
       'Pick files with a filesize of 1 KB or higher'
     )
 
-    assert.deepStrictEqual(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -243,7 +243,7 @@ describe('analyzeStep', () => {
       'Pick files with a aspect ratio above 1.0 and images'
     )
 
-    assert.deepStrictEqual(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -258,7 +258,7 @@ describe('analyzeStep', () => {
       'Exclude files bigger than 20 MB and files with a duration of 5m or higher'
     )
 
-    assert.deepStrictEqual(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -273,7 +273,7 @@ describe('analyzeStep', () => {
       'Pick files with a width of 2048 or lower or a height of 2048 or lower'
     )
 
-    assert.deepStrictEqual(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -291,7 +291,7 @@ describe('analyzeStep', () => {
       'Exclude archives'
     )
 
-    assert.deepStrictEqual(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -303,7 +303,7 @@ describe('analyzeStep', () => {
       'Exclude files without an audio bitrate'
     )
 
-    assert.deepStrictEqual(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
