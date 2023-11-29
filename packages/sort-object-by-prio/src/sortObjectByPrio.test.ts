@@ -1,8 +1,10 @@
+import { describe, test } from 'node:test'
+import assert from 'node:assert'
 import sortObjectByPrio from './sortObjectByPrio'
 
 describe('sortObjectByPrio', () => {
   test('main', () => {
-    expect(
+    assert.deepStrictEqual(
       Object.keys(
         sortObjectByPrio(
           {
@@ -17,13 +19,8 @@ describe('sortObjectByPrio', () => {
             z: [/^generated_/],
           }
         )
-      )
-    ).toStrictEqual([
-      'title',
-      'redirect_from',
-      'run_instructions',
-      'generated_hash',
-      'generated_upload_required',
-    ])
+      ),
+      ['title', 'redirect_from', 'run_instructions', 'generated_hash', 'generated_upload_required']
+    )
   })
 })

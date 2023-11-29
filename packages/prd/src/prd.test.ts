@@ -1,16 +1,16 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
+import { mock, test, describe } from 'node:test'
+import assert from 'node:assert'
 import prd from './prd'
 
 describe('prd', () => {
   test('main', async () => {
-    const mockExit = jest
-      .spyOn(process, 'exit')
-      // @ts-expect-error - process.exit should return never but that is impossible here
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      .mockImplementation((code?: number) => {})
-    jest.spyOn(console, 'error').mockImplementation((e: Error) => {
-      expect(e.message).toStrictEqual('Halt via prd')
-    })
+    const mockExit = mock.method(process, 'exit', () => {})
+    const mockConsoleErr = mock.method(console, 'error', () => {})
+
     prd('foo')
-    expect(mockExit).toHaveBeenCalledWith(1)
+
+    assert.strictEqual(mockExit.mock.calls[0].arguments[0], 1)
+    assert.strictEqual(mockConsoleErr.mock.calls[0].arguments[0].message, 'Halt via prd')
   })
 })

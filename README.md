@@ -12,7 +12,7 @@ While the world _can_ consume the modules, this is mostly to make life easier fo
 
 ## Rules
 
-- Bundle a Jest test with your function
+- Bundle a test with your function
 - Pure functions only please
 
 ## Examples

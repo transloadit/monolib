@@ -1,3 +1,5 @@
+import { describe, it } from 'node:test'
+import assert from 'node:assert'
 import prettierBytes from './prettierBytes'
 
 const testData = [
@@ -17,24 +19,25 @@ const testData = [
   [2355556655520, '2.1 TB'],
   [23555566655520, '21 TB'],
   [235555566665520, '214 TB'],
-]
+] satisfies [input: number, output: string][]
 
 describe('prettierBytes', () => {
   it('should convert the specified number of bytes to a human-readable string like 236 MB', () => {
     testData.forEach((data) => {
-      expect(prettierBytes(data[0])).toEqual(data[1])
+      assert.strictEqual(prettierBytes(data[0]), data[1])
     })
   })
 
   it('throws on non-number', () => {
-    expect(() => {
+    assert.throws(() => {
+      // @ts-expect-error - testing invalid input
       prettierBytes('this is a string')
-    }).toThrow()
+    })
   })
 
   it('throws on NaN', () => {
-    expect(() => {
+    assert.throws(() => {
       prettierBytes(NaN)
-    }).toThrow()
+    })
   })
 })

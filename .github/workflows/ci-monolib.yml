@@ -1,6 +1,9 @@
 name: Test
 
-on: [push, pull_request]
+on:
+  pull_request:
+  push:
+    branches: [main]
 
 jobs:
   test:
@@ -11,4 +14,4 @@ jobs:
         with:
           node-version: 18
       - run: corepack yarn --immutable
-      - run: corepack yarn test
+      - run: corepack yarn check

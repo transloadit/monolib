@@ -2,14 +2,7 @@
 module.exports = {
   extends: ['transloadit', 'prettier', 'plugin:@typescript-eslint/recommended'],
   parser: '@typescript-eslint/parser',
-  plugins: [
-    '@babel/eslint-plugin',
-    'jest',
-    'node',
-    'prefer-import',
-    'promise',
-    '@typescript-eslint',
-  ],
+  plugins: ['node', 'prefer-import', 'promise', '@typescript-eslint'],
   settings: {
     'import/resolver': {
       typescript: {},
@@ -38,6 +31,7 @@ module.exports = {
     // like to turn on one by one with separate PRs
     /// /////////////////////////////////////////////////////////
     'guard-for-in': ['warn'],
+    'no-implicit-coercion': ['off'],
     'no-param-reassign': ['warn'],
     'no-restricted-globals': ['warn'],
     'no-restricted-properties': ['warn'],

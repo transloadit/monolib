@@ -10,7 +10,7 @@
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "sourceMap": true,
-    "types": ["node", "jest"],
+    "types": ["node"],
 
     "declaration": true,
     "composite": true,

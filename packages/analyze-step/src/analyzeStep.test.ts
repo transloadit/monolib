@@ -1,4 +1,6 @@
 /* eslint-disable no-template-curly-in-string */
+import { describe, test } from 'node:test'
+import assert from 'node:assert'
 import analyzeStep from './analyzeStep'
 // const util = require('util')
 
@@ -23,7 +25,7 @@ const ROBOTS = {
 
 describe('analyzeStep', () => {
   test('/image/resize', async () => {
-    expect(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/image/resize',
@@ -33,10 +35,11 @@ describe('analyzeStep', () => {
           imagemagick_stack: 'v2.0.7',
         },
         ROBOTS
-      )
-    ).toMatch('Resize images to 75×75 using the pad strategy')
+      ),
+      'Resize images to 75×75 using the pad strategy'
+    )
 
-    expect(
+    assert.strictEqual(
       analyzeStep(
         {
           use: ':original',
@@ -46,10 +49,11 @@ describe('analyzeStep', () => {
           ffmpeg_stack: 'v3.3.3',
         },
         ROBOTS
-      )
-    ).toMatch('Transcode videos to original codec Settings')
+      ),
+      'Transcode videos to original codec Settings'
+    )
 
-    expect(
+    assert.strictEqual(
       analyzeStep(
         {
           use: ':original',
@@ -64,10 +68,11 @@ describe('analyzeStep', () => {
           },
         },
         ROBOTS
-      )
-    ).toMatch('Change video speed')
+      ),
+      'Change video speed'
+    )
 
-    expect(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/image/resize',
@@ -75,10 +80,11 @@ describe('analyzeStep', () => {
           height: '75',
         },
         ROBOTS
-      )
-    ).toMatch('Resize images to 75×75')
+      ),
+      'Resize images to 75×75'
+    )
 
-    expect(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/image/resize',
@@ -93,21 +99,23 @@ describe('analyzeStep', () => {
           imagemagick_stack: 'v2.0.7',
         },
         ROBOTS
-      )
-    ).toMatch('Crop images to 75×75 starting at 150×100 from the top left')
+      ),
+      'Crop images to 75×75 starting at 150×100 from the top left'
+    )
   })
 
   test('/image/describe', async () => {
-    expect(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
           accepts: [['${file.meta.descriptions}', 'includes', 'Bridge']],
         },
         ROBOTS
-      )
-    ).toMatch('Pick files that include descriptions of a Bridge')
-    expect(
+      ),
+      'Pick files that include descriptions of a Bridge'
+    )
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/image/describe',
@@ -116,22 +124,24 @@ describe('analyzeStep', () => {
           granularity: 'list',
         },
         ROBOTS
-      )
-    ).toMatch('Recognize objects in images')
+      ),
+      'Recognize objects in images'
+    )
   })
 
-  test('/filte/filter', async () => {
-    expect(
+  test('/file/filter', async () => {
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
           accepts: '${file.meta.width > file.meta.height}',
         },
         ROBOTS
-      )
-    ).toMatch('Filter by code evaluation')
+      ),
+      'Pick Filter by code evaluation'
+    )
 
-    expect(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -139,30 +149,33 @@ describe('analyzeStep', () => {
           error_on_decline: false,
         },
         ROBOTS
-      )
-    ).toMatch('Pick jpeg images')
+      ),
+      'Pick jpeg images'
+    )
 
-    expect(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
           accepts: [['${file.type}', '===', 'video']],
         },
         ROBOTS
-      )
-    ).toMatch('Pick videos')
+      ),
+      'Pick videos'
+    )
 
-    expect(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
           declines: [['${file.meta.audio_bitrate}', '<', '65536']],
         },
         ROBOTS
-      )
-    ).toMatch('Exclude files with an audio bitrate below 64 Kbit/s')
+      ),
+      'Exclude files with an audio bitrate below 64 Kbit/s'
+    )
 
-    expect(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -173,10 +186,11 @@ describe('analyzeStep', () => {
           condition_type: 'and',
         },
         ROBOTS
-      )
-    ).toMatch('Exclude files without a width of 1920 and a height of 1080')
+      ),
+      'Exclude files without a width of 1920 and a height of 1080'
+    )
 
-    expect(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -184,10 +198,11 @@ describe('analyzeStep', () => {
           error_on_decline: true,
         },
         ROBOTS
-      )
-    ).toMatch('Pick images')
+      ),
+      'Pick images'
+    )
 
-    expect(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -198,20 +213,22 @@ describe('analyzeStep', () => {
           error_on_decline: true,
         },
         ROBOTS
-      )
-    ).toMatch('Pick images and videos')
+      ),
+      'Pick images and videos'
+    )
 
-    expect(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
           accepts: [['${file.size}', '>=', '1024']],
         },
         ROBOTS
-      )
-    ).toMatch('Pick files with a filesize of 1 KB or higher')
+      ),
+      'Pick files with a filesize of 1 KB or higher'
+    )
 
-    expect(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -222,10 +239,11 @@ describe('analyzeStep', () => {
           condition_type: 'and',
         },
         ROBOTS
-      )
-    ).toMatch('Pick files with a aspect ratio above 1.0 and images')
+      ),
+      'Pick files with a aspect ratio above 1.0 and images'
+    )
 
-    expect(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -236,10 +254,11 @@ describe('analyzeStep', () => {
           error_on_decline: true,
         },
         ROBOTS
-      )
-    ).toMatch('Exclude files bigger than 20 MB and files with a duration of 5m or higher')
+      ),
+      'Exclude files bigger than 20 MB and files with a duration of 5m or higher'
+    )
 
-    expect(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -250,10 +269,11 @@ describe('analyzeStep', () => {
           condition_type: 'or',
         },
         ROBOTS
-      )
-    ).toMatch('Pick files with a width of 2048 or lower or a height of 2048 or lower')
+      ),
+      'Pick files with a width of 2048 or lower or a height of 2048 or lower'
+    )
 
-    expect(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -267,10 +287,11 @@ describe('analyzeStep', () => {
           error_on_decline: false,
         },
         ROBOTS
-      )
-    ).toMatch('Exclude archives')
+      ),
+      'Exclude archives'
+    )
 
-    expect(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -278,10 +299,11 @@ describe('analyzeStep', () => {
           error_on_decline: true,
         },
         ROBOTS
-      )
-    ).toMatch('Exclude files without an audio bitrate')
+      ),
+      'Exclude files without an audio bitrate'
+    )
 
-    expect(
+    assert.strictEqual(
       analyzeStep(
         {
           robot: '/file/filter',
@@ -291,7 +313,8 @@ describe('analyzeStep', () => {
           ],
         },
         ROBOTS
-      )
-    ).toMatch('Pick images and videos')
+      ),
+      'Pick images and videos'
+    )
   })
 })

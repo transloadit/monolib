@@ -18,7 +18,7 @@ export default function prettierBytes(num: number): string {
   }
 
   const exponent = Math.min(Math.floor(Math.log(num) / Math.log(1024)), units.length - 1)
-  num = Number(num / Math.pow(1024, exponent))
+  num = Number(num / 1024 ** exponent)
   const unit = units[exponent]
 
   if (num >= 10 || num % 1 === 0) {
