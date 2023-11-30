@@ -1,7 +1,7 @@
 {
   "name": "@transloadit/enrich-tweet",
   "license": "AGPL-3.0-only",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "publishConfig": {
     "access": "public"
   },
@@ -32,5 +32,6 @@
   },
   "devDependencies": {
     "@types/twitter-text": "^3.1.9"
-  }
+  },
+  "gitHead": "714bbf75e54490ceb20bea49a728230668d456c1"
 }

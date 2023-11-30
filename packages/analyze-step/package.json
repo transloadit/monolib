@@ -23,14 +23,14 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@transloadit/format-duration-ms": "^0.1.3",
-    "@transloadit/prettier-bytes": "^0.1.3",
+    "@transloadit/format-duration-ms": "^0.2.0",
+    "@transloadit/prettier-bytes": "^0.2.0",
     "inflection": "^3.0.0",
     "jsonpath-plus": "^7.2.0",
     "lodash": "^4.17.21"
   },
-  "version": "0.1.3",
-  "gitHead": "b73ab4880b9c4c48db32f249f776974a137510c4",
+  "version": "0.2.0",
+  "gitHead": "714bbf75e54490ceb20bea49a728230668d456c1",
   "devDependencies": {
     "@types/jsonpath": "^0.2.4",
     "@types/lodash": "^4.14.202"
