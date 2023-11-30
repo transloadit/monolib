@@ -80,6 +80,24 @@ yarn test:watch
 npm run test:watch
 ```
 
+## How do I publish these packages?
+
+First make your changes and push them to the repository. There is no need to create `git` tags or any other versioning vehicles. Lerna handles this automatically.
+
+Make sure you have push rights for the `main` branch of this repository.
+
+Log in to the NPM registry via `npm`:
+
+```bash
+npm login
+```
+
+Publish the packages with Lerna:
+
+```bash
+yarn pub
+```
+
 ## How to iterate quickly inside a consuming project without publishing 100 versions?
 
 ```bash
