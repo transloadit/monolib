@@ -84,7 +84,9 @@ npm run test:watch
 
 First make your changes and push them to the repository. There is no need to create `git` tags or any other versioning vehicles. Lerna handles this automatically.
 
-Make sure you are logged in to the NPM registry via `npm`:
+Make sure you have push rights for the `main` branch of this repository.
+
+Log in to the NPM registry via `npm`:
 
 ```bash
 npm login
