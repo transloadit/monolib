@@ -1,7 +1,7 @@
 import { describe, test } from 'node:test'
 import assert from 'node:assert'
 
-import abbr from './abbr'
+const abbr = require('./abbr')
 
 describe('abbr', () => {
   test('main', async () => {

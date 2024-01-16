@@ -1,4 +1,4 @@
-export default function sortObject<T extends Record<string, unknown>>(
+export = function sortObject<T extends Record<string, unknown>>(
   obj: T,
   // eslint-disable-next-line no-unused-vars
   sortFunc?: (a: string, b: string) => number

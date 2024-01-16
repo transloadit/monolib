@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
-import { promises as fs } from 'fs'
-import inquirer from 'inquirer'
+import fs = require('fs/promises')
+import inquirer = require('inquirer')
 
-import openInEditor from 'open-in-editor'
-import fileExists from '@transloadit/file-exists'
-import slugify from '@transloadit/slugify'
-import title from 'title'
+import openInEditor = require('open-in-editor')
+import fileExists = require('@transloadit/file-exists')
+import slugify = require('@transloadit/slugify')
+import title = require('title')
 
 async function post(): Promise<void> {
   console.log(`Welcome to @transloadit/post.`)

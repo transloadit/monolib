@@ -2,7 +2,6 @@
 import { describe, test } from 'node:test'
 import assert from 'node:assert'
 import analyzeStep from './analyzeStep'
-// const util = require('util')
 
 const ROBOTS = {
   '/image/resize': {
