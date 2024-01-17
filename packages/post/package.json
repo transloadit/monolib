@@ -23,13 +23,13 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@transloadit/file-exists": "^0.2.0",
-    "@transloadit/slugify": "^0.2.0",
+    "@transloadit/file-exists": "^0.3.0",
+    "@transloadit/slugify": "^0.3.0",
     "inquirer": "7.0.5",
     "open-in-editor": "^2.2.0",
     "title": "^3.4.2"
   },
-  "version": "0.2.0",
+  "version": "0.3.0",
   "gitHead": "714bbf75e54490ceb20bea49a728230668d456c1",
   "devDependencies": {
     "@types/inquirer": "^8.2.10",

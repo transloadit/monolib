@@ -1,7 +1,7 @@
 {
   "name": "@transloadit/sort-assembly",
   "license": "AGPL-3.0-only",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "publishConfig": {
     "access": "public"
   },
@@ -24,9 +24,9 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
-    "@transloadit/has-property": "^0.1.0",
-    "@transloadit/sort-object-by-prio": "^0.2.0",
-    "@transloadit/sort-result": "^0.2.0"
+    "@transloadit/has-property": "^0.2.0",
+    "@transloadit/sort-object-by-prio": "^0.3.0",
+    "@transloadit/sort-result": "^0.3.0"
   },
   "gitHead": "714bbf75e54490ceb20bea49a728230668d456c1"
 }
