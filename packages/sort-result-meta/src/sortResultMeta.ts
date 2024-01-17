@@ -1,6 +1,9 @@
 import sortObjectByPrio = require('@transloadit/sort-object-by-prio')
 
-interface Meta {
+// using interface here instead of type causes Meta to not be assignable to the generic type
+// of sortObjectByPrio
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+type Meta = {
   faces?: Record<string, unknown>[]
 }
 
