@@ -1,5 +1,5 @@
 declare module 'replace' {
-  type Options = {
+  interface Options {
     regex: string
     replacement: string
     paths: string[]

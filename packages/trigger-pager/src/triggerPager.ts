@@ -3,7 +3,7 @@ import pagerduty = require('@pagerduty/pdjs')
 const PRIORITY_P1 = 'PUTY3A1'
 const DUPLICATE_INCIDENT_MESSAGE = 'matching dedup key already exists'
 
-type TriggerPagerOptions = {
+interface TriggerPagerOptions {
   description: string
   from?: string
   incidentKey: string

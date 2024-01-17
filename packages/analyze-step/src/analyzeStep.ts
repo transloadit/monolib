@@ -40,7 +40,7 @@ function humanJoin(array: string[], reduce = true, glueword = 'and'): string {
 
 type Condition = [value: string, operator: string, value: string]
 
-type FileFilterStep = {
+interface FileFilterStep {
   accepts?: string | Condition[]
   declines?: string | Condition[]
   condition_type?: 'or' | 'and'
@@ -193,7 +193,7 @@ function humanFilter(step: FileFilterStep): string {
     .replace(/files with a filesize below(\W|$)/g, 'files smaller than$1')
 }
 
-type StepWithDimensions = {
+interface StepWithDimensions {
   width?: number | string
   height?: number | string
   crop?: { x1: number; x2: number; y1: number; y2: number }
@@ -227,11 +227,11 @@ function humanDimensions(step: StepWithDimensions): string {
   return str
 }
 
-type PresetStep = {
+interface PresetStep {
   preset?: string
 }
 
-type ExtraMeta = {
+interface ExtraMeta {
   deviceName?: string
 }
 
@@ -278,7 +278,7 @@ function humanPreset(step: PresetStep, extrameta: ExtraMeta = {}): string {
   return str
 }
 
-type FormatStep = {
+interface FormatStep {
   format?: string
 }
 
@@ -297,20 +297,20 @@ function humanFormat(step: FormatStep): string {
   return str
 }
 
-type Robots = {
-  [key: string]: {
+type Robots = Record<
+  string,
+  {
     rname: string
     purpose_words: string
   }
-}
+>
 
 type Step = Partial<FileFilterStep> &
   Partial<StepWithDimensions> &
   Partial<PresetStep> &
-  Partial<FormatStep> & {
-    // using any until we can put some effort into Assembly/Template/Robot types
-    [key: string]: any
-  }
+  Partial<FormatStep> &
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Record<string, any>
 
 export = function humanize(step: Step, robots: Robots, extrameta: ExtraMeta = {}): string {
   let str = ``

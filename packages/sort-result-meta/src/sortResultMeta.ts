@@ -1,6 +1,6 @@
 import sortObjectByPrio = require('@transloadit/sort-object-by-prio')
 
-type Meta = {
+interface Meta {
   faces?: Record<string, unknown>[]
 }
 

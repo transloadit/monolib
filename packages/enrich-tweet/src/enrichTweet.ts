@@ -12,7 +12,7 @@ async function tryUnshorten(url: string, unshorten: boolean): Promise<string> {
   }
 }
 
-type Tweet = {
+interface Tweet {
   full_text?: string
   entities?: {
     urls: {
