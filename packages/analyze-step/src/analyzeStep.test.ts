@@ -33,9 +33,9 @@ describe('analyzeStep', () => {
           resize_strategy: 'pad',
           imagemagick_stack: 'v2.0.7',
         },
-        ROBOTS
+        ROBOTS,
       ),
-      'Resize images to 75×75 using the pad strategy'
+      'Resize images to 75×75 using the pad strategy',
     )
 
     assert.strictEqual(
@@ -47,9 +47,9 @@ describe('analyzeStep', () => {
           preset: 'empty',
           ffmpeg_stack: 'v3.3.3',
         },
-        ROBOTS
+        ROBOTS,
       ),
-      'Transcode videos to original codec Settings'
+      'Transcode videos to original codec Settings',
     )
 
     assert.strictEqual(
@@ -66,9 +66,9 @@ describe('analyzeStep', () => {
             map: ['[v]', '[a]'],
           },
         },
-        ROBOTS
+        ROBOTS,
       ),
-      'Change video speed'
+      'Change video speed',
     )
 
     assert.strictEqual(
@@ -78,9 +78,9 @@ describe('analyzeStep', () => {
           width: '75',
           height: '75',
         },
-        ROBOTS
+        ROBOTS,
       ),
-      'Resize images to 75×75'
+      'Resize images to 75×75',
     )
 
     assert.strictEqual(
@@ -97,9 +97,9 @@ describe('analyzeStep', () => {
           gravity: 'center',
           imagemagick_stack: 'v2.0.7',
         },
-        ROBOTS
+        ROBOTS,
       ),
-      'Crop images to 75×75 starting at 150×100 from the top left'
+      'Crop images to 75×75 starting at 150×100 from the top left',
     )
   })
 
@@ -110,9 +110,9 @@ describe('analyzeStep', () => {
           robot: '/file/filter',
           accepts: [['${file.meta.descriptions}', 'includes', 'Bridge']],
         },
-        ROBOTS
+        ROBOTS,
       ),
-      'Pick files that include descriptions of a Bridge'
+      'Pick files that include descriptions of a Bridge',
     )
     assert.strictEqual(
       analyzeStep(
@@ -122,9 +122,9 @@ describe('analyzeStep', () => {
           format: 'meta',
           granularity: 'list',
         },
-        ROBOTS
+        ROBOTS,
       ),
-      'Recognize objects in images'
+      'Recognize objects in images',
     )
   })
 
@@ -135,9 +135,9 @@ describe('analyzeStep', () => {
           robot: '/file/filter',
           accepts: '${file.meta.width > file.meta.height}',
         },
-        ROBOTS
+        ROBOTS,
       ),
-      'Pick Filter by code evaluation'
+      'Pick Filter by code evaluation',
     )
 
     assert.strictEqual(
@@ -147,9 +147,9 @@ describe('analyzeStep', () => {
           accepts: [['${file.mime}', 'regex', 'image/jpe?g']],
           error_on_decline: false,
         },
-        ROBOTS
+        ROBOTS,
       ),
-      'Pick jpeg images'
+      'Pick jpeg images',
     )
 
     assert.strictEqual(
@@ -158,9 +158,9 @@ describe('analyzeStep', () => {
           robot: '/file/filter',
           accepts: [['${file.type}', '===', 'video']],
         },
-        ROBOTS
+        ROBOTS,
       ),
-      'Pick videos'
+      'Pick videos',
     )
 
     assert.strictEqual(
@@ -169,9 +169,9 @@ describe('analyzeStep', () => {
           robot: '/file/filter',
           declines: [['${file.meta.audio_bitrate}', '<', '65536']],
         },
-        ROBOTS
+        ROBOTS,
       ),
-      'Exclude files with an audio bitrate below 64 Kbit/s'
+      'Exclude files with an audio bitrate below 64 Kbit/s',
     )
 
     assert.strictEqual(
@@ -184,9 +184,9 @@ describe('analyzeStep', () => {
           ],
           condition_type: 'and',
         },
-        ROBOTS
+        ROBOTS,
       ),
-      'Exclude files without a width of 1920 and a height of 1080'
+      'Exclude files without a width of 1920 and a height of 1080',
     )
 
     assert.strictEqual(
@@ -196,9 +196,9 @@ describe('analyzeStep', () => {
           accepts: [['${file.mime}', 'regex', 'image']],
           error_on_decline: true,
         },
-        ROBOTS
+        ROBOTS,
       ),
-      'Pick images'
+      'Pick images',
     )
 
     assert.strictEqual(
@@ -211,9 +211,9 @@ describe('analyzeStep', () => {
           ],
           error_on_decline: true,
         },
-        ROBOTS
+        ROBOTS,
       ),
-      'Pick images and videos'
+      'Pick images and videos',
     )
 
     assert.strictEqual(
@@ -222,9 +222,9 @@ describe('analyzeStep', () => {
           robot: '/file/filter',
           accepts: [['${file.size}', '>=', '1024']],
         },
-        ROBOTS
+        ROBOTS,
       ),
-      'Pick files with a filesize of 1 KB or higher'
+      'Pick files with a filesize of 1 KB or higher',
     )
 
     assert.strictEqual(
@@ -237,9 +237,9 @@ describe('analyzeStep', () => {
           ],
           condition_type: 'and',
         },
-        ROBOTS
+        ROBOTS,
       ),
-      'Pick files with a aspect ratio above 1.0 and images'
+      'Pick files with a aspect ratio above 1.0 and images',
     )
 
     assert.strictEqual(
@@ -252,9 +252,9 @@ describe('analyzeStep', () => {
           ],
           error_on_decline: true,
         },
-        ROBOTS
+        ROBOTS,
       ),
-      'Exclude files bigger than 20 MB and files with a duration of 5m or higher'
+      'Exclude files bigger than 20 MB and files with a duration of 5m or higher',
     )
 
     assert.strictEqual(
@@ -267,9 +267,9 @@ describe('analyzeStep', () => {
           ],
           condition_type: 'or',
         },
-        ROBOTS
+        ROBOTS,
       ),
-      'Pick files with a width of 2048 or lower or a height of 2048 or lower'
+      'Pick files with a width of 2048 or lower or a height of 2048 or lower',
     )
 
     assert.strictEqual(
@@ -285,9 +285,9 @@ describe('analyzeStep', () => {
           ],
           error_on_decline: false,
         },
-        ROBOTS
+        ROBOTS,
       ),
-      'Exclude archives'
+      'Exclude archives',
     )
 
     assert.strictEqual(
@@ -297,9 +297,9 @@ describe('analyzeStep', () => {
           declines: [['${file.meta.audio_bitrate}', '==', '']],
           error_on_decline: true,
         },
-        ROBOTS
+        ROBOTS,
       ),
-      'Exclude files without an audio bitrate'
+      'Exclude files without an audio bitrate',
     )
 
     assert.strictEqual(
@@ -311,9 +311,9 @@ describe('analyzeStep', () => {
             ['${file.type}', '===', 'video'],
           ],
         },
-        ROBOTS
+        ROBOTS,
       ),
-      'Pick images and videos'
+      'Pick images and videos',
     )
   })
 })

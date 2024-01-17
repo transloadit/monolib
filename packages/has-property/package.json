@@ -1,27 +1,27 @@
 {
   "name": "@transloadit/has-property",
-  "license": "AGPL-3.0-only",
   "version": "0.2.0",
-  "publishConfig": {
-    "access": "public"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/has-property"
   },
+  "license": "AGPL-3.0-only",
   "main": "dist/has-property.js",
   "types": "dist/has-property.d.ts",
-  "files": [
-    "dist"
-  ],
   "directories": {
     "lib": "dist",
     "test": "dist"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "tsc": "tsc --build --clean && tsc --build",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "tsc": "tsc --build --clean && tsc --build"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "gitHead": "714bbf75e54490ceb20bea49a728230668d456c1"
 }

@@ -132,7 +132,7 @@ describe('triggerPager', () => {
       triggerPager({
         title: '',
         description: '',
-      })
+      }),
     )
   })
 })

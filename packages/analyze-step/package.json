@@ -1,26 +1,24 @@
 {
   "name": "@transloadit/analyze-step",
-  "license": "AGPL-3.0-only",
-  "publishConfig": {
-    "access": "public"
-  },
+  "version": "0.3.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/analyze-step"
   },
+  "license": "AGPL-3.0-only",
   "main": "dist/analyzeStep.js",
   "types": "dist/analyzeStep.d.ts",
-  "files": [
-    "dist"
-  ],
   "directories": {
     "lib": "dist",
     "test": "dist"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "tsc": "tsc --build --clean && tsc --build",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "tsc": "tsc --build --clean && tsc --build"
   },
   "dependencies": {
     "@transloadit/format-duration-ms": "^0.3.0",
@@ -29,10 +27,12 @@
     "jsonpath-plus": "^7.2.0",
     "lodash": "^4.17.21"
   },
-  "version": "0.3.0",
-  "gitHead": "714bbf75e54490ceb20bea49a728230668d456c1",
   "devDependencies": {
     "@types/jsonpath": "^0.2.4",
     "@types/lodash": "^4.14.202"
-  }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "714bbf75e54490ceb20bea49a728230668d456c1"
 }

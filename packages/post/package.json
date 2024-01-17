@@ -1,26 +1,24 @@
 {
   "name": "@transloadit/post",
-  "publishConfig": {
-    "access": "public"
-  },
-  "license": "AGPL-3.0-only",
+  "version": "0.3.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/post"
   },
-  "bin": "./post.js",
+  "license": "AGPL-3.0-only",
   "types": "dist/post.d.ts",
-  "files": [
-    "dist"
-  ],
+  "bin": "./post.js",
   "directories": {
     "lib": "dist",
     "test": "dist"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "tsc": "tsc --build --clean && tsc --build",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "tsc": "tsc --build --clean && tsc --build"
   },
   "dependencies": {
     "@transloadit/file-exists": "^0.3.0",
@@ -29,10 +27,12 @@
     "open-in-editor": "^2.2.0",
     "title": "^3.4.2"
   },
-  "version": "0.3.0",
-  "gitHead": "714bbf75e54490ceb20bea49a728230668d456c1",
   "devDependencies": {
     "@types/inquirer": "^8.2.10",
     "@types/title": "^3.4.3"
-  }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "gitHead": "714bbf75e54490ceb20bea49a728230668d456c1"
 }

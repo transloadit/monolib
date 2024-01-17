@@ -4,23 +4,21 @@
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "yarn@4.0.1+sha224.ca5d6f5a8aecd0801adc32f775675b01961bdc2383867d36f4732a0a",
-  "engines": {
-    "node": ">= 18",
-    "yarn": "4.0.1"
-  },
   "scripts": {
-    "pub": "npm-run-all test lernaPublish",
-    "lernaPublish": "lerna publish",
-    "new": "sucrase-node new.ts",
-    "fix": "DEBUG=eslint:cli-engine eslint . --ext .js,.jsx,.ts,.tsx --fix && yarn fix:formatting",
-    "lint": "DEBUG=eslint:cli-engine eslint . --ext .js,.jsx,.ts,.tsx && yarn lint:formatting",
     "build": "lerna run tsc",
-    "test:watch": "node -r sucrase/register --test --watch packages/**/*.test.ts",
-    "test": "node -r sucrase/register --test packages/**/*.test.ts",
     "check": "npm-run-all build lint test",
+    "fix": "yarn fix:js && yarn fix:formatting",
     "fix:formatting": "prettier --write .",
-    "lint:formatting": "prettier --check ."
+    "fix:js": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "lernaPublish": "lerna publish",
+    "lint": "run-p lint:formatting lint:js && yarn lint:ts",
+    "lint:formatting": "prettier --check .",
+    "lint:js": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:ts": "lerna run tsc",
+    "new": "sucrase-node new.ts",
+    "pub": "npm-run-all test lernaPublish",
+    "test": "node -r sucrase/register --test packages/**/*.test.ts",
+    "test:watch": "node -r sucrase/register --test --watch packages/**/*.test.ts"
   },
   "dependencies": {
     "execa": "5.0.0",
@@ -30,25 +28,32 @@
   },
   "devDependencies": {
     "@types/node": "^18.18.13",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "@typescript-eslint/parser": "^5.62.0",
-    "eslint": "^8.23.0",
-    "eslint-config-prettier": "^8.8.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-config-transloadit": "^3.0.0-0",
-    "eslint-import-resolver-typescript": "^3.5.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prefer-import": "^0.0.1",
-    "eslint-plugin-promise": "^4.3.1",
-    "eslint-plugin-react": "^7.22.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-transloadit": "^0.2.0",
     "fakefile": "1.0.0",
     "lerna": "^8.0.2",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.8.6",
-    "sucrase": "^3.25.0",
-    "typescript": "^5.3.2"
+    "prettier": "^3.2.4",
+    "prettier-plugin-packagejson": "^2.4.9",
+    "sucrase": "^3.35.0",
+    "typescript": "^5.3.3"
+  },
+  "packageManager": "yarn@4.0.1+sha224.ca5d6f5a8aecd0801adc32f775675b01961bdc2383867d36f4732a0a",
+  "engines": {
+    "node": ">= 18",
+    "yarn": "4.0.1"
   }
 }

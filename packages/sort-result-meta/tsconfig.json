@@ -5,9 +5,9 @@
     "rootDir": "src/",
     "paths": {
       "@transloadit/has-property": ["../has-property"],
-      "@transloadit/sort-object-by-prio": ["../sort-object-by-prio"]
-    }
+      "@transloadit/sort-object-by-prio": ["../sort-object-by-prio"],
+    },
   },
   "references": [{ "path": "../has-property" }, { "path": "../sort-object-by-prio" }],
-  "include": ["src/"]
+  "include": ["src/"],
 }

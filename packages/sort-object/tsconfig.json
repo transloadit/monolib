@@ -4,9 +4,9 @@
     "outDir": "dist/",
     "rootDir": "src/",
     "paths": {
-      "@transloadit/has-property": ["../has-property"]
-    }
+      "@transloadit/has-property": ["../has-property"],
+    },
   },
   "references": [{ "path": "../has-property" }],
-  "include": ["src/"]
+  "include": ["src/"],
 }

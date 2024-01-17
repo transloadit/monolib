@@ -8,7 +8,7 @@ export = function abbr(str: string, maxLength = 55, divider = `[...]`): string {
     const firstLen = Math.ceil((maxLength - divider.length) / 2)
     const lastLen = Math.floor((maxLength - divider.length) / 2)
     abbreviated = `${abbreviated.substr(0, firstLen)}${divider}${abbreviated.substr(
-      abbreviated.length - lastLen
+      abbreviated.length - lastLen,
     )}`
   }
 

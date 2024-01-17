@@ -16,7 +16,7 @@
     "declaration": true,
     "composite": true,
     "incremental": true,
-    "removeComments": true
+    "removeComments": true,
   },
-  "exclude": ["node_modules", "**/*.test.ts"]
+  "exclude": ["node_modules", "**/*.test.ts"],
 }

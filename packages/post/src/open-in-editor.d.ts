@@ -48,7 +48,7 @@ declare module 'open-in-editor' {
 
   function configure(
     opts?: CreateOpenInEditorOptions,
-    failCallback?: (err: Error) => void
+    failCallback?: (err: Error) => void,
   ): OpenInEditor
 
   export = { configure }
