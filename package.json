@@ -4,11 +4,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "yarn@4.0.1+sha224.ca5d6f5a8aecd0801adc32f775675b01961bdc2383867d36f4732a0a",
-  "engines": {
-    "node": ">= 18",
-    "yarn": "4.0.1"
-  },
   "scripts": {
     "build": "lerna run tsc",
     "check": "npm-run-all build lint test",
@@ -52,7 +47,13 @@
     "lerna": "^8.0.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.2.4",
+    "prettier-plugin-packagejson": "^2.4.9",
     "sucrase": "^3.35.0",
     "typescript": "^5.3.3"
+  },
+  "packageManager": "yarn@4.0.1+sha224.ca5d6f5a8aecd0801adc32f775675b01961bdc2383867d36f4732a0a",
+  "engines": {
+    "node": ">= 18",
+    "yarn": "4.0.1"
   }
 }
