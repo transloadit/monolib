@@ -1,27 +1,27 @@
 {
   "name": "@transloadit/replace-me",
-  "license": "AGPL-3.0-only",
   "version": "0.0.0",
   "private": false,
-  "publishConfig": {
-    "access": "public"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/transloadit/monolib.git",
     "directory": "packages/replace-me"
   },
+  "license": "AGPL-3.0-only",
   "main": "dist/replaceMe.js",
   "typings": "dist/replaceMe.d.ts",
-  "files": [
-    "dist"
-  ],
   "directories": {
     "lib": "dist",
     "test": "dist"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "tsc": "tsc --build --clean && tsc --build",
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "tsc": "tsc --build --clean && tsc --build"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
