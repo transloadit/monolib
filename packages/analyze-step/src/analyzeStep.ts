@@ -312,7 +312,7 @@ type Step = Partial<FileFilterStep> &
     [key: string]: any
   }
 
-function humanize(step: Step, robots: Robots, extrameta: ExtraMeta = {}): string {
+export = function humanize(step: Step, robots: Robots, extrameta: ExtraMeta = {}): string {
   let str = ``
 
   const robot = robots[step.robot]
@@ -439,5 +439,3 @@ function humanize(step: Step, robots: Robots, extrameta: ExtraMeta = {}): string
 
   return str
 }
-
-export = humanize
