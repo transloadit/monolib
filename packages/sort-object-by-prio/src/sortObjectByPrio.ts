@@ -2,7 +2,7 @@ import sortObject = require('@transloadit/sort-object')
 
 type Prefixes = Record<string, (string | RegExp)[]>
 
-export = function sortObjectByPrio<T extends Record<PropertyKey, unknown>>(
+export = function sortObjectByPrio<T extends Record<string, unknown>>(
   obj: T,
   prefixes: Prefixes,
 ): T {
