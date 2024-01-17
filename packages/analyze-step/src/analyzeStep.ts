@@ -1,10 +1,13 @@
 /* eslint-disable quote-props */
 /* eslint-disable no-template-curly-in-string */
-import formatDurationMs from '@transloadit/format-duration-ms'
-import prettierBytes from '@transloadit/prettier-bytes'
-import * as inflect from 'inflection'
-import { JSONPath } from 'jsonpath-plus'
-import { clone, countBy, get, has } from 'lodash'
+import formatDurationMs = require('@transloadit/format-duration-ms')
+import prettierBytes = require('@transloadit/prettier-bytes')
+import inflect = require('inflection')
+import JSONPath = require('jsonpath-plus')
+import clone = require('lodash/clone')
+import countBy = require('lodash/countBy')
+import get = require('lodash/get')
+import has = require('lodash/has')
 
 function humanJoin(array: string[], reduce = true, glueword = 'and'): string {
   let countedArray = array
@@ -309,7 +312,7 @@ type Step = Partial<FileFilterStep> &
     [key: string]: any
   }
 
-export default function humanize(step: Step, robots: Robots, extrameta: ExtraMeta = {}): string {
+export = function humanize(step: Step, robots: Robots, extrameta: ExtraMeta = {}): string {
   let str = ``
 
   const robot = robots[step.robot]
@@ -395,7 +398,7 @@ export default function humanize(step: Step, robots: Robots, extrameta: ExtraMet
   }
 
   if (robot?.rname === '/video/merge') {
-    const types = JSONPath({ path: '$..as', json: step })
+    const types = JSONPath.JSONPath({ path: '$..as', json: step })
     if (types.length) {
       str = `Merge ${humanJoin(types)} to create a new video`
     } else if (get(step, 'ffmpeg.f') === 'gif') {

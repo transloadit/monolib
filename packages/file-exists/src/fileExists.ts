@@ -1,6 +1,6 @@
-import fs from 'fs'
+import fs = require('fs')
 
-export default function fileExists(path: string): Promise<boolean> {
+export = function fileExists(path: string): Promise<boolean> {
   return new Promise((resolve) => {
     fs.access(path, fs.constants.F_OK, (err) => {
       resolve(!err)

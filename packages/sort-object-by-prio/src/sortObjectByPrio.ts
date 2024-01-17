@@ -1,10 +1,10 @@
-import sortObject from '@transloadit/sort-object'
+import sortObject = require('@transloadit/sort-object')
 
 type Prefixes = {
   [prefix: string]: Array<string | RegExp>
 }
 
-export default function sortObjectByPrio<T extends Record<string, unknown>>(
+export = function sortObjectByPrio<T extends Record<string, unknown>>(
   obj: T,
   prefixes: Prefixes
 ): T {

@@ -1,12 +1,12 @@
-import twttr from 'twitter-text'
-import { tall } from 'tall'
+import twttr = require('twitter-text')
+import tall = require('tall')
 
-import getUrls from 'get-urls'
+import getUrls = require('get-urls')
 
 async function tryUnshorten(url: string, unshorten: boolean): Promise<string> {
   if (!unshorten) return url
   try {
-    return await tall(url)
+    return await tall.tall(url)
   } catch (err) {
     return url
   }
@@ -32,10 +32,7 @@ type Tweet = {
   }
 }
 
-export default async function enrichTweet(
-  tweet: Tweet,
-  unshorten = true
-): Promise<string | undefined> {
+export = async function enrichTweet(tweet: Tweet, unshorten = true): Promise<string | undefined> {
   if (!tweet) return
 
   let text = tweet.full_text ?? ''

@@ -1,6 +1,6 @@
-import pr from '@transloadit/pr'
+import pr = require('@transloadit/pr')
 
-export default function prd<T>(...args: T[]): void {
+export = function prd<T>(...args: T[]): void {
   pr(...args)
   const err = new Error('Halt via prd')
   console.error(err)

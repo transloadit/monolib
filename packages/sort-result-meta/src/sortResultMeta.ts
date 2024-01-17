@@ -1,4 +1,4 @@
-import sortObjectByPrio from '@transloadit/sort-object-by-prio'
+import sortObjectByPrio = require('@transloadit/sort-object-by-prio')
 
 type Meta = {
   faces?: Record<string, unknown>[]
@@ -10,7 +10,7 @@ function isObject(obj: unknown): obj is Record<string, unknown> {
   )
 }
 
-export default function sortResultMeta<T extends Meta>(meta: T): T {
+export = function sortResultMeta<T extends Meta>(meta: T): T {
   if (meta.faces) {
     for (let i = 0; i < meta.faces.length; i++) {
       const el = meta.faces[i]

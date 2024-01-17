@@ -1,4 +1,4 @@
-export default function slugify(str: string): string {
+export = function slugify(str: string): string {
   if (!str || str !== `${str}`) return str
 
   return str

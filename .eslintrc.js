@@ -36,6 +36,7 @@ module.exports = {
     'no-restricted-globals': ['warn'],
     'no-restricted-properties': ['warn'],
     'no-restricted-syntax': ['warn'],
+    'import/no-unresolved': ['error', { commonjs: true }],
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -46,5 +47,6 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    '@typescript-eslint/no-var-requires': 'off',
   },
 }

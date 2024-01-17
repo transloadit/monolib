@@ -1,9 +1,9 @@
-import { api } from '@pagerduty/pdjs'
+import pagerduty = require('@pagerduty/pdjs')
 
 const PRIORITY_P1 = 'PUTY3A1'
 const DUPLICATE_INCIDENT_MESSAGE = 'matching dedup key already exists'
 
-export type TriggerPagerOptions = {
+type TriggerPagerOptions = {
   description: string
   from?: string
   incidentKey: string
@@ -22,7 +22,7 @@ const triggerPager = async ({
   token,
   urgency = 'high',
 }: TriggerPagerOptions): Promise<void> => {
-  const res = await api({ token }).post('/incidents', {
+  const res = await pagerduty.api({ token }).post('/incidents', {
     headers: {
       from,
     },
@@ -58,4 +58,4 @@ const triggerPager = async ({
   }
 }
 
-export default triggerPager
+export = triggerPager
