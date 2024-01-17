@@ -773,7 +773,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@transloadit/analyze-step@workspace:packages/analyze-step"
   dependencies:
-    "@transloadit/format-duration-ms": "npm:^0.3.1"
+    "@transloadit/format-duration-ms": "npm:^0.4.0"
     "@transloadit/prettier-bytes": "npm:^0.3.1"
     "@types/jsonpath": "npm:^0.2.4"
     "@types/lodash": "npm:^4.14.202"
@@ -802,7 +802,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@transloadit/format-duration-ms@npm:^0.3.1, @transloadit/format-duration-ms@workspace:packages/format-duration-ms":
+"@transloadit/format-duration-ms@npm:^0.4.0, @transloadit/format-duration-ms@workspace:packages/format-duration-ms":
   version: 0.0.0-use.local
   resolution: "@transloadit/format-duration-ms@workspace:packages/format-duration-ms"
   dependencies:
