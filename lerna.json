@@ -2,5 +2,6 @@
   "packages": ["packages/*"],
   "version": "independent",
   "npmClient": "yarn",
-  "$schema": "node_modules/lerna/schemas/lerna-schema.json"
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "signGitTag": true
 }
