@@ -16,7 +16,7 @@
     "fix:formatting": "prettier --write .",
     "fix:js": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "lernaPublish": "lerna publish",
-    "lint": "run-p lint:formatting lint:js lint:ts",
+    "lint": "run-p lint:formatting lint:js && yarn lint:ts",
     "lint:formatting": "prettier --check .",
     "lint:js": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:ts": "lerna run tsc",

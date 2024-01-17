@@ -79,7 +79,7 @@ export = async function enrichTweet(tweet: Tweet, unshorten = true): Promise<str
   // show images
   text = text.replace(
     />(https:\/\/pbs\.twimg\.com\/[^<]+)</g,
-    `><img class="tweet-media" src="$1" /><`
+    `><img class="tweet-media" src="$1" /><`,
   )
 
   // Add two linebreaks before first image
@@ -88,7 +88,7 @@ export = async function enrichTweet(tweet: Tweet, unshorten = true): Promise<str
   // Add @ inside link instead of before
   text = text.replace(
     /@<a\s+class="tweet-url username"\s+href="https:\/\/twitter.com\/([^"]+)"\s+data-screen-name="([^"]+)"\s+rel="nofollow">([^<]+)<\/a>/g,
-    '<a class="tweet-url username" href="https://twitter.com/$1" data-screen-name="$2" rel="nofollow">@$3</a>'
+    '<a class="tweet-url username" href="https://twitter.com/$1" data-screen-name="$2" rel="nofollow">@$3</a>',
   )
 
   // eslint-disable-next-line consistent-return

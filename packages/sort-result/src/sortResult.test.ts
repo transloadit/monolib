@@ -54,7 +54,7 @@ describe('sortResult', () => {
           queueTime: 0,
           execTime: 0.83,
           cost: 627606,
-        })
+        }),
       ),
       [
         'id',
@@ -81,7 +81,7 @@ describe('sortResult', () => {
         'type',
         'url',
         'meta',
-      ]
+      ],
     )
   })
 })

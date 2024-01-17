@@ -5,9 +5,9 @@
     "rootDir": "src/",
     "paths": {
       "@transloadit/format-duration-ms": ["../format-duration-ms"],
-      "@transloadit/prettier-bytes": ["../prettier-bytes"]
-    }
+      "@transloadit/prettier-bytes": ["../prettier-bytes"],
+    },
   },
   "references": [{ "path": "../format-duration-ms" }, { "path": "../prettier-bytes" }],
-  "include": ["src/"]
+  "include": ["src/"],
 }

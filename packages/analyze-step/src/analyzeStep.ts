@@ -76,7 +76,7 @@ function humanFilter(step: FileFilterStep): string {
         const template = clone(templates[operator])
         if (!template) {
           throw new Error(
-            `Please add a template definition for this /file/filter operator: ${operator}`
+            `Please add a template definition for this /file/filter operator: ${operator}`,
           )
         }
 
@@ -158,7 +158,7 @@ function humanFilter(step: FileFilterStep): string {
   if (collection.declines && collection.declines.length > 0) {
     const joindec = humanJoin(collection.declines, false, step.condition_type).replace(
       'with a certain mime-type and with a certain mime-type',
-      'with certain mime-types'
+      'with certain mime-types',
     )
 
     total.push(`Exclude ${joindec}`)
@@ -166,7 +166,7 @@ function humanFilter(step: FileFilterStep): string {
   if (collection.accepts && collection.accepts.length > 0) {
     const joinacc = humanJoin(collection.accepts, false, step.condition_type).replace(
       'with a certain mime-type and with a certain mime-type',
-      'with certain mime-types'
+      'with certain mime-types',
     )
 
     total.push(`Pick ${joinacc}`)

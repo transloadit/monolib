@@ -17,10 +17,10 @@ describe('sortObjectByPrio', () => {
           {
             _: ['redirect_to', 'warning', 'title', 'meta_description'],
             z: [/^generated_/],
-          }
-        )
+          },
+        ),
       ),
-      ['title', 'redirect_from', 'run_instructions', 'generated_hash', 'generated_upload_required']
+      ['title', 'redirect_from', 'run_instructions', 'generated_hash', 'generated_upload_required'],
     )
   })
 })

@@ -1,7 +1,7 @@
 export = function sortObject<T extends Record<string, unknown>>(
   obj: T,
   // eslint-disable-next-line no-unused-vars
-  sortFunc?: (a: string, b: string) => number
+  sortFunc?: (a: string, b: string) => number,
 ): T {
   // yeah i know, sorting objects in js doesn't work :)
   return Object.keys(obj)

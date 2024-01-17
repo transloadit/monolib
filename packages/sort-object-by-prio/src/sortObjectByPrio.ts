@@ -6,7 +6,7 @@ type Prefixes = {
 
 export = function sortObjectByPrio<T extends Record<string, unknown>>(
   obj: T,
-  prefixes: Prefixes
+  prefixes: Prefixes,
 ): T {
   return sortObject(obj, (argA: string, argB: string) => {
     let a = argA
