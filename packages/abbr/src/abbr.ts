@@ -1,4 +1,4 @@
-module.exports = function abbr(str: string, maxLength = 55, divider = `[...]`): string {
+export = function abbr(str: string, maxLength = 55, divider = `[...]`): string {
   if (str !== `${str}`) {
     return str
   }
