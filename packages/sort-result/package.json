@@ -1,6 +1,6 @@
 {
   "name": "@transloadit/sort-result",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "repository": {
     "type": "git",
     "url": "git://github.com/transloadit/monolib.git",
@@ -18,9 +18,9 @@
     "tsc": "tsc --build --clean && tsc --build"
   },
   "dependencies": {
-    "@transloadit/has-property": "^0.2.1",
-    "@transloadit/sort-object-by-prio": "^0.3.1",
-    "@transloadit/sort-result-meta": "^0.3.1"
+    "@transloadit/has-property": "^0.2.2",
+    "@transloadit/sort-object-by-prio": "^0.3.2",
+    "@transloadit/sort-result-meta": "^0.3.2"
   },
   "publishConfig": {
     "access": "public"
