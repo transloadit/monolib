@@ -4,9 +4,9 @@
     "outDir": "dist/",
     "rootDir": "src/",
     "paths": {
-      "@transloadit/has-property": ["../sort-object"],
-    },
+      "@transloadit/has-property": ["../sort-object"]
+    }
   },
   "references": [{ "path": "../sort-object" }],
-  "include": ["src/"],
+  "include": ["src/"]
 }

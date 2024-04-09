@@ -4,9 +4,9 @@
     "outDir": "dist/",
     "rootDir": "src/",
     "paths": {
-      "@transloadit/pr": ["../pr"],
-    },
+      "@transloadit/pr": ["../pr"]
+    }
   },
   "include": ["src/"],
-  "references": [{ "path": "../pr" }],
+  "references": [{ "path": "../pr" }]
 }

@@ -6,9 +6,9 @@
     "rootDir": "src/",
     "paths": {
       "@transloadit/file-exists": ["../file-exists"],
-      "@transloadit/slugify": ["../slugify"],
-    },
+      "@transloadit/slugify": ["../slugify"]
+    }
   },
   "references": [{ "path": "../file-exists" }, { "path": "../slugify" }],
-  "include": ["src/"],
+  "include": ["src/"]
 }
