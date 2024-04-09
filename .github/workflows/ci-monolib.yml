@@ -6,6 +6,26 @@ on:
     branches: [main]
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: corepack yarn --immutable
+      - run: corepack yarn build
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: corepack yarn --immutable
+      - run: corepack yarn lint
+
   test:
     runs-on: ubuntu-latest
     steps:
@@ -14,4 +34,4 @@ jobs:
         with:
           node-version: 18
       - run: corepack yarn --immutable
-      - run: corepack yarn check
+      - run: corepack yarn test
