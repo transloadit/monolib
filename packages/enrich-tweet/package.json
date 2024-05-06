@@ -20,7 +20,6 @@
   "dependencies": {
     "get-urls": "^12.1.0",
     "nan": "^2.19.0",
-    "re2": "patch:re2@npm%3A1.20.9#~/.yarn/patches/re2-npm-1.20.9-65a014d791.patch",
     "tall": "^8.0.0",
     "twitter-text": "^3.1.0"
   },

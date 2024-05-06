@@ -20,9 +20,6 @@
     "test": "node -r sucrase/register --test packages/**/*.test.ts",
     "test:watch": "node -r sucrase/register --test --watch packages/**/*.test.ts"
   },
-  "resolutions": {
-    "re2": "patch:re2@npm%3A1.20.9#~/.yarn/patches/re2-npm-1.20.9-65a014d791.patch"
-  },
   "dependencies": {
     "execa": "5.1.1",
     "inflection": "3.0.0",
