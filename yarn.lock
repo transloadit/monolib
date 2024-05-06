@@ -774,8 +774,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@transloadit/analyze-step@workspace:packages/analyze-step"
   dependencies:
-    "@transloadit/format-duration-ms": "npm:^0.4.1"
-    "@transloadit/prettier-bytes": "npm:^0.3.2"
+    "@transloadit/format-duration-ms": "npm:^0.4.2"
+    "@transloadit/prettier-bytes": "npm:^0.3.3"
     "@types/jsonpath": "npm:^0.2.4"
     "@types/lodash": "npm:^4.17.0"
     inflection: "npm:^3.0.0"
@@ -797,13 +797,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@transloadit/file-exists@npm:^0.3.2, @transloadit/file-exists@workspace:packages/file-exists":
+"@transloadit/file-exists@npm:^0.3.3, @transloadit/file-exists@workspace:packages/file-exists":
   version: 0.0.0-use.local
   resolution: "@transloadit/file-exists@workspace:packages/file-exists"
   languageName: unknown
   linkType: soft
 
-"@transloadit/format-duration-ms@npm:^0.4.1, @transloadit/format-duration-ms@workspace:packages/format-duration-ms":
+"@transloadit/format-duration-ms@npm:^0.4.2, @transloadit/format-duration-ms@workspace:packages/format-duration-ms":
   version: 0.0.0-use.local
   resolution: "@transloadit/format-duration-ms@workspace:packages/format-duration-ms"
   dependencies:
@@ -811,7 +811,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@transloadit/has-property@npm:^0.2.2, @transloadit/has-property@workspace:packages/has-property":
+"@transloadit/has-property@npm:^0.2.3, @transloadit/has-property@workspace:packages/has-property":
   version: 0.0.0-use.local
   resolution: "@transloadit/has-property@workspace:packages/has-property"
   languageName: unknown
@@ -821,8 +821,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@transloadit/post@workspace:packages/post"
   dependencies:
-    "@transloadit/file-exists": "npm:^0.3.2"
-    "@transloadit/slugify": "npm:^0.3.2"
+    "@transloadit/file-exists": "npm:^0.3.3"
+    "@transloadit/slugify": "npm:^0.3.3"
     "@types/inquirer": "npm:^8.2.10"
     "@types/title": "npm:^3.4.3"
     inquirer: "npm:^8.2.6"
@@ -833,7 +833,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@transloadit/pr@npm:^0.3.2, @transloadit/pr@workspace:packages/pr":
+"@transloadit/pr@npm:^0.3.3, @transloadit/pr@workspace:packages/pr":
   version: 0.0.0-use.local
   resolution: "@transloadit/pr@workspace:packages/pr"
   languageName: unknown
@@ -843,17 +843,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@transloadit/prd@workspace:packages/prd"
   dependencies:
-    "@transloadit/pr": "npm:^0.3.2"
+    "@transloadit/pr": "npm:^0.3.3"
   languageName: unknown
   linkType: soft
 
-"@transloadit/prettier-bytes@npm:^0.3.2, @transloadit/prettier-bytes@workspace:packages/prettier-bytes":
+"@transloadit/prettier-bytes@npm:^0.3.3, @transloadit/prettier-bytes@workspace:packages/prettier-bytes":
   version: 0.0.0-use.local
   resolution: "@transloadit/prettier-bytes@workspace:packages/prettier-bytes"
   languageName: unknown
   linkType: soft
 
-"@transloadit/slugify@npm:^0.3.2, @transloadit/slugify@workspace:packages/slugify":
+"@transloadit/slugify@npm:^0.3.3, @transloadit/slugify@workspace:packages/slugify":
   version: 0.0.0-use.local
   resolution: "@transloadit/slugify@workspace:packages/slugify"
   languageName: unknown
@@ -863,43 +863,43 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@transloadit/sort-assembly@workspace:packages/sort-assembly"
   dependencies:
-    "@transloadit/has-property": "npm:^0.2.2"
-    "@transloadit/sort-object-by-prio": "npm:^0.3.2"
-    "@transloadit/sort-result": "npm:^0.3.2"
+    "@transloadit/has-property": "npm:^0.2.3"
+    "@transloadit/sort-object-by-prio": "npm:^0.3.3"
+    "@transloadit/sort-result": "npm:^0.3.3"
   languageName: unknown
   linkType: soft
 
-"@transloadit/sort-object-by-prio@npm:^0.3.2, @transloadit/sort-object-by-prio@workspace:packages/sort-object-by-prio":
+"@transloadit/sort-object-by-prio@npm:^0.3.3, @transloadit/sort-object-by-prio@workspace:packages/sort-object-by-prio":
   version: 0.0.0-use.local
   resolution: "@transloadit/sort-object-by-prio@workspace:packages/sort-object-by-prio"
   dependencies:
-    "@transloadit/sort-object": "npm:^0.3.2"
+    "@transloadit/sort-object": "npm:^0.3.3"
   languageName: unknown
   linkType: soft
 
-"@transloadit/sort-object@npm:^0.3.2, @transloadit/sort-object@workspace:packages/sort-object":
+"@transloadit/sort-object@npm:^0.3.3, @transloadit/sort-object@workspace:packages/sort-object":
   version: 0.0.0-use.local
   resolution: "@transloadit/sort-object@workspace:packages/sort-object"
   dependencies:
-    "@transloadit/has-property": "npm:^0.2.2"
+    "@transloadit/has-property": "npm:^0.2.3"
   languageName: unknown
   linkType: soft
 
-"@transloadit/sort-result-meta@npm:^0.3.2, @transloadit/sort-result-meta@workspace:packages/sort-result-meta":
+"@transloadit/sort-result-meta@npm:^0.3.3, @transloadit/sort-result-meta@workspace:packages/sort-result-meta":
   version: 0.0.0-use.local
   resolution: "@transloadit/sort-result-meta@workspace:packages/sort-result-meta"
   dependencies:
-    "@transloadit/sort-object-by-prio": "npm:^0.3.2"
+    "@transloadit/sort-object-by-prio": "npm:^0.3.3"
   languageName: unknown
   linkType: soft
 
-"@transloadit/sort-result@npm:^0.3.2, @transloadit/sort-result@workspace:packages/sort-result":
+"@transloadit/sort-result@npm:^0.3.3, @transloadit/sort-result@workspace:packages/sort-result":
   version: 0.0.0-use.local
   resolution: "@transloadit/sort-result@workspace:packages/sort-result"
   dependencies:
-    "@transloadit/has-property": "npm:^0.2.2"
-    "@transloadit/sort-object-by-prio": "npm:^0.3.2"
-    "@transloadit/sort-result-meta": "npm:^0.3.2"
+    "@transloadit/has-property": "npm:^0.2.3"
+    "@transloadit/sort-object-by-prio": "npm:^0.3.3"
+    "@transloadit/sort-result-meta": "npm:^0.3.3"
   languageName: unknown
   linkType: soft
 

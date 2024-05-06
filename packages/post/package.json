@@ -1,6 +1,6 @@
 {
   "name": "@transloadit/post",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "repository": {
     "type": "git",
     "url": "git://github.com/transloadit/monolib.git",
@@ -18,8 +18,8 @@
     "tsc": "tsc --build --clean && tsc --build"
   },
   "dependencies": {
-    "@transloadit/file-exists": "^0.3.2",
-    "@transloadit/slugify": "^0.3.2",
+    "@transloadit/file-exists": "^0.3.3",
+    "@transloadit/slugify": "^0.3.3",
     "inquirer": "^8.2.6",
     "open-in-editor": "^2.2.0",
     "title": "^3.5.3"
