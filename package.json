@@ -15,8 +15,8 @@
     "lint:formatting": "prettier --check .",
     "lint:js": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:ts": "lerna run tsc",
-    "new": "sucrase-node new.ts",
-    "pub": "npm-run-all test lernaPublish",
+    "new": "ts-fly new.ts",
+    "pub": "npm-run-all build test lernaPublish",
     "test": "node -r @transloadit/ts-fly --test packages/**/*.test.ts",
     "test:watch": "node -r @transloadit/ts-fly --test --watch packages/**/*.test.ts"
   },
