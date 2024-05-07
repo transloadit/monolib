@@ -918,7 +918,7 @@ __metadata:
     sucrase: "npm:^3.32.0"
   bin:
     ts-fly: ./bin/ts-fly
-  checksum: 480bf053c46b0d3f94ecd54a8140ab7c6f5e6241967cfe208792b0bf1aff9675c604859692c7022ed5df89fa0ea1e6782a7f12df78e9098d7adc48a7f291c252
+  checksum: 10c0/480bf053c46b0d3f94ecd54a8140ab7c6f5e6241967cfe208792b0bf1aff9675c604859692c7022ed5df89fa0ea1e6782a7f12df78e9098d7adc48a7f291c252
   languageName: node
   linkType: hard
 
