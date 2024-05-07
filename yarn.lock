@@ -910,6 +910,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@transloadit/ts-fly@npm:^0.1.5":
+  version: 0.1.5
+  resolution: "@transloadit/ts-fly@npm:0.1.5"
+  dependencies:
+    pirates: "npm:^4.0.5"
+    sucrase: "npm:^3.32.0"
+  bin:
+    ts-fly: ./bin/ts-fly
+  checksum: 480bf053c46b0d3f94ecd54a8140ab7c6f5e6241967cfe208792b0bf1aff9675c604859692c7022ed5df89fa0ea1e6782a7f12df78e9098d7adc48a7f291c252
+  languageName: node
+  linkType: hard
+
 "@tufjs/canonical-json@npm:1.0.0":
   version: 1.0.0
   resolution: "@tufjs/canonical-json@npm:1.0.0"
@@ -5570,6 +5582,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "monolib@workspace:."
   dependencies:
+    "@transloadit/ts-fly": "npm:^0.1.5"
     "@types/node": "npm:^20.12.6"
     "@typescript-eslint/eslint-plugin": "npm:^7.6.0"
     "@typescript-eslint/parser": "npm:^7.6.0"
@@ -5595,7 +5608,6 @@ __metadata:
     prettier: "npm:^3.2.5"
     prettier-plugin-packagejson: "npm:^2.4.14"
     replace: "npm:1.2.2"
-    sucrase: "npm:^3.35.0"
     typescript: "npm:^5.4.4"
   languageName: unknown
   linkType: soft
@@ -6626,7 +6638,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pirates@npm:^4.0.1":
+"pirates@npm:^4.0.1, pirates@npm:^4.0.5":
   version: 4.0.6
   resolution: "pirates@npm:4.0.6"
   checksum: 00d5fa51f8dded94d7429700fb91a0c1ead00ae2c7fd27089f0c5b63e6eca36197fe46384631872690a66f390c5e27198e99006ab77ae472692ab9c2ca903f36
@@ -7752,7 +7764,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sucrase@npm:^3.35.0":
+"sucrase@npm:^3.32.0":
   version: 3.35.0
   resolution: "sucrase@npm:3.35.0"
   dependencies:
