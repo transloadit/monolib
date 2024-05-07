@@ -1,8 +1,6 @@
 import twttr = require('twitter-text')
 import tall = require('tall')
 
-import getUrls = require('get-urls')
-
 async function tryUnshorten(url: string, unshorten: boolean): Promise<string> {
   if (!unshorten) return url
   try {
@@ -64,6 +62,7 @@ export = async function enrichTweet(tweet: Tweet, unshorten = true): Promise<str
     }
   }
 
+  const getUrls = (await import('get-urls')).default
   const urls = getUrls(text)
   for (const subUrl3 of urls) {
     if (!subUrl3.match(/^https?:\/\/bit\.ly/)) {
