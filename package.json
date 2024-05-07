@@ -51,9 +51,9 @@
     "prettier-plugin-packagejson": "^2.4.14",
     "typescript": "^5.4.4"
   },
-  "packageManager": "yarn@4.0.1+sha224.ca5d6f5a8aecd0801adc32f775675b01961bdc2383867d36f4732a0a",
+  "packageManager": "yarn@4.2.1+sha224.ff43de12787fdac66109108198934436dae6874cf2b98a51697ca494",
   "engines": {
     "node": ">= 18",
-    "yarn": "4.0.1"
+    "yarn": "4.2.1"
   }
 }
