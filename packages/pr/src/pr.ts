@@ -1,4 +1,4 @@
-import util = require('util')
+import util = require('node:util')
 
 export = function pr<T>(...args: T[]): T[] {
   for (const arg of args) {

@@ -1,5 +1,3 @@
-/* eslint-disable max-classes-per-file */
-
 declare module 'open-in-editor' {
   class OpenInEditor {
     open(path: string): Promise<void>

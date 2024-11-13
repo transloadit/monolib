@@ -1,6 +1,5 @@
-/* eslint-disable no-template-curly-in-string */
-import { describe, test } from 'node:test'
 import assert from 'node:assert'
+import { describe, test } from 'node:test'
 import analyzeStep from './analyzeStep'
 
 const ROBOTS = {
