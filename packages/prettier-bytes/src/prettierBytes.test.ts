@@ -1,5 +1,5 @@
-import { describe, it } from 'node:test'
 import assert from 'node:assert'
+import { describe, it } from 'node:test'
 import prettierBytes from './prettierBytes'
 
 const testData = [
@@ -37,7 +37,7 @@ describe('prettierBytes', () => {
 
   it('throws on NaN', () => {
     assert.throws(() => {
-      prettierBytes(NaN)
+      prettierBytes(Number.NaN)
     })
   })
 })

@@ -1,10 +1,10 @@
+import assert from 'node:assert'
+import crypto from 'node:crypto'
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable global-require */
 /* eslint-disable import/no-dynamic-require */
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { mock, describe, test } from 'node:test'
-import assert from 'node:assert'
-import crypto from 'node:crypto'
+import { describe, mock, test } from 'node:test'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function mockRequire(specifier: string, replacer: (actual: any) => any) {

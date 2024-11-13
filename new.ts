@@ -1,10 +1,10 @@
 import execa from 'execa'
-import replace from 'replace'
-import inquirer from 'inquirer'
 import inflection from 'inflection'
 
 // eslint-disable-next-line import/newline-after-import
-;(async () => {
+;
+import inquirer from 'inquirer'
+import replace from 'replace'(async () => {
   const answers = await inquirer.prompt([
     {
       type: 'input',

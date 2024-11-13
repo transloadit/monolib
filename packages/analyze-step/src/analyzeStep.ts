@@ -93,13 +93,13 @@ function humanFilter(step: FileFilterStep): string {
 
         let humanVal = val
         if (humanKey === 'filesize') {
-          humanVal = prettierBytes(parseInt(humanVal, 10))
+          humanVal = prettierBytes(Number.parseInt(humanVal, 10))
         }
         if (humanKey.match(/ bitrate$/) && humanVal) {
-          humanVal = `${prettierBytes(parseInt(humanVal, 10))}`.replace('B', 'bit/s')
+          humanVal = `${prettierBytes(Number.parseInt(humanVal, 10))}`.replace('B', 'bit/s')
         }
         if (humanKey === 'duration') {
-          humanVal = formatDurationMs(parseInt(humanVal, 10) * 1000)
+          humanVal = formatDurationMs(Number.parseInt(humanVal, 10) * 1000)
         }
         if (
           humanVal ===

@@ -1,6 +1,6 @@
 import fs from 'fs'
-import { describe, test } from 'node:test'
 import assert from 'node:assert'
+import { describe, test } from 'node:test'
 import enrichTweet from './enrichTweet'
 
 describe('enrichTweet', () => {
