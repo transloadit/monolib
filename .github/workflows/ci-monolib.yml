@@ -35,7 +35,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-turbo-
 
-      - run: yarn config set enableHardenedMode false
+      - run: corepack yarn config set enableHardenedMode false
       - run: corepack yarn
       - run: corepack yarn build
       - run: corepack yarn check

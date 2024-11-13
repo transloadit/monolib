@@ -39,7 +39,7 @@ jobs:
             ${{ runner.os }}-turbo-
 
       # Allow yarn to make changes during release
-      - run: yarn config set enableHardenedMode false
+      - run: corepack yarn config set enableHardenedMode false
       - run: corepack yarn
       - run: corepack yarn build
 
