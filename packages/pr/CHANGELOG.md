@@ -1,5 +1,11 @@
 # @transloadit/pr
 
+## 0.6.0
+
+### Minor Changes
+
+- cd3f25b: Trial release
+
 ## 0.5.0
 
 ### Minor Changes
