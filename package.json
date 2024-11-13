@@ -15,7 +15,7 @@
     "pub": "npm-run-all build test publish",
     "publish": "changeset publish",
     "test": "turbo run test",
-    "test:watch": "turbo run test:watch",
+    "test:watch": "turbo run test:watch --concurrency=20",
     "version": "changeset version",
     "release": "turbo run build --filter=!./packages/docs && changeset publish"
   },
