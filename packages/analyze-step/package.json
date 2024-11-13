@@ -21,7 +21,7 @@
     "@transloadit/format-duration-ms": "^0.4.2",
     "@transloadit/prettier-bytes": "^0.3.3",
     "inflection": "^3.0.0",
-    "jsonpath-plus": "^7.2.0",
+    "jsonpath-plus": "^10.0.7",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
