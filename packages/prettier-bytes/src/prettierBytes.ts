@@ -1,31 +1,26 @@
 // Adapted from https://github.com/Flet/prettier-bytes/
 // Changing 1000 bytes to 1024, so we can keep uppercase KB vs kB
 // ISC License (c) Dan Flettre https://github.com/Flet/prettier-bytes/blob/master/LICENSE
-export = function prettierBytes(num: number): string {
-  if (typeof num !== 'number' || Number.isNaN(num)) {
-    throw new TypeError(`Expected a number, got ${typeof num}`)
+export = function prettierBytes(input: number): string {
+  if (typeof input !== 'number' || Number.isNaN(input)) {
+    throw new TypeError(`Expected a number, got ${typeof input}`)
   }
 
-  const neg = num < 0
-  const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+  const neg = input < 0
+  let num = Math.abs(input)
 
   if (neg) {
     num = -num
   }
 
-  if (num < 1) {
-    return `${(neg ? '-' : '') + num} B`
+  if (num === 0) {
+    return '0 B'
   }
 
+  const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
   const exponent = Math.min(Math.floor(Math.log(num) / Math.log(1024)), units.length - 1)
-  num = Number(num / 1024 ** exponent)
+  const value = Number(num / 1024 ** exponent)
   const unit = units[exponent]
 
-  if (num >= 10 || num % 1 === 0) {
-    // Do not show decimals when the number is two-digit, or if the number has no
-    // decimal component.
-    return `${(neg ? '-' : '') + num.toFixed(0)} ${unit}`
-  }
-
-  return `${(neg ? '-' : '') + num.toFixed(1)} ${unit}`
+  return `${value >= 10 || value % 1 === 0 ? Math.round(value) : value.toFixed(1)} ${unit}`
 }

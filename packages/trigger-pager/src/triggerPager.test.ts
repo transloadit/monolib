@@ -6,10 +6,11 @@ import crypto from 'node:crypto'
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { describe, mock, test } from 'node:test'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function mockRequire(specifier: string, replacer: (actual: any) => any) {
+type MockReplacer<T> = (actual: T) => T
+
+function mockRequire<T>(specifier: string, replacer?: MockReplacer<T>) {
   const actualPath = require.resolve(specifier)
-  if (arguments.length === 1) {
+  if (!replacer) {
     require.cache[actualPath] = require(`../__mocks__/${specifier}`)
   } else {
     const actual = require(specifier)
@@ -17,11 +18,11 @@ function mockRequire(specifier: string, replacer: (actual: any) => any) {
     require.cache[actualPath] = new Module(actualPath, module)
     Object.defineProperties(require.cache[actualPath], {
       exports: {
-        // @ts-expect-error -  Object literal may only specify known properties, and '__proto__' does not exist in type 'PropertyDescriptor'
+        // @ts-expect-error - Object literal may only specify known properties
         __proto__: null,
         value: replacer(actual),
       },
-      // @ts-expect-error -  Object literal may only specify known properties, and '__proto__' does not exist in type 'PropertyDescriptor'
+      // @ts-expect-error - Object literal may only specify known properties
       resetFn: { __proto__: null, value: replacer.bind(null, actual) },
     })
   }
@@ -103,16 +104,17 @@ describe('triggerPager', () => {
       }
     })
 
-    let err
+    let err: Error | undefined
     try {
       await triggerPager({
         title: '',
         description: '',
       })
     } catch (_err) {
-      err = _err
+      err = _err as Error
     }
 
+    assert.ok(err, 'Expected an error to be thrown')
     assert.strictEqual(err.message, 'oh no - oh; no')
   })
 

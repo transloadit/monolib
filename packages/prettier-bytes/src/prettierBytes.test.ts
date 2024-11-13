@@ -23,9 +23,9 @@ const testData = [
 
 describe('prettierBytes', () => {
   it('should convert the specified number of bytes to a human-readable string like 236 MB', () => {
-    testData.forEach((data) => {
-      assert.strictEqual(prettierBytes(data[0]), data[1])
-    })
+    for (const [input, expected] of testData) {
+      assert.strictEqual(prettierBytes(input), expected)
+    }
   })
 
   it('throws on non-number', () => {

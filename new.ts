@@ -1,10 +1,8 @@
 import execa from 'execa'
 import inflection from 'inflection'
-
-// eslint-disable-next-line import/newline-after-import
-;
 import inquirer from 'inquirer'
 import replace from 'replace'(async () => {
+;(async () => {
   const answers = await inquirer.prompt([
     {
       type: 'input',
@@ -20,7 +18,7 @@ import replace from 'replace'(async () => {
     `${__dirname}/template-package`,
     `${__dirname}/packages/${answers.name}`,
   ])
-  subprocess1.stdout.pipe(process.stdout)
+  subprocess1.stdout?.pipe(process.stdout)
   await subprocess1
 
   const subprocess2 = execa(`mv`, [
@@ -28,7 +26,7 @@ import replace from 'replace'(async () => {
     `${__dirname}/packages/${answers.name}/replaceMe.js`,
     `${__dirname}/packages/${answers.name}/${camelized}.js`,
   ])
-  subprocess2.stdout.pipe(process.stdout)
+  subprocess2.stdout?.pipe(process.stdout)
   await subprocess2
 
   const subprocess3 = execa(`mv`, [
@@ -36,7 +34,7 @@ import replace from 'replace'(async () => {
     `${__dirname}/packages/${answers.name}/replaceMe.test.js`,
     `${__dirname}/packages/${answers.name}/${camelized}.test.js`,
   ])
-  subprocess3.stdout.pipe(process.stdout)
+  subprocess3.stdout?.pipe(process.stdout)
   await subprocess3
 
   await replace({

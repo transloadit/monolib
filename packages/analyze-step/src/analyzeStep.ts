@@ -72,7 +72,7 @@ function humanFilter(step: FileFilterStep): string {
     if (typeof step[type] === 'string') {
       collection[type]?.push(`Filter by code evaluation`)
     } else if (step[type] && Array.isArray(step[type])) {
-      for (const [key, operator, val] of Object.values(step[type]!)) {
+      for (const [key, operator, val] of Object.values(step[type] ?? [])) {
         const template = clone(templates[operator])
         if (!template) {
           throw new Error(
@@ -134,11 +134,11 @@ function humanFilter(step: FileFilterStep): string {
           .replace(/{humanKey}/g, humanKey)
           .replace(/{humanVal}/g, humanVal)
 
-        if (humanVal === true || humanVal === 'true') {
+        if (humanVal === 'true') {
           // No values for boolean, just say: with
           humanDescr = humanDescr.replace(' of ', '')
           humanDescr = humanDescr.replace('true', '')
-        } else if (humanVal === '' || humanVal === false || humanVal === 'false') {
+        } else if (humanVal === '' || humanVal === 'false') {
           // No values for boolean, just say: without
           humanDescr = humanDescr.replace(' of ', '')
           humanDescr = humanDescr.replace('false', '')
@@ -305,17 +305,30 @@ type Robots = Record<
   }
 >
 
-type Step = Partial<FileFilterStep> &
-  Partial<StepWithDimensions> &
-  Partial<PresetStep> &
-  Partial<FormatStep> &
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  Record<string, any>
+interface FFmpegOptions {
+  'filter:v'?: string
+  filter_complex?: string
+  t?: string | number
+  ss?: string | number
+  an?: boolean
+  f?: string
+}
+
+type StepData = {
+  robot?: string
+  ffmpeg?: FFmpegOptions
+  technique?: string
+  method?: string
+  [key: string]: string | number | boolean | object | undefined
+}
+
+type Step = FileFilterStep & StepWithDimensions & PresetStep & FormatStep & StepData
 
 export = function humanize(step: Step, robots: Robots, extrameta: ExtraMeta = {}): string {
   let str = ``
 
-  const robot = robots[step.robot]
+  const robotName = step.robot
+  const robot = robotName ? robots[robotName] : undefined
   str = robot?.purpose_words ?? ''
 
   if (robot?.rname === '/video/encode') {
@@ -327,17 +340,11 @@ export = function humanize(step: Step, robots: Robots, extrameta: ExtraMeta = {}
       str = `Take a ${get(step, 'ffmpeg.t')}s clip out of videos at the beginning`
     } else if (get(step, 'ffmpeg.ss')) {
       str = `Take a clip out of videos from ${get(step, 'ffmpeg.ss')}s till the end`
-    } else if (has(step, 'filter:v') && step.ffmpeg['filter:v'] === 'setpts=2.0*PTS') {
+    } else if (step.ffmpeg?.['filter:v'] === 'setpts=2.0*PTS') {
       str = `Slowdown video to half speed`
-    } else if (
-      has(step, 'ffmpeg.filter_complex') &&
-      (step.ffmpeg.filter_complex as string).includes('setpts=')
-    ) {
+    } else if (step.ffmpeg?.filter_complex?.includes('setpts=')) {
       str = `Change video speed`
-    } else if (
-      has(step, 'ffmpeg.filter_complex') &&
-      (step.ffmpeg.filter_complex as string).includes('atempo=')
-    ) {
+    } else if (step.ffmpeg?.filter_complex?.includes('atempo=')) {
       str = `Change audio speed`
     } else if (
       ('width' in step || 'height' in step) &&
@@ -370,12 +377,12 @@ export = function humanize(step: Step, robots: Robots, extrameta: ExtraMeta = {}
       str = `Take a ${get(step, 'ffmpeg.t')}s clip out of audio at a specified offset`
     } else if (
       has(step, 'ffmpeg.filter_complex') &&
-      (step.ffmpeg.filter_complex as string).includes('setpts=')
+      step.ffmpeg?.filter_complex?.includes('setpts=')
     ) {
       str = `Change video speed`
     } else if (
       has(step, 'ffmpeg.filter_complex') &&
-      (step.ffmpeg.filter_complex as string).includes('atempo=')
+      step.ffmpeg?.filter_complex?.includes('atempo=')
     ) {
       str = `Change audio speed`
     } else if ('bitrate' in step) {
