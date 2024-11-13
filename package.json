@@ -16,7 +16,8 @@
     "publish": "changeset publish",
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
-    "update-scripts": "tsx scripts/update-package-scripts.ts"
+    "version": "changeset version",
+    "release": "turbo run build --filter=!./packages/docs && changeset publish"
   },
   "dependencies": {
     "execa": "5.1.1",
