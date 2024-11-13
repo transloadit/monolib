@@ -13,6 +13,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: 🏗 Setup Caching
+        uses: actions/cache@v4
+        with:
+          path: |
+            .turbo
+            node_modules/.cache/turbo
+            **/node_modules
+            .yarn/cache
+          key: ${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock', '**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
       - run: corepack yarn --immutable
       - run: corepack yarn build
       - run: corepack yarn check
