@@ -9,19 +9,17 @@
   "license": "AGPL-3.0-only",
   "main": "dist/analyzeStep.js",
   "types": "dist/analyzeStep.d.ts",
-  "directories": {
-    "lib": "dist",
-    "test": "dist"
-  },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1",
-    "tsc": "tsc --build --clean && tsc --build"
+    "build": "tsc --build --clean && tsc --build",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test src/**/*.test.ts",
+    "test:watch": "tsx --test --watch src/**/*.test.ts"
   },
   "dependencies": {
     "@transloadit/format-duration-ms": "^0.4.2",
     "@transloadit/prettier-bytes": "^0.3.3",
     "inflection": "^3.0.0",
-    "jsonpath-plus": "^10.0.7",
+    "jsonpath-plus": "^10.1.0",
     "lodash": "^4.17.21"
   },
   "devDependencies": {
@@ -30,6 +28,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "714bbf75e54490ceb20bea49a728230668d456c1"
+  }
 }

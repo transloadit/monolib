@@ -8,14 +8,12 @@
   },
   "license": "AGPL-3.0-only",
   "types": "dist/post.d.ts",
-  "bin": "./post.js",
-  "directories": {
-    "lib": "dist",
-    "test": "dist"
-  },
+  "bin": "./dist/post.js",
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1",
-    "tsc": "tsc --build --clean && tsc --build"
+    "build": "tsc --build --clean && tsc --build",
+    "typecheck": "tsc --noEmit",
+    "test": "echo 'No tests yet' && exit 0",
+    "test:watch": "echo 'No tests yet' && exit 0"
   },
   "dependencies": {
     "@transloadit/file-exists": "^0.3.3",
@@ -30,6 +28,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "714bbf75e54490ceb20bea49a728230668d456c1"
+  }
 }

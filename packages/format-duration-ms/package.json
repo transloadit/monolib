@@ -9,19 +9,16 @@
   "license": "AGPL-3.0-only",
   "main": "dist/formatDurationMs.js",
   "types": "dist/formatDurationMs.d.ts",
-  "directories": {
-    "lib": "dist",
-    "test": "dist"
-  },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1",
-    "tsc": "tsc --build --clean && tsc --build"
+    "build": "tsc --build --clean && tsc --build",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test src/**/*.test.ts",
+    "test:watch": "tsx --test --watch src/**/*.test.ts"
   },
   "dependencies": {
     "pretty-ms": "6.0.1"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "714bbf75e54490ceb20bea49a728230668d456c1"
+  }
 }

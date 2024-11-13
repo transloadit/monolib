@@ -5,32 +5,32 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "lerna run tsc",
-    "check": "npm-run-all build lint test",
+    "build": "turbo run build",
+    "check": "turbo run build lint test",
     "fix": "yarn fix:js",
     "fix:js": "biome check --write .",
-    "lernaPublish": "lerna publish",
-    "lint": "run-p lint:js && yarn lint:ts",
+    "lint": "turbo run lint",
     "lint:js": "biome check .",
-    "lint:ts": "lerna run tsc",
-    "pub": "npm-run-all build test lernaPublish",
-    "test": "tsx --test packages/**/*.test.ts",
-    "test:watch": "tsx --test --watch packages/**/*.test.ts"
+    "lint:ts": "turbo run typecheck",
+    "pub": "npm-run-all build test publish",
+    "publish": "changeset publish",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch",
+    "update-scripts": "tsx scripts/update-package-scripts.ts"
   },
   "dependencies": {
     "execa": "5.1.1",
     "inflection": "3.0.0",
     "inquirer": "8.2.6",
-    "replace": "1.2.2",
     "tsx": "^4.19.2"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
+    "@changesets/cli": "^2.27.9",
     "@types/node": "^22.9.0",
     "concurrently": "^8.2.2",
-    "fakefile": "1.1.0",
-    "lerna": "^8.1.9",
     "npm-run-all": "^4.1.5",
+    "turbo": "^2.2.3",
     "typescript": "^5.6.3"
   },
   "packageManager": "yarn@4.5.1",
