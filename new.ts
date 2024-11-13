@@ -1,7 +1,8 @@
-import execa from 'execa'
-import inflection from 'inflection'
-import inquirer from 'inquirer'
-import replace from 'replace'(async () => {
+import execa = require('execa')
+import inflection = require('inflection')
+import inquirer = require('inquirer')
+import replace = require('replace')
+
 ;(async () => {
   const answers = await inquirer.prompt([
     {
