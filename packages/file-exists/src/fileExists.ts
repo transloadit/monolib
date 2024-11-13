@@ -1,4 +1,4 @@
-import fs = require('fs')
+import fs = require('node:fs')
 
 export = function fileExists(path: string): Promise<boolean> {
   return new Promise((resolve) => {

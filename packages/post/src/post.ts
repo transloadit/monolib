@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
-import fs = require('fs/promises')
+import fs = require('node:fs/promises')
 import inquirer = require('inquirer')
 
 import openInEditor = require('open-in-editor')
@@ -19,7 +19,7 @@ async function post(): Promise<void> {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const mysqlNow = new Date().toISOString().replace('T', ' ').split('.')[0]!.split(' ')[0]!
+  const mysqlNow = new Date().toISOString().replace('T', ' ').split('.')[0]?.split(' ')[0]!
 
   // eslint-disable-next-line no-unused-vars
   const [dateY, datem] = mysqlNow.split('-')
