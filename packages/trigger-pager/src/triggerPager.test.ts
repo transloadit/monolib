@@ -111,7 +111,10 @@ describe('triggerPager', () => {
         description: '',
       })
     } catch (_err) {
-      err = _err as Error
+      if (!(_err instanceof Error)) {
+        throw new Error(`Was thrown a non-Error: ${_err}`)
+      }
+      err = _err
     }
 
     assert.ok(err, 'Expected an error to be thrown')
