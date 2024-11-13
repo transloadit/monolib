@@ -1,6 +1,6 @@
 {
   "name": "@transloadit/prd",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "repository": {
     "type": "git",
     "url": "git://github.com/transloadit/monolib.git",
@@ -16,7 +16,7 @@
     "test:watch": "tsx --test --watch src/**/*.test.ts"
   },
   "dependencies": {
-    "@transloadit/pr": "^0.3.4"
+    "@transloadit/pr": "^0.4.0"
   },
   "publishConfig": {
     "access": "public"

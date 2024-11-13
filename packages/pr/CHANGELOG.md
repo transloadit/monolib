@@ -1,5 +1,12 @@
 # @transloadit/pr
 
+## 0.4.0
+
+### Minor Changes
+
+- c861a65: Trial release
+- b12044a: Trial release
+
 ## 0.3.5
 
 ### Patch Changes
