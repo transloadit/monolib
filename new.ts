@@ -2,7 +2,6 @@ import execa = require('execa')
 import inflection = require('inflection')
 import inquirer = require('inquirer')
 import replace = require('replace')
-
 ;(async () => {
   const answers = await inquirer.prompt([
     {
