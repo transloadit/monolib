@@ -21,7 +21,6 @@ While the world _can_ consume the modules, this is mostly to make life easier fo
 | :--------------------------------- | :--------------------------------------------------------------------------- | :-------------------------------------------------------------------------- |
 | `@transloadit/abbr`                | `abbr('Lorem ipsum dolor sit amet', 10, ' .. '))`                            | `'Lor .. met'`                                                              |
 | `@transloadit/analyze-step`        | `analyzeStep({ robot: '/image/resize', width: '75', height: '75' }, ROBOTS)` | `'Resize images to 75×75'`                                                  |
-| `@transloadit/enrich-tweet`        | `await enrichTweet(TWEET)`                                                   | The text of the tweet, linked, short URLs expanded                          |
 | `@transloadit/file-exists`         | `await fileExists('foo.jpg')`                                                | `true`                                                                      |
 | `@transloadit/format-duration-ms`  | `formatDurationMs(10000000)`                                                 | `'2h46m40s'`                                                                |
 | `@transloadit/post`                | `$ post [subdir]`                                                            | Asks questions and creates a markdown post, by default in subdir `./_posts` |
