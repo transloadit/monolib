@@ -1,5 +1,12 @@
 # @transloadit/prd
 
+## 0.3.6
+
+### Patch Changes
+
+- Updated dependencies [7c9bc1a]
+  - @transloadit/pr@0.5.0
+
 ## 0.3.5
 
 ### Patch Changes
