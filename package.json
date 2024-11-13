@@ -1,7 +1,9 @@
 {
   "name": "monolib",
   "private": true,
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "build": "lerna run tsc",
     "check": "npm-run-all build lint test",
@@ -11,20 +13,19 @@
     "lint": "run-p lint:js && yarn lint:ts",
     "lint:js": "biome check .",
     "lint:ts": "lerna run tsc",
-    "new": "ts-fly new.ts",
     "pub": "npm-run-all build test lernaPublish",
-    "test": "node -r @transloadit/ts-fly --test packages/**/*.test.ts",
-    "test:watch": "node -r @transloadit/ts-fly --test --watch packages/**/*.test.ts"
+    "test": "tsx --test packages/**/*.test.ts",
+    "test:watch": "tsx --test --watch packages/**/*.test.ts"
   },
   "dependencies": {
     "execa": "5.1.1",
     "inflection": "3.0.0",
     "inquirer": "8.2.6",
-    "replace": "1.2.2"
+    "replace": "1.2.2",
+    "tsx": "^4.19.2"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "@transloadit/ts-fly": "^0.1.5",
     "@types/node": "^22.9.0",
     "concurrently": "^8.2.2",
     "fakefile": "1.1.0",
