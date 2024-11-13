@@ -60,41 +60,55 @@ yarn
 
 ## How to add functions?
 
-- Easiest is run `make new` (this will ask for the new module name (e.g. `prd`), then duplicate `./template-package` to a directory in `./packages/<name>` and replace any `replace-me` or `replaceMe` respectively)
+- Easiest is to duplicate `./template-package` to a directory in `./packages/<name>` and replace any `replace-me` or `replaceMe` respectively)
 - Traverse into `./packages/<name>/` and `yarn add` whichever dependency you need like you would normally
 - Write your function & test (`yarn test:watch`)
 - Add an example to the table in this `README.md`
-- Commit
-- Run `yarn pub` to publish (that's an alias to [`lerna publish`](https://lerna.js.org/#command-publish))
+- Create a changeset to document your changes (`yarn changeset`)
+- Commit and push your changes
 
 ## How to run tests?
 
 ```bash
-make test-watch
-
 # yarn
 yarn test:watch
-
-# npm
-npm run test:watch
 ```
 
 ## How do I publish these packages?
 
-First make your changes and push them to the repository. There is no need to create `git` tags or any other versioning vehicles. Lerna handles this automatically.
+First make your changes and push them to the repository. We use Changesets to manage versions and changelogs.
 
-Make sure you have push rights for the `main` branch of this repository.
+1. Create a changeset for your changes:
 
-Log in to the NPM registry via `npm`:
+```bash
+yarn changeset
+```
+
+2. Push your changes and changeset files to the repository.
+
+3. When ready to release:
+   - A GitHub Action will automatically create a PR with all version updates
+   - Once merged to main, it will automatically publish to npm
+
+To publish manually:
+
+1. Make sure you have push rights for the `main` branch of this repository
+2. Log in to the NPM registry:
 
 ```bash
 npm login
 ```
 
-Publish the packages with Lerna:
+3. Create versions and changelogs:
 
 ```bash
-yarn pub
+yarn version
+```
+
+4. Build and publish:
+
+```bash
+yarn release
 ```
 
 ## How to iterate quickly inside a consuming project without publishing 100 versions?
