@@ -1,7 +1,9 @@
 {
   "name": "monolib",
   "private": true,
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "build": "lerna run tsc",
     "check": "npm-run-all build lint test",
