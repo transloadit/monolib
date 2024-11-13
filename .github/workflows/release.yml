@@ -52,5 +52,5 @@ jobs:
           title: "chore: version packages"
           commit: "chore: version packages"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT_TRANSLOADIT_BOT_KICK_PRS }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
