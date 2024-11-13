@@ -1,5 +1,4 @@
 import assert from 'node:assert'
-/* eslint-disable no-template-curly-in-string */
 import { describe, test } from 'node:test'
 import analyzeStep from './analyzeStep'
 

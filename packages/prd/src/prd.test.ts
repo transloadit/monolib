@@ -1,5 +1,4 @@
 import assert from 'node:assert'
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { describe, mock, test } from 'node:test'
 import prd from './prd'
 

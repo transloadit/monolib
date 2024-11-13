@@ -1,9 +1,5 @@
 import assert from 'node:assert'
 import crypto from 'node:crypto'
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable global-require */
-/* eslint-disable import/no-dynamic-require */
-/* eslint-disable @typescript-eslint/no-var-requires */
 import { describe, mock, test } from 'node:test'
 
 type MockReplacer<T> = (actual: T) => T

@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-/* eslint-disable no-console */
 import fs = require('node:fs/promises')
 import inquirer = require('inquirer')
 
@@ -21,7 +20,6 @@ async function post(): Promise<void> {
   const mysqlDate = new Date().toISOString().replace('T', ' ').split('.')
   const mysqlNow = mysqlDate[0] ? (mysqlDate[0].split(' ')[0] ?? '') : ''
 
-  // eslint-disable-next-line no-unused-vars
   const [dateY, datem] = mysqlNow.split('-')
   const answers = await inquirer.prompt([
     { type: 'input', name: 'title', message: 'title:' },
@@ -57,7 +55,6 @@ async function post(): Promise<void> {
   // Avoid crashing on /bin/sh: 1: code -w: not found
   // strip any arguments
   if (process.env.VISUAL) {
-    // eslint-disable-next-line prefer-destructuring
     process.env.VISUAL = process.env.VISUAL.split(/\s+/)[0]
   }
 

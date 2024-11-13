@@ -1,5 +1,3 @@
-/* eslint-disable quote-props */
-/* eslint-disable no-template-curly-in-string */
 import formatDurationMs = require('@transloadit/format-duration-ms')
 import prettierBytes = require('@transloadit/prettier-bytes')
 import inflect = require('inflection')
