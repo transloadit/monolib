@@ -35,6 +35,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-turbo-
 
-      - run: corepack yarn --immutable
+      - run: corepack yarn
       - run: corepack yarn build
       - run: corepack yarn check
