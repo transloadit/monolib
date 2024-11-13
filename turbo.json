@@ -20,7 +20,8 @@
     },
     "test:watch": {
       "cache": false,
-      "persistent": true
+      "persistent": true,
+      "outputs": []
     }
   }
 }
