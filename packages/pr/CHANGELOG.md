@@ -1,5 +1,11 @@
 # @transloadit/pr
 
+## 0.5.0
+
+### Minor Changes
+
+- 7c9bc1a: Trial release
+
 ## 0.4.0
 
 ### Minor Changes
