@@ -17,7 +17,7 @@
     "test": "turbo run test",
     "test:watch": "turbo run test:watch --concurrency=20",
     "version": "changeset version",
-    "release": "turbo run build --filter=!./packages/docs && changeset publish"
+    "release": "turbo run build && changeset publish"
   },
   "dependencies": {
     "execa": "5.1.1",
