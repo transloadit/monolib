@@ -8,9 +8,9 @@
     "lineEnding": "lf",
     "lineWidth": 100,
     "attributePosition": "auto",
-    "ignore": ["**/dist/", "**/node_modules/"]
+    "ignore": ["**/dist/**", "**/node_modules/**"]
   },
-  "organizeImports": { "enabled": true, "ignore": ["**/dist/", "**/node_modules/"] },
+  "organizeImports": { "enabled": true, "ignore": ["**/dist/**", "**/node_modules/**"] },
   "linter": {
     "enabled": true,
     "rules": {
@@ -33,7 +33,7 @@
         "noUnusedTemplateLiteral": "off"
       }
     },
-    "ignore": ["**/dist/", "**/node_modules/", "**/coverage/"]
+    "ignore": ["**/dist/**", "**/node_modules/**", "**/coverage/**"]
   },
   "javascript": {
     "formatter": {
