@@ -1,7 +1,7 @@
 import assert from 'node:assert'
 import { describe, test } from 'node:test'
 
-import abbr from './abbr'
+import { abbr } from './abbr'
 
 describe('abbr', () => {
   test('main', async () => {

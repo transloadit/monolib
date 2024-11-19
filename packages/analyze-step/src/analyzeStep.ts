@@ -1,5 +1,5 @@
-import formatDurationMs = require('@transloadit/format-duration-ms')
-import prettierBytes = require('@transloadit/prettier-bytes')
+import { formatDurationMs } from '@transloadit/format-duration-ms'
+import { prettierBytes } from '@transloadit/prettier-bytes'
 import inflect = require('inflection')
 import JSONPath = require('jsonpath-plus')
 import clone = require('lodash/clone')
@@ -322,7 +322,7 @@ type StepData = {
 
 type Step = FileFilterStep & StepWithDimensions & PresetStep & FormatStep & StepData
 
-export = function humanize(step: Step, robots: Robots, extrameta: ExtraMeta = {}): string {
+export function analyzeStep(step: Step, robots: Robots, extrameta: ExtraMeta = {}): string {
   let str = ``
 
   const robotName = step.robot

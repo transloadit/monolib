@@ -13,7 +13,7 @@ interface TriggerPagerOptions {
   urgency?: 'low' | 'high'
 }
 
-const triggerPager = async ({
+export async function triggerPager({
   description,
   from = 'tim.koschuetzki@transloadit.com',
   incidentKey,
@@ -21,7 +21,7 @@ const triggerPager = async ({
   title = incidentKey,
   token,
   urgency = 'high',
-}: TriggerPagerOptions): Promise<void> => {
+}: TriggerPagerOptions): Promise<void> {
   const res = await pagerduty.api({ token }).post('/incidents', {
     headers: {
       from,
@@ -57,5 +57,3 @@ const triggerPager = async ({
     }
   }
 }
-
-export = triggerPager

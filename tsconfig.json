@@ -1,10 +1,8 @@
 {
   "compilerOptions": {
-    "esModuleInterop": true,
     "lib": ["ES2023"],
     "target": "es2022",
     "module": "nodenext",
-    "verbatimModuleSyntax": true,
 
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,

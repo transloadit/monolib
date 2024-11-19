@@ -1,7 +1,7 @@
 // Adapted from https://github.com/Flet/prettier-bytes/
 // Changing 1000 bytes to 1024, so we can keep uppercase KB vs kB
 // ISC License (c) Dan Flettre https://github.com/Flet/prettier-bytes/blob/master/LICENSE
-export = function prettierBytes(input: number): string {
+export function prettierBytes(input: number): string {
   if (typeof input !== 'number' || Number.isNaN(input)) {
     throw new TypeError(`Expected a number, got ${typeof input}`)
   }

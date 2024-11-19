@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 import { describe, test } from 'node:test'
-import fileExists from './fileExists'
+import { fileExists } from './fileExists'
 
 describe('fileExists', () => {
   test('main', async () => {

@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 import { describe, test } from 'node:test'
-import formatDurationMs from './formatDurationMs'
+import { formatDurationMs } from './formatDurationMs'
 
 describe('formatDurationMs', () => {
   test('main', async () => {

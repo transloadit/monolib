@@ -1,4 +1,4 @@
-export = function sortObject<T extends Record<string, unknown>>(
+export function sortObject<T extends Record<string, unknown>>(
   obj: T,
   sortFunc?: (a: string, b: string) => number,
 ): T {
