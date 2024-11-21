@@ -1,6 +1,6 @@
 {
   "name": "@transloadit/prd",
-  "version": "0.3.7",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/transloadit/monolib.git",
@@ -20,7 +20,7 @@
     "test:watch": "node --test --enable-source-maps --watch"
   },
   "dependencies": {
-    "@transloadit/pr": "^0.6.0"
+    "@transloadit/pr": "^1.0.0"
   },
   "publishConfig": {
     "access": "public"

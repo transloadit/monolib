@@ -1,6 +1,6 @@
 {
   "name": "@transloadit/sort-result",
-  "version": "0.3.4",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/transloadit/monolib.git",
@@ -20,9 +20,9 @@
     "test:watch": "node --test --enable-source-maps --watch"
   },
   "dependencies": {
-    "@transloadit/has-property": "^0.2.4",
-    "@transloadit/sort-object-by-prio": "^0.3.4",
-    "@transloadit/sort-result-meta": "^0.3.4"
+    "@transloadit/has-property": "^1.0.0",
+    "@transloadit/sort-object-by-prio": "^1.0.0",
+    "@transloadit/sort-result-meta": "^1.0.0"
   },
   "publishConfig": {
     "access": "public"
