@@ -29,6 +29,7 @@
         "noForEach": "warn"
       },
       "style": {
+        "noNonNullAssertion": "off",
         "noParameterAssign": "warn",
         "noUnusedTemplateLiteral": "off"
       }
