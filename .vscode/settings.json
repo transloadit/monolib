@@ -1,6 +1,5 @@
 {
   "typescript.tsdk": "node_modules/typescript/lib",
-  "biome.enabled": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.biome": "explicit",
     "source.fixAll.eslint": "explicit",
