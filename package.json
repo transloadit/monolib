@@ -7,6 +7,7 @@
   "scripts": {
     "check": "yarn lint && yarn test",
     "fix": "yarn fix:js",
+    "build": "tsc --build",
     "fix:js": "biome check --write .",
     "lint": "biome check . && tsc --build",
     "lint:js": "biome check .",
@@ -14,7 +15,9 @@
     "pretest": "tsc --build",
     "publish": "changeset publish",
     "test": "tsc --build && node --test --enable-source-maps",
+    "build:watch": "tsc --build --watch",
     "test:watch": "node --test --enable-source-maps --watch",
+    "test:build:watch": "npm-run-all build --parallel build:watch test:watch",
     "version": "changeset version",
     "release": "changeset publish"
   },
