@@ -42,7 +42,7 @@ jobs:
             ${{ runner.os }}-turbo-
 
       - run: corepack yarn config set enableHardenedMode false
-      - run: corepack yarn install --mode=update-lockfile
+      - run: corepack yarn install
 
       - run: corepack yarn build
       - run: corepack yarn check
