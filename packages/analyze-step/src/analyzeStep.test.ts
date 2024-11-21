@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 import { describe, test } from 'node:test'
-import analyzeStep from './analyzeStep'
+import { analyzeStep } from './analyzeStep'
 
 const ROBOTS = {
   '/image/resize': {

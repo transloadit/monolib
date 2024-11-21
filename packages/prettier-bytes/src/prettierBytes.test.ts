@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 import { describe, it } from 'node:test'
-import prettierBytes from './prettierBytes'
+import { prettierBytes } from './prettierBytes'
 
 const testData = [
   [2, '2 B'],

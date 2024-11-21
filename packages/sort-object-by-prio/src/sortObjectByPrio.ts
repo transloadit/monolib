@@ -1,11 +1,8 @@
-import sortObject = require('@transloadit/sort-object')
+import { sortObject } from '@transloadit/sort-object'
 
 type Prefixes = Record<string, (string | RegExp)[]>
 
-export = function sortObjectByPrio<T extends Record<string, unknown>>(
-  obj: T,
-  prefixes: Prefixes,
-): T {
+export function sortObjectByPrio<T extends Record<string, unknown>>(obj: T, prefixes: Prefixes): T {
   return sortObject(obj, (argA: string, argB: string) => {
     let a = argA
     let b = argB

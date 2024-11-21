@@ -1,8 +1,8 @@
-import sortObjectByPrio = require('@transloadit/sort-object-by-prio')
-import sortResult = require('@transloadit/sort-result')
-import hasProperty = require('@transloadit/has-property')
+import { sortObjectByPrio } from '@transloadit/sort-object-by-prio'
+import { sortResult } from '@transloadit/sort-result'
+import { hasProperty } from '@transloadit/has-property'
 
-export = function sortAssembly<T extends Record<string, unknown>>(assembly: T): T {
+export function sortAssembly<T extends Record<string, unknown>>(assembly: T): T {
   const sorted = sortObjectByPrio(assembly, {
     _: ['assembly_id', 'ok', 'message', 'warnings', 'error'],
     z: ['uploads', 'results'],

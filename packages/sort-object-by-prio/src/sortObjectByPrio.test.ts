@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 import { describe, test } from 'node:test'
-import sortObjectByPrio from './sortObjectByPrio'
+import { sortObjectByPrio } from './sortObjectByPrio'
 
 describe('sortObjectByPrio', () => {
   test('main', () => {

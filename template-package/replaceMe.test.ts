@@ -1,7 +1,9 @@
-import replaceMe from './replaceMe'
+import assert from 'node:assert'
+import { describe, test } from 'node:test'
+import { replaceMe } from './replaceMe'
 
 describe('replaceMe', () => {
   test('main', async () => {
-    expect(replaceMe('foo')).toBe('bar')
+    assert.equal(replaceMe('foo'), 'bar')
   })
 })

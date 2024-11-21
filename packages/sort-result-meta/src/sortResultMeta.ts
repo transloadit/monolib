@@ -1,4 +1,4 @@
-import sortObjectByPrio = require('@transloadit/sort-object-by-prio')
+import { sortObjectByPrio } from '@transloadit/sort-object-by-prio'
 
 // using interface here instead of type causes Meta to not be assignable to the generic type
 // of sortObjectByPrio
@@ -12,7 +12,7 @@ function isObject(obj: unknown): obj is Record<string, unknown> {
   )
 }
 
-export = function sortResultMeta<T extends Meta>(meta: T): T {
+export function sortResultMeta<T extends Meta>(meta: T): T {
   if (meta.faces) {
     for (let i = 0; i < meta.faces.length; i++) {
       const el = meta.faces[i]

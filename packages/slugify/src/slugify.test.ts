@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 import { describe, test } from 'node:test'
-import slugify from './slugify'
+import { slugify } from './slugify'
 
 describe('slugify', () => {
   test('main', async () => {

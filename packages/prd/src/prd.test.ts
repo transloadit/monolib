@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 import { describe, mock, test } from 'node:test'
-import prd from './prd'
+import { prd } from './prd'
 
 describe('prd', () => {
   test('main', async () => {
