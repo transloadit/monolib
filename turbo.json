@@ -2,10 +2,16 @@
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
   "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"],
+      "inputs": ["src/**/*.ts", "src/**/*.tsx", "tsconfig.json"]
+    },
     "lint": {
       "outputs": []
     },
     "test": {
+      "dependsOn": ["build", "^build"],
       "inputs": ["src/**/*.ts", "src/**/*.tsx"],
       "outputs": []
     },
