@@ -10,7 +10,7 @@
     "build": "tsc --build",
     "fix:js": "biome check --write .",
     "lint": "biome check . && tsc --build",
-    "changeset:version:install": "yarn changeset version && corepack yarn",
+    "changeset:version:install": "yarn changeset version && corepack yarn install --mode=update-lockfile",
     "lint:js": "biome check .",
     "lint:ts": "tsc --build",
     "pretest": "tsc --build",
