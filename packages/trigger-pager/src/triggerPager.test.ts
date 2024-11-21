@@ -32,7 +32,7 @@ mockRequire('@pagerduty/pdjs', () => {
   return { api: () => ({ post: mockPost }) }
 })
 
-const triggerPager = require('./triggerPager')
+const { triggerPager } = require('./triggerPager')
 
 const LOREM_LONG = `Lorem ipsum dolor sit amet, consectetur adipiscing elit,
 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
