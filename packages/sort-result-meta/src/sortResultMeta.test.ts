@@ -26,7 +26,7 @@ describe('sortResultMeta', () => {
           confidence: 99.99,
         },
       ],
-    })
+    } as const)
 
     assert.deepStrictEqual(Object.keys(sorted), [
       'aspect_ratio',

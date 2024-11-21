@@ -189,7 +189,7 @@ describe('sortAssembly', () => {
         ],
       },
       build_id: '339',
-    }
+    } as const
     const sorted = sortAssembly(assembly)
     assert.deepStrictEqual(Object.keys(sorted), [
       'assembly_id',

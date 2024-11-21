@@ -9,9 +9,14 @@
   "license": "AGPL-3.0-only",
   "types": "dist/post.d.ts",
   "bin": "./dist/post.js",
+  "files": [
+    "dist",
+    "src",
+    "!*.test.*"
+  ],
   "scripts": {
-    "build": "tsc --build --clean && tsc --build",
-    "typecheck": "tsc --noEmit",
+    "prepack": "tsc --build",
+    "pretest": "tsc --build",
     "test": "echo 'No tests yet' && exit 0",
     "test:watch": "echo 'No tests yet' && exit 0"
   },

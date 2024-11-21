@@ -1,20 +1,21 @@
 {
-  "compilerOptions": {
-    "lib": ["ES2023"],
-    "target": "es2022",
-    "module": "nodenext",
-
-    "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "sourceMap": true,
-    "types": ["node"],
-
-    "declaration": true,
-    "composite": true,
-    "incremental": true,
-    "removeComments": true
-  },
-  "exclude": ["node_modules", "**/*.test.ts"]
+  "files": [],
+  "references": [
+    { "path": "./packages/abbr" },
+    { "path": "./packages/analyze-step" },
+    { "path": "./packages/file-exists" },
+    { "path": "./packages/format-duration-ms" },
+    { "path": "./packages/has-property" },
+    { "path": "./packages/post" },
+    { "path": "./packages/pr" },
+    { "path": "./packages/prd" },
+    { "path": "./packages/prettier-bytes" },
+    { "path": "./packages/slugify" },
+    { "path": "./packages/sort-assembly" },
+    { "path": "./packages/sort-object" },
+    { "path": "./packages/sort-object-by-prio" },
+    { "path": "./packages/sort-result" },
+    { "path": "./packages/sort-result-meta" },
+    { "path": "./packages/trigger-pager" }
+  ]
 }
