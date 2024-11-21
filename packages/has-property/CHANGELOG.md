@@ -1,5 +1,15 @@
 # @transloadit/has-property
 
+## 1.0.0
+
+### Major Changes
+
+- 7c09755: Switch to named exports
+
+### Patch Changes
+
+- 7a1b66f: Fix CI releases - part I
+
 ## 0.2.4
 
 ### Patch Changes

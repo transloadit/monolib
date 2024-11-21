@@ -1,5 +1,19 @@
 # @transloadit/analyze-step
 
+## 1.0.0
+
+### Major Changes
+
+- 7c09755: Switch to named exports
+
+### Patch Changes
+
+- 7a1b66f: Fix CI releases - part I
+- Updated dependencies [7c09755]
+- Updated dependencies [7a1b66f]
+  - @transloadit/format-duration-ms@1.0.0
+  - @transloadit/prettier-bytes@1.0.0
+
 ## 0.4.3
 
 ### Patch Changes

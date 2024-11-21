@@ -1,5 +1,18 @@
 # @transloadit/sort-object
 
+## 1.0.0
+
+### Major Changes
+
+- 7c09755: Switch to named exports
+
+### Patch Changes
+
+- 7a1b66f: Fix CI releases - part I
+- Updated dependencies [7c09755]
+- Updated dependencies [7a1b66f]
+  - @transloadit/has-property@1.0.0
+
 ## 0.3.4
 
 ### Patch Changes
