@@ -10,8 +10,8 @@
   "types": "dist/post.d.ts",
   "bin": "./dist/post.js",
   "scripts": {
-    "build": "tsc --build --clean && tsc --build",
-    "typecheck": "tsc --noEmit",
+    "prepack": "tsc --build",
+    "pretest": "tsc --build",
     "test": "echo 'No tests yet' && exit 0",
     "test:watch": "echo 'No tests yet' && exit 0"
   },

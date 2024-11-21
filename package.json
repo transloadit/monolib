@@ -5,13 +5,13 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo run build",
+    "build": "tsc --build",
     "check": "turbo run build lint test",
     "fix": "yarn fix:js",
     "fix:js": "biome check --write .",
     "lint": "turbo run lint",
     "lint:js": "biome check .",
-    "lint:ts": "turbo run typecheck",
+    "lint:ts": "tsc --build",
     "pub": "npm-run-all build test publish",
     "publish": "changeset publish",
     "test": "turbo run test",

@@ -10,8 +10,8 @@
   "main": "dist/sortResult.js",
   "types": "dist/sortResult.d.ts",
   "scripts": {
-    "build": "tsc --build --clean && tsc --build",
-    "typecheck": "tsc --noEmit",
+    "prepack": "tsc --build",
+    "pretest": "tsc --build",
     "test": "tsx --test src/**/*.test.ts",
     "test:watch": "tsx --test --watch src/**/*.test.ts"
   },
