@@ -9,6 +9,11 @@
   "license": "AGPL-3.0-only",
   "main": "dist/sortResultMeta.js",
   "types": "dist/sortResultMeta.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "!*.test.*"
+  ],
   "scripts": {
     "prepack": "tsc --build",
     "test": "tsc --build && node --test --enable-source-maps",

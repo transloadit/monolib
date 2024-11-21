@@ -9,6 +9,11 @@
   "license": "AGPL-3.0-only",
   "types": "dist/post.d.ts",
   "bin": "./dist/post.js",
+  "files": [
+    "dist",
+    "src",
+    "!*.test.*"
+  ],
   "scripts": {
     "prepack": "tsc --build",
     "pretest": "tsc --build",

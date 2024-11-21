@@ -9,6 +9,11 @@
   "license": "AGPL-3.0-only",
   "main": "dist/has-property.js",
   "types": "dist/has-property.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "!*.test.*"
+  ],
   "scripts": {
     "prepack": "tsc --build",
     "test": "tsc --build && node --test --enable-source-maps",
