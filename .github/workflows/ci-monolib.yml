@@ -42,5 +42,4 @@ jobs:
       - run: corepack yarn config set enableHardenedMode false
       - run: corepack yarn install
 
-      - run: corepack yarn build
       - run: corepack yarn check
