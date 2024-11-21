@@ -53,7 +53,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          version: corepack yarn changeset version && yarn
+          version: corepack yarn changeset:version:install
           publish: corepack yarn release
           title: "chore: version packages"
           commit: "chore: version packages"
