@@ -11,9 +11,8 @@
   "types": "dist/fileExists.d.ts",
   "scripts": {
     "prepack": "tsc --build",
-    "pretest": "tsc --build",
-    "test": "tsx --test src/**/*.test.ts",
-    "test:watch": "tsx --test --watch src/**/*.test.ts"
+    "test": "tsc --build && node --test --enable-source-maps",
+    "test:watch": "node --test --enable-source-maps --watch"
   },
   "publishConfig": {
     "access": "public"

@@ -306,6 +306,7 @@ type Robots = Record<
 interface FFmpegOptions {
   'filter:v'?: string
   filter_complex?: string
+  map?: string[]
   t?: string | number
   ss?: string | number
   an?: boolean

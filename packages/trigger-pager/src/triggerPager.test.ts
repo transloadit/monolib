@@ -24,7 +24,7 @@ function mockRequire<T>(specifier: string, replacer?: MockReplacer<T>) {
   }
 }
 
-const mockPost = mock.fn(async (endpoint: string, payload: unknown) => {
+const mockPost = mock.fn(async (endpoint: string, payload: unknown): Promise<unknown> => {
   throw Error('mock post for each test')
 })
 
@@ -60,8 +60,8 @@ describe('triggerPager', () => {
     })
 
     assert.strictEqual(mockPost.mock.callCount(), 1)
-    assert.strictEqual(mockPost.mock.calls[0].arguments[0], '/incidents')
-    assert.deepStrictEqual(mockPost.mock.calls[0].arguments[1], {
+    assert.strictEqual(mockPost.mock.calls[0]!.arguments[0], '/incidents')
+    assert.deepStrictEqual(mockPost.mock.calls[0]!.arguments[1], {
       headers: {
         from: 'tim.koschuetzki@transloadit.com',
       },

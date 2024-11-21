@@ -5,25 +5,23 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "tsc --build",
-    "check": "turbo run build lint test",
+    "check": "yarn lint && yarn test",
     "fix": "yarn fix:js",
     "fix:js": "biome check --write .",
-    "lint": "turbo run lint",
+    "lint": "biome check . && tsc --build",
     "lint:js": "biome check .",
     "lint:ts": "tsc --build",
-    "pub": "npm-run-all build test publish",
+    "pretest": "tsc --build",
     "publish": "changeset publish",
-    "test": "turbo run test",
-    "test:watch": "turbo run test:watch --concurrency=20",
+    "test": "tsc --build && node --test --enable-source-maps",
+    "test:watch": "node --test --enable-source-maps --watch",
     "version": "changeset version",
-    "release": "turbo run build && changeset publish"
+    "release": "changeset publish"
   },
   "dependencies": {
     "execa": "5.1.1",
     "inflection": "3.0.0",
-    "inquirer": "8.2.6",
-    "tsx": "^4.19.2"
+    "inquirer": "8.2.6"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
@@ -31,7 +29,6 @@
     "@types/node": "^22.9.0",
     "concurrently": "^8.2.2",
     "npm-run-all": "^4.1.5",
-    "turbo": "^2.2.3",
     "typescript": "^5.6.3"
   },
   "packageManager": "yarn@4.5.1",

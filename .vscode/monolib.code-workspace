@@ -7,7 +7,6 @@
   "settings": {
     "files.exclude": {
       "**/.git/**": true,
-      "**/.turbo/**": true,
       "**/node_modules/**": true,
       "**/src/__snapshots__/*.test.ts.snap": true,
       "**/fixtures/*.json": true,
