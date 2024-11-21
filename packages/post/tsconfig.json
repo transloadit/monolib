@@ -1,13 +1,9 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist/",
     "resolveJsonModule": true,
-    "rootDir": "src/",
-    "paths": {
-      "@transloadit/file-exists": ["../file-exists"],
-      "@transloadit/slugify": ["../slugify"]
-    }
+    "rootDir": "src/"
   },
   "references": [{ "path": "../file-exists" }, { "path": "../slugify" }],
   "include": ["src/"]

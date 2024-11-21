@@ -1,11 +1,8 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist/",
-    "rootDir": "src/",
-    "paths": {
-      "@transloadit/pr": ["../pr"]
-    }
+    "rootDir": "src/"
   },
   "include": ["src/"],
   "references": [{ "path": "../pr" }]

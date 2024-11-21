@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "lib": ["ES2023"],
+    "target": "es2022",
+    "module": "nodenext",
+
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "sourceMap": true,
+    "types": ["node"],
+
+    "declaration": true,
+    "composite": true,
+    "incremental": true,
+    "removeComments": true
+  }
+}

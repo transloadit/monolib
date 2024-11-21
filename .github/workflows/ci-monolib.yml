@@ -33,16 +33,13 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            .turbo
-            node_modules/.cache/turbo
             **/node_modules
             .yarn/cache
-          key: ${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock', '**/package.json') }}
+          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock', '**/package.json') }}
           restore-keys: |
-            ${{ runner.os }}-turbo-
+            ${{ runner.os }}-
 
       - run: corepack yarn config set enableHardenedMode false
       - run: corepack yarn install
 
-      - run: corepack yarn build
       - run: corepack yarn check

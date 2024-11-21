@@ -9,11 +9,15 @@
   "license": "AGPL-3.0-only",
   "main": "dist/slugify.js",
   "types": "dist/slugify.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "!*.test.*"
+  ],
   "scripts": {
-    "build": "tsc --build --clean && tsc --build",
-    "typecheck": "tsc --noEmit",
-    "test": "tsx --test src/**/*.test.ts",
-    "test:watch": "tsx --test --watch src/**/*.test.ts"
+    "prepack": "tsc --build",
+    "test": "tsc --build && node --test --enable-source-maps",
+    "test:watch": "node --test --enable-source-maps --watch"
   },
   "publishConfig": {
     "access": "public"

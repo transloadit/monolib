@@ -1,13 +1,8 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist/",
-    "rootDir": "src/",
-    "paths": {
-      "@transloadit/has-property": ["../has-property"],
-      "@transloadit/sort-object-by-prio": ["../sort-object-by-prio"],
-      "@transloadit/sort-result": ["../sort-result-meta"]
-    }
+    "rootDir": "src/"
   },
   "references": [
     { "path": "../has-property" },
