@@ -467,6 +467,7 @@ __metadata:
     "@transloadit/file-exists": "npm:^1.0.0"
     "@transloadit/slugify": "npm:^1.0.0"
     "@types/inquirer": "npm:^8.2.10"
+    "@types/open-in-editor": "npm:^2.2.0"
     "@types/title": "npm:^3.4.3"
     inquirer: "npm:^8.2.6"
     open-in-editor: "npm:^2.2.0"
@@ -600,6 +601,13 @@ __metadata:
   dependencies:
     undici-types: "npm:~6.19.8"
   checksum: 10c0/3f46cbe0a49bab4ba30494025e4c8a6e699b98ac922857aa1f0209ce11a1313ee46e6808b8f13fe5b8b960a9d7796b77c8d542ad4e9810e85ef897d5593b5d51
+  languageName: node
+  linkType: hard
+
+"@types/open-in-editor@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "@types/open-in-editor@npm:2.2.0"
+  checksum: 10c0/f735a6bded32940c6cd094e6b1c464e1581bc10dd005330efc99847f86b1a96705b6a5a7c27fba6977337dfbff452f568edfe1e0fb607dfc2fc3270ec987edcc
   languageName: node
   linkType: hard
 
