@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@types/inquirer": "^8.2.10",
+    "@types/open-in-editor": "^2.2.0",
     "@types/title": "^3.4.3"
   },
   "publishConfig": {
