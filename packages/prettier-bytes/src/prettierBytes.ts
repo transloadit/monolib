@@ -1,7 +1,12 @@
 // Adapted from https://github.com/Flet/prettier-bytes/
 // Changing 1000 bytes to 1024, so we can keep uppercase KB vs kB
 // ISC License (c) Dan Flettre https://github.com/Flet/prettier-bytes/blob/master/LICENSE
-export function prettierBytes(input: number): string {
+
+const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'] as const
+
+export type Unit = (typeof units)[number]
+
+export function prettierBytes(input: number, unit?: Unit): string {
   if (typeof input !== 'number' || Number.isNaN(input)) {
     throw new TypeError(`Expected a number, got ${typeof input}`)
   }
@@ -17,10 +22,11 @@ export function prettierBytes(input: number): string {
     return '0 B'
   }
 
-  const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
-  const exponent = Math.min(Math.floor(Math.log(num) / Math.log(1024)), units.length - 1)
+  const exponent = unit
+    ? units.indexOf(unit)
+    : Math.min(Math.floor(Math.log(num) / Math.log(1024)), units.length - 1)
   const value = Number(num / 1024 ** exponent)
-  const unit = units[exponent]
+  const displayUnit = units[exponent]
 
-  return `${value >= 10 || value % 1 === 0 ? Math.round(value) : value.toFixed(1)} ${unit}`
+  return `${value >= 10 || value % 1 === 0 ? Math.round(value) : value.toFixed(1)} ${displayUnit}`
 }

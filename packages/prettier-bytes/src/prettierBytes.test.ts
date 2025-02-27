@@ -2,31 +2,43 @@ import assert from 'node:assert'
 import { describe, it } from 'node:test'
 import { prettierBytes } from './prettierBytes'
 
-const testData = [
-  [2, '2 B'],
-  [9, '9 B'],
-  [25, '25 B'],
-  [235, '235 B'],
-  [2335, '2.3 KB'],
-  [23552, '23 KB'],
-  [235520, '230 KB'],
-  [2355520, '2.2 MB'],
-  [23555520, '22 MB'],
-  [235555520, '225 MB'],
-  [2355555520, '2.2 GB'],
-  [23555555520, '22 GB'],
-  [235556555520, '219 GB'],
-  [2355556655520, '2.1 TB'],
-  [23555566655520, '21 TB'],
-  [235555566665520, '214 TB'],
-] satisfies [input: number, output: string][]
+const testData: [number, string, string, string, string][] = [
+  [2, '2 B', '2 B', '0.0 MB', '0.0 TB'],
+  [9, '9 B', '9 B', '0.0 MB', '0.0 TB'],
+  [25, '25 B', '25 B', '0.0 MB', '0.0 TB'],
+  [235, '235 B', '235 B', '0.0 MB', '0.0 TB'],
+  [2335, '2.3 KB', '2335 B', '0.0 MB', '0.0 TB'],
+  [23552, '23 KB', '23552 B', '0.0 MB', '0.0 TB'],
+  [235520, '230 KB', '235520 B', '0.2 MB', '0.0 TB'],
+  [2355520, '2.2 MB', '2355520 B', '2.2 MB', '0.0 TB'],
+  [23555520, '22 MB', '23555520 B', '22 MB', '0.0 TB'],
+  [235555520, '225 MB', '235555520 B', '225 MB', '0.0 TB'],
+  [2355555520, '2.2 GB', '2355555520 B', '2246 MB', '0.0 TB'],
+  [23555555520, '22 GB', '23555555520 B', '22464 MB', '0.0 TB'],
+  [235556555520, '219 GB', '235556555520 B', '224644 MB', '0.2 TB'],
+  [2355556655520, '2.1 TB', '2355556655520 B', '2246434 MB', '2.1 TB'],
+  [23555566655520, '21 TB', '23555566655520 B', '22464339 MB', '21 TB'],
+  [235555566665520, '214 TB', '235555566665520 B', '224643294 MB', '214 TB'],
+]
 
 describe('prettierBytes', () => {
-  it('should convert the specified number of bytes to a human-readable string like 236 MB', () => {
-    for (const [input, expected] of testData) {
+  for (const [input, expected, expectedB, expectedMB, expectedTB] of testData) {
+    it(`should convert ${input} to ${expected}`, () => {
       assert.strictEqual(prettierBytes(input), expected)
-    }
-  })
+    })
+
+    it(`should convert ${input} to ${expectedB}`, () => {
+      assert.strictEqual(prettierBytes(input, 'B'), expectedB)
+    })
+
+    it(`should convert ${input} to ${expectedMB}`, () => {
+      assert.strictEqual(prettierBytes(input, 'MB'), expectedMB)
+    })
+
+    it(`should convert ${input} to ${expectedTB}`, () => {
+      assert.strictEqual(prettierBytes(input, 'TB'), expectedTB)
+    })
+  }
 
   it('throws on non-number', () => {
     assert.throws(() => {
