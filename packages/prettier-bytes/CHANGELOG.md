@@ -1,5 +1,11 @@
 # @transloadit/prettier-bytes
 
+## 1.0.1
+
+### Patch Changes
+
+- 59ddf73: Add support for explicit units.
+
 ## 1.0.0
 
 ### Major Changes
