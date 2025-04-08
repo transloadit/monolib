@@ -1,16 +1,6 @@
 import { SevLogger } from './SevLogger'
+const { DEBUG } = SevLogger.LEVEL
 
-// static LEVEL = {
-//   EMERG: 0,
-//   ALERT: 1,
-//   CRIT: 2,
-//   ERR: 3,
-//   WARN: 4,
-//   NOTICE: 5,
-//   INFO: 6,
-//   DEBUG: 7,
-//   TRACE: 8,
-// } as const
 async function main() {
   const logger1 = new SevLogger({
     breadcrumbs: ['logger1'],
@@ -79,6 +69,19 @@ async function main() {
 
   logger6.log(1, `foo18`)
   logger6.log(1, `foo19\nfoo20\nfoo21\n`)
+
+  logger1.event(DEBUG, {
+    foo: 'bar',
+    event: 'FOO_22',
+  })
+
+  const newLogger = new SevLogger({
+    level: 8,
+  })
+  newLogger.event(DEBUG, {
+    event: 'FOO_22',
+    f: 'bar',
+  })
 }
 
 main()

@@ -4,7 +4,7 @@ import path, { basename, relative, resolve } from 'node:path'
 import { inspect } from 'node:util'
 
 // Define the LogEvent interface needed for the event() method
-interface LogEvent {
+export interface LogEvent {
   event: string
   error?: Error | Record<string, unknown> | string // Allow Error or serialized-like object
   err?: Error | Record<string, unknown> | string
@@ -12,7 +12,7 @@ interface LogEvent {
 }
 
 // Define explicit SharedState type
-interface SharedState {
+export interface SharedState {
   maxTimestampLength: number
   maxHostnameLength: number
   maxBreadcrumbLength: number
@@ -54,8 +54,8 @@ export interface SevLoggerParams {
 }
 
 // <-- Start: Type definitions for format string parsing -->
-type SevLoggerSpec = 's' | 'r' | 'c'
-type SevLoggerSpecType<S extends SevLoggerSpec> = S extends 's'
+export type SevLoggerSpec = 's' | 'r' | 'c'
+export type SevLoggerSpecType<S extends SevLoggerSpec> = S extends 's'
   ? unknown // %s accepts anything
   : S extends 'r'
     ? string // %r requires a string (filepath)
@@ -64,7 +64,7 @@ type SevLoggerSpecType<S extends SevLoggerSpec> = S extends 's'
       : never
 
 // Recursively parses the format string to determine the expected argument types
-type ParseLogArgs<
+export type ParseLogArgs<
   Fmt extends string,
   Acc extends unknown[] = [],
 > = Fmt extends `${string}%%${infer Rest}` // Higher priority: ignore %% escape
@@ -74,7 +74,7 @@ type ParseLogArgs<
     : Acc // Base case: No more %specifiers found, return accumulator
 // <-- End: Type definitions -->
 
-type LogImplementation = (level: number, message: unknown, ...args: unknown[]) => void
+export type LogImplementation = (level: number, message: unknown, ...args: unknown[]) => void
 
 /**
  * @class SevLogger
@@ -225,7 +225,7 @@ export class SevLogger {
 
   #level!: number
 
-  #timestampFormat!: 'iso' | 'ss.ms' | 'ms' | false // Changed from addDateTime
+  #timestampFormat!: 'iso' | 'ss.ms' | 'ms' | false
 
   #addHostname!: boolean
 
@@ -283,7 +283,7 @@ export class SevLogger {
 
   #abbreviations: Record<string, string> = {}
 
-  #eventFieldAbbreviations: Record<string, string> = {} // Added
+  #eventFieldAbbreviations: Record<string, string> = {}
 
   filepath?: string
 
@@ -351,9 +351,9 @@ export class SevLogger {
     this.#level = params.level ?? SevLogger.LEVEL_DEFAULT
 
     this.#abbreviations = params.abbreviations ?? {}
-    this.#eventFieldAbbreviations = params.eventFieldAbbreviations ?? {} // Added
-    this.#nestDivider = params.nestDivider ?? ':' // Changed default for event style
-    this.#timestampFormat = params.timestampFormat ?? defaultTimestampFormat // Changed from addDateTime
+    this.#eventFieldAbbreviations = params.eventFieldAbbreviations ?? {}
+    this.#nestDivider = params.nestDivider ?? ':'
+    this.#timestampFormat = params.timestampFormat ?? defaultTimestampFormat
     this.#addHostname = params.addHostname ?? defaultAddHostname
     this.#addCallsite = params.addCallsite ?? defaultAddCallsite
     this.#addClickables = params.addClickables ?? defaultAddClickables
