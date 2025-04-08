@@ -1,5 +1,11 @@
 # @transloadit/sev-logger
 
+## 0.0.6
+
+### Patch Changes
+
+- 275a67f: Tweak motd
+
 ## 0.0.5
 
 ### Patch Changes
