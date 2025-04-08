@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import { hostname, userInfo } from 'node:os'
 import path, { basename, relative, resolve } from 'node:path'
 import { inspect } from 'node:util'
+import { abbr } from '@transloadit/abbr'
 
 // Define the LogEvent interface needed for the event() method
 export interface LogEvent {
@@ -920,7 +921,7 @@ export class SevLogger {
       if (key === 'error' && value instanceof Error) {
         const simplifiedError: Record<string, unknown> = { message: value.message }
         if (value.stack) {
-          simplifiedError.stack = SevLogger.fold(value.stack) // Use static fold method
+          simplifiedError.stack = abbr(value.stack, 5000, '...')
         }
         // Add other common non-enumerable props if needed? e.g., code?
         if ('code' in value) simplifiedError.code = value.code
@@ -931,7 +932,7 @@ export class SevLogger {
         const potentiallyFoldedValue: Record<string, unknown> = {}
         for (const [errKey, errValue] of Object.entries(value)) {
           if (typeof errValue === 'string' && (errKey === 'stdout' || errKey === 'stderr')) {
-            potentiallyFoldedValue[errKey] = SevLogger.fold(errValue)
+            potentiallyFoldedValue[errKey] = abbr(errValue, 5000, '...')
           } else {
             potentiallyFoldedValue[errKey] = errValue
           }
@@ -1016,20 +1017,5 @@ export class SevLogger {
       breadcrumbs: [...this.#rawBreadcrumbs, ...currentLevelRawBreadcrumbs],
       sharedState: this.#sharedState, // Ensure shared state is passed
     })
-  }
-
-  /** Folds a long string by replacing the middle part with a delimiter. */
-  static fold(argString: string, maxLength = 5000, delimiter = '...') {
-    // Increased default based on legacy code
-    const s = `${argString}` // Ensure string
-    if (s.length < maxLength) {
-      return s
-    }
-
-    const halfMaxLength = Math.floor(maxLength / 2)
-
-    const firstPart = s.substring(0, halfMaxLength) // Use substring for safety
-    const secondPart = s.substring(s.length - halfMaxLength) // Get from end
-    return `${firstPart}${delimiter}${secondPart}`
   }
 }
