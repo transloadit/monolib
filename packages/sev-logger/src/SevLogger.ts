@@ -737,7 +737,7 @@ export class SevLogger {
 
   // <-- Start: Strict Overloads for log ONLY -->
   log<Fmt extends string>(level: number, message: Fmt, ...args: ParseLogArgs<Fmt>): void
-  // <-- End: Strict Overloads for log ONLY -->
+  log(level: number, message: unknown): void
 
   // Implementation signature (internal only)
   log(level: number, message: unknown, ...args: unknown[]) {
@@ -763,8 +763,9 @@ export class SevLogger {
 
   // <-- Start: Strict overloads for level methods -->
   emerg<Fmt extends string>(message: Fmt, ...args: ParseLogArgs<Fmt>): void
+  emerg(message: unknown): void
 
-  emerg(message: string | unknown, ...args: unknown[]) {
+  emerg(message: unknown, ...args: unknown[]) {
     ;(this.log as LogImplementation).apply(this, [SevLogger.LEVEL.EMERG, message, ...args])
 
     const err = new Error(`Emerg was called, exiting process. Please inspect the logs above.`)
@@ -778,56 +779,65 @@ export class SevLogger {
   }
 
   alert<Fmt extends string>(message: Fmt, ...args: ParseLogArgs<Fmt>): void
+  alert(message: unknown): void
 
-  alert(message: string | unknown, ...args: unknown[]) {
+  alert(message: unknown, ...args: unknown[]) {
     ;(this.log as LogImplementation).apply(this, [SevLogger.LEVEL.ALERT, message, ...args])
   }
 
   crit<Fmt extends string>(message: Fmt, ...args: ParseLogArgs<Fmt>): void
+  crit(message: unknown): void
 
-  crit(message: string | unknown, ...args: unknown[]) {
+  crit(message: unknown, ...args: unknown[]) {
     ;(this.log as LogImplementation).apply(this, [SevLogger.LEVEL.CRIT, message, ...args])
   }
 
   err<Fmt extends string>(message: Fmt, ...args: ParseLogArgs<Fmt>): void
+  err(message: unknown): void
 
-  err(message: string | unknown, ...args: unknown[]) {
+  err(message: unknown, ...args: unknown[]) {
     ;(this.log as LogImplementation).apply(this, [SevLogger.LEVEL.ERR, message, ...args])
   }
 
   error<Fmt extends string>(message: Fmt, ...args: ParseLogArgs<Fmt>): void
+  error(message: unknown): void
 
-  error(message: string | unknown, ...args: unknown[]) {
+  error(message: unknown, ...args: unknown[]) {
     ;(this.log as LogImplementation).apply(this, [SevLogger.LEVEL.ERR, message, ...args])
   }
 
   warn<Fmt extends string>(message: Fmt, ...args: ParseLogArgs<Fmt>): void
+  warn(message: unknown): void
 
-  warn(message: string | unknown, ...args: unknown[]) {
+  warn(message: unknown, ...args: unknown[]) {
     ;(this.log as LogImplementation).apply(this, [SevLogger.LEVEL.WARN, message, ...args])
   }
 
   notice<Fmt extends string>(message: Fmt, ...args: ParseLogArgs<Fmt>): void
+  notice(message: unknown): void
 
-  notice(message: string | unknown, ...args: unknown[]) {
+  notice(message: unknown, ...args: unknown[]) {
     ;(this.log as LogImplementation).apply(this, [SevLogger.LEVEL.NOTICE, message, ...args])
   }
 
   info<Fmt extends string>(message: Fmt, ...args: ParseLogArgs<Fmt>): void
+  info(message: unknown): void
 
-  info(message: string | unknown, ...args: unknown[]) {
+  info(message: unknown, ...args: unknown[]) {
     ;(this.log as LogImplementation).apply(this, [SevLogger.LEVEL.INFO, message, ...args])
   }
 
   debug<Fmt extends string>(message: Fmt, ...args: ParseLogArgs<Fmt>): void
+  debug(message: unknown): void
 
-  debug(message: string | unknown, ...args: unknown[]) {
+  debug(message: unknown, ...args: unknown[]) {
     ;(this.log as LogImplementation).apply(this, [SevLogger.LEVEL.DEBUG, message, ...args])
   }
 
   trace<Fmt extends string>(message: Fmt, ...args: ParseLogArgs<Fmt>): void
+  trace(message: unknown): void
 
-  trace(message: string | unknown, ...args: unknown[]) {
+  trace(message: unknown, ...args: unknown[]) {
     ;(this.log as LogImplementation).apply(this, [SevLogger.LEVEL.TRACE, message, ...args])
   }
 

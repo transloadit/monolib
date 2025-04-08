@@ -82,6 +82,8 @@ async function main() {
     event: 'FOO_22',
     f: 'bar',
   })
+
+  newLogger.notice({ foo23: 'bar' })
 }
 
 main()

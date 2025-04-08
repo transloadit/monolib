@@ -252,6 +252,9 @@ describe('SevLogger', () => {
       logger.log(LEVEL.ERR, 'File: %r, Clickable: %c', '/path/to/file.ts', '/other/file.js')
       logger.log(LEVEL.INFO, 'Escaped %%s')
       logger.log(LEVEL.CRIT, 'String: %s, File: %r', 'data', '/path/file')
+      logger.log(LEVEL.DEBUG, {
+        food: 'bar',
+      })
     })
 
     it('should error on incorrect argument types for log()', () => {
@@ -275,7 +278,6 @@ describe('SevLogger', () => {
     it('should error on incorrect argument counts for log()', () => {
       // Test case for missing argument - Check actual output instead of throwing
       capturedOutput = ''
-      // @ts-expect-error Intentionally testing missing argument
       logger.log(LEVEL.WARN, 'Value: %s') // Call the potentially problematic log
       const strippedLogOutput = logger.stripAnsi(capturedOutput)
       assert.ok(
@@ -296,7 +298,6 @@ describe('SevLogger', () => {
 
       // Test case for multiple missing arguments - Check actual output instead of throwing
       capturedOutput = ''
-      // @ts-expect-error Intentionally testing missing arguments
       logger.log(LEVEL.DEBUG, 'Files: %r %c')
       const strippedMissingDebug = logger.stripAnsi(capturedOutput)
       assert.ok(
@@ -375,7 +376,6 @@ describe('SevLogger', () => {
     it('should error on incorrect argument counts for wrapper methods', () => {
       // Test case for missing argument - Check actual output instead of throwing
       capturedOutput = ''
-      // @ts-expect-error Intentionally testing missing argument
       logger.notice('Value: %s') // Call the potentially problematic notice
       const strippedNoticeOutput = logger.stripAnsi(capturedOutput)
       assert.ok(
@@ -396,7 +396,6 @@ describe('SevLogger', () => {
 
       // Test case for multiple missing arguments - Check actual output instead of throwing
       capturedOutput = ''
-      // @ts-expect-error Intentionally testing missing arguments
       logger.notice('Files: %r %c')
       const strippedMissingNotice = logger.stripAnsi(capturedOutput)
       assert.ok(
