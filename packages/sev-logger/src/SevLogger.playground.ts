@@ -75,15 +75,27 @@ async function main() {
     event: 'FOO_22',
   })
 
-  const newLogger = new SevLogger({
+  const logger9 = new SevLogger({
     level: 8,
   })
-  newLogger.event(DEBUG, {
+  logger9.event(DEBUG, {
     event: 'FOO_22',
     f: 'bar',
   })
 
-  newLogger.notice({ foo23: 'bar' })
+  logger9.notice({ foo23: 'bar' })
+
+  const logger10 = new SevLogger({
+    breadcrumbs: ['BaseCommand'],
+  })
+  logger10.update({
+    level: 8,
+    breadcrumbs: ['Posterboy'],
+    stderr: process.stderr,
+    stdout: process.stdout,
+  })
+  logger10.announceMotd()
+  logger10.notice('foo24')
 }
 
 main()

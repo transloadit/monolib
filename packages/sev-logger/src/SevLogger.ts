@@ -1002,7 +1002,6 @@ export class SevLogger {
       parts.push(this.colors.red(`WARNING, log level includes full details. `))
     }
 
-    parts.push(`Timestamp format: ${this.#timestampFormat}. `) // Add new setting info
     parts.push(`See --help for more options. `)
 
     this.stdout.write(`${parts.join('')}\n`)
