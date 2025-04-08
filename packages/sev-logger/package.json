@@ -1,0 +1,23 @@
+{
+  "name": "@transloadit/sev-logger",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/transloadit/monolib.git",
+    "directory": "packages/sev-logger"
+  },
+  "license": "AGPL-3.0-only",
+  "main": "dist/SevLogger.js",
+  "typings": "dist/SevLogger.d.ts",
+  "directories": {
+    "lib": "dist",
+    "test": "dist"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "tsc": "tsc --build --clean && tsc --build"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

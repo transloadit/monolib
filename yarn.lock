@@ -497,6 +497,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@transloadit/sev-logger@workspace:packages/sev-logger":
+  version: 0.0.0-use.local
+  resolution: "@transloadit/sev-logger@workspace:packages/sev-logger"
+  languageName: unknown
+  linkType: soft
+
 "@transloadit/slugify@npm:^1.0.0, @transloadit/slugify@workspace:packages/slugify":
   version: 0.0.0-use.local
   resolution: "@transloadit/slugify@workspace:packages/slugify"
