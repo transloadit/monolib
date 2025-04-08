@@ -1,5 +1,11 @@
 # @transloadit/sev-logger
 
+## 0.0.4
+
+### Patch Changes
+
+- 473ec42: Export types
+
 ## 0.0.3
 
 ### Patch Changes
