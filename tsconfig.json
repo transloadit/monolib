@@ -11,6 +11,7 @@
     { "path": "./packages/prd" },
     { "path": "./packages/prettier-bytes" },
     { "path": "./packages/slugify" },
+    { "path": "./packages/sev-logger" },
     { "path": "./packages/sort-assembly" },
     { "path": "./packages/sort-object" },
     { "path": "./packages/sort-object-by-prio" },

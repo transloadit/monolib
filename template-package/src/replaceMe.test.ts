@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 import { describe, test } from 'node:test'
-import { replaceMe } from './replaceMe'
+import { replaceMe } from '../replaceMe'
 
 describe('replaceMe', () => {
   test('main', async () => {
