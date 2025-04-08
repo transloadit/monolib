@@ -1,5 +1,11 @@
 # @transloadit/sev-logger
 
+## 0.0.7
+
+### Patch Changes
+
+- d7e61e3: Use abbr
+
 ## 0.0.6
 
 ### Patch Changes
