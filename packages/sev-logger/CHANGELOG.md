@@ -1,5 +1,11 @@
 # @transloadit/sev-logger
 
+## 0.0.5
+
+### Patch Changes
+
+- d7518ea: Allow logging arbitrary values
+
 ## 0.0.4
 
 ### Patch Changes
