@@ -1010,9 +1010,9 @@ export class SevLogger {
   }
 
   /** Folds a long string by replacing the middle part with a delimiter. */
-  static fold(s: string, maxLength = 5000, delimiter = '...') {
+  static fold(argString: string, maxLength = 5000, delimiter = '...') {
     // Increased default based on legacy code
-    s = `${s}` // Ensure string
+    const s = `${argString}` // Ensure string
     if (s.length < maxLength) {
       return s
     }

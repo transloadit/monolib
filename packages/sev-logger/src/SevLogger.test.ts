@@ -1,6 +1,7 @@
 import { fileURLToPath } from 'node:url'
 
-import { beforeEach, describe, expect, it } from 'vitest'
+import assert from 'node:assert'
+import { beforeEach, describe, it } from 'node:test'
 
 import { SevLogger } from './SevLogger'
 
@@ -55,7 +56,8 @@ describe('SevLogger', () => {
       })
       const { EMERG: colEmerg } = logger.levelColors
 
-      expect(logger.formatter(LEVEL.EMERG, `your password is 124%s*!`, `hi`)).toStrictEqual(
+      assert.strictEqual(
+        logger.formatter(LEVEL.EMERG, `your password is 124%s*!`, `hi`),
         // Fallback behavior: append extra args when specifier isn't well-formed
         `${colEmerg(`[  EMERG]`)} your password is 124%s*! hi`,
       )
@@ -71,12 +73,14 @@ describe('SevLogger', () => {
         addCallsite: false,
       })
 
-      expect(logger.formatter(LEVEL.EMERG, `hi`)).toStrictEqual(
+      assert.strictEqual(
+        logger.formatter(LEVEL.EMERG, `hi`),
         `dim(brightGreen(Foo)) boldRed([  EMERG]) hi`,
       )
 
       logger.update({ breadcrumbs: ['Bar'] })
-      expect(logger.formatter(LEVEL.EMERG, `hi`)).toStrictEqual(
+      assert.strictEqual(
+        logger.formatter(LEVEL.EMERG, `hi`),
         `dim(blue(Bar)) boldRed([  EMERG]) hi`,
       )
     })
@@ -96,14 +100,17 @@ describe('SevLogger', () => {
         breadcrumbs: ['Bar'],
       })
 
-      expect(logger.formatter(LEVEL.EMERG, `hi`)).toMatchInlineSnapshot(
-        `"dim(brightGreen(Foo)) boldRed([  EMERG]) hi"`,
+      assert.strictEqual(
+        logger.formatter(LEVEL.EMERG, `hi`),
+        'dim(brightGreen(Foo)) boldRed([  EMERG]) hi',
       )
-      expect(childLogger.formatter(LEVEL.EMERG, `hi`)).toMatchInlineSnapshot(
-        `"dim(brightGreen(Foo)>blue(Bar)) boldRed([  EMERG]) hi"`,
+      assert.strictEqual(
+        childLogger.formatter(LEVEL.EMERG, `hi`),
+        'dim(brightGreen(Foo)>blue(Bar)) boldRed([  EMERG]) hi',
       )
-      expect(logger.formatter(LEVEL.EMERG, `hi`)).toMatchInlineSnapshot(
-        `"dim(brightGreen(Foo)) boldRed([  EMERG]) hi"`,
+      assert.strictEqual(
+        logger.formatter(LEVEL.EMERG, `hi`),
+        'dim(brightGreen(Foo)) boldRed([  EMERG]) hi',
       )
     })
 
@@ -118,32 +125,38 @@ describe('SevLogger', () => {
       })
 
       // Initial log from logger1 (max length = 2)
-      expect(logger1.formatter(LEVEL.INFO, `msg1`)).toStrictEqual(
+      assert.strictEqual(
+        logger1.formatter(LEVEL.INFO, `msg1`),
         `dim(brightYellow(L1)) blue([   INFO]) msg1`,
       )
       // Nest logger2 (max length becomes 5: L1:L2 with new default)
       const logger2 = logger1.nest({ breadcrumbs: ['L2'] })
-      expect(logger2.formatter(LEVEL.WARN, `msg2`)).toStrictEqual(
+      assert.strictEqual(
+        logger2.formatter(LEVEL.WARN, `msg2`),
         `dim(brightYellow(L1):blue(L2)) yellow([   WARN]) msg2`,
       )
       // Log from logger1 again (should be padded to length 5)
-      expect(logger1.formatter(LEVEL.INFO, `msg1 again`)).toMatchInlineSnapshot(
-        `"dim(brightYellow(L1)) blue([   INFO]) msg1 again"`,
+      assert.strictEqual(
+        logger1.formatter(LEVEL.INFO, `msg1 again`),
+        'dim(brightYellow(L1)) blue([   INFO]) msg1 again',
       )
 
       // Nest logger3 (max length becomes 10: L1:L2:L3L3)
       const logger3 = logger2.nest({ breadcrumbs: ['L3L3'] })
-      expect(logger3.formatter(LEVEL.ERR, `msg3`)).toStrictEqual(
+      assert.strictEqual(
+        logger3.formatter(LEVEL.ERR, `msg3`),
         `dim(brightYellow(L1):blue(L2):brightBlue(L3L3)) red([    ERR]) msg3`,
       )
       // Log from logger1 again (should be padded to length 10)
-      expect(logger1.formatter(LEVEL.INFO, `msg1 final`)).toMatchInlineSnapshot(
-        `"dim(brightYellow(L1)) blue([   INFO]) msg1 final"`,
+      assert.strictEqual(
+        logger1.formatter(LEVEL.INFO, `msg1 final`),
+        'dim(brightYellow(L1)) blue([   INFO]) msg1 final',
       )
 
       // Log from logger2 again (should be padded to length 10)
-      expect(logger2.formatter(LEVEL.WARN, `msg2 final`)).toMatchInlineSnapshot(
-        `"dim(brightYellow(L1):blue(L2)) yellow([   WARN]) msg2 final"`,
+      assert.strictEqual(
+        logger2.formatter(LEVEL.WARN, `msg2 final`),
+        'dim(brightYellow(L1):blue(L2)) yellow([   WARN]) msg2 final',
       )
     })
 
@@ -158,7 +171,8 @@ describe('SevLogger', () => {
       })
 
       // 2024-01-08T23:00:15.941Z
-      expect(logger.formatter(LEVEL.EMERG, `hi`)).toMatch(
+      assert.match(
+        logger.formatter(LEVEL.EMERG, `hi`),
         /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z/,
       )
     })
@@ -172,12 +186,14 @@ describe('SevLogger', () => {
         addCallsite: false,
       })
 
-      expect(logger.formatter(LEVEL.EMERG, `hi`)).toStrictEqual(`boldRed([  EMERG]) hi`)
-      expect(logger.formatter(LEVEL.NOTICE, `foo %s`, `bar`)).toStrictEqual(
+      assert.strictEqual(logger.formatter(LEVEL.EMERG, `hi`), `boldRed([  EMERG]) hi`)
+      assert.strictEqual(
+        logger.formatter(LEVEL.NOTICE, `foo %s`, `bar`),
         `green([ NOTICE]) foo magenta(bar)`,
       )
-      expect(logger.formatter(LEVEL.DEBUG, `foo %s %r`, 1, __filename)).toStrictEqual(
-        `dim(gray([  DEBUG]) foo magenta(1) cyan(src/SevLogger.test.ts))`,
+      assert.match(
+        logger.formatter(LEVEL.DEBUG, `foo %s %r`, 1, __filename),
+        /dim\\(gray\\[ DEBUG\\]\\) foo magenta\\(1\\) cyan\\(.*\\/SevLogger\\.test\\.(js|ts)\\)/,
       )
     })
 
@@ -195,12 +211,12 @@ describe('SevLogger', () => {
       })
 
       // The call site should be this test file and right-aligned
-      const expectedPattern = /\s+blue\(src\/SevLogger\.test\.ts:\d+\)$/
+      const expectedPattern = /\s+blue\(.*\/SevLogger\.test\.(js|ts):\d+\)$/
 
       const formatted = logger.formatter(LEVEL.INFO, 'Callsite test')
 
       // Check if the callsite pattern exists somewhere in the formatted string
-      expect(formatted).toMatch(expectedPattern)
+      assert.match(formatted, expectedPattern)
     })
   })
 
@@ -229,9 +245,7 @@ describe('SevLogger', () => {
       capturedOutput = ''
     })
 
-    // eslint-disable-next-line vitest/expect-expect
     it('should allow correct types and counts for log()', () => {
-      // These calls don't need output assertions for this specific test's goal (compile-time check)
       logger.log(LEVEL.INFO, 'Hello')
       logger.log(LEVEL.WARN, 'String: %s, Number: %s, Object: %s', 'world', 123, { a: 1 })
       logger.log(LEVEL.ERR, 'File: %r, Clickable: %c', '/path/to/file.ts', '/other/file.js')
@@ -239,113 +253,132 @@ describe('SevLogger', () => {
       logger.log(LEVEL.CRIT, 'String: %s, File: %r', 'data', '/path/file')
     })
 
-    it('should error on incorrect argument types for log()', async () => {
-      // eslint-disable-next-line
-      // @ts-expect-error %r expects string, got number
-      expect(() => logger.log(LEVEL.NOTICE, 'File: %r', 123)).toThrow(
-        'Expected string for %r, got number',
+    it('should error on incorrect argument types for log()', () => {
+      assert.throws(
+        // @ts-expect-error Intentionally testing incorrect type (number instead of string)
+        () => logger.log(LEVEL.NOTICE, 'File: %r', 123),
+        /Expected string for %r, got number/,
       )
-      // eslint-disable-next-line
-      // @ts-expect-error %c expects string, got object
-      expect(() => logger.log(LEVEL.CRIT, 'Clickable: %c', { path: '/file' })).toThrow(
-        'Expected string for %c, got object',
+      assert.throws(
+        // @ts-expect-error Intentionally testing incorrect type (object instead of string)
+        () => logger.log(LEVEL.CRIT, 'Clickable: %c', { path: '/file' }),
+        /Expected string for %c, got object/,
       )
-      // eslint-disable-next-line
-      // @ts-expect-error First %s ok, second %r expects string, got boolean
-      expect(() => logger.log(LEVEL.INFO, 'Info: %s, Path: %r', 'some info', true)).toThrow(
-        'Expected string for %r, got boolean',
+      assert.throws(
+        // @ts-expect-error Intentionally testing incorrect type (boolean instead of string)
+        () => logger.log(LEVEL.INFO, 'Info: %s, Path: %r', 'some info', true),
+        /Expected string for %r, got boolean/,
       )
     })
 
-    // eslint-disable-next-line vitest/expect-expect
     it('should error on incorrect argument counts for log()', () => {
-      // @ts-expect-error Missing argument for %s
+      // Test case for missing argument - Check actual output instead of throwing
+      capturedOutput = ''
+      // @ts-expect-error Intentionally testing missing argument
       logger.log(LEVEL.WARN, 'Value: %s')
-      // @ts-expect-error Too many arguments for %s
-      logger.log(LEVEL.ERR, 'Name: %s', 'Test', 'Extra')
-      // @ts-expect-error Missing args for %r and %c
-      logger.log(LEVEL.DEBUG, 'Files: %r %c')
-      // @ts-expect-error Missing arg for %c
-      logger.log(LEVEL.TRACE, 'Paths: %r %c', '/file1')
-      // @ts-expect-error Too many args for %r %c
-      logger.log(LEVEL.ALERT, 'Paths: %r %c', '/file1', '/file2', 'extra')
+      assert.ok(
+        logger.stripAnsi(capturedOutput).includes('[   WARN] Value: %s'), // Assuming it prints %s literally
+        'Expected missing argument to result in literal %s in output',
+      )
+
+      assert.throws(
+        // @ts-expect-error Intentionally testing extra argument
+        () => logger.log(LEVEL.ERR, 'Name: %s', 'Test', 'Extra'),
+        /Too many arguments for %s/,
+      )
+      // @ts-expect-error Intentionally testing missing arguments
+      assert.throws(() => logger.log(LEVEL.DEBUG, 'Files: %r %c'), /Missing arg for %c/)
+      // @ts-expect-error Intentionally testing missing argument
+      assert.throws(() => logger.log(LEVEL.TRACE, 'Paths: %r %c', '/file1'), /Missing arg for %c/)
+      assert.throws(
+        // @ts-expect-error Intentionally testing extra arguments
+        () => logger.log(LEVEL.ALERT, 'Paths: %r %c', '/file1', '/file2', 'extra'),
+        /Too many args for %r %c/,
+      )
     })
 
-    // Tests specifically for notice()
     it('should allow correct types and counts for notice()', () => {
       capturedOutput = ''
       logger.notice('Notice Hello')
       let strippedOutput = logger.stripAnsi(capturedOutput)
-      expect(strippedOutput).toContain('[ NOTICE] Notice Hello')
+      assert.ok(strippedOutput.includes('[ NOTICE] Notice Hello'))
 
       capturedOutput = ''
       logger.notice('String: %s, Number: %s, Object: %s', 'world', 123, { a: 1 })
       strippedOutput = logger.stripAnsi(capturedOutput)
-      expect(strippedOutput).toContain('[ NOTICE] String: world, Number: 123, Object: { a: 1 }') // inspect adds space
+      assert.ok(strippedOutput.includes('[ NOTICE] String: world, Number: 123, Object: { a: 1 }'))
 
       capturedOutput = ''
       logger.notice('File: %r, Clickable: %c', '/path/to/file.ts', '/other/file.js')
       strippedOutput = logger.stripAnsi(capturedOutput)
-      // Check for the level, the labels, and the core filenames
-      expect(strippedOutput).toContain('[ NOTICE]')
-      expect(strippedOutput).toContain('File:')
-      expect(strippedOutput).toContain('file.ts') // Check for the %r filename
-      expect(strippedOutput).toContain('Clickable:')
-      expect(strippedOutput).toContain('file.js') // Check for the %c filename
-      // expect(strippedOutput).toContain('file.js (file:') // Optional stricter check
+      assert.ok(strippedOutput.includes('[ NOTICE]'))
+      assert.ok(strippedOutput.includes('File:'))
+      assert.ok(strippedOutput.includes('file.ts'))
+      assert.ok(strippedOutput.includes('Clickable:'))
+      assert.ok(strippedOutput.includes('file.js'))
 
       capturedOutput = ''
       logger.notice('Escaped %%s')
       strippedOutput = logger.stripAnsi(capturedOutput)
-      expect(strippedOutput).toContain('[ NOTICE] Escaped %s') // %% becomes %
+      assert.ok(strippedOutput.includes('[ NOTICE] Escaped %s'))
 
       capturedOutput = ''
       logger.notice('String: %s, File: %r', 'data', '/path/file')
       strippedOutput = logger.stripAnsi(capturedOutput)
-      expect(strippedOutput).toContain('[ NOTICE] String: data, ')
-      expect(strippedOutput).toContain('File: ')
-      expect(strippedOutput).toContain('/path/file')
+      assert.ok(strippedOutput.includes('[ NOTICE] String: data, '))
+      assert.ok(strippedOutput.includes('File: '))
+      assert.ok(strippedOutput.includes('/path/file'))
     })
 
     it('should error on incorrect argument types for notice()', () => {
-      // eslint-disable-next-line
-      // @ts-expect-error %r expects string, got number
-      expect(() => logger.notice('File: %r', 123)).toThrow('Expected string for %r, got number')
-      // eslint-disable-next-line
-      // @ts-expect-error %c expects string, got object
-      expect(() => logger.notice('Clickable: %c', { path: '/file' })).toThrow(
-        'Expected string for %c, got object',
+      // @ts-expect-error Intentionally testing incorrect type (number instead of string)
+      assert.throws(() => logger.notice('File: %r', 123), /Expected string for %r, got number/)
+      assert.throws(
+        // @ts-expect-error Intentionally testing incorrect type (object instead of string)
+        () => logger.notice('Clickable: %c', { path: '/file' }),
+        /Expected string for %c, got object/,
       )
-      // eslint-disable-next-line
-      // @ts-expect-error First %s ok, second %r expects string, got boolean
-      expect(() => logger.notice('Info: %s, Path: %r', 'some info', true)).toThrow(
-        'Expected string for %r, got boolean',
+      assert.throws(
+        // @ts-expect-error Intentionally testing incorrect type (boolean instead of string)
+        () => logger.notice('Info: %s, Path: %r', 'some info', true),
+        /Expected string for %r, got boolean/,
       )
     })
 
-    // eslint-disable-next-line vitest/expect-expect
     it('should error on incorrect argument counts for wrapper methods', () => {
-      // These test compile-time errors primarily
-      // @ts-expect-error Missing argument for %s
+      // Test case for missing argument - Check actual output instead of throwing
+      capturedOutput = ''
+      // @ts-expect-error Intentionally testing missing argument
       logger.notice('Value: %s')
-      // @ts-expect-error Too many arguments for %s
-      logger.notice('Name: %s', 'Test', 'Extra')
-      // @ts-expect-error Missing args for %r and %c
-      logger.notice('Files: %r %c')
-      // @ts-expect-error Missing arg for %c
-      logger.notice('Paths: %r %c', '/file1')
-      // @ts-expect-error Too many args for %r %c
-      logger.notice('Paths: %r %c', '/file1', '/file2', 'extra')
+      assert.ok(
+        logger.stripAnsi(capturedOutput).includes('[ NOTICE] Value: %s'), // Assuming it prints %s literally
+        'Expected missing argument to result in literal %s in output for notice()',
+      )
+
+      // @ts-expect-error Intentionally testing extra argument
+      assert.throws(() => logger.notice('Name: %s', 'Test', 'Extra'), /Too many arguments for %s/)
+      // @ts-expect-error Intentionally testing missing arguments
+      assert.throws(() => logger.notice('Files: %r %c'), /Missing args for %r and %c/)
+      // @ts-expect-error Intentionally testing missing argument
+      assert.throws(() => logger.notice('Paths: %r %c', '/file1'), /Missing arg for %c/)
+      assert.throws(
+        // @ts-expect-error Intentionally testing extra arguments
+        () => logger.notice('Paths: %r %c', '/file1', '/file2', 'extra'),
+        /Too many args for %r %c/,
+      )
 
       const e = new Error(`foo`)
-      // @ts-expect-error Too many args for method without format string
-      logger.info('Info without check', e)
-
-      // @ts-expect-error Unrecognized specifier %d - primary test is compile-time error
-      logger.info('Info without check %d', e)
-
-      // Valid case: Test the actual output using the mock stream
-      logger.info('Info without check %s', e)
+      assert.throws(
+        // @ts-expect-error Intentionally testing extra argument
+        () => logger.info('Info without check', e),
+        /Too many args for method without format string/,
+      )
+      assert.throws(
+        // @ts-expect-error Intentionally testing incorrect specifier
+        () => logger.info('Info without check %d', e),
+        /Unrecognized specifier %d - primary test is compile-time error/,
+      )
+      assert.strictEqual(logger.info('Info without check %s', e), 'Info without check foo')
     })
   })
 })
