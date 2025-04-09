@@ -1,5 +1,11 @@
 # @transloadit/sev-logger
 
+## 0.0.8
+
+### Patch Changes
+
+- 699e85c: Fix crcTable bug
+
 ## 0.0.7
 
 ### Patch Changes
