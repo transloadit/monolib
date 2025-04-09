@@ -1,5 +1,12 @@
 # @transloadit/sev-logger
 
+## 0.0.9
+
+### Patch Changes
+
+- 65bba8b: Introduce SevLoggerBaseClass
+- b2de490: Add more comments
+
 ## 0.0.8
 
 ### Patch Changes
