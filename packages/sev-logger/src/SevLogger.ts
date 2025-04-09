@@ -200,8 +200,9 @@ export class SevLogger {
       // eslint-disable-next-line no-bitwise
       const charCode = str.charCodeAt(i)
       const index = (crc ^ charCode) & 0xff
-      if (!crcTable[index]) {
-        throw new Error('Invalid index')
+      if (!(index in crcTable) || crcTable[index] === undefined) {
+        console.error(crcTable)
+        throw new Error(`Invalid index ${index} in crcTable`)
       }
       crc = (crc >>> 8) ^ crcTable[index]
     }
