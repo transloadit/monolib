@@ -30,11 +30,11 @@ export interface SevLoggerParams {
   abbreviations?: Record<string, string>
   /** Format for timestamps in logs. 'iso' | 'ss.ms' | 'ms' | false. Defaults to false. */
   timestampFormat?: 'iso' | 'ss.ms' | 'ms' | false
-  /** Add hostname ([user@host]) to standard formatted logs? Defaults based on env vars (usually false). */
+  /** Add hostname ([user@host]) to standard formatted logs? Defaults based on env vars (usually false). See `LOG_HOSTNAME`. */
   addHostname?: boolean
-  /** Add callsite ([file:line]) to standard formatted logs? Defaults based on env vars (usually false). */
+  /** Add callsite ([file:line]) to standard formatted logs? Defaults based on env vars (usually true unless CI/production). See `LOG_CALLSITE`, `NODE_ENV`, `CI`. */
   addCallsite?: boolean
-  /** Make file paths clickable in standard formatted logs? Defaults based on env vars (usually true unless CI/production). */
+  /** Make file paths clickable in standard formatted logs? Defaults based on env vars (usually true unless CI/production). See `LOG_CLICKABLES`, `NODE_ENV`, `CI`. */
   addClickables?: boolean
   /** Custom stream for standard output (levels NOTICE and below). Defaults to process.stdout. */
   stdout?: NodeJS.WriteStream
@@ -97,6 +97,50 @@ export type LogImplementation = (level: number, message: unknown, ...args: unkno
  * - `LOG_CLICKABLES=0` / `LOG_CLICKABLES=false`: Disables clickable file paths by default.
  * - `NODE_ENV=production`: Disables callsite and clickables by default.
  * - `CI=1` / `CI=true`: Disables callsite and clickables by default.
+ *
+ * @example
+ * ```typescript
+ * import { SevLogger } from '@transloadit/sev-logger';
+ *
+ * // Basic usage
+ * const log = new SevLogger({ level: SevLogger.LEVEL.INFO });
+ * log.info('Hello, world!');
+ * log.warn('Something might be wrong.');
+ *
+ * // With formatting
+ * // a filepath (turned into a relative path from the current working directory)
+ * log.info('Processing file %r', '/path/to/data.txt');
+ *
+ * // a filepath (turned into a clickable hyperlink (if terminal supports it)
+ * // to the relative path from the current working directory), where each individual subdirectory
+ * // can also be clicked and opened
+ * log.info('Processing file %c', '/path/to/data.txt');
+ *
+ * // will color the variable, and turn it into a string representation. strings,
+ * // numbers, objects, are all allowed as arguments.
+ * log.info('Processing file %s', {any: 'object'});
+ *
+ * // With breadcrumbs and abbreviations
+ * const rootLog = new SevLogger({ abbreviations: { 'WebApp': 'WA' } });
+ * const appLog = rootLog.nest({ breadcrumbs: ['WebApp'] });
+ * const userLog = appLog.nest({ breadcrumbs: ['UserAuth'] });
+ * userLog.debug('User %s logged in.', 'Alice'); // Outputs with WA:UserAuth prefix
+ *
+ * // Event logging
+ * log.event(SevLogger.LEVEL.NOTICE, {
+ *   event: 'UserLogin',
+ *   userId: 123,
+ *   ipAddress: '192.168.1.100',
+ * });
+ *
+ * // Error logging with Error object
+ * try {
+ *   // ... some operation ...
+ *   throw new Error('Something failed!');
+ * } catch (error) {
+ *   log.err('Operation failed: %s', { error }); // Pass error object in payload
+ * }
+ * ```
  */
 export class SevLogger {
   // Initialize static member directly
@@ -219,6 +263,10 @@ export class SevLogger {
     return (crc ^ -1) >>> 0
   }
 
+  /** Provides severity level constants compatible with Syslog Severity Levels
+   * https://en.wikipedia.org/wiki/Syslog#Severity_level
+   * (EMERG, ALERT, CRIT, ERR, WARN, NOTICE, INFO, DEBUG, TRACE).
+   **/
   static LEVEL = {
     EMERG: 0,
     ALERT: 1,
@@ -231,6 +279,7 @@ export class SevLogger {
     TRACE: 8,
   } as const
 
+  /** Default log level (NOTICE) used if no level is specified during initialization. */
   static LEVEL_DEFAULT = SevLogger.LEVEL.NOTICE
 
   #level!: number
