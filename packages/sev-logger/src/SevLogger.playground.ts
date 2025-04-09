@@ -96,6 +96,13 @@ async function main() {
   })
   logger10.announceMotd()
   logger10.notice('foo24')
+
+  // @TODO: Add support for this:
+  // this.debug(
+  //   `Skipping cause files already exists: ${allFiles.map((x) => `%c`).join(', ')}`,
+  //   // @ts-expect-error meh
+  //   ...allFiles,
+  // )
 }
 
 main()

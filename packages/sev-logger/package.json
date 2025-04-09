@@ -7,12 +7,13 @@
     "directory": "packages/sev-logger"
   },
   "license": "MIT",
-  "main": "dist/SevLogger.js",
-  "types": "dist/SevLogger.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
     "src",
-    "!*.test.*"
+    "!*.test.*",
+    "!*.playground.*"
   ],
   "scripts": {
     "prepack": "tsc --build",
