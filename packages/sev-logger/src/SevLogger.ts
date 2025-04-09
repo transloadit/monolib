@@ -89,6 +89,14 @@ export type LogImplementation = (level: number, message: unknown, ...args: unkno
  *
  * Configuration is passed via the constructor or the .update() method using the SevLoggerParams interface.
  * Nested loggers inherit and share configuration (like max prefix length) from their parent.
+ *
+ * Behavior can be influenced by the following environment variables:
+ * - `NO_COLOR=1`: Disables colored output.
+ * - `LOG_HOSTNAME=1` / `LOG_HOSTNAME=true`: Enables hostname logging by default.
+ * - `LOG_CALLSITE=0` / `LOG_CALLSITE=false`: Disables callsite logging by default.
+ * - `LOG_CLICKABLES=0` / `LOG_CLICKABLES=false`: Disables clickable file paths by default.
+ * - `NODE_ENV=production`: Disables callsite and clickables by default.
+ * - `CI=1` / `CI=true`: Disables callsite and clickables by default.
  */
 export class SevLogger {
   // Initialize static member directly
