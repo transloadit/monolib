@@ -21,7 +21,8 @@
         "noExplicitAny": "warn",
         "noImplicitAnyLet": "error",
         "noConfusingVoidType": "warn",
-        "noAssignInExpressions": "off"
+        "noAssignInExpressions": "off",
+        "noTemplateCurlyInString": "off"
       },
       "correctness": {
         "noInvalidUseBeforeDeclaration": "warn"
@@ -31,9 +32,16 @@
         "noForEach": "warn"
       },
       "style": {
-        "noNonNullAssertion": "off",
         "noParameterAssign": "warn",
-        "noUnusedTemplateLiteral": "off"
+        "noUnusedTemplateLiteral": "off",
+        "useAsConstAssertion": "error",
+        "useDefaultParameterLast": "error",
+        "useEnumInitializers": "error",
+        "useSelfClosingElements": "error",
+        "useSingleVarDeclarator": "error",
+        "useNumberNamespace": "error",
+        "noInferrableTypes": "error",
+        "noUselessElse": "error"
       }
     }
   },
