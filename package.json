@@ -15,7 +15,7 @@
     "lint:ts": "tsc --build",
     "pretest": "tsc --build",
     "publish": "changeset publish",
-    "test": "tsc --build && node --test --enable-source-maps",
+    "test": "tsc --build && node --test --enable-source-maps 'packages/*/dist/**/*.test.js' 'template-package/dist/**/*.test.js'",
     "build:watch": "tsc --build --watch",
     "test:watch": "node --test --enable-source-maps --watch",
     "test:build:watch": "npm-run-all build --parallel build:watch test:watch",
