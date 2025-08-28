@@ -1,12 +1,12 @@
-export { SevLogger } from './SevLogger'
 export type {
   LogEvent,
-  SharedState,
-  SevLoggerParams,
+  LogImplementation,
   ParseLogArgs,
+  SevLoggerParams,
   SevLoggerSpec,
   SevLoggerSpecType,
-  LogImplementation,
+  SharedState,
 } from './SevLogger'
+export { SevLogger } from './SevLogger'
 
 export { SevLoggerBaseClass } from './SevLoggerBaseClass'

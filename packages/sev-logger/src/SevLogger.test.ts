@@ -1,7 +1,6 @@
-import { fileURLToPath } from 'node:url'
-
 import assert from 'node:assert'
 import { beforeEach, describe, it } from 'node:test'
+import { fileURLToPath } from 'node:url'
 
 import { SevLogger } from './SevLogger'
 

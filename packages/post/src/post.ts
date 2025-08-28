@@ -3,8 +3,10 @@ import fs = require('node:fs/promises')
 import inquirer = require('inquirer')
 
 import openInEditor = require('open-in-editor')
+
 import { fileExists } from '@transloadit/file-exists'
 import { slugify } from '@transloadit/slugify'
+
 import title = require('title')
 
 async function post(): Promise<void> {

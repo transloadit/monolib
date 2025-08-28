@@ -1,5 +1,6 @@
 import { formatDurationMs } from '@transloadit/format-duration-ms'
 import { prettierBytes } from '@transloadit/prettier-bytes'
+
 import inflect = require('inflection')
 import JSONPath = require('jsonpath-plus')
 import clone = require('lodash/clone')
