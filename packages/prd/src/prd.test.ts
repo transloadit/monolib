@@ -9,7 +9,7 @@ describe('prd', () => {
 
     prd('foo')
 
-    assert.strictEqual(mockExit.mock.calls[0]!.arguments[0], 1)
-    assert.strictEqual(mockConsoleErr.mock.calls[0]!.arguments[0].message, 'Halt via prd')
+    assert.strictEqual(mockExit.mock.calls[0]?.arguments[0], 1)
+    assert.strictEqual(mockConsoleErr.mock.calls[0]?.arguments[0].message, 'Halt via prd')
   })
 })

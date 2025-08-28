@@ -9,6 +9,7 @@
     "fix": "yarn fix:js",
     "build": "tsc --build",
     "fix:js": "biome check --write .",
+    "fix:js:unsafe": "biome check --write --unsafe .",
     "lint": "biome check . && tsc --build",
     "changeset:version:install": "yarn changeset version && corepack yarn install --mode=update-lockfile",
     "lint:js": "biome check .",

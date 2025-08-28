@@ -672,7 +672,7 @@ export class SevLogger {
         // Perform replacement - Type errors inside callback WILL throw
         subject = base.replace(
           /(\s|'|"|\[|=|:^|\()?(%[scr])(\s|\]|\/'|"$|\)|ms|s|TB|GB|MB)?/gms,
-          (match, m1, m2, m3, pos, full) => {
+          (match, m1, _m2, m3, pos, full) => {
             const arg = messages.shift()
             if (arg === undefined) {
               // Not enough arguments provided, treat as literal (error check later)
