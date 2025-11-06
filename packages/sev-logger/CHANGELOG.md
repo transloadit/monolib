@@ -1,5 +1,11 @@
 # @transloadit/sev-logger
 
+## 0.0.10
+
+### Patch Changes
+
+- Bind `trace` on `SevLoggerBaseClass` so inheriting classes have access to the low-level severity helper.
+
 ## 0.0.9
 
 ### Patch Changes

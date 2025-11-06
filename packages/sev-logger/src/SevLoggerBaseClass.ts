@@ -29,6 +29,7 @@ export class SevLoggerBaseClass {
   notice: typeof SevLogger.prototype.notice
   info: typeof SevLogger.prototype.info
   debug: typeof SevLogger.prototype.debug
+  trace: typeof SevLogger.prototype.trace
 
   constructor(opts: { logger: SevLogger }) {
     this._logger = opts.logger
@@ -40,5 +41,6 @@ export class SevLoggerBaseClass {
     this.notice = this._logger.notice.bind(this._logger)
     this.info = this._logger.info.bind(this._logger)
     this.debug = this._logger.debug.bind(this._logger)
+    this.trace = this._logger.trace.bind(this._logger)
   }
 }
