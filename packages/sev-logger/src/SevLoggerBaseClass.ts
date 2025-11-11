@@ -1,25 +1,21 @@
 import type { SevLogger } from './SevLogger'
 
-type MethodSignature<Method extends keyof SevLogger> = SevLogger[Method] extends (
-  ...args: infer Params
-) => infer Result
-  ? (...args: Params) => Result
-  : never
+type MethodType<Name extends keyof SevLogger> = SevLogger[Name]
 
 export interface SevLoggerLike {
-  emerg: MethodSignature<'emerg'>
-  alert: MethodSignature<'alert'>
-  crit: MethodSignature<'crit'>
-  err: MethodSignature<'err'>
-  warn: MethodSignature<'warn'>
-  notice: MethodSignature<'notice'>
-  info: MethodSignature<'info'>
-  debug: MethodSignature<'debug'>
-  trace: MethodSignature<'trace'>
-  log: MethodSignature<'log'>
-  event: MethodSignature<'event'>
-  update: MethodSignature<'update'>
-  announceMotd: MethodSignature<'announceMotd'>
+  emerg: MethodType<'emerg'>
+  alert: MethodType<'alert'>
+  crit: MethodType<'crit'>
+  err: MethodType<'err'>
+  warn: MethodType<'warn'>
+  notice: MethodType<'notice'>
+  info: MethodType<'info'>
+  debug: MethodType<'debug'>
+  trace: MethodType<'trace'>
+  log: MethodType<'log'>
+  event: MethodType<'event'>
+  update: MethodType<'update'>
+  announceMotd: MethodType<'announceMotd'>
   nest: (...args: Parameters<SevLogger['nest']>) => SevLoggerLike
 }
 
