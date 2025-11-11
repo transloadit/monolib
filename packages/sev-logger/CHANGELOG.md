@@ -1,5 +1,11 @@
 # @transloadit/sev-logger
 
+## 0.0.12
+
+### Patch Changes
+
+- 49a7c09: Broaden SevLoggerLike method signatures so they match the full logger API, ensuring TypeScript accepts format strings with additional arguments.
+
 ## 0.0.11
 
 ### Patch Changes
