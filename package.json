@@ -5,7 +5,7 @@
     "packages/*"
   ],
   "scripts": {
-    "check": "yarn lint && yarn test",
+    "check": "yarn lint:ts && yarn fix:js && yarn test",
     "fix": "yarn fix:js",
     "build": "tsc --build",
     "fix:js": "biome check --write .",
