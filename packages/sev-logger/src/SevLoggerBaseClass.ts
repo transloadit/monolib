@@ -1,5 +1,28 @@
 import type { SevLogger } from './SevLogger'
 
+type MethodSignature<Method extends keyof SevLogger> = SevLogger[Method] extends (
+  ...args: infer Params
+) => infer Result
+  ? (...args: Params) => Result
+  : never
+
+export interface SevLoggerLike {
+  emerg: MethodSignature<'emerg'>
+  alert: MethodSignature<'alert'>
+  crit: MethodSignature<'crit'>
+  err: MethodSignature<'err'>
+  warn: MethodSignature<'warn'>
+  notice: MethodSignature<'notice'>
+  info: MethodSignature<'info'>
+  debug: MethodSignature<'debug'>
+  trace: MethodSignature<'trace'>
+  log: MethodSignature<'log'>
+  event: MethodSignature<'event'>
+  update: MethodSignature<'update'>
+  announceMotd: MethodSignature<'announceMotd'>
+  nest: (...args: Parameters<SevLogger['nest']>) => SevLoggerLike
+}
+
 /**
  * A convience base class that you can extend to have all logging methods
  * locally available.
@@ -20,18 +43,18 @@ import type { SevLogger } from './SevLogger'
  * }
  **/
 export class SevLoggerBaseClass {
-  _logger: SevLogger
-  emerg: typeof SevLogger.prototype.emerg
-  alert: typeof SevLogger.prototype.alert
-  crit: typeof SevLogger.prototype.crit
-  err: typeof SevLogger.prototype.err
-  warn: typeof SevLogger.prototype.warn
-  notice: typeof SevLogger.prototype.notice
-  info: typeof SevLogger.prototype.info
-  debug: typeof SevLogger.prototype.debug
-  trace: typeof SevLogger.prototype.trace
+  _logger: SevLoggerLike
+  emerg: SevLoggerLike['emerg']
+  alert: SevLoggerLike['alert']
+  crit: SevLoggerLike['crit']
+  err: SevLoggerLike['err']
+  warn: SevLoggerLike['warn']
+  notice: SevLoggerLike['notice']
+  info: SevLoggerLike['info']
+  debug: SevLoggerLike['debug']
+  trace: SevLoggerLike['trace']
 
-  constructor(opts: { logger: SevLogger }) {
+  constructor(opts: { logger: SevLoggerLike }) {
     this._logger = opts.logger
     this.emerg = this._logger.emerg.bind(this._logger)
     this.alert = this._logger.alert.bind(this._logger)

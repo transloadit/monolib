@@ -10,3 +10,4 @@ export type {
 export { SevLogger } from './SevLogger'
 
 export { SevLoggerBaseClass } from './SevLoggerBaseClass'
+export type { SevLoggerLike } from './SevLoggerBaseClass'
