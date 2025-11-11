@@ -1,5 +1,12 @@
 # @transloadit/sev-logger
 
+## 0.0.11
+
+### Patch Changes
+
+- 741c4d4: Expose a structural `SevLoggerLike` interface so SevLoggerBaseClass can accept loggers from multiple installs without private-field conflicts.
+- 5f86559: Expose a structural `SevLoggerLike`
+
 ## 0.0.10
 
 ### Patch Changes
