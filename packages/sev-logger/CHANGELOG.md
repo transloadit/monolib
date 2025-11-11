@@ -1,5 +1,11 @@
 # @transloadit/sev-logger
 
+## 0.0.13
+
+### Patch Changes
+
+- a3afcdf: Expose the `error`, `stdout`, and `stderr` members on SevLoggerLike so downstream code can continue to use those properties without casts.
+
 ## 0.0.12
 
 ### Patch Changes
