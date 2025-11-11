@@ -7,6 +7,7 @@ export interface SevLoggerLike {
   alert: MethodType<'alert'>
   crit: MethodType<'crit'>
   err: MethodType<'err'>
+  error: MethodType<'error'>
   warn: MethodType<'warn'>
   notice: MethodType<'notice'>
   info: MethodType<'info'>
@@ -16,6 +17,8 @@ export interface SevLoggerLike {
   event: MethodType<'event'>
   update: MethodType<'update'>
   announceMotd: MethodType<'announceMotd'>
+  stdout: SevLogger['stdout']
+  stderr: SevLogger['stderr']
   nest: (...args: Parameters<SevLogger['nest']>) => SevLoggerLike
 }
 
