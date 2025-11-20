@@ -30,7 +30,9 @@ export function prettierBytes(input: number, unit?: Unit): string {
 
   // For GB and larger units, always show 2 decimals for better precision
   if (exponent >= 3) {
-    return `${value.toFixed(2)} ${displayUnit}`
+    return value % 1 === 0
+      ? `${Math.round(value)} ${displayUnit}`
+      : `${value.toFixed(2)} ${displayUnit}`
   }
 
   // For B, KB, MB: show 1 decimal if < 10 and not whole, otherwise round
