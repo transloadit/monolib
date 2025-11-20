@@ -28,5 +28,11 @@ export function prettierBytes(input: number, unit?: Unit): string {
   const value = Number(num / 1024 ** exponent)
   const displayUnit = units[exponent]
 
+  // For GB and larger units, always show 2 decimals for better precision
+  if (exponent >= 3) {
+    return `${value.toFixed(2)} ${displayUnit}`
+  }
+
+  // For B, KB, MB: show 1 decimal if < 10 and not whole, otherwise round
   return `${value >= 10 || value % 1 === 0 ? Math.round(value) : value.toFixed(1)} ${displayUnit}`
 }
