@@ -525,7 +525,7 @@ export class SevLogger {
     const resolved = resolve(filepath)
     const relativePath = relative(process.cwd(), resolved)
 
-    if (this.#addClickables === false) {
+    if (this.#addClickables === false || !this.stdout?.isTTY) {
       return fmtColorFunc(relativePath)
     }
 

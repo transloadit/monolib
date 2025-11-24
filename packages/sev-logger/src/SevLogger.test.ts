@@ -1,4 +1,6 @@
 import assert from 'node:assert'
+import path from 'node:path'
+import { PassThrough } from 'node:stream'
 import { beforeEach, describe, it } from 'node:test'
 
 import { SevLogger } from './SevLogger'
@@ -43,6 +45,25 @@ const debugFormatColors = {
 } as const
 
 describe('SevLogger', () => {
+  describe('clickableFileParts', () => {
+    it('falls back to plain relative path when stdout is not a TTY', () => {
+      const fakeStdout = Object.assign(new PassThrough(), { isTTY: false }) as unknown as NodeJS.WriteStream
+
+      const logger = new SevLogger({
+        level: LEVEL.TRACE,
+        colors,
+        levelColors: debugLevelColors,
+        formatColors: debugFormatColors,
+        addCallsite: false,
+        stdout: fakeStdout,
+      })
+
+      const nestedPath = path.join(process.cwd(), 'foo/bar/baz.txt')
+
+      assert.strictEqual(logger.clickableFileParts(nestedPath), 'cyan(foo/bar/baz.txt)')
+    })
+  })
+
   describe('formatter', () => {
     it('should not fail on random %s', () => {
       const logger = new SevLogger({
