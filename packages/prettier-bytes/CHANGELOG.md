@@ -1,5 +1,11 @@
 # @transloadit/prettier-bytes
 
+## 1.1.0
+
+### Minor Changes
+
+- 129c5a6: Improve precision for GBs
+
 ## 1.0.1
 
 ### Patch Changes
