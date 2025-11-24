@@ -1043,7 +1043,28 @@ export class SevLogger {
   }
 
   /** Creates a new logger instance nested within the current one. */
-  nest(params: SevLoggerParams = {}) {
+  nest(breadcrumb: string, params?: SevLoggerParams): SevLogger
+  nest(breadcrumbs: string[], params?: SevLoggerParams): SevLogger
+  nest(params?: SevLoggerParams): SevLogger
+  nest(
+    breadcrumbsOrParams?: string | string[] | SevLoggerParams,
+    maybeParams?: SevLoggerParams,
+  ): SevLogger {
+    let params: SevLoggerParams
+    if (typeof breadcrumbsOrParams === 'string') {
+      params = {
+        ...(maybeParams ?? {}),
+        breadcrumbs: [breadcrumbsOrParams, ...(maybeParams?.breadcrumbs ?? [])],
+      }
+    } else if (Array.isArray(breadcrumbsOrParams)) {
+      params = {
+        ...(maybeParams ?? {}),
+        breadcrumbs: [...breadcrumbsOrParams, ...(maybeParams?.breadcrumbs ?? [])],
+      }
+    } else {
+      params = (breadcrumbsOrParams ?? maybeParams ?? {}) as SevLoggerParams
+    }
+
     const currentLevelRawBreadcrumbs = params.breadcrumbs ?? []
     return new SevLogger({
       ...this.#params,
