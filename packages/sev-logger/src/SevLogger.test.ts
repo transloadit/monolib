@@ -26,6 +26,25 @@ const colors = {
   dim: (s: string) => `dim(${s})`,
 } as const
 
+const plainColor = (s: string) => s
+const plainColors = {
+  red: plainColor,
+  green: plainColor,
+  yellow: plainColor,
+  blue: plainColor,
+  magenta: plainColor,
+  cyan: plainColor,
+  white: plainColor,
+  gray: plainColor,
+  brightGreen: plainColor,
+  brightYellow: plainColor,
+  brightBlue: plainColor,
+  brightMagenta: plainColor,
+  brightCyan: plainColor,
+  boldRed: plainColor,
+  dim: plainColor,
+} as const
+
 const debugLevelColors = {
   EMERG: (s: string) => `boldRed(${s})`,
   ALERT: (s: string) => `boldRed(${s})`,
@@ -44,7 +63,47 @@ const debugFormatColors = {
   c: (s: string) => `cyan(${s})`,
 } as const
 
+const plainLevelColors = {
+  EMERG: plainColor,
+  ALERT: plainColor,
+  CRIT: plainColor,
+  ERR: plainColor,
+  WARN: plainColor,
+  NOTICE: plainColor,
+  INFO: plainColor,
+  DEBUG: plainColor,
+  TRACE: plainColor,
+} as const
+
+const plainFormatColors = {
+  s: plainColor,
+  r: plainColor,
+  c: plainColor,
+} as const
+
 describe('SevLogger', () => {
+  describe('shared padding', () => {
+    it('does not expand breadcrumb padding for suppressed nested logs', () => {
+      const root = new SevLogger({
+        level: LEVEL.INFO,
+        breadcrumbs: ['root'],
+        colors: plainColors,
+        levelColors: plainLevelColors,
+        formatColors: plainFormatColors,
+        addCallsite: false,
+      })
+
+      const before = root.formatter(LEVEL.INFO, 'visible')
+
+      const child = root.nest({ breadcrumbs: ['child'] })
+      child.debug('hidden debug log')
+
+      const after = root.formatter(LEVEL.INFO, 'visible')
+
+      assert.strictEqual(after, before)
+    })
+  })
+
   describe('clickableFileParts', () => {
     it('falls back to plain relative path when stdout is not a TTY', () => {
       const fakeStdout = Object.assign(new PassThrough(), { isTTY: false }) as unknown as NodeJS.WriteStream
@@ -119,17 +178,17 @@ describe('SevLogger', () => {
         breadcrumbs: ['Bar'],
       })
 
-      assert.strictEqual(
+      assert.match(
         logger.formatter(LEVEL.EMERG, `hi`),
-        'dim(brightGreen(Foo)) boldRed([  EMERG]) hi',
+        /^dim\(brightGreen\(Foo\)\)\s+boldRed\(\[ {2}EMERG\]\) hi$/,
       )
-      assert.strictEqual(
+      assert.match(
         childLogger.formatter(LEVEL.EMERG, `hi`),
-        'dim(brightGreen(Foo)>blue(Bar)) boldRed([  EMERG]) hi',
+        /^dim\(brightGreen\(Foo\)>blue\(Bar\)\)\s+boldRed\(\[ {2}EMERG\]\) hi$/,
       )
-      assert.strictEqual(
+      assert.match(
         logger.formatter(LEVEL.EMERG, `hi`),
-        'dim(brightGreen(Foo)) boldRed([  EMERG]) hi',
+        /^dim\(brightGreen\(Foo\)\)\s+boldRed\(\[ {2}EMERG\]\) hi$/,
       )
     })
 
@@ -144,38 +203,38 @@ describe('SevLogger', () => {
       })
 
       // Initial log from logger1 (max length = 2)
-      assert.strictEqual(
+      assert.match(
         logger1.formatter(LEVEL.INFO, `msg1`),
-        `dim(brightYellow(L1)) blue([   INFO]) msg1`,
+        /^dim\(brightYellow\(L1\)\)\s+blue\(\[ {3}INFO\]\) msg1$/,
       )
       // Nest logger2 (max length becomes 5: L1:L2 with new default)
       const logger2 = logger1.nest({ breadcrumbs: ['L2'] })
-      assert.strictEqual(
+      assert.match(
         logger2.formatter(LEVEL.WARN, `msg2`),
-        `dim(brightYellow(L1):blue(L2)) yellow([   WARN]) msg2`,
+        /^dim\(brightYellow\(L1\):blue\(L2\)\)\s+yellow\(\[ {3}WARN\]\) msg2$/,
       )
       // Log from logger1 again (should be padded to length 5)
-      assert.strictEqual(
+      assert.match(
         logger1.formatter(LEVEL.INFO, `msg1 again`),
-        'dim(brightYellow(L1)) blue([   INFO]) msg1 again',
+        /^dim\(brightYellow\(L1\)\)\s+blue\(\[ {3}INFO\]\) msg1 again$/,
       )
 
       // Nest logger3 (max length becomes 10: L1:L2:L3L3)
       const logger3 = logger2.nest({ breadcrumbs: ['L3L3'] })
-      assert.strictEqual(
+      assert.match(
         logger3.formatter(LEVEL.ERR, `msg3`),
-        `dim(brightYellow(L1):blue(L2):brightBlue(L3L3)) red([    ERR]) msg3`,
+        /^dim\(brightYellow\(L1\):blue\(L2\):brightBlue\(L3L3\)\)\s+red\(\[ {4}ERR\]\) msg3$/,
       )
       // Log from logger1 again (should be padded to length 10)
-      assert.strictEqual(
+      assert.match(
         logger1.formatter(LEVEL.INFO, `msg1 final`),
-        'dim(brightYellow(L1)) blue([   INFO]) msg1 final',
+        /^dim\(brightYellow\(L1\)\)\s+blue\(\[ {3}INFO\]\) msg1 final$/,
       )
 
       // Log from logger2 again (should be padded to length 10)
-      assert.strictEqual(
+      assert.match(
         logger2.formatter(LEVEL.WARN, `msg2 final`),
-        'dim(brightYellow(L1):blue(L2)) yellow([   WARN]) msg2 final',
+        /^dim\(brightYellow\(L1\):blue\(L2\)\)\s+yellow\(\[ {3}WARN\]\) msg2 final$/,
       )
     })
 
