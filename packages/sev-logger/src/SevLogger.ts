@@ -453,48 +453,6 @@ export class SevLogger {
 
     this.#rawBreadcrumbs = params.breadcrumbs ?? []
 
-    // --- Calculate Potential Lengths and Update Shared State ---
-    let potentialTimestampLength = 0
-    if (this.#timestampFormat === 'iso') {
-      potentialTimestampLength = 'YYYY-MM-DDTHH:mm:ss.sssZ'.length
-    } else if (this.#timestampFormat === 'ss.ms') {
-      potentialTimestampLength = 'mm:ss.sss'.length
-    } else if (this.#timestampFormat === 'ms') {
-      potentialTimestampLength = '.sss'.length
-    }
-    // Update max length only if this logger potentially adds a timestamp
-    if (potentialTimestampLength > 0) {
-      this.#sharedState.maxTimestampLength = Math.max(
-        this.#sharedState.maxTimestampLength,
-        potentialTimestampLength,
-      )
-    }
-
-    let potentialHostnameLength = 0
-    if (this.#addHostname) {
-      const hostnamePreview = `[${userInfo().username}@${hostname()}]`
-      potentialHostnameLength = hostnamePreview.length
-      // Update max length only if this logger potentially adds a hostname
-      this.#sharedState.maxHostnameLength = Math.max(
-        this.#sharedState.maxHostnameLength,
-        potentialHostnameLength,
-      )
-    }
-
-    let potentialBreadcrumbLength = 0
-    if (this.#rawBreadcrumbs.length > 0) {
-      const rawAbbrevBreadstr = this.#rawBreadcrumbs
-        .map((b) => this.#abbreviations[b] ?? b)
-        .join(this.#nestDivider)
-      potentialBreadcrumbLength = rawAbbrevBreadstr.length
-      // Update max length only if this logger potentially adds breadcrumbs
-      this.#sharedState.maxBreadcrumbLength = Math.max(
-        this.#sharedState.maxBreadcrumbLength,
-        potentialBreadcrumbLength,
-      )
-    }
-    // --- End of Shared State Update ---
-
     return this
   }
 
@@ -525,7 +483,7 @@ export class SevLogger {
     const resolved = resolve(filepath)
     const relativePath = relative(process.cwd(), resolved)
 
-    if (this.#addClickables === false) {
+    if (this.#addClickables === false || !this.stdout?.isTTY) {
       return fmtColorFunc(relativePath)
     }
 
@@ -585,6 +543,12 @@ export class SevLogger {
       timestampStr = this.colors.gray(`.${msStr}`)
       currentTsLen = this.lengthWithoutAnsi(timestampStr)
     }
+    if (currentTsLen > 0) {
+      this.#sharedState.maxTimestampLength = Math.max(
+        this.#sharedState.maxTimestampLength,
+        currentTsLen,
+      )
+    }
     // Only add timestamp and its padding if the section is potentially active globally
     if (this.#sharedState.maxTimestampLength > 0) {
       const tsPadding = ' '.repeat(Math.max(0, this.#sharedState.maxTimestampLength - currentTsLen))
@@ -602,6 +566,12 @@ export class SevLogger {
           .replace(/\\.local$/, '')}]`,
       )
       currentHostLen = this.lengthWithoutAnsi(hostnameStr)
+    }
+    if (currentHostLen > 0) {
+      this.#sharedState.maxHostnameLength = Math.max(
+        this.#sharedState.maxHostnameLength,
+        currentHostLen,
+      )
     }
     // Only add hostname and its padding if the section is potentially active globally
     if (this.#sharedState.maxHostnameLength > 0) {
@@ -622,6 +592,12 @@ export class SevLogger {
       })
       breadcrumbStr = this.colors.dim(coloredBreadcrumbs.join(this.#nestDivider))
       currentCrumbLen = this.lengthWithoutAnsi(breadcrumbStr)
+    }
+    if (currentCrumbLen > 0) {
+      this.#sharedState.maxBreadcrumbLength = Math.max(
+        this.#sharedState.maxBreadcrumbLength,
+        currentCrumbLen,
+      )
     }
     // Only add breadcrumbs and padding if the section is potentially active globally
     if (this.#sharedState.maxBreadcrumbLength > 0) {
