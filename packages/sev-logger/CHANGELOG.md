@@ -1,5 +1,11 @@
 # @transloadit/sev-logger
 
+## 0.0.14
+
+### Patch Changes
+
+- 5fc462c: Fix clickable path fallback for non-TTY logs and ensure shared padding only grows when visible log lines are emitted, preventing runaway indentation in nested loggers.
+
 ## 0.0.13
 
 ### Patch Changes
