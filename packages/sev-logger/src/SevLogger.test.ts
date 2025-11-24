@@ -82,6 +82,38 @@ const plainFormatColors = {
 } as const
 
 describe('SevLogger', () => {
+  describe('nest shorthand', () => {
+    const createBaseLogger = () =>
+      new SevLogger({
+        level: LEVEL.INFO,
+        breadcrumbs: ['root'],
+        colors: plainColors,
+        levelColors: plainLevelColors,
+        formatColors: plainFormatColors,
+        addCallsite: false,
+      })
+
+    it('accepts a single breadcrumb string', () => {
+      const childLogger = createBaseLogger().nest('child')
+
+      assert.strictEqual(childLogger.formatter(LEVEL.INFO, 'hi'), 'root:child [   INFO] hi')
+    })
+
+    it('accepts an array of breadcrumbs', () => {
+      const branchLogger = createBaseLogger().nest(['child', 'leaf'])
+
+      assert.strictEqual(branchLogger.formatter(LEVEL.INFO, 'hi'), 'root:child:leaf [   INFO] hi')
+    })
+
+    it('merges shorthand breadcrumbs with additional params', () => {
+      const branchLogger = createBaseLogger().nest('child', {
+        breadcrumbs: ['leaf'],
+        nestDivider: '>',
+      })
+
+      assert.strictEqual(branchLogger.formatter(LEVEL.INFO, 'hi'), 'root>child>leaf [   INFO] hi')
+    })
+  })
   describe('shared padding', () => {
     it('does not expand breadcrumb padding for suppressed nested logs', () => {
       const root = new SevLogger({
