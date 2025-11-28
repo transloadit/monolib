@@ -52,6 +52,25 @@ export interface SevLoggerParams {
   formatColors?: SevLogger['formatColors']
   /** A map to shorten field names in the JSON payload of event() logs when log level is less verbose than DEBUG. */
   eventFieldAbbreviations?: Record<string, string>
+  /** Redaction settings. When true (default), common secrets/tokens are masked in messages and event payloads. */
+  redact?: boolean | RedactConfig
+}
+
+export interface RedactConfig {
+  /** Enable/disable redaction. Default: true */
+  enabled?: boolean
+  /** Replacement text for redacted values. Default: "[redacted]" */
+  replacement?: string
+  /** How many trailing characters to keep visible. Default: 4 */
+  keepLast?: number
+  /** Field-name matches (case-insensitive) that should always be redacted. */
+  fields?: string[]
+  /** Additional regex patterns to redact from any string. */
+  patterns?: RegExp[]
+  /** Custom redaction hooks for advanced cases. */
+  custom?: RedactHook[]
+  /** Enable high-entropy fallback masking. Default: true */
+  entropy?: boolean
 }
 
 // <-- Start: Type definitions for format string parsing -->
@@ -76,6 +95,8 @@ export type ParseLogArgs<
 // <-- End: Type definitions -->
 
 export type LogImplementation = (level: number, message: unknown, ...args: unknown[]) => void
+
+export type RedactHook = (value: unknown, path: string[]) => unknown
 
 /**
  * @class SevLogger
@@ -144,7 +165,7 @@ export type LogImplementation = (level: number, message: unknown, ...args: unkno
  */
 export class SevLogger {
   // Initialize static member directly
-  static #crcTable: number[] = SevLogger.#makeCrcTable()
+  static #crcTable: number[] | null = null
 
   static #pathFromStack() {
     // A getDirname that works in CJS and ESM, since Alphalib is shared
@@ -246,7 +267,10 @@ export class SevLogger {
     // eslint-disable-next-line no-bitwise
     let crc = 0 ^ -1
     // Assign to local constant and assert non-null
-    const crcTable = SevLogger.#crcTable!
+    if (!SevLogger.#crcTable) {
+      SevLogger.#crcTable = SevLogger.#makeCrcTable()
+    }
+    const crcTable = SevLogger.#crcTable
 
     for (let i = 0; i < str.length; i++) {
       // eslint-disable-next-line no-bitwise
@@ -280,7 +304,7 @@ export class SevLogger {
   } as const
 
   /** Default log level (NOTICE) used if no level is specified during initialization. */
-  static LEVEL_DEFAULT = SevLogger.LEVEL.NOTICE
+  static LEVEL_DEFAULT = 5 // NOTICE
 
   #level!: number
 
@@ -344,6 +368,43 @@ export class SevLogger {
 
   #eventFieldAbbreviations: Record<string, string> = {}
 
+  static #defaultRedactFields = [
+    'token',
+    'secret',
+    'password',
+    'pass',
+    'authorization',
+    'auth',
+    'api_key',
+    'apikey',
+    'x-api-key',
+    'access_key',
+    'accesskey',
+    'session',
+    'cookie',
+    'bearer',
+  ]
+
+  static #defaultRedactPatterns: RegExp[] = [
+    /xox[abprs]-[0-9A-Za-z-]+/g, // Slack tokens
+    /Bearer\s+[A-Za-z0-9._~+/-]{20,}/gi, // Bearer tokens
+    /\b[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\b/g, // JWT-like
+    /\bAKIA[0-9A-Z]{16}\b/g, // AWS access key
+    /\bASIA[0-9A-Z]{16}\b/g, // AWS temp key
+    /\bA3T[A-Z0-9]{16}\b/g,
+    /\b[A-Za-z0-9/+=]{40}\b/g, // AWS secret-style
+    /\b[A-Za-z0-9+=]{32,}\b/g, // Generic token without path separators
+  ]
+
+  #redactEnabled = true
+  #redactReplacement = '[redacted]'
+  #redactKeepLast = 4
+  #redactFieldSet = new Set<string>(SevLogger.#defaultRedactFields)
+  #redactPatterns: RegExp[] = [...SevLogger.#defaultRedactPatterns]
+  #redactCustom: RedactHook[] = []
+  #redactEntropy = true
+  #entropyMinLength = 32
+
   filepath?: string
 
   constructor(params: SevLoggerParams = {}) {
@@ -379,6 +440,183 @@ export class SevLogger {
     return (s: string) => s
   }
 
+  #configureRedaction(redact: SevLoggerParams['redact'] = true) {
+    const cfg: RedactConfig =
+      typeof redact === 'boolean' ? { enabled: redact } : (redact as RedactConfig) || {}
+
+    this.#redactEnabled = cfg.enabled ?? true
+    this.#redactReplacement = cfg.replacement ?? '[redacted]'
+    this.#redactKeepLast = cfg.keepLast ?? 4
+    const fieldList = [...SevLogger.#defaultRedactFields]
+    if (cfg.fields) {
+      fieldList.push(...cfg.fields)
+    }
+    this.#redactFieldSet = new Set(fieldList.map((f) => f.toLowerCase()))
+    this.#redactPatterns = [...SevLogger.#defaultRedactPatterns, ...(cfg.patterns ?? [])]
+    this.#redactCustom = cfg.custom ?? []
+    this.#redactEntropy = cfg.entropy ?? true
+  }
+
+  #shouldMaskField(field: string) {
+    return this.#redactFieldSet.has(field.toLowerCase())
+  }
+
+  #maskToken(token: string) {
+    if (this.#redactKeepLast <= 0 || token.length <= this.#redactKeepLast) {
+      return this.#redactReplacement
+    }
+    const tail = token.slice(-this.#redactKeepLast)
+    return `${this.#redactReplacement}${tail}`
+  }
+
+  #looksSecret(str: string) {
+    if (!this.#redactEntropy) return false
+    if (str.length < this.#entropyMinLength) return false
+    // Avoid masking sentences or paths; focus on token-like strings
+    if (str.trim().includes(' ')) return false
+    if (str.includes('/') || str.includes('\\') || str.includes('.')) return false
+
+    const counts = new Map<string, number>()
+    for (const ch of str) {
+      counts.set(ch, (counts.get(ch) ?? 0) + 1)
+    }
+    const len = str.length
+    let entropy = 0
+    for (const count of counts.values()) {
+      const p = count / len
+      entropy -= p * Math.log2(p)
+    }
+    return entropy >= 3.5 && counts.size >= 8
+  }
+
+  #redactString(str: string) {
+    if (!this.#redactEnabled) return str
+    let redacted = str
+    for (const pattern of this.#redactPatterns) {
+      redacted = redacted.replace(pattern, (match) => this.#maskToken(match))
+    }
+    if (this.#looksSecret(redacted)) {
+      redacted = this.#maskToken(redacted)
+    }
+    return redacted
+  }
+
+  #applyCustom(value: unknown, path: string[]) {
+    return this.#redactCustom.reduce<unknown>((current, hook) => {
+      try {
+        return hook(current, path)
+      } catch (_err) {
+        // Custom hook failed; ignore and continue with current value
+        return current
+      }
+    }, value)
+  }
+
+  #redactDeep(value: unknown, path: string[], seen = new WeakMap<object, unknown>()): unknown {
+    if (!this.#redactEnabled) return value
+
+    const applyCustom = (v: unknown) => this.#applyCustom(v, path)
+
+    if (value && typeof value === 'object') {
+      const cached = seen.get(value as object)
+      if (cached !== undefined) {
+        return applyCustom(cached)
+      }
+    }
+
+    if (typeof value === 'string') {
+      return applyCustom(this.#redactString(value))
+    }
+
+    if (Array.isArray(value)) {
+      const cloned: unknown[] = []
+      seen.set(value, cloned)
+      value.forEach((v, i) => {
+        cloned[i] = this.#redactDeep(v, [...path, String(i)], seen)
+      })
+      return applyCustom(cloned)
+    }
+
+    if (value instanceof Date || value instanceof URL || value instanceof RegExp) {
+      seen.set(value, value)
+      return applyCustom(value)
+    }
+
+    if (value instanceof Map) {
+      const cloned = new Map()
+      seen.set(value, cloned)
+      for (const [k, v] of value.entries()) {
+        const newKey = typeof k === 'string' ? this.#redactString(k) : k
+        cloned.set(newKey, this.#redactDeep(v, [...path, 'map'], seen))
+      }
+      return applyCustom(cloned)
+    }
+
+    if (value instanceof Set) {
+      const cloned = new Set()
+      seen.set(value, cloned)
+      for (const v of value.values()) {
+        cloned.add(this.#redactDeep(v, [...path, 'set'], seen))
+      }
+      return applyCustom(cloned)
+    }
+
+    if (value instanceof Error) {
+      const cloned = Object.create(Object.getPrototypeOf(value)) as Error
+      seen.set(value, cloned)
+
+      const descriptors = Object.getOwnPropertyDescriptors(value)
+      for (const [key, desc] of Object.entries(descriptors)) {
+        if (!('value' in desc)) {
+          Object.defineProperty(cloned, key, desc)
+          continue
+        }
+        let v = desc.value
+        if (typeof v === 'string' && (key === 'message' || key === 'stack')) {
+          v = this.#redactString(v)
+        } else {
+          v = this.#redactDeep(v, [...path, key], seen)
+        }
+        Object.defineProperty(cloned, key, { ...desc, value: v })
+      }
+
+      for (const sym of Object.getOwnPropertySymbols(value)) {
+        const desc = Object.getOwnPropertyDescriptor(value, sym)
+        if (!desc) continue
+        if ('value' in desc) {
+          const v = this.#redactDeep(desc.value, [...path, sym.toString()], seen)
+          Object.defineProperty(cloned, sym, { ...desc, value: v })
+        } else {
+          Object.defineProperty(cloned, sym, desc)
+        }
+      }
+
+      return applyCustom(cloned)
+    }
+
+    if (value && typeof value === 'object') {
+      const proto = Object.getPrototypeOf(value)
+      const isPlain = proto === Object.prototype || proto === null
+      if (!isPlain) {
+        seen.set(value, value)
+        return applyCustom(value)
+      }
+
+      const cloned: Record<string, unknown> = {}
+      seen.set(value, cloned)
+      for (const [k, v] of Object.entries(value as Record<string, unknown>)) {
+        if (this.#shouldMaskField(k)) {
+          cloned[k] = this.#maskToken(typeof v === 'string' ? v : this.#redactReplacement)
+          continue
+        }
+        cloned[k] = this.#redactDeep(v, [...path, k], seen)
+      }
+      return applyCustom(cloned)
+    }
+
+    return applyCustom(value)
+  }
+
   reset(params: SevLoggerParams = {}) {
     let defaultAddClickables = true
     let defaultAddCallsite = true
@@ -411,6 +649,7 @@ export class SevLogger {
 
     this.#abbreviations = params.abbreviations ?? {}
     this.#eventFieldAbbreviations = params.eventFieldAbbreviations ?? {}
+    this.#configureRedaction(params.redact ?? true)
     this.#nestDivider = params.nestDivider ?? ':'
     this.#timestampFormat = params.timestampFormat ?? defaultTimestampFormat
     this.#addHostname = params.addHostname ?? defaultAddHostname
@@ -523,6 +762,7 @@ export class SevLogger {
   }
 
   formatter(level: number, ...messages: unknown[]) {
+    const redactedMessages = messages.map((msg) => this.#redactDeep(msg, [], new WeakMap()))
     const prefixOutputParts: string[] = [] // Hold prefix parts (timestamp, host, crumbs, level)
 
     // 1. Timestamp + Padding
@@ -637,10 +877,11 @@ export class SevLogger {
 
     // 5. Subject Formatting
     let subject = ''
-    const originalMessages = [...messages] // Clone messages for potential reuse if formatting fails
-    const m = typeof messages?.[0] === 'string' && messages[0].match(/%[scr]/g)
-    if (m && m.length > 0 && m.length + 1 === messages.length) {
-      const base = messages.shift()
+    const originalMessages = [...redactedMessages] // Clone messages for potential reuse if formatting fails
+    const workingMessages = [...redactedMessages]
+    const m = typeof workingMessages?.[0] === 'string' && workingMessages[0].match(/%[scr]/g)
+    if (m && m.length > 0 && m.length + 1 === workingMessages.length) {
+      const base = workingMessages.shift()
       if (typeof base !== 'string') {
         // Should not happen due to initial check, but safeguard
         subject = inspect(base, false, null, true)
@@ -649,10 +890,10 @@ export class SevLogger {
         subject = base.replace(
           /(\s|'|"|\[|=|:^|\()?(%[scr])(\s|\]|\/'|"$|\)|ms|s|TB|GB|MB)?/gms,
           (match, m1, _m2, m3, pos, full) => {
-            const arg = messages.shift()
+            const arg = workingMessages.shift()
             if (arg === undefined) {
               // Not enough arguments provided, treat as literal (error check later)
-              messages.unshift(undefined) // Put placeholder back for count check
+              workingMessages.unshift(undefined) // Put placeholder back for count check
               return match // Return original match, don't replace
             }
             let hasBoundaries = false
@@ -688,15 +929,15 @@ export class SevLogger {
               }
             }
             // If not handled (e.g., no boundaries or wrong specifier), put arg back and return original match
-            messages.unshift(arg)
+            workingMessages.unshift(arg)
             return match
           },
         )
         subject = subject.replace(/%%/g, '%')
 
         // Check for argument count mismatches AFTER replacement attempt
-        if (messages.includes(undefined) || messages.length > 0) {
-          const errorMsg = messages.includes(undefined)
+        if (workingMessages.includes(undefined) || workingMessages.length > 0) {
+          const errorMsg = workingMessages.includes(undefined)
             ? `Missing argument(s) for format string`
             : `Too many arguments provided for format string`
           console.error(`SevLogger Formatting Warning: ${errorMsg}`, originalMessages)
@@ -709,11 +950,12 @@ export class SevLogger {
       }
     } else {
       // No format specifiers or mismatch count, inspect all messages
-      subject = messages
+      subject = redactedMessages
         .map((msg) => (typeof msg === 'string' ? msg : inspect(msg, false, null, true)))
         .join(' ')
       subject = subject.replace(/%%/g, '%')
     }
+    subject = this.#redactString(subject)
     // --- End Subject Logic ---
 
     // Multiline Handling
@@ -942,7 +1184,7 @@ export class SevLogger {
     if ('err' in finalPayload && !('error' in finalPayload)) {
       finalPayload.error = finalPayload.err
       // Create new object excluding 'err' instead of deleting
-      const { err, ...restPayload } = finalPayload
+      const { err: _ignoredErr, ...restPayload } = finalPayload
       finalPayload = restPayload // Reassign to the object without 'err'
     }
 
@@ -950,6 +1192,8 @@ export class SevLogger {
       // Iterate over the modified copy
       // Abbreviate keys if needed
       const finalKey = abbreviate ? (this.#eventFieldAbbreviations[key] ?? key) : key
+      const shouldMaskKey =
+        this.#redactEnabled && (this.#shouldMaskField(key) || this.#shouldMaskField(finalKey))
 
       // Process error objects
       if (key === 'error' && value instanceof Error) {
@@ -959,7 +1203,9 @@ export class SevLogger {
         }
         // Add other common non-enumerable props if needed? e.g., code?
         if ('code' in value) simplifiedError.code = value.code
-        processedPayload[finalKey] = simplifiedError
+        processedPayload[finalKey] = shouldMaskKey
+          ? this.#maskToken(JSON.stringify(simplifiedError))
+          : simplifiedError
       } else if (key === 'error' && value && typeof value === 'object' && !Array.isArray(value)) {
         // Handle pre-serialized errors or other objects under 'error' key
         // Basic folding for potential large strings (stdout/stderr in legacy)
@@ -971,17 +1217,29 @@ export class SevLogger {
             potentiallyFoldedValue[errKey] = errValue
           }
         }
-        processedPayload[finalKey] = potentiallyFoldedValue
+        processedPayload[finalKey] = shouldMaskKey
+          ? this.#maskToken(JSON.stringify(potentiallyFoldedValue))
+          : potentiallyFoldedValue
       } else {
-        processedPayload[finalKey] = value
+        if (shouldMaskKey) {
+          processedPayload[finalKey] =
+            typeof value === 'string' ? this.#maskToken(value) : this.#redactReplacement
+        } else {
+          processedPayload[finalKey] = value
+        }
       }
     }
 
+    const safePayload = this.#redactDeep(processedPayload, [], new WeakMap()) as Record<
+      string,
+      unknown
+    >
+
     // Stringify payload
-    if (Object.keys(processedPayload).length > 0) {
+    if (Object.keys(safePayload).length > 0) {
       let stringified = ''
       try {
-        stringified = JSON.stringify(processedPayload)
+        stringified = JSON.stringify(safePayload)
       } catch (error) {
         stringified = `{"error":"EVENT_DATA_TOO_LARGE_FOR_STRINGIFY"}`
         if (error instanceof Error) {

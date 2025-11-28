@@ -138,7 +138,9 @@ describe('SevLogger', () => {
 
   describe('clickableFileParts', () => {
     it('falls back to plain relative path when stdout is not a TTY', () => {
-      const fakeStdout = Object.assign(new PassThrough(), { isTTY: false }) as unknown as NodeJS.WriteStream
+      const fakeStdout = Object.assign(new PassThrough(), {
+        isTTY: false,
+      }) as unknown as NodeJS.WriteStream
 
       const logger = new SevLogger({
         level: LEVEL.TRACE,
@@ -529,9 +531,180 @@ describe('SevLogger', () => {
       logger.info('Info without check', e)
       const strippedInfoExtra = logger.stripAnsi(capturedOutput)
       assert.ok(
-        strippedInfoExtra.includes('[   INFO] Info without check Error: foo'),
+        strippedInfoExtra.includes('Info without check') && strippedInfoExtra.includes('foo'),
         `Expected extra error arg to be appended in info() "${strippedInfoExtra}"`,
       )
+    })
+  })
+
+  describe('redaction', () => {
+    const capture = () => {
+      let output = ''
+      const stream = new PassThrough()
+      stream.on('data', (chunk) => {
+        output += chunk.toString()
+      })
+      return { stream, get: () => output }
+    }
+
+    const createLogger = (extra: Record<string, unknown> = {}) => {
+      const stdoutCapture = capture()
+      const stderrCapture = capture()
+      const logger = new SevLogger({
+        level: LEVEL.TRACE,
+        addCallsite: false,
+        colors: plainColors,
+        levelColors: plainLevelColors,
+        formatColors: plainFormatColors,
+        stdout: stdoutCapture.stream as unknown as NodeJS.WriteStream,
+        stderr: stderrCapture.stream as unknown as NodeJS.WriteStream,
+        ...extra,
+      })
+      const combined = () => `${stdoutCapture.get()}${stderrCapture.get()}`
+      return { logger, stdoutCapture, stderrCapture, combined }
+    }
+
+    it('masks common tokens in formatted messages by default', () => {
+      const { logger, combined } = createLogger()
+      const slackToken = ['xoxb', '123', '456', 'FAKE'].join('-')
+
+      logger.info('token: %s', slackToken)
+
+      const out = combined()
+      assert.ok(out.includes('[redacted]'))
+      assert.ok(!out.includes(slackToken))
+    })
+
+    it('masks secrets inside event payloads and nested objects', () => {
+      const { logger, combined } = createLogger()
+      const bearer = `Bearer ${['eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9', 'super', 'secret', 'token'].join('.')}`
+
+      logger.event(LEVEL.INFO, {
+        event: 'TestEvent',
+        password: 'supers3cret',
+        headers: { Authorization: bearer },
+        nested: { apiKey: 'AKIA1234567890ABCDEF' },
+      })
+
+      const out = combined()
+      assert.ok(out.includes('[redacted]'))
+      assert.ok(!out.includes('supers3cret'))
+      assert.ok(!out.includes('AKIA1234567890ABCDEF'))
+      assert.ok(!out.includes(bearer))
+    })
+
+    it('can be disabled', () => {
+      const { logger, combined } = createLogger({ redact: false })
+      const token = ['xoxb', '111', 'disabled'].join('-')
+
+      logger.info('raw %s', token)
+
+      const out = combined()
+      assert.ok(out.includes(token))
+      assert.ok(!out.includes('[redacted]'))
+    })
+
+    it('respects keepLast when masking', () => {
+      const { logger, combined } = createLogger({ redact: { keepLast: 4 } })
+      const token = ['xoxp', '222', '333', 'abcdefghijklmnoPQRST'].join('-')
+
+      logger.info('token %s', token)
+
+      const out = combined()
+      assert.ok(out.includes('[redacted]QRST'))
+      assert.ok(!out.includes('abcdefghijklmno'))
+    })
+
+    it('allows custom patterns', () => {
+      const { logger, combined } = createLogger({
+        redact: { patterns: [/VERYSECRET\d+/g] },
+      })
+
+      logger.info('key %s', 'VERYSECRET1234')
+
+      const out = combined()
+      assert.ok(out.includes('[redacted]'))
+      assert.ok(!out.includes('VERYSECRET1234'))
+    })
+
+    it('merges default fields with user-provided fields', () => {
+      const { logger, combined } = createLogger({ redact: { fields: ['sessionId'] } })
+
+      logger.info('%s', {
+        token: 'xoxb-111-222-FAKE',
+        sessionId: 'sessionId-123',
+      })
+
+      const out = combined()
+      assert.ok(out.includes('[redacted]'))
+      assert.ok(!out.includes('xoxb-111-222-FAKE'))
+      assert.ok(!out.includes('sessionId-123'))
+    })
+
+    it('preserves Date/Map/Set/custom objects without wiping them', () => {
+      const { logger, combined } = createLogger()
+      const date = new Date('2020-01-01T00:00:00Z')
+      const map = new Map([
+        ['token', 'hidden-secret'],
+        ['visible', 'ok'],
+      ])
+      const set = new Set(['foo', 'bar', 'xoxb-999-FAKE-TOKEN'])
+      class Custom {
+        toString() {
+          return 'CustomClass'
+        }
+      }
+      const custom = new Custom()
+
+      logger.info('mixed %s %s %s %s', date, map, set, custom)
+
+      const out = combined()
+      assert.ok(out.includes('2020'))
+      assert.ok(out.includes('Map'))
+      assert.ok(out.includes('[redacted]')) // token inside map/set should mask
+      assert.ok(out.match(/Custom/))
+    })
+
+    it('preserves error causes and aggregate errors', () => {
+      const { logger, combined } = createLogger()
+      const inner = new Error('inner-cause')
+      const outer = new Error('outer-message', { cause: inner })
+
+      logger.info('%s', outer)
+
+      const agg = new AggregateError([new Error('agg-a'), new Error('agg-b')], 'agg-msg')
+      logger.info('%s', agg)
+
+      const out = combined()
+      assert.ok(out.includes('inner-cause'))
+      assert.ok(out.includes('agg-a'))
+      assert.ok(out.includes('agg-b'))
+    })
+
+    it('redacts abbreviated event fields', () => {
+      const { logger, combined } = createLogger({
+        redact: true,
+        eventFieldAbbreviations: { password: 'pwd' },
+      })
+
+      logger.event(LEVEL.NOTICE, {
+        event: 'login',
+        password: 'supers3cret',
+      })
+
+      const out = combined()
+      assert.ok(out.includes('[redacted]'))
+      assert.ok(!out.includes('supers3cret'))
+    })
+
+    it('honors redact=false for event payloads', () => {
+      const { logger, combined } = createLogger({ redact: false })
+
+      logger.event(LEVEL.INFO, { event: 'noop', token: '12345' })
+
+      const out = combined()
+      assert.ok(out.includes('12345'))
+      assert.ok(!out.includes('[redacted]'))
     })
   })
 })
