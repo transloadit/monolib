@@ -1,5 +1,11 @@
 # @transloadit/sev-logger
 
+## 0.1.0
+
+### Minor Changes
+
+- 5f59e00: Add built-in secret redaction (configurable/disableable), preserve structured data (maps/sets/errors/causes), cycle-safe deep redaction, better event-field masking, clickable path breadcrumbs, and refreshed README docs.
+
 ## 0.0.15
 
 ### Patch Changes
