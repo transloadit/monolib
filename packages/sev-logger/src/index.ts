@@ -2,6 +2,8 @@ export type {
   LogEvent,
   LogImplementation,
   ParseLogArgs,
+  RedactConfig,
+  RedactHook,
   SevLoggerParams,
   SevLoggerSpec,
   SevLoggerSpecType,

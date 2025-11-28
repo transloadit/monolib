@@ -17,8 +17,8 @@
   ],
   "scripts": {
     "prepack": "tsc --build",
-    "test": "tsc --build && node --test --enable-source-maps",
-    "test:watch": "node --test --enable-source-maps --watch"
+    "test": "tsc --build && node --test --enable-source-maps dist/**/*.test.js",
+    "test:watch": "node --test --enable-source-maps --watch dist/**/*.test.js"
   },
   "publishConfig": {
     "access": "public"
