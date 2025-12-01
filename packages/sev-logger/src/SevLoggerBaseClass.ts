@@ -22,6 +22,54 @@ export interface SevLoggerLike {
   nest: (...args: Parameters<SevLogger['nest']>) => SevLoggerLike
 }
 
+export type SevLoggerInput = SevLogger | Partial<SevLoggerLike>
+
+const normalizeLogger = (logger: SevLoggerInput): SevLoggerLike => {
+  const base = logger ?? {}
+  const fallbackLog = (...args: unknown[]) => console.log(...args)
+  const fallbackErr = (...args: unknown[]) => console.error(...args)
+
+  const ensure = <Name extends keyof SevLoggerLike>(
+    name: Name,
+    fallback: SevLoggerLike[Name],
+  ): SevLoggerLike[Name] => {
+    const candidate = (base as Record<string, unknown>)[name]
+    if (typeof candidate === 'function') {
+      return (candidate as (...args: unknown[]) => unknown).bind(base) as SevLoggerLike[Name]
+    }
+    return fallback
+  }
+
+  const normalized: Partial<SevLoggerLike> = {
+    emerg: ensure('emerg', fallbackErr),
+    alert: ensure('alert', fallbackErr),
+    crit: ensure('crit', fallbackErr),
+    err: ensure('err', fallbackErr),
+    error: ensure('error', fallbackErr),
+    warn: ensure('warn', fallbackErr),
+    notice: ensure('notice', fallbackLog),
+    info: ensure('info', fallbackLog),
+    debug: ensure('debug', fallbackLog),
+    trace: ensure('trace', fallbackLog),
+    log: ensure('log', fallbackLog),
+    event: ensure('event', fallbackLog as SevLoggerLike['event']),
+    update: ensure('update', fallbackLog as SevLoggerLike['update']),
+    announceMotd: ensure('announceMotd', fallbackLog as SevLoggerLike['announceMotd']),
+    stdout: (base as SevLoggerLike).stdout ?? process.stdout,
+    stderr: (base as SevLoggerLike).stderr ?? process.stderr,
+  }
+
+  normalized.nest = (...args: Parameters<SevLogger['nest']>): SevLoggerLike => {
+    const candidate = (base as SevLoggerLike).nest
+    if (typeof candidate === 'function') {
+      return candidate.apply(base, args)
+    }
+    return normalized as SevLoggerLike
+  }
+
+  return normalized as SevLoggerLike
+}
+
 /**
  * A convience base class that you can extend to have all logging methods
  * locally available.
@@ -53,8 +101,8 @@ export class SevLoggerBaseClass {
   debug: SevLoggerLike['debug']
   trace: SevLoggerLike['trace']
 
-  constructor(opts: { logger: SevLoggerLike }) {
-    this._logger = opts.logger
+  constructor(opts: { logger: SevLoggerInput }) {
+    this._logger = normalizeLogger(opts.logger)
     this.emerg = this._logger.emerg.bind(this._logger)
     this.alert = this._logger.alert.bind(this._logger)
     this.crit = this._logger.crit.bind(this._logger)
