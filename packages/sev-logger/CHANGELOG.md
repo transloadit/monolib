@@ -1,5 +1,11 @@
 # @transloadit/sev-logger
 
+## 0.1.2
+
+### Patch Changes
+
+- 54df18b: Allow SevLoggerBaseClass to accept partial loggers by normalizing input.
+
 ## 0.1.0
 
 ### Minor Changes
