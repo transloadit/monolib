@@ -1,4 +1,4 @@
-import type { SevLogger } from './SevLogger'
+import { SevLogger } from './SevLogger'
 
 type MethodType<Name extends keyof SevLogger> = SevLogger[Name]
 
@@ -24,50 +24,51 @@ export interface SevLoggerLike {
 
 export type SevLoggerInput = SevLogger | Partial<SevLoggerLike>
 
-const normalizeLogger = (logger: SevLoggerInput): SevLoggerLike => {
-  const base = logger ?? {}
-  const fallbackLog = (...args: unknown[]) => console.log(...args)
-  const fallbackErr = (...args: unknown[]) => console.error(...args)
+class ShimLogger extends SevLogger {
+  constructor(base: Partial<SevLoggerLike>) {
+    super()
 
-  const ensure = <Name extends keyof SevLoggerLike>(
-    name: Name,
-    fallback: SevLoggerLike[Name],
-  ): SevLoggerLike[Name] => {
-    const candidate = (base as Record<string, unknown>)[name]
-    if (typeof candidate === 'function') {
-      return (candidate as (...args: unknown[]) => unknown).bind(base) as SevLoggerLike[Name]
+    const bindOr = <K extends keyof SevLoggerLike>(name: K, fallback: SevLoggerLike[K]) => {
+      const candidate = base[name]
+      if (typeof candidate === 'function') {
+        return (candidate as unknown as (...args: unknown[]) => unknown).bind(base) as SevLoggerLike[K]
+      }
+      return fallback
     }
-    return fallback
-  }
 
-  const normalized: Partial<SevLoggerLike> = {
-    emerg: ensure('emerg', fallbackErr),
-    alert: ensure('alert', fallbackErr),
-    crit: ensure('crit', fallbackErr),
-    err: ensure('err', fallbackErr),
-    error: ensure('error', fallbackErr),
-    warn: ensure('warn', fallbackErr),
-    notice: ensure('notice', fallbackLog),
-    info: ensure('info', fallbackLog),
-    debug: ensure('debug', fallbackLog),
-    trace: ensure('trace', fallbackLog),
-    log: ensure('log', fallbackLog),
-    event: ensure('event', fallbackLog as SevLoggerLike['event']),
-    update: ensure('update', fallbackLog as SevLoggerLike['update']),
-    announceMotd: ensure('announceMotd', fallbackLog as SevLoggerLike['announceMotd']),
-    stdout: (base as SevLoggerLike).stdout ?? process.stdout,
-    stderr: (base as SevLoggerLike).stderr ?? process.stderr,
-  }
-
-  normalized.nest = (...args: Parameters<SevLogger['nest']>): SevLoggerLike => {
-    const candidate = (base as SevLoggerLike).nest
-    if (typeof candidate === 'function') {
-      return candidate.apply(base, args)
+    this.emerg = bindOr('emerg', this.emerg)
+    this.alert = bindOr('alert', this.alert)
+    this.crit = bindOr('crit', this.crit)
+    this.err = bindOr('err', this.err)
+    this.error = bindOr('error', this.error)
+    this.warn = bindOr('warn', this.warn)
+    this.notice = bindOr('notice', this.notice)
+    this.info = bindOr('info', this.info)
+    this.debug = bindOr('debug', this.debug)
+    this.trace = bindOr('trace', this.trace)
+    this.log = bindOr('log', this.log)
+    this.event = bindOr('event', this.event)
+    if (typeof base.update === 'function') {
+      this.update = (...args: Parameters<SevLogger['update']>): this => {
+        ;(base.update as (...args: unknown[]) => unknown).apply(base, args)
+        return this
+      }
     }
-    return normalized as SevLoggerLike
-  }
+    this.announceMotd = bindOr('announceMotd', this.announceMotd)
 
-  return normalized as SevLoggerLike
+    if (base.stdout) this.stdout = base.stdout
+    if (base.stderr) this.stderr = base.stderr
+
+    // If base provided a nest, it won't type-match the overloads cleanly; rely on SevLogger.nest.
+  }
+}
+
+const normalizeLogger = (logger: SevLoggerInput): SevLogger => {
+  if (logger instanceof SevLogger) {
+    return logger
+  }
+  const partial = logger ?? {}
+  return new ShimLogger(partial)
 }
 
 /**
@@ -90,7 +91,7 @@ const normalizeLogger = (logger: SevLoggerInput): SevLoggerLike => {
  * }
  **/
 export class SevLoggerBaseClass {
-  _logger: SevLoggerLike
+  _logger: SevLogger
   emerg: SevLoggerLike['emerg']
   alert: SevLoggerLike['alert']
   crit: SevLoggerLike['crit']
