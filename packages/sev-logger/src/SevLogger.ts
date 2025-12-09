@@ -4,6 +4,9 @@ import path, { basename, relative, resolve } from 'node:path'
 import { inspect } from 'node:util'
 import { abbr } from '@transloadit/abbr'
 
+export const normalizeCallsitePath = (filePath: string) =>
+  filePath.startsWith('file://') ? fileURLToPath(filePath) : filePath
+
 const GENERIC_TOKEN_PATTERN = /\b[A-Za-z0-9+=]{32,}\b/g
 const GENERIC_SLASHY_TOKEN_PATTERN = /[A-Za-z0-9+/=]{32,}/g
 const AWS_SECRET_PATTERN = /\b[A-Za-z0-9/+=]{40}\b/g
@@ -1019,9 +1022,10 @@ export class SevLogger {
     if (this.#addCallsite) {
       const callSite = SevLogger.#getCallSite()
       if (callSite?.filePath) {
+        const callsitePath = normalizeCallsitePath(callSite.filePath)
         // Format the callsite string first
         callsiteStr = this.colors.blue(
-          `${relative(process.cwd(), resolve(callSite.filePath))}:${callSite.lineNumber}`,
+          `${relative(process.cwd(), resolve(callsitePath))}:${callSite.lineNumber}`,
         )
 
         // Calculate lengths needed for padding
@@ -1370,3 +1374,4 @@ export class SevLogger {
     })
   }
 }
+import { fileURLToPath } from 'node:url'
