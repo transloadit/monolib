@@ -10,5 +10,5 @@ export type {
   SharedState,
 } from './SevLogger'
 export { SevLogger } from './SevLogger'
-export type { SevLoggerLike, SevLoggerInput } from './SevLoggerBaseClass'
+export type { SevLoggerInput, SevLoggerLike } from './SevLoggerBaseClass'
 export { SevLoggerBaseClass } from './SevLoggerBaseClass'

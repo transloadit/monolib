@@ -4,6 +4,10 @@ import path, { basename, relative, resolve } from 'node:path'
 import { inspect } from 'node:util'
 import { abbr } from '@transloadit/abbr'
 
+const GENERIC_TOKEN_PATTERN = /\b[A-Za-z0-9+=]{32,}\b/g
+const GENERIC_SLASHY_TOKEN_PATTERN = /[A-Za-z0-9+/=]{32,}/g
+const AWS_SECRET_PATTERN = /\b[A-Za-z0-9/+=]{40}\b/g
+
 // Define the LogEvent interface needed for the event() method
 export interface LogEvent {
   event: string
@@ -392,8 +396,9 @@ export class SevLogger {
     /\bAKIA[0-9A-Z]{16}\b/g, // AWS access key
     /\bASIA[0-9A-Z]{16}\b/g, // AWS temp key
     /\bA3T[A-Z0-9]{16}\b/g,
-    /\b[A-Za-z0-9/+=]{40}\b/g, // AWS secret-style
-    /\b[A-Za-z0-9+=]{32,}\b/g, // Generic token without path separators
+    AWS_SECRET_PATTERN, // AWS secret-style
+    GENERIC_TOKEN_PATTERN, // Generic token without path separators
+    GENERIC_SLASHY_TOKEN_PATTERN, // Generic token that may contain a slash
   ]
 
   #redactEnabled = true
@@ -492,8 +497,41 @@ export class SevLogger {
   #redactString(str: string) {
     if (!this.#redactEnabled) return str
     let redacted = str
+
+    const trimmed = str.trim()
+    const looksLikePurePath =
+      !trimmed.includes(' ') &&
+      (trimmed.startsWith('/') || trimmed.startsWith('~/') || /^[A-Za-z]:\\/.test(trimmed)) &&
+      trimmed.includes('/')
+    if (looksLikePurePath) {
+      return str
+    }
+
+    const isPathSegment = (match: string, offset: number, full: string) => {
+      const before = full[offset - 1] ?? ''
+      const after = full[offset + match.length] ?? ''
+      const hasSepBoundary = before === '/' || before === '\\' || after === '/' || after === '\\'
+      const containsSep = match.includes('/') || match.includes('\\')
+      const slashCount = (match.match(/[\\/]/g) ?? []).length
+      const hasExtension = /\.[A-Za-z0-9]{1,6}(?:$|[/?#\s])/.test(match)
+      // Treat as path if it touches a separator boundary, or if it looks like a file path with an extension.
+      return hasSepBoundary || (containsSep && hasExtension) || (slashCount >= 2 && hasExtension)
+    }
+
     for (const pattern of this.#redactPatterns) {
-      redacted = redacted.replace(pattern, (match) => this.#maskToken(match))
+      const isGeneric = pattern === GENERIC_TOKEN_PATTERN
+      const isSlashyGeneric = pattern === GENERIC_SLASHY_TOKEN_PATTERN
+      const isAwsSecret = pattern === AWS_SECRET_PATTERN
+
+      redacted = redacted.replace(pattern, (...args) => {
+        const full = args.at(-1) as string
+        const offset = args.at(-2) as number
+        const match = args[0] as string
+        if ((isGeneric || isSlashyGeneric || isAwsSecret) && isPathSegment(match, offset, full)) {
+          return match // don't mask path segments
+        }
+        return this.#maskToken(match)
+      })
     }
     if (this.#looksSecret(redacted)) {
       redacted = this.#maskToken(redacted)
