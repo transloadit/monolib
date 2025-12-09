@@ -1,5 +1,11 @@
 # @transloadit/sev-logger
 
+## 0.1.4
+
+### Patch Changes
+
+- 67a7996: - Prevent filesystem-like paths from being redacted by generic token/AWS patterns while still masking long slashy tokens; add regression tests.
+
 ## 0.1.2
 
 ### Patch Changes
