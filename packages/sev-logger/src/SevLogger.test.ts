@@ -114,6 +114,39 @@ describe('SevLogger', () => {
       assert.strictEqual(branchLogger.formatter(LEVEL.INFO, 'hi'), 'root>child>leaf [   INFO] hi')
     })
   })
+
+  describe('redaction', () => {
+    it('does not redact long path segments', () => {
+      const logger = new SevLogger({
+        level: LEVEL.INFO,
+        colors: plainColors,
+        levelColors: plainLevelColors,
+        formatColors: plainFormatColors,
+        addCallsite: false,
+      })
+
+      const pathStr = '/home/kvz/Dropbox/TransloaditFounders/Accounting/2025/11-Nov/cloudflare-invoice-2025-11-09-p=$99.57.pdf'
+
+      assert.strictEqual(
+        logger.formatter(LEVEL.INFO, pathStr),
+        `[   INFO] ${pathStr}`,
+      )
+    })
+
+    it('redacts slashy tokens that are not paths', () => {
+      const logger = new SevLogger({
+        level: LEVEL.INFO,
+        colors: plainColors,
+        levelColors: plainLevelColors,
+        formatColors: plainFormatColors,
+        addCallsite: false,
+      })
+
+      const token = 'abc/defghijklmnopqrstuvwxyz0123456789ABCDE'
+
+      assert.match(logger.formatter(LEVEL.INFO, token), /\[   INFO\] abc\/\[redacted\][A-Z0-9]{4}$/)
+    })
+  })
   describe('shared padding', () => {
     it('does not expand breadcrumb padding for suppressed nested logs', () => {
       const root = new SevLogger({
