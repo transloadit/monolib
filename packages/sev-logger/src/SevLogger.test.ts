@@ -3,7 +3,7 @@ import path from 'node:path'
 import { PassThrough } from 'node:stream'
 import { beforeEach, describe, it } from 'node:test'
 
-import { SevLogger } from './SevLogger'
+import { SevLogger, normalizeCallsitePath } from './SevLogger'
 
 // const __filename = fileURLToPath(import.meta.url)
 const { LEVEL } = SevLogger
@@ -158,6 +158,15 @@ describe('SevLogger', () => {
   })
 
   describe('formatter', () => {
+    it('normalizes file:// callsites to relative paths', () => {
+      const fileUrl = `file://${process.cwd()}/src/foo/bar.ts`
+      const normalized = normalizeCallsitePath(fileUrl)
+      assert.strictEqual(
+        normalized.endsWith('/src/foo/bar.ts'),
+        true,
+      )
+    })
+
     it('should not fail on random %s', () => {
       const logger = new SevLogger({
         level: LEVEL.TRACE,
