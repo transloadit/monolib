@@ -1,5 +1,11 @@
 # @transloadit/sev-logger
 
+## 0.1.5
+
+### Patch Changes
+
+- 1dad93a: Normalize ESM file:// callsite paths to filesystem paths before formatting, preventing callsite links like file:/home/... and keeping relative paths readable.
+
 ## 0.1.4
 
 ### Patch Changes
