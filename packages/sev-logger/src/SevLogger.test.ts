@@ -711,7 +711,7 @@ describe('SevLogger', () => {
       const { logger } = createLogger({ level: LEVEL.INFO })
 
       const pathStr =
-        '/home/kvz/Dropbox/TransloaditFounders/Accounting/2025/11-Nov/cloudflare-invoice-2025-11-09-p=$99.57.pdf'
+        '/home/alice/Documents/ProjectX/Reports/2025/11-Nov/invoice-2025-11-09-amount=$99.57.pdf'
 
       const out = logger.formatter(LEVEL.INFO, pathStr)
       assert.ok(out.includes(pathStr))
