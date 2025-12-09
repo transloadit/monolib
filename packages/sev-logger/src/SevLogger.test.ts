@@ -706,5 +706,25 @@ describe('SevLogger', () => {
       assert.ok(out.includes('12345'))
       assert.ok(!out.includes('[redacted]'))
     })
+
+    it('does not redact long path segments', () => {
+      const { logger } = createLogger({ level: LEVEL.INFO })
+
+      const pathStr =
+        '/home/kvz/Dropbox/TransloaditFounders/Accounting/2025/11-Nov/cloudflare-invoice-2025-11-09-p=$99.57.pdf'
+
+      assert.strictEqual(logger.formatter(LEVEL.INFO, pathStr), `[   INFO] ${pathStr}`)
+    })
+
+    it('redacts slashy tokens that are not paths', () => {
+      const { logger } = createLogger({ level: LEVEL.INFO })
+
+      const token = 'abc/defghijklmnopqrstuvwxyz0123456789ABCDE'
+
+      assert.match(
+        logger.formatter(LEVEL.INFO, token),
+        /\[ {3}INFO\] abc\/\[redacted\][A-Z0-9]{4}$/,
+      )
+    })
   })
 })

@@ -4,6 +4,10 @@ import path, { basename, relative, resolve } from 'node:path'
 import { inspect } from 'node:util'
 import { abbr } from '@transloadit/abbr'
 
+const GENERIC_TOKEN_PATTERN = /\b[A-Za-z0-9+=]{32,}\b/g
+const GENERIC_SLASHY_TOKEN_PATTERN = /[A-Za-z0-9+/=]{32,}/g
+const AWS_SECRET_PATTERN = /\b[A-Za-z0-9/+=]{40}\b/g
+
 // Define the LogEvent interface needed for the event() method
 export interface LogEvent {
   event: string
@@ -392,8 +396,9 @@ export class SevLogger {
     /\bAKIA[0-9A-Z]{16}\b/g, // AWS access key
     /\bASIA[0-9A-Z]{16}\b/g, // AWS temp key
     /\bA3T[A-Z0-9]{16}\b/g,
-    /\b[A-Za-z0-9/+=]{40}\b/g, // AWS secret-style
-    /\b[A-Za-z0-9+=]{32,}\b/g, // Generic token without path separators
+    AWS_SECRET_PATTERN, // AWS secret-style
+    GENERIC_TOKEN_PATTERN, // Generic token without path separators
+    GENERIC_SLASHY_TOKEN_PATTERN, // Generic token that may contain a slash
   ]
 
   #redactEnabled = true
@@ -492,7 +497,26 @@ export class SevLogger {
   #redactString(str: string) {
     if (!this.#redactEnabled) return str
     let redacted = str
+
+    const slashCount = (str.match(/[\\/]/g) ?? []).length
+    const isPathish =
+      slashCount >= 2 ||
+      str.startsWith('/') ||
+      str.startsWith('~/') ||
+      /^[A-Za-z]:\\/.test(str) ||
+      str.includes('/home/') ||
+      str.includes('/Users/')
+
     for (const pattern of this.#redactPatterns) {
+      const isGeneric = pattern === GENERIC_TOKEN_PATTERN
+      const isSlashyGeneric = pattern === GENERIC_SLASHY_TOKEN_PATTERN
+      const isAwsSecret = pattern === AWS_SECRET_PATTERN
+      if (isPathish && (isGeneric || isSlashyGeneric || isAwsSecret)) {
+        continue
+      }
+      if (isSlashyGeneric && slashCount > 1) {
+        continue // avoid path-like strings with multiple separators
+      }
       redacted = redacted.replace(pattern, (match) => this.#maskToken(match))
     }
     if (this.#looksSecret(redacted)) {

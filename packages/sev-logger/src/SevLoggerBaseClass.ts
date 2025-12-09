@@ -31,7 +31,9 @@ class ShimLogger extends SevLogger {
     const bindOr = <K extends keyof SevLoggerLike>(name: K, fallback: SevLoggerLike[K]) => {
       const candidate = base[name]
       if (typeof candidate === 'function') {
-        return (candidate as unknown as (...args: unknown[]) => unknown).bind(base) as SevLoggerLike[K]
+        return (candidate as unknown as (...args: unknown[]) => unknown).bind(
+          base,
+        ) as SevLoggerLike[K]
       }
       return fallback
     }
