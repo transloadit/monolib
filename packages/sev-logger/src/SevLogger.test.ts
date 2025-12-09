@@ -713,7 +713,9 @@ describe('SevLogger', () => {
       const pathStr =
         '/home/kvz/Dropbox/TransloaditFounders/Accounting/2025/11-Nov/cloudflare-invoice-2025-11-09-p=$99.57.pdf'
 
-      assert.strictEqual(logger.formatter(LEVEL.INFO, pathStr), `[   INFO] ${pathStr}`)
+      const out = logger.formatter(LEVEL.INFO, pathStr)
+      assert.ok(out.includes(pathStr))
+      assert.ok(!out.includes('[redacted]'))
     })
 
     it('redacts slashy tokens that are not paths', () => {
@@ -721,10 +723,30 @@ describe('SevLogger', () => {
 
       const token = 'abc/defghijklmnopqrstuvwxyz0123456789ABCDE'
 
-      assert.match(
-        logger.formatter(LEVEL.INFO, token),
-        /\[ {3}INFO\] abc\/\[redacted\][A-Z0-9]{4}$/,
-      )
+      const out = logger.formatter(LEVEL.INFO, token)
+      assert.ok(out.includes('[redacted]'))
+      assert.ok(!out.includes(token))
+    })
+
+    it('still redacts multi-slash tokens when not embedded in a path', () => {
+      const { logger } = createLogger({ level: LEVEL.INFO })
+
+      const token = 'abc/def/ghijklmnopqrstuvwxyz0123456789ABCDE'
+
+      const out = logger.formatter(LEVEL.INFO, token)
+      assert.ok(out.includes('[redacted]'))
+      assert.ok(!out.includes(token))
+    })
+
+    it('redacts secrets even when followed by a path', () => {
+      const { logger } = createLogger({ level: LEVEL.INFO })
+
+      const secret = 'AKIA1234567890ABCDEF'
+      const mixed = `${secret} /tmp/file.txt`
+
+      const out = logger.formatter(LEVEL.INFO, mixed)
+      assert.ok(out.includes('[redacted]'))
+      assert.ok(!out.includes(secret))
     })
   })
 })
