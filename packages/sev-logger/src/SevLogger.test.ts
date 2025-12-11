@@ -161,10 +161,7 @@ describe('SevLogger', () => {
     it('normalizes file:// callsites to relative paths', () => {
       const fileUrl = `file://${process.cwd()}/src/foo/bar.ts`
       const normalized = normalizeCallsitePath(fileUrl)
-      assert.strictEqual(
-        normalized.endsWith('/src/foo/bar.ts'),
-        true,
-      )
+      assert.strictEqual(normalized.endsWith('/src/foo/bar.ts'), true)
     })
 
     it('should not fail on random %s', () => {
@@ -339,6 +336,29 @@ describe('SevLogger', () => {
 
       // Check if the callsite pattern exists somewhere in the formatted string
       assert.match(formatted, expectedPattern)
+    })
+  })
+
+  describe('announceMotd', () => {
+    it('includes a space between ISO timestamp and MOTD text', () => {
+      const outStream = new PassThrough()
+      let output = ''
+      outStream.on('data', (chunk) => {
+        output += chunk.toString()
+      })
+
+      const logger = new SevLogger({
+        breadcrumbs: ['Payroll'],
+        timestampFormat: 'iso',
+        colors: plainColors,
+        levelColors: plainLevelColors,
+        formatColors: plainFormatColors,
+        stdout: outStream as unknown as NodeJS.WriteStream,
+      })
+
+      logger.announceMotd()
+
+      assert.match(output, /Z Starting Payroll/) // space after timestamp before text
     })
   })
 

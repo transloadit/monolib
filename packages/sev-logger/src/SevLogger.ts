@@ -1319,7 +1319,7 @@ export class SevLogger {
     // Add timestamp based on new format
     const now = new Date()
     if (this.#timestampFormat === 'iso') {
-      parts.push(this.colors.gray(now.toISOString()))
+      parts.push(`${this.colors.gray(now.toISOString())} `)
     } // No ms/ss.ms timestamp for MOTD
 
     parts.push(`Starting ${this.#rawBreadcrumbs[0] ?? 'Logger'} at ${new Date().toISOString()}. `) // Keep ISO here for clarity
