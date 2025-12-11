@@ -3,7 +3,7 @@ import path from 'node:path'
 import { PassThrough } from 'node:stream'
 import { beforeEach, describe, it } from 'node:test'
 
-import { SevLogger, normalizeCallsitePath } from './SevLogger'
+import { normalizeCallsitePath, SevLogger } from './SevLogger'
 
 // const __filename = fileURLToPath(import.meta.url)
 const { LEVEL } = SevLogger
