@@ -76,7 +76,9 @@ export interface RedactConfig {
   patterns?: RegExp[]
   /** Custom redaction hooks for advanced cases. */
   custom?: RedactHook[]
-  /** Enable high-entropy fallback masking. Default: true */
+  /** Enable heuristic redaction for generic token-like strings. Default: false */
+  heuristics?: boolean
+  /** Enable high-entropy fallback masking. Default: false (or true when heuristics is enabled). */
   entropy?: boolean
 }
 
@@ -399,9 +401,12 @@ export class SevLogger {
     /\bAKIA[0-9A-Z]{16}\b/g, // AWS access key
     /\bASIA[0-9A-Z]{16}\b/g, // AWS temp key
     /\bA3T[A-Z0-9]{16}\b/g,
-    AWS_SECRET_PATTERN, // AWS secret-style
-    GENERIC_TOKEN_PATTERN, // Generic token without path separators
-    GENERIC_SLASHY_TOKEN_PATTERN, // Generic token that may contain a slash
+  ]
+
+  static #heuristicRedactPatterns: RegExp[] = [
+    AWS_SECRET_PATTERN, // AWS secret-style (heuristic)
+    GENERIC_TOKEN_PATTERN, // Generic token without path separators (heuristic)
+    GENERIC_SLASHY_TOKEN_PATTERN, // Generic token that may contain a slash (heuristic)
   ]
 
   #redactEnabled = true
@@ -410,7 +415,7 @@ export class SevLogger {
   #redactFieldSet = new Set<string>(SevLogger.#defaultRedactFields)
   #redactPatterns: RegExp[] = [...SevLogger.#defaultRedactPatterns]
   #redactCustom: RedactHook[] = []
-  #redactEntropy = true
+  #redactEntropy = false
   #entropyMinLength = 32
 
   filepath?: string
@@ -460,9 +465,14 @@ export class SevLogger {
       fieldList.push(...cfg.fields)
     }
     this.#redactFieldSet = new Set(fieldList.map((f) => f.toLowerCase()))
-    this.#redactPatterns = [...SevLogger.#defaultRedactPatterns, ...(cfg.patterns ?? [])]
+    const heuristics = cfg.heuristics ?? false
+    this.#redactPatterns = [
+      ...SevLogger.#defaultRedactPatterns,
+      ...(heuristics ? SevLogger.#heuristicRedactPatterns : []),
+      ...(cfg.patterns ?? []),
+    ]
     this.#redactCustom = cfg.custom ?? []
-    this.#redactEntropy = cfg.entropy ?? true
+    this.#redactEntropy = cfg.entropy ?? heuristics
   }
 
   #shouldMaskField(field: string) {

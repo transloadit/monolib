@@ -41,9 +41,16 @@ log.event(SevLogger.LEVEL.NOTICE, {
 Secrets are masked before anything is written to stdout/stderr/files. Defaults include:
 
 - Field names: `token`, `secret`, `password`, `pass`, `authorization`, `auth`, `api_key`, `x-api-key`, `cookie`, `session`, `bearer`, …
-- Patterns: Slack tokens, Bearer/JWT-like strings, AWS AKIA/ASIA keys, 40+ char base64ish strings
+- Patterns: Slack tokens, Bearer/JWT-like strings, AWS AKIA/ASIA keys
+
+Optional heuristics (disabled by default, can be noisy in paths):
+
+- Generic 32+ char base64ish strings (including slashy tokens)
 - High-entropy fallback for token-like strings
-- Works for formatted logs *and* `event()` payloads, even when fields are abbreviated.
+
+Works for formatted logs *and* `event()` payloads, even when fields are abbreviated.
+
+To opt back into heuristic redaction, set `redact: { heuristics: true }` (and optionally `entropy: true`).
 
 Repeated references and cycles are preserved (no stack overflows, shared refs stay shared). Non-plain objects such as `Date`, `URL`, `RegExp`, `Map`, `Set`, custom classes, and `Error`/`AggregateError` causes are retained.
 
@@ -68,7 +75,8 @@ const log = new SevLogger({
     keepLast: 4,            // tail to keep visible, default 4
     fields: ['sessionId'],  // extra field names to always mask (case-insensitive)
     patterns: [/SUPERSECRET\w+/g], // extra regexes
-    entropy: true,          // mask random high-entropy strings
+    heuristics: false,      // enable heuristic token redaction, default false
+    entropy: false,         // mask random high-entropy strings (defaults to heuristics)
     custom: [(
       value, path, // path = ['payload', 'headers', 'authorization'] etc.
     ) => (typeof value === 'string' ? value.replace(/abc/g, '***') : value)],

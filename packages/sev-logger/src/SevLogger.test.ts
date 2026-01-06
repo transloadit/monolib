@@ -747,8 +747,18 @@ describe('SevLogger', () => {
       assert.ok(!out.includes('[redacted]'))
     })
 
-    it('redacts slashy tokens that are not paths', () => {
+    it('does not redact hashed filenames in paths by default', () => {
       const { logger } = createLogger({ level: LEVEL.INFO })
+      const hash = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+      const pathStr = `dist/assets/chunk-${hash}.js`
+
+      const out = logger.formatter(LEVEL.INFO, 'File %s', pathStr)
+      assert.ok(out.includes(pathStr))
+      assert.ok(!out.includes('[redacted]'))
+    })
+
+    it('redacts slashy tokens that are not paths when heuristics are enabled', () => {
+      const { logger } = createLogger({ level: LEVEL.INFO, redact: { heuristics: true } })
 
       const token = 'abc/defghijklmnopqrstuvwxyz0123456789ABCDE'
 
@@ -757,8 +767,8 @@ describe('SevLogger', () => {
       assert.ok(!out.includes(token))
     })
 
-    it('still redacts multi-slash tokens when not embedded in a path', () => {
-      const { logger } = createLogger({ level: LEVEL.INFO })
+    it('still redacts multi-slash tokens when not embedded in a path with heuristics enabled', () => {
+      const { logger } = createLogger({ level: LEVEL.INFO, redact: { heuristics: true } })
 
       const token = 'abc/def/ghijklmnopqrstuvwxyz0123456789ABCDE'
 
