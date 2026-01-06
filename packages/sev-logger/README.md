@@ -98,3 +98,7 @@ const noRedact = new SevLogger({ redact: false })
 cd packages/sev-logger
 yarn test
 ```
+
+## Maintenance
+
+This package is published via automated CI.
