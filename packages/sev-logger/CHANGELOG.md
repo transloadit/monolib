@@ -1,5 +1,11 @@
 # @transloadit/sev-logger
 
+## 0.1.7
+
+### Patch Changes
+
+- 3680f19: Make heuristic token redaction opt-in to avoid masking paths
+
 ## 0.1.6
 
 ### Patch Changes
