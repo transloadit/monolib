@@ -1,5 +1,11 @@
 # @transloadit/sev-logger
 
+## 0.1.8
+
+### Patch Changes
+
+- edd6d02: No-op release to trigger publish
+
 ## 0.1.7
 
 ### Patch Changes
