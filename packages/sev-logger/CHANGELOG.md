@@ -1,5 +1,11 @@
 # @transloadit/sev-logger
 
+## 0.1.9
+
+### Patch Changes
+
+- 0e0d420: Add missing @transloadit/abbr dependency.
+
 ## 0.1.8
 
 ### Patch Changes
