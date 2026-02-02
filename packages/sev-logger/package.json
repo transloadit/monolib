@@ -20,6 +20,9 @@
     "test": "tsc --build && node --test --enable-source-maps dist/**/*.test.js",
     "test:watch": "node --test --enable-source-maps --watch dist/**/*.test.js"
   },
+  "dependencies": {
+    "@transloadit/abbr": "^1.0.0"
+  },
   "publishConfig": {
     "access": "public"
   }

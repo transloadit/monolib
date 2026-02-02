@@ -420,7 +420,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@transloadit/abbr@workspace:packages/abbr":
+"@transloadit/abbr@npm:^1.0.0, @transloadit/abbr@workspace:packages/abbr":
   version: 0.0.0-use.local
   resolution: "@transloadit/abbr@workspace:packages/abbr"
   languageName: unknown
@@ -500,6 +500,8 @@ __metadata:
 "@transloadit/sev-logger@workspace:packages/sev-logger":
   version: 0.0.0-use.local
   resolution: "@transloadit/sev-logger@workspace:packages/sev-logger"
+  dependencies:
+    "@transloadit/abbr": "npm:^1.0.0"
   languageName: unknown
   linkType: soft
 
