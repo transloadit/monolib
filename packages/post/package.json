@@ -1,6 +1,6 @@
 {
   "name": "@transloadit/post",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": {
     "type": "git",
     "url": "git://github.com/transloadit/monolib.git",
@@ -25,12 +25,11 @@
     "@transloadit/slugify": "^1.0.0",
     "inquirer": "^8.2.7",
     "open-in-editor": "^2.2.0",
-    "title": "^3.5.3"
+    "title": "^4.0.1"
   },
   "devDependencies": {
     "@types/inquirer": "^8.2.12",
-    "@types/open-in-editor": "^2.2.0",
-    "@types/title": "^3.4.3"
+    "@types/open-in-editor": "^2.2.0"
   },
   "publishConfig": {
     "access": "public"
