@@ -1,5 +1,11 @@
 # @transloadit/post
 
+## 1.0.1
+
+### Patch Changes
+
+- Refresh compatible dependency versions.
+
 ## 1.0.0
 
 ### Major Changes
