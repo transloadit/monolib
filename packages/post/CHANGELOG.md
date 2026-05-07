@@ -1,5 +1,11 @@
 # @transloadit/post
 
+## 1.0.2
+
+### Patch Changes
+
+- Upgrade title to v4 and use its built-in types.
+
 ## 1.0.1
 
 ### Patch Changes

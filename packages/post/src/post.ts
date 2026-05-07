@@ -7,7 +7,7 @@ import openInEditor = require('open-in-editor')
 import { fileExists } from '@transloadit/file-exists'
 import { slugify } from '@transloadit/slugify'
 
-import title = require('title')
+import title from 'title'
 
 async function post(): Promise<void> {
   console.log(`Welcome to @transloadit/post.`)
