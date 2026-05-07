@@ -23,12 +23,12 @@
   "dependencies": {
     "@transloadit/file-exists": "^1.0.0",
     "@transloadit/slugify": "^1.0.0",
-    "inquirer": "^8.2.6",
+    "inquirer": "^8.2.7",
     "open-in-editor": "^2.2.0",
     "title": "^3.5.3"
   },
   "devDependencies": {
-    "@types/inquirer": "^8.2.10",
+    "@types/inquirer": "^8.2.12",
     "@types/open-in-editor": "^2.2.0",
     "@types/title": "^3.4.3"
   },
