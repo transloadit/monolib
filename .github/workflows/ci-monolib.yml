@@ -40,6 +40,6 @@ jobs:
             ${{ runner.os }}-
 
       - run: corepack yarn config set enableHardenedMode false
-      - run: corepack yarn install
+      - run: corepack yarn install --immutable
 
       - run: corepack yarn check
