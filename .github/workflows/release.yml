@@ -44,16 +44,6 @@ jobs:
           echo "npm ${version}"
           node -e "const version = process.argv[1]; const [major, minor, patch] = version.split('.').map(Number); if (major < 11 || (major === 11 && (minor < 5 || (minor === 5 && patch < 1)))) { throw new Error('npm 11.5.1 or newer is required for trusted publishing'); }" "$version"
 
-      - name: 🏗 Setup Caching
-        uses: actions/cache@v4
-        with:
-          path: |
-            **/node_modules
-            .yarn/cache
-          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock', '**/package.json') }}
-          restore-keys: |
-            ${{ runner.os }}-
-
       # Allow yarn to make changes during release
       - run: corepack yarn config set enableHardenedMode false
       - run: corepack yarn --mode=update-lockfile
