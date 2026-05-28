@@ -25,11 +25,11 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Set up git for pushing with PAT
+      - name: Set up git for pushing
         env:
-          GH_PAT: ${{ secrets.GH_PAT_TRANSLOADIT_BOT_KICK_PRS }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
-          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
           git config --global user.name "transloadit-bot"
           git config --global user.email "bot@transloadit.com"
 
@@ -60,4 +60,4 @@ jobs:
           title: "chore: version packages"
           commit: "chore: version packages"
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT_TRANSLOADIT_BOT_KICK_PRS }}
+          GITHUB_TOKEN: ${{ github.token }}

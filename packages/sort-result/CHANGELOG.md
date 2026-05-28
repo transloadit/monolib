@@ -1,5 +1,21 @@
 # @transloadit/sort-result
 
+## 2.0.0
+
+### Major Changes
+
+- 8efa1e5: Move monolib packages to ESM-only output and refresh dependencies.
+
+  This is a breaking change for CommonJS consumers: import these packages from ESM code or use dynamic import from CommonJS.
+  The supported Node.js floor is now 22, package exports are explicit, and TypeScript checks are stricter.
+
+### Patch Changes
+
+- Updated dependencies [8efa1e5]
+  - @transloadit/has-property@2.0.0
+  - @transloadit/sort-object-by-prio@2.0.0
+  - @transloadit/sort-result-meta@2.0.0
+
 ## 1.0.0
 
 ### Major Changes
