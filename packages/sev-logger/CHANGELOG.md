@@ -1,5 +1,11 @@
 # @transloadit/sev-logger
 
+## 1.0.2
+
+### Patch Changes
+
+- Avoid leaking the global NodeJS namespace from public stream types.
+
 ## 1.0.1
 
 ### Patch Changes

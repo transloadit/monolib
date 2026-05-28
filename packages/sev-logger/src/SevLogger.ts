@@ -29,6 +29,12 @@ export interface SharedState {
   maxBreadcrumbLength: number
 }
 
+export interface SevLoggerStream {
+  columns?: number
+  isTTY?: boolean
+  write(chunk: string): unknown
+}
+
 export interface SevLoggerParams {
   /** Custom separator for nested breadcrumbs. Defaults to ':'. */
   nestDivider?: string
@@ -47,9 +53,9 @@ export interface SevLoggerParams {
   /** Make file paths clickable in standard formatted logs? Defaults based on env vars (usually true unless CI/production). See `LOG_CLICKABLES`, `NODE_ENV`, `CI`. */
   addClickables?: boolean
   /** Custom stream for standard output (levels NOTICE and below). Defaults to process.stdout. */
-  stdout?: NodeJS.WriteStream
+  stdout?: SevLoggerStream
   /** Custom stream for error output (levels WARN and above). Defaults to process.stderr. */
-  stderr?: NodeJS.WriteStream
+  stderr?: SevLoggerStream
   /** If set, logs will be appended to this file instead of stdout/stderr. */
   filepath?: string
   /** Shared state object for coordinating max prefix length across nested loggers. */
@@ -315,9 +321,9 @@ export class SevLogger {
 
   #params!: SevLoggerParams
 
-  stdout!: NodeJS.WriteStream
+  stdout!: SevLoggerStream
 
-  stderr!: NodeJS.WriteStream
+  stderr!: SevLoggerStream
 
   colors = {
     red: (s: string) => (process.env.NO_COLOR === '1' ? s : `\u001b[31m${s}\u001b[0m`),
