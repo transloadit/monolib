@@ -26,5 +26,16 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/sortResult.d.ts",
+      "import": "./dist/sortResult.js"
+    },
+    "./package.json": "./package.json"
   }
 }

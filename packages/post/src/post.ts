@@ -1,11 +1,8 @@
 #!/usr/bin/env node
-import fs = require('node:fs/promises')
-import inquirer = require('inquirer')
-
-import openInEditor = require('open-in-editor')
-
+import fs from 'node:fs/promises'
 import { fileExists } from '@transloadit/file-exists'
 import { slugify } from '@transloadit/slugify'
+import openInEditor from 'open-in-editor'
 
 import title from 'title'
 
@@ -23,7 +20,8 @@ async function post(): Promise<void> {
   const mysqlNow = mysqlDate[0] ? (mysqlDate[0].split(' ')[0] ?? '') : ''
 
   const [dateY, datem] = mysqlNow.split('-')
-  const answers = await inquirer.prompt([
+  const { default: inquirer } = await import('inquirer')
+  const answers = await inquirer.prompt<{ title: string; author: string }>([
     { type: 'input', name: 'title', message: 'title:' },
     { type: 'input', name: 'author', message: 'author:', default: process.env.USER },
   ])

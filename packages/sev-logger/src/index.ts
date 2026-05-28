@@ -8,7 +8,7 @@ export type {
   SevLoggerSpec,
   SevLoggerSpecType,
   SharedState,
-} from './SevLogger'
-export { SevLogger } from './SevLogger'
-export type { SevLoggerInput, SevLoggerLike } from './SevLoggerBaseClass'
-export { SevLoggerBaseClass } from './SevLoggerBaseClass'
+} from './SevLogger.ts'
+export { SevLogger } from './SevLogger.ts'
+export type { SevLoggerInput, SevLoggerLike } from './SevLoggerBaseClass.ts'
+export { SevLoggerBaseClass } from './SevLoggerBaseClass.ts'

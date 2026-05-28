@@ -23,15 +23,21 @@
   "dependencies": {
     "@transloadit/file-exists": "^1.0.0",
     "@transloadit/slugify": "^1.0.0",
-    "inquirer": "^8.2.7",
+    "inquirer": "^14.0.0",
     "open-in-editor": "^2.2.0",
     "title": "^4.0.1"
   },
   "devDependencies": {
-    "@types/inquirer": "^8.2.12",
     "@types/open-in-editor": "^2.2.0"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    "./package.json": "./package.json"
   }
 }

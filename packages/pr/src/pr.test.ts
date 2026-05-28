@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 import { describe, test } from 'node:test'
-import { pr } from './pr'
+import { pr } from './pr.ts'
 
 describe('pr', () => {
   test('main', async () => {

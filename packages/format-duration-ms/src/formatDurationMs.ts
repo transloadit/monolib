@@ -1,4 +1,4 @@
-import prettyMS = require('pretty-ms')
+import prettyMS from 'pretty-ms'
 
 export function formatDurationMs(ms: number): string {
   let human = prettyMS(ms)

@@ -21,5 +21,16 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/fileExists.d.ts",
+      "import": "./dist/fileExists.js"
+    },
+    "./package.json": "./package.json"
   }
 }

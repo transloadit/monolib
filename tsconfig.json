@@ -17,6 +17,7 @@
     { "path": "./packages/sort-object-by-prio" },
     { "path": "./packages/sort-result" },
     { "path": "./packages/sort-result-meta" },
-    { "path": "./packages/trigger-pager" }
+    { "path": "./packages/trigger-pager" },
+    { "path": "./template-package" }
   ]
 }

@@ -21,5 +21,16 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/prettierBytes.d.ts",
+      "import": "./dist/prettierBytes.js"
+    },
+    "./package.json": "./package.json"
   }
 }

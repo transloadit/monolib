@@ -24,5 +24,16 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/prd.d.ts",
+      "import": "./dist/prd.js"
+    },
+    "./package.json": "./package.json"
   }
 }

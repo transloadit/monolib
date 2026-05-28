@@ -32,5 +32,16 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/analyzeStep.d.ts",
+      "import": "./dist/analyzeStep.js"
+    },
+    "./package.json": "./package.json"
   }
 }

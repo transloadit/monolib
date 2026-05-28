@@ -1,12 +1,12 @@
 import { formatDurationMs } from '@transloadit/format-duration-ms'
 import { prettierBytes } from '@transloadit/prettier-bytes'
 
-import inflect = require('inflection')
-import JSONPath = require('jsonpath-plus')
-import clone = require('lodash/clone')
-import countBy = require('lodash/countBy')
-import get = require('lodash/get')
-import has = require('lodash/has')
+import inflect from 'inflection'
+import { JSONPath } from 'jsonpath-plus'
+import clone from 'lodash/clone.js'
+import countBy from 'lodash/countBy.js'
+import get from 'lodash/get.js'
+import has from 'lodash/has.js'
 
 function humanJoin(array: string[], reduce = true, glueword = 'and'): string {
   let countedArray = array
@@ -405,7 +405,7 @@ export function analyzeStep(step: Step, robots: Robots, extrameta: ExtraMeta = {
   }
 
   if (robot?.rname === '/video/merge') {
-    const types = JSONPath.JSONPath({ path: '$..as', json: step })
+    const types = JSONPath({ path: '$..as', json: step })
     if (types.length) {
       str = `Merge ${humanJoin(types)} to create a new video`
     } else if (get(step, 'ffmpeg.f') === 'gif') {

@@ -21,5 +21,16 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/has-property.d.ts",
+      "import": "./dist/has-property.js"
+    },
+    "./package.json": "./package.json"
   }
 }

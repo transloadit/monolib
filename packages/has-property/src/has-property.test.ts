@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 import { test } from 'node:test'
-import { hasProperty } from './has-property'
+import { hasProperty } from './has-property.ts'
 
 test('hasProperty', () => {
   assert.ok(hasProperty({ foo: 'bar' }, 'foo'))
