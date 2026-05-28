@@ -1,11 +1,14 @@
 import fs from 'node:fs'
 import { hostname, userInfo } from 'node:os'
 import path, { basename, relative, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { inspect } from 'node:util'
 import { abbr } from '@transloadit/abbr'
 
 export const normalizeCallsitePath = (filePath: string) =>
   filePath.startsWith('file://') ? fileURLToPath(filePath) : filePath
+
+const moduleFilepath = import.meta.filename
 
 const GENERIC_TOKEN_PATTERN = /\b[A-Za-z0-9+=]{32,}\b/g
 const GENERIC_SLASHY_TOKEN_PATTERN = /[A-Za-z0-9+/=]{32,}/g
@@ -176,32 +179,11 @@ export class SevLogger {
   // Initialize static member directly
   static #crcTable: number[] | null = null
 
-  static #pathFromStack() {
-    // A getDirname that works in CJS and ESM, since Alphalib is shared
-    // across both kinds of projects.
-    // We can remove this once we've migrated all consumers to ESM.
-    const { stack } = new Error()
-    if (!stack) {
-      throw new Error('Could not get stack')
+  static #modulePath() {
+    return {
+      dirpath: path.dirname(moduleFilepath),
+      filepath: moduleFilepath,
     }
-    const lines = stack.split('\n')
-
-    for (const line of lines) {
-      if (line.includes(' (/')) {
-        const location = line.split(' (')[1]
-        if (!location) {
-          throw new Error('Could not get location')
-        }
-        const filepath = location.split(':')[0]
-        if (!filepath) {
-          throw new Error('Could not get filepath')
-        }
-        const dirpath = path.dirname(filepath)
-        return { dirpath, filepath }
-      }
-    }
-
-    throw new Error('Could not get dirname')
   }
 
   static #getCallSite() {
@@ -238,7 +220,7 @@ export class SevLogger {
 
     const callSite = traces.find(
       (trace) =>
-        trace.filePath !== SevLogger.#pathFromStack().filepath &&
+        normalizeCallsitePath(trace.filePath ?? '') !== SevLogger.#modulePath().filepath &&
         trace.filePath &&
         basename(trace.filePath) !== `SevLogger.ts` &&
         basename(trace.filePath) !== `SevLogger.js` &&
@@ -1384,5 +1366,3 @@ export class SevLogger {
     })
   }
 }
-
-import { fileURLToPath } from 'node:url'

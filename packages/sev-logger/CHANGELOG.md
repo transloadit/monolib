@@ -1,5 +1,11 @@
 # @transloadit/sev-logger
 
+## 1.0.1
+
+### Patch Changes
+
+- Fix ESM callsite detection so logging from file URL stack frames does not throw at runtime.
+
 ## 1.0.0
 
 ### Major Changes
