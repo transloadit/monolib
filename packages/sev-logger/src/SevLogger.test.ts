@@ -407,6 +407,52 @@ describe('SevLogger', () => {
     })
   })
 
+  describe('stream routing', () => {
+    it('routes warn and more severe logs to stderr', () => {
+      let stdout = ''
+      let stderr = ''
+      const stdoutStream = {
+        isTTY: false,
+        write: (chunk: string) => {
+          stdout += chunk
+          return true
+        },
+      }
+      const stderrStream = {
+        isTTY: false,
+        write: (chunk: string) => {
+          stderr += chunk
+          return true
+        },
+      }
+      const logger = new SevLogger({
+        level: LEVEL.TRACE,
+        addCallsite: false,
+        colors: plainColors,
+        levelColors: plainLevelColors,
+        formatColors: plainFormatColors,
+        stdout: stdoutStream,
+        stderr: stderrStream,
+      })
+
+      logger.warn('warn')
+      logger.err('err')
+      logger.notice('notice')
+      logger.info('info')
+      logger.debug('debug')
+      logger.event(LEVEL.WARN, { event: 'WARN_EVENT' })
+      logger.event(LEVEL.DEBUG, { event: 'DEBUG_EVENT' })
+
+      assert.match(stderr, /\[ {3}WARN\] warn/)
+      assert.match(stderr, /\[ {4}ERR\] err/)
+      assert.match(stderr, /WARN_EVENT/)
+      assert.match(stdout, /\[ NOTICE\] notice/)
+      assert.match(stdout, /\[ {3}INFO\] info/)
+      assert.match(stdout, /\[ {2}DEBUG\] debug/)
+      assert.match(stdout, /DEBUG_EVENT/)
+    })
+  })
+
   // Add a new describe block for type tests
   describe('Type Safety', () => {
     // Mock streams to capture output

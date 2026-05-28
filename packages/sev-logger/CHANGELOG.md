@@ -1,5 +1,11 @@
 # @transloadit/sev-logger
 
+## 1.0.4
+
+### Patch Changes
+
+- Route warnings and errors to stderr while keeping notices and less severe logs on stdout.
+
 ## 1.0.3
 
 ### Patch Changes

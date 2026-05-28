@@ -52,9 +52,9 @@ export interface SevLoggerParams {
   addCallsite?: boolean
   /** Make file paths clickable in standard formatted logs? Defaults based on env vars (usually true unless CI/production). See `LOG_CLICKABLES`, `NODE_ENV`, `CI`. */
   addClickables?: boolean
-  /** Custom stream for standard output (levels NOTICE and below). Defaults to process.stdout. */
+  /** Custom stream for standard/non-error output (NOTICE, INFO, DEBUG, TRACE). Defaults to process.stdout. */
   stdout?: SevLoggerStream
-  /** Custom stream for error output (levels WARN and above). Defaults to process.stderr. */
+  /** Custom stream for warnings and errors (WARN and more severe). Defaults to process.stderr. */
   stderr?: SevLoggerStream
   /** If set, logs will be appended to this file instead of stdout/stderr. */
   filepath?: string
@@ -414,6 +414,10 @@ export class SevLogger {
 
   #inspect(value: unknown): string {
     return inspect(value, false, null, process.env.NO_COLOR !== '1' && !this.filepath)
+  }
+
+  #streamFor(level: number): SevLoggerStream {
+    return level <= SevLogger.LEVEL.WARN ? this.stderr : this.stdout
   }
 
   colorByName(name: string) {
@@ -1066,7 +1070,7 @@ export class SevLogger {
       return
     }
     const fullStr = this.formatter(level, message, ...args)
-    const stream = level <= SevLogger.LEVEL.NOTICE ? this.stdout : this.stderr // NOTICE and below to stdout
+    const stream = this.#streamFor(level)
 
     if (this.filepath) {
       try {
@@ -1295,7 +1299,7 @@ export class SevLogger {
 
     // Join parts and write to stream
     const fullStr = parts.join(' ') // Simple space join for event format
-    const stream = level <= SevLogger.LEVEL.NOTICE ? this.stdout : this.stderr
+    const stream = this.#streamFor(level)
 
     if (this.filepath) {
       try {
