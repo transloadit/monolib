@@ -7,6 +7,7 @@ export type {
   SevLoggerParams,
   SevLoggerSpec,
   SevLoggerSpecType,
+  SevLoggerStream,
   SharedState,
 } from './SevLogger.ts'
 export { SevLogger } from './SevLogger.ts'
