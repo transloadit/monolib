@@ -26,5 +26,16 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/sortAssembly.d.ts",
+      "import": "./dist/sortAssembly.js"
+    },
+    "./package.json": "./package.json"
   }
 }

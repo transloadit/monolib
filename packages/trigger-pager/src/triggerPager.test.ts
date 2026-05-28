@@ -2,37 +2,15 @@ import assert from 'node:assert'
 import crypto from 'node:crypto'
 import { describe, mock, test } from 'node:test'
 
-type MockReplacer<T> = (actual: T) => T
+import { createTriggerPager, type PagerdutyApiResponse } from './triggerPager.ts'
 
-function mockRequire<T>(specifier: string, replacer?: MockReplacer<T>) {
-  const actualPath = require.resolve(specifier)
-  if (!replacer) {
-    require.cache[actualPath] = require(`../__mocks__/${specifier}`)
-  } else {
-    const actual = require(specifier)
-    const Module = require('node:module')
-    require.cache[actualPath] = new Module(actualPath, module)
-    Object.defineProperties(require.cache[actualPath], {
-      exports: {
-        // @ts-expect-error - Object literal may only specify known properties
-        __proto__: null,
-        value: replacer(actual),
-      },
-      // @ts-expect-error - Object literal may only specify known properties
-      resetFn: { __proto__: null, value: replacer.bind(null, actual) },
-    })
-  }
-}
+const mockPost = mock.fn(
+  async (_endpoint: string, _payload: unknown): Promise<PagerdutyApiResponse> => {
+    throw Error('mock post for each test')
+  },
+)
 
-const mockPost = mock.fn(async (_endpoint: string, _payload: unknown): Promise<unknown> => {
-  throw Error('mock post for each test')
-})
-
-mockRequire('@pagerduty/pdjs', () => {
-  return { api: () => ({ post: mockPost }) }
-})
-
-const { triggerPager } = require('./triggerPager')
+const triggerPager = createTriggerPager(() => ({ post: mockPost }))
 
 const LOREM_LONG = `Lorem ipsum dolor sit amet, consectetur adipiscing elit,
 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

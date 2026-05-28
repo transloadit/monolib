@@ -1,4 +1,4 @@
-import { SevLogger } from './SevLogger'
+import { SevLogger } from './SevLogger.ts'
 
 type MethodType<Name extends keyof SevLogger> = SevLogger[Name]
 

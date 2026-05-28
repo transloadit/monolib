@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 import { describe, test } from 'node:test'
-import { sortAssembly } from './sortAssembly'
+import { sortAssembly } from './sortAssembly.ts'
 
 describe('sortAssembly', () => {
   test('main', () => {

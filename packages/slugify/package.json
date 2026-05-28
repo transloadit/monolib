@@ -21,5 +21,16 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/slugify.d.ts",
+      "import": "./dist/slugify.js"
+    },
+    "./package.json": "./package.json"
   }
 }

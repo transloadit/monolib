@@ -24,5 +24,16 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/triggerPager.d.ts",
+      "import": "./dist/triggerPager.js"
+    },
+    "./package.json": "./package.json"
   }
 }

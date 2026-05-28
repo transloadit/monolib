@@ -20,9 +20,20 @@
     "test:watch": "node --test --enable-source-maps --watch"
   },
   "dependencies": {
-    "pretty-ms": "6.0.1"
+    "pretty-ms": "^9.3.0"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/formatDurationMs.d.ts",
+      "import": "./dist/formatDurationMs.js"
+    },
+    "./package.json": "./package.json"
   }
 }

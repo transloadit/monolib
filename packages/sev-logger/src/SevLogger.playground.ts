@@ -1,4 +1,4 @@
-import { SevLogger } from './SevLogger'
+import { SevLogger } from './SevLogger.ts'
 
 const { DEBUG } = SevLogger.LEVEL
 

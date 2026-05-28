@@ -3,9 +3,8 @@ import path from 'node:path'
 import { PassThrough } from 'node:stream'
 import { beforeEach, describe, it } from 'node:test'
 
-import { normalizeCallsitePath, SevLogger } from './SevLogger'
+import { normalizeCallsitePath, SevLogger } from './SevLogger.ts'
 
-// const __filename = fileURLToPath(import.meta.url)
 const { LEVEL } = SevLogger
 
 const colors = {
@@ -311,7 +310,7 @@ describe('SevLogger', () => {
       )
       // Revert to simplified regex, ignoring outer colors, using assert.match
       assert.match(
-        logger.formatter(LEVEL.DEBUG, `foo %s %r`, 1, __filename),
+        logger.formatter(LEVEL.DEBUG, `foo %s %r`, 1, import.meta.filename),
         /dim\(gray\(\[ {2}DEBUG\]\) foo magenta\(1\) cyan\((.*\/)?(dist\/)?SevLogger\.test\.(js|ts)\)\)/,
       )
     })

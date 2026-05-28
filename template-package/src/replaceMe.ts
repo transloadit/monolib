@@ -1,3 +1,3 @@
-export function replaceMe(arg: string) {
-  return arg
+export function replaceMe(_arg: string): string {
+  return 'bar'
 }

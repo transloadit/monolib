@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 import { describe, it } from 'node:test'
-import { prettierBytes } from './prettierBytes'
+import { prettierBytes } from './prettierBytes.ts'
 
 const testData: [number, string, string, string, string][] = [
   [2, '2 B', '2 B', '0.0 MB', '0.00 TB'],
