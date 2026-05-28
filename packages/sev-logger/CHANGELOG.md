@@ -1,5 +1,11 @@
 # @transloadit/sev-logger
 
+## 1.0.3
+
+### Patch Changes
+
+- Respect `NO_COLOR=1` when formatting inspected object values.
+
 ## 1.0.2
 
 ### Patch Changes
