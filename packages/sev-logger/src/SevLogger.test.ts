@@ -336,6 +336,30 @@ describe('SevLogger', () => {
       // Check if the callsite pattern exists somewhere in the formatted string
       assert.match(formatted, expectedPattern)
     })
+
+    it('logs with ESM callsite detection enabled', () => {
+      let output = ''
+      const stdout = {
+        columns: 120,
+        isTTY: false,
+        write: (chunk: string) => {
+          output += chunk
+          return true
+        },
+      }
+      const logger = new SevLogger({
+        level: LEVEL.TRACE,
+        addCallsite: true,
+        colors: plainColors,
+        levelColors: plainLevelColors,
+        formatColors: plainFormatColors,
+        stdout: stdout as unknown as NodeJS.WriteStream,
+      })
+
+      assert.doesNotThrow(() => logger.notice('notice smoke %s', 'ok'))
+      assert.match(output, /notice smoke ok/)
+      assert.match(output, /SevLogger\.test\.(js|ts):\d+/)
+    })
   })
 
   describe('announceMotd', () => {
