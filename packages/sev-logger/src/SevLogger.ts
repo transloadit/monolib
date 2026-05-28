@@ -412,6 +412,10 @@ export class SevLogger {
     this.reset(params)
   }
 
+  #inspect(value: unknown): string {
+    return inspect(value, false, null, process.env.NO_COLOR !== '1' && !this.filepath)
+  }
+
   colorByName(name: string) {
     const absCrc = SevLogger.#crc32(name)
 
@@ -923,7 +927,7 @@ export class SevLogger {
       const base = workingMessages.shift()
       if (typeof base !== 'string') {
         // Should not happen due to initial check, but safeguard
-        subject = inspect(base, false, null, true)
+        subject = this.#inspect(base)
       } else {
         // Perform replacement - Type errors inside callback WILL throw
         subject = base.replace(
@@ -947,7 +951,7 @@ export class SevLogger {
                 if (typeof arg === 'string' || typeof arg === 'number') {
                   return match.replace('%s', fmtColorFunc(String(arg)))
                 }
-                return match.replace('%s', inspect(arg, false, null, true)) // Use inspect for non-string/num %s
+                return match.replace('%s', this.#inspect(arg)) // Use inspect for non-string/num %s
               }
               if (match.includes('%r')) {
                 if (typeof arg !== 'string') {
@@ -982,7 +986,7 @@ export class SevLogger {
           console.error(`SevLogger Formatting Warning: ${errorMsg}`, originalMessages)
           // Fallback: Use original messages inspected
           subject = originalMessages
-            .map((msg) => (typeof msg === 'string' ? msg : inspect(msg, false, null, true)))
+            .map((msg) => (typeof msg === 'string' ? msg : this.#inspect(msg)))
             .join(' ')
           subject = subject.replace(/%%/g, '%') // Still handle escapes in the fallback
         }
@@ -990,7 +994,7 @@ export class SevLogger {
     } else {
       // No format specifiers or mismatch count, inspect all messages
       subject = redactedMessages
-        .map((msg) => (typeof msg === 'string' ? msg : inspect(msg, false, null, true)))
+        .map((msg) => (typeof msg === 'string' ? msg : this.#inspect(msg)))
         .join(' ')
       subject = subject.replace(/%%/g, '%')
     }

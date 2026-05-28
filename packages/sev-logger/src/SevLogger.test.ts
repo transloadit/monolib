@@ -360,6 +360,28 @@ describe('SevLogger', () => {
       assert.match(output, /notice smoke ok/)
       assert.match(output, /SevLogger\.test\.(js|ts):\d+/)
     })
+
+    it('respects NO_COLOR for inspected objects', () => {
+      const previousNoColor = process.env.NO_COLOR
+      process.env.NO_COLOR = '1'
+      try {
+        const logger = new SevLogger({
+          level: LEVEL.TRACE,
+          addCallsite: false,
+        })
+
+        assert.strictEqual(
+          logger.formatter(LEVEL.NOTICE, { foo: 'bar' }),
+          "[ NOTICE] { foo: 'bar' }",
+        )
+      } finally {
+        if (previousNoColor === undefined) {
+          delete process.env.NO_COLOR
+        } else {
+          process.env.NO_COLOR = previousNoColor
+        }
+      }
+    })
   })
 
   describe('announceMotd', () => {
