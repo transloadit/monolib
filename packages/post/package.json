@@ -1,6 +1,6 @@
 {
   "name": "@transloadit/post",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/transloadit/monolib.git",
@@ -21,8 +21,8 @@
     "test:watch": "echo 'No tests yet' && exit 0"
   },
   "dependencies": {
-    "@transloadit/file-exists": "^1.0.0",
-    "@transloadit/slugify": "^1.0.0",
+    "@transloadit/file-exists": "^2.0.0",
+    "@transloadit/slugify": "^2.0.0",
     "inquirer": "^14.0.0",
     "open-in-editor": "^2.2.0",
     "title": "^4.0.1"
