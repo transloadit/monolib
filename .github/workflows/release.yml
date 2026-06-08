@@ -8,12 +8,72 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  release:
-    name: Release
+  changesets:
+    name: Detect changesets
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      has-changesets: ${{ steps.changesets.outputs.has-changesets }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Detect pending changesets
+        id: changesets
+        run: |
+          shopt -s nullglob
+          has_changesets=false
+          for changeset in .changeset/*.md; do
+            if [ "$(basename "$changeset")" != "README.md" ]; then
+              has_changesets=true
+              break
+            fi
+          done
+          echo "has-changesets=${has_changesets}" >> "$GITHUB_OUTPUT"
+
+  version:
+    name: Create release PR
+    needs: changesets
+    if: needs.changesets.outputs.has-changesets == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
       pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      # Allow yarn to make changes during release
+      - run: corepack yarn config set enableHardenedMode false
+      - run: corepack yarn --mode=update-lockfile
+
+      - name: Install dependencies
+        run: corepack yarn install --immutable
+
+      - name: Create release pull request
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: corepack yarn changeset:version:install
+          title: "chore: version packages"
+          commit: "chore: version packages"
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+  publish:
+    name: Publish packages
+    needs: changesets
+    if: needs.changesets.outputs.has-changesets == 'false'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
       id-token: write
     env:
       NODE_AUTH_TOKEN: ''
@@ -24,14 +84,6 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-
-      - name: Set up git for pushing
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: |
-          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - uses: actions/setup-node@v4
         with:
@@ -44,20 +96,16 @@ jobs:
           echo "npm ${version}"
           node -e "const version = process.argv[1]; const [major, minor, patch] = version.split('.').map(Number); if (major < 11 || (major === 11 && (minor < 5 || (minor === 5 && patch < 1)))) { throw new Error('npm 11.5.1 or newer is required for trusted publishing'); }" "$version"
 
-      # Allow yarn to make changes during release
       - run: corepack yarn config set enableHardenedMode false
       - run: corepack yarn --mode=update-lockfile
 
       - name: Install dependencies
         run: corepack yarn install --immutable
 
-      - name: Create Release Pull Request or Publish
+      - name: Publish packages
         id: changesets
         uses: changesets/action@v1
         with:
-          version: corepack yarn changeset:version:install
           publish: corepack yarn release
-          title: "chore: version packages"
-          commit: "chore: version packages"
         env:
           GITHUB_TOKEN: ${{ github.token }}
