@@ -23,7 +23,7 @@
   "dependencies": {
     "@transloadit/file-exists": "^2.0.0",
     "@transloadit/slugify": "^2.0.0",
-    "inquirer": "^14.0.0",
+    "inquirer": "^14.0.2",
     "open-in-editor": "^2.2.0",
     "title": "^4.0.1"
   },
