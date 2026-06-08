@@ -1,5 +1,11 @@
 # @transloadit/post
 
+## 2.0.1
+
+### Patch Changes
+
+- dc408d7: Refresh the inquirer dependency and repo tooling patch versions.
+
 ## 2.0.0
 
 ### Major Changes
