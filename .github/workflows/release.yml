@@ -30,8 +30,8 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: |
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
-          git config --global user.name "transloadit-bot"
-          git config --global user.email "bot@transloadit.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - uses: actions/setup-node@v4
         with:
