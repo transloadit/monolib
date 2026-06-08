@@ -39,6 +39,8 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+    env:
+      YARN_ENABLE_HARDENED_MODE: 'false'
 
     steps:
       - uses: actions/checkout@v6
@@ -50,8 +52,6 @@ jobs:
         with:
           node-version: 24
 
-      # Allow yarn to make changes during release
-      - run: corepack yarn config set enableHardenedMode false
       - run: corepack yarn --mode=update-lockfile
 
       - name: Install dependencies
@@ -79,6 +79,7 @@ jobs:
     env:
       NODE_AUTH_TOKEN: ''
       NPM_TOKEN: ''
+      YARN_ENABLE_HARDENED_MODE: 'false'
 
     steps:
       - uses: actions/checkout@v6
@@ -97,7 +98,6 @@ jobs:
           echo "npm ${version}"
           node -e "const version = process.argv[1]; const [major, minor, patch] = version.split('.').map(Number); if (major < 11 || (major === 11 && (minor < 5 || (minor === 5 && patch < 1)))) { throw new Error('npm 11.5.1 or newer is required for trusted publishing'); }" "$version"
 
-      - run: corepack yarn config set enableHardenedMode false
       - run: corepack yarn --mode=update-lockfile
 
       - name: Install dependencies
