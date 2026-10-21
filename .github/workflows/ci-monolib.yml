@@ -17,13 +17,15 @@ concurrency:
 
 jobs:
   test:
-    name: Test (Node ${{ matrix.node-version }})
+    name: Test (Node ${{ matrix.node-major }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version:
-          - 22
-          - 24
+        include:
+          - node-major: 22
+            node-version: '^22.23.4'
+          - node-major: 24
+            node-version: '^24.22.1'
     permissions:
       contents: read
       pull-requests: read
@@ -33,6 +35,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          check-latest: true
 
       - name: 🏗 Setup Caching
         uses: actions/cache@v4
@@ -40,9 +43,9 @@ jobs:
           path: |
             **/node_modules
             .yarn/cache
-          key: ${{ runner.os }}-node-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock', '**/package.json') }}
+          key: ${{ runner.os }}-node-${{ matrix.node-major }}-${{ hashFiles('**/yarn.lock', '**/package.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-${{ matrix.node-version }}-
+            ${{ runner.os }}-node-${{ matrix.node-major }}-
 
       - run: corepack yarn config set enableHardenedMode false
       - run: corepack yarn install --immutable
