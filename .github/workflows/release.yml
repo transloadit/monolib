@@ -50,8 +50,12 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: '^24.22.1'
+          # Match the exact Node 26 tooling release validated by CI.
+          node-version: '26.12.1'
           check-latest: true
+
+      - name: Install Corepack
+        run: npm install --global corepack@0.36.0
 
       - run: corepack yarn --mode=update-lockfile
 
@@ -90,9 +94,13 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: '^24.22.1'
+          # Match the exact Node 26 tooling release validated by CI.
+          node-version: '26.12.1'
           check-latest: true
           registry-url: 'https://registry.npmjs.org'
+
+      - name: Install Corepack
+        run: npm install --global corepack@0.36.0
 
       - name: Verify npm for trusted publishing
         run: |
